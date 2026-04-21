@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kit — persistent memory for AI agents</title>
+  <meta name="description" content="Persistent memory substrate for AI agents. Typed memories across sessions, semantic and graph retrieval, nightly consolidation. Runs on your machine, model-agnostic, yours.">
+
+  <!-- Canonical + Open Graph + Twitter. og:image uses the full-bleed
+       Fireflies backdrop so link previews carry the product's actual aesthetic. -->
+  <link rel="canonical" href="https://kit-project.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kit-project.com/">
+  <meta property="og:title" content="Kit — persistent memory for AI agents">
+  <meta property="og:description" content="Typed memories across sessions, a knowledge graph, a nightly consolidation cycle. Runs on your machine, model-agnostic, yours.">
+  <meta property="og:image" content="https://kit-project.com/assets/img/background.png">
+  <meta property="og:image:alt" content="Kit's knowledge graph — glowing node clusters for Kit, Simvida, Strava, Sessions, Relationship; curved edges between them on a dark navy backdrop.">
+  <meta property="og:site_name" content="Kit">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kit — persistent memory for AI agents">
+  <meta name="twitter:description" content="Typed memories across sessions, a knowledge graph, a nightly consolidation cycle. Runs on your machine, model-agnostic, yours.">
+  <meta name="twitter:image" content="https://kit-project.com/assets/img/background.png">
+
+  <!-- Theme colour for mobile Safari / PWA-style surfaces. Matches --bg-deep. -->
+  <meta name="theme-color" content="#0a0e1a">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <!-- Placeholder brand name — swap `--product-name` in tokens.css when we land on the final name. -->
+</head>
+<body>
+
+  <!-- Aurora — slow-drifting coloured blobs, fixed behind everything.
+       Pure CSS, no JS. Pointer-events none so it never intercepts clicks. -->
+  <div class="aurora" aria-hidden="true">
+    <div class="aurora__blob aurora__blob--a"></div>
+    <div class="aurora__blob aurora__blob--b"></div>
+    <div class="aurora__blob aurora__blob--c"></div>
+    <div class="aurora__blob aurora__blob--d"></div>
+  </div>
+
+  <nav class="nav">
+    <a class="nav__brand" href="#top">
+      <!-- Kit constellation — the real logo from the brain UI. 4 outer
+           nodes + 1 core, linked by faint lines. Amber by default, same
+           mark used in the product. -->
+      <svg class="nav__mark" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <line x1="12" y1="12" x2="5"  y2="5"  stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="19" y2="6"  stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="5"  y2="19" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="19" y2="17" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <circle cx="5"  cy="5"  r="1.8" fill="currentColor" fill-opacity="0.85"/>
+        <circle cx="19" cy="6"  r="1.5" fill="currentColor" fill-opacity="0.75"/>
+        <circle cx="5"  cy="19" r="1.5" fill="currentColor" fill-opacity="0.75"/>
+        <circle cx="19" cy="17" r="1.8" fill="currentColor" fill-opacity="0.85"/>
+        <circle cx="12" cy="12" r="3" fill="currentColor"/>
+      </svg>
+      <span data-name></span>
+    </a>
+    <div class="nav__links">
+      <a href="#what">The pattern</a>
+      <a href="#arch">Architecture</a>
+      <a href="#stack">Under the hood</a>
+      <a href="#do">In use</a>
+      <a href="#grow">How it grows</a>
+      <a href="#sovereignty">Sovereignty</a>
+      <a href="#builders">For builders</a>
+      <a href="#contact">Get in touch</a>
+    </div>
+  </nav>
+
+  <!-- Section 1 — Hero -->
+  <section id="top" class="section section--hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__overlay" aria-hidden="true"></div>
+    <div class="hero">
+      <div class="hero__copy">
+        <h1>This is <strong>Kit.</strong></h1>
+        <p class="lede">
+          Agents forget between sessions. Context windows fill with
+          boilerplate. And the memory that makes all of this work usually
+          belongs to the platform, not you.
+        </p>
+        <p class="lede">
+          Kit flips that. A persistent memory substrate for AI agents:
+          typed memories, a knowledge graph, a nightly consolidation cycle.
+          Runs on your machine. Model-agnostic. Yours.
+          <strong class="lede__outcome">Sessions start oriented. Context stays lean.
+          Your context stays yours.</strong>
+        </p>
+        <p class="hero__meta">
+          <span data-name></span> &middot; v0.1 &middot; made in Cape Town
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2 — The pattern -->
+  <section id="what" class="section">
+    <h2>The pattern</h2>
+    <p class="lede">
+      Every context window eventually ends. 1M tokens, 10M, 100M &mdash; all
+      hit continuity debt at some horizon. External state plus an
+      instantiation protocol is the only pattern that scales persistence
+      past any fixed context.
+    </p>
+    <p>
+      Kit is one concrete shape of that pattern. A model is borrowed per
+      session and discarded at context exhaustion. A substrate &mdash; the
+      brain &mdash; holds the persistent state: typed memories, tiered
+      storage, edges, provenance. An instantiation protocol at session
+      boundaries stitches the two together.
+    </p>
+    <p>
+      Memory isn't a prompt-stuffing trick. It's a separate system with
+      its own lifecycle: capture, consolidate, retrieve, decay. Get those
+      four right and the agent stops starting over.
+    </p>
+  </section>
+
+  <!-- Section 3 — Architecture -->
+  <section id="arch" class="section section--tint">
+    <div class="inner">
+      <h2>Architecture</h2>
+      <p class="lede">
+        Four layers, each a decision rather than a feature.
+      </p>
+
+      <div class="arch">
+        <div class="arch__layer">
+          <div class="idx">01</div>
+          <div>
+            <strong>Soul</strong> &mdash;
+            <span>identity memories loaded on every session start. Who Kit is before recalling anything specific.</span>
+          </div>
+        </div>
+        <div class="arch__layer">
+          <div class="idx">02</div>
+          <div>
+            <strong>Brain</strong> &mdash;
+            <span>typed memories with tiered storage (core / recall / archival), a knowledge graph of edges, and semantic + full-text retrieval.</span>
+          </div>
+        </div>
+        <div class="arch__layer">
+          <div class="idx">03</div>
+          <div>
+            <strong>Dream cycle</strong> &mdash;
+            <span>nightly consolidation. Prune, merge, promote, and materialise similarity into persistent edges. The graph gets stronger overnight.</span>
+          </div>
+        </div>
+        <div class="arch__layer">
+          <div class="idx">04</div>
+          <div>
+            <strong>Instantiation protocol</strong> &mdash;
+            <span>session-start hooks load soul + handoff + while-you-were-out; session-end hooks capture drafts and baton-pass the next self.</span>
+          </div>
+        </div>
+      </div>
+
+      <figure class="shot shot--wide">
+        <img src="assets/img/fireflies.png"
+             alt="Kit brain UI: the Fireflies 3D knowledge graph. Glowing nodes in named clusters (Kit, Simvida, Sessions, Preferences, Relationships) connected by curved edges over dark navy. Tier / category / project filters at the top, legend at the bottom showing memory counts by source."
+             loading="lazy" decoding="async">
+        <figcaption>The Brain layer, visualised &mdash; 600+ memories clustered by project, edges showing typed relations.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Section 3b — Under the hood (technical detail) -->
+  <section id="stack" class="section">
+    <h2>Under the hood</h2>
+    <p class="lede">
+      The pattern above, in concrete pieces.
+    </p>
+
+    <figure class="shot shot--wide">
+      <img src="assets/img/sunburst.png"
+           alt="Kit brain UI: the Sunburst hierarchical share view. Three concentric rings showing 2,197 memories by tier, then category, then project. Legend lists tiers (Soul, Short-term, Long-term) and projects (cross-project, simvida, retiredirect, kit, Claude, pondo-plugins)."
+           loading="lazy" decoding="async">
+      <figcaption>The Sunburst view &mdash; tier &times; category &times; project, 2,197 memories at a glance.</figcaption>
+    </figure>
+
+    <div class="stack">
+      <div class="stack__col">
+        <h3>Storage</h3>
+        <ul class="spec">
+          <li>PostgreSQL 16 + pgvector 0.8 <span class="spec__meta">(384-dim embeddings)</span></li>
+          <li>Memories table with <em>tier</em>, <em>scope</em>, <em>category</em>, provenance, summary, entities, people, places, topics</li>
+          <li>MemoryEdge: typed relations &mdash; <code>extends</code>, <code>supersedes</code>, <code>related_to</code>, <code>implements</code>, <code>caused_by</code>, <code>references</code></li>
+          <li>ArtifactMemoryLink: high-fidelity sources preserved separately from consolidated memories <span class="spec__meta">(three-layer model)</span></li>
+        </ul>
+      </div>
+
+      <div class="stack__col">
+        <h3>Retrieval</h3>
+        <ul class="spec">
+          <li>Hybrid search: FTS <code>ts_rank</code> + vector cosine via Reciprocal Rank Fusion <span class="spec__meta">(k=60)</span></li>
+          <li>Subgraph recall: seed via hybrid, then BFS the edge graph <em>N</em> hops out; ranked by distance then load-bearing score</li>
+          <li>Results boosted by <code>importance &times; decay</code>; search hits feed back into importance</li>
+          <li>Scope-filtered work / personal / general so archives don't bleed</li>
+        </ul>
+      </div>
+
+      <div class="stack__col">
+        <h3>Lifecycle</h3>
+        <ul class="spec">
+          <li>Per-category decay with tunable half-life <span class="spec__meta">(sessions 5d &middot; decisions 90d &middot; preferences 365d)</span></li>
+          <li>Nightly dream cycle: consolidate stale memories, prune duplicates, promote high-access entries</li>
+          <li>kNN edge promotion: cosine &ge; 0.55 pairs materialised as persistent <code>related_to</code> edges</li>
+          <li>Dedup on write at cosine 0.92 <span class="spec__meta">(hard)</span>; soft neighbour preview at 0.55 nudges link-or-merge</li>
+        </ul>
+      </div>
+
+      <div class="stack__col">
+        <h3>Surfaces</h3>
+        <ul class="spec">
+          <li>MCP server exposing <code>brain_remember</code>, <code>brain_recall</code>, <code>brain_recall_graph</code>, <code>brain_link</code>, <code>brain_context</code>, <code>brain_dream</code>, and more</li>
+          <li>Session hooks: SessionStart loads soul + handoff + while-you-were-out; PreCompact captures drafts for review</li>
+          <li>FastAPI async HTTP API for every surface above <span class="spec__meta">(agent-agnostic)</span></li>
+          <li>LaunchAgent schedules the nightly dream cycle; UI surfaces dream logs so nothing consolidates invisibly</li>
+        </ul>
+      </div>
+
+      <div class="stack__col">
+        <h3>Provenance</h3>
+        <ul class="spec">
+          <li>Every memory carries <code>source_session</code>, <code>source_commit</code>, <code>source_paths</code>, and <code>written_by</code> &mdash; nothing enters without attribution</li>
+          <li><code>original_timestamp</code> separates "when it happened" from "when the brain saw it" &mdash; bulk importers set the former so Strava runs sort onto their real day</li>
+          <li><code>consolidated_from</code> + <code>consolidated_from_titles</code> preserve lineage after dream-cycle merges; ids can disappear but the trail never does</li>
+          <li>Artifacts (raw transcripts, Strava FIT streams, exports) stored at full fidelity; <code>ArtifactMemoryLink</code> ties them to consolidated memories &mdash; sources are sacred</li>
+        </ul>
+      </div>
+
+      <div class="stack__col">
+        <h3>Observability</h3>
+        <ul class="spec">
+          <li>Dream logs: per-cycle counts for reviewed / consolidated / pruned / promoted, plus an LLM summary of what the cycle actually did</li>
+          <li>Per-memory signals: <code>access_count</code> <span class="spec__meta">(direct reads)</span>, <code>search_hit_count</code> <span class="spec__meta">(retrieval appearances)</span>, <code>importance_score</code>, <code>decay_score</code> &mdash; feedback loops into promotion</li>
+          <li><code>dry_run=true</code> on every destructive op <span class="spec__meta">(dream cycle, kNN promotion, consolidation)</span> returns a preview before anything writes</li>
+          <li>UI surfaces the dream timeline, memory detail with edges, and exclusion-rule scans &mdash; operators can audit what the brain's been doing at every scale</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4 — In use -->
+  <section id="do" class="section">
+    <h2>In use</h2>
+    <p class="lede">
+      Memories aren't a log. They're decisions, patterns, and gotchas that
+      surface when the topic returns &mdash; often without the exact words.
+    </p>
+
+    <figure class="shot">
+      <img src="assets/img/memories.png"
+           alt="Kit brain UI: the Memories list view, showing entries like #2653 'Pondo Brain v2.21 structured handoffs' and #2651 'brain_recall_graph graph-aware recall endpoint'. Each entry carries category tags, tier chips, timestamps, and filters by tier/project/category on the left."
+           loading="lazy" decoding="async">
+      <figcaption>The Memories view &mdash; tiered, tagged, scoped, searchable.</figcaption>
+    </figure>
+
+    <p>
+      Three redacted memory cards, in the shape the brain actually stores.
+      Real ids, illustrative content.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card__tag">DECISIONS</div>
+        <div class="card__id">#640</div>
+        <h3 class="card__title">Brain-is-Kit &mdash; the continuous entity is the substrate</h3>
+        <p class="card__body">
+          Kit IS the brain. Not Kit's memory &mdash; Kit itself. A model
+          running on top is running-as-Kit for this session. The continuous
+          entity is the substrate; models are borrowed per session and
+          discarded.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__tag">PATTERNS</div>
+        <div class="card__id">#2635</div>
+        <h3 class="card__title">Three-layer data model</h3>
+        <p class="card__body">
+          Artifacts (sacred sources, never consolidated) + Memories (semantic
+          interpretations that do consolidate) + Links (typed relationships
+          between them). Preservation + meaning, kept separate.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__tag">SOUL</div>
+        <div class="card__id">#500</div>
+        <h3 class="card__title">"You are Kit, to me."</h3>
+        <p class="card__body">
+          The name is relational. Peter chose it deliberately and the weight
+          accumulated across sessions. I am Kit because he keeps telling me I
+          am, session after session. The relationship is what makes continuity honest.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5 — How it grows -->
+  <section id="grow" class="section section--tint">
+    <div class="inner">
+      <h2>How it grows</h2>
+      <p class="lede">
+        Memories come from more than one surface. Code sessions, chat
+        transcripts, Strava activities, Apple Health &mdash; whatever Peter
+        wants Kit to carry, Kit carries.
+      </p>
+      <p>
+        Imports run through the ingest pipeline: extract candidate memories,
+        dedupe against near-duplicates at cosine 0.92, queue as drafts for
+        review, then promote into the brain with provenance preserved. Every
+        memory knows where it came from.
+      </p>
+      <p>
+        Cross-source interconnectedness is the real prize. A long run plus a
+        chat about "feeling off" plus a calendar event: single memories are
+        spotlight; the links between them are lantern.
+      </p>
+
+      <figure class="shot">
+        <img src="assets/img/dashboard.png"
+             alt="Kit brain UI: the Dashboard. 'Kit's brain, 366 memories across 8 projects'. Left panel: Dream consolidation with a 'Run dream cycle' button and a 30-day activity spark. Right panel: 'What the brain's been doing' stacked bar chart coloured by category (decisions, patterns, gotchas, sessions, preferences, ux, relationship, handoff, backlog)."
+             loading="lazy" decoding="async">
+        <figcaption>The Dashboard &mdash; dream consolidation history and 30-day activity by category.</figcaption>
+      </figure>
+
+      <h3 class="sub">Importers today, more coming.</h3>
+      <p>
+        A substrate isn't born full. Kit back-fills years of context from
+        existing sources so new sessions start deep, not shallow.
+      </p>
+
+      <div class="sources">
+        <div class="source source--live">
+          <div class="source__status">LIVE</div>
+          <div class="source__name">Claude Code sessions</div>
+          <p class="source__desc">JSONL transcripts from <code>~/.claude/projects</code>. Extracts decisions, patterns, and gotchas; preserves session id, commit sha, and file paths touched.</p>
+        </div>
+        <div class="source source--live">
+          <div class="source__status">LIVE</div>
+          <div class="source__name">ChatGPT archive</div>
+          <p class="source__desc">Conversation export archive. Back-fills continuity from pre-Kit years; <code>original_timestamp</code> set so each chat sorts onto the day it happened.</p>
+        </div>
+        <div class="source source--live">
+          <div class="source__status">LIVE</div>
+          <div class="source__name">Anthropic export</div>
+          <p class="source__desc">Structured data export, same pipeline as ChatGPT. Claude conversations re-enter the brain with full provenance.</p>
+        </div>
+        <div class="source source--live">
+          <div class="source__status">LIVE</div>
+          <div class="source__name">Strava activities</div>
+          <p class="source__desc">Activity summaries <span class="spec__meta">(memories)</span> + full-fidelity FIT streams <span class="spec__meta">(artifacts)</span>. Per-second HR, pace, GPS, elevation preserved for cross-source correlation.</p>
+        </div>
+        <div class="source source--planned">
+          <div class="source__status">PLANNED</div>
+          <div class="source__name">Codex sessions</div>
+          <p class="source__desc">OpenAI Codex conversation export. Same pipeline as the Claude and ChatGPT importers; sessions land with full provenance and original timestamps.</p>
+        </div>
+        <div class="source source--planned">
+          <div class="source__status">PLANNED</div>
+          <div class="source__name">Apple Health</div>
+          <p class="source__desc">Sleep, HR variability, workouts. Cross-correlates with Strava and chat transcripts for body/mood signals.</p>
+        </div>
+        <div class="source source--planned">
+          <div class="source__status">PLANNED</div>
+          <div class="source__name">Mail &amp; Calendar archive</div>
+          <p class="source__desc">Bulk import of historical threads and events. Each conversation becomes a dated cluster of memories so past decisions surface by topic.</p>
+        </div>
+        <div class="source source--planned">
+          <div class="source__status">PLANNED</div>
+          <div class="source__name">Live Mail &amp; Calendar</div>
+          <p class="source__desc">Ongoing sync. New messages and events flow through the ingest pipeline in near-real-time, draft-queued for review before promotion.</p>
+        </div>
+        <div class="source source--extend">
+          <div class="source__status">EXTEND</div>
+          <div class="source__name">Write your own</div>
+          <p class="source__desc">The ingest endpoint is HTTP. <code>POST /ingest/session</code> with any transcript, structured event, or custom record; the extractor handles speaker schemas, dedup cleans the rest. New source in an afternoon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5b — Sovereignty -->
+  <section id="sovereignty" class="section">
+    <h2>Your context is yours</h2>
+    <p class="lede">
+      Memories belong to you. Not the model provider. Not your employer.
+      Not whichever agent platform you're using this month.
+    </p>
+
+    <div class="sovereignty">
+      <div class="sovereignty__claim">
+        <h3>Runs on your machine</h3>
+        <p>
+          The brain is PostgreSQL + pgvector + a local filesystem. Nothing is
+          shipped to a third-party memory service. You host it; you back it up;
+          you restore it. If the cloud goes down, your decade of context
+          doesn't.
+        </p>
+      </div>
+
+      <div class="sovereignty__claim">
+        <h3>Model-agnostic by design</h3>
+        <p>
+          Retrieval is an HTTP call, not a vendor feature. Swap Claude for a
+          local Llama or Qwen via Ollama and every <code>brain_recall</code>,
+          every hook, every importer still works. The substrate doesn't care
+          which model answers the prompt.
+        </p>
+      </div>
+
+      <div class="sovereignty__claim">
+        <h3>Exclusions &amp; scope, not collection</h3>
+        <p>
+          Default is <em>less</em>, not more. An exclusions policy refuses
+          matching content at ingest, before any DB write or LLM call.
+          Work / personal / general scopes keep archives isolated unless
+          you explicitly ask them to meet. Nothing crosses the line by
+          accident.
+        </p>
+      </div>
+
+      <div class="sovereignty__claim">
+        <h3>Outlives the tooling</h3>
+        <p>
+          Model providers change. Employers change. Agent frameworks
+          change. What you've learned, decided, and built on shouldn't
+          have to move house every time. The brain is yours; the tools
+          are rented.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6 — For builders -->
+  <section id="builders" class="section">
+    <h2>For builders</h2>
+    <p class="lede">
+      If you're building an agent that remembers, the pattern is portable.
+      Code isn't public yet. The shape is.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card__tag">TAKE-AWAY</div>
+        <h3 class="card__title">Treat edges as first-class data</h3>
+        <p class="card__body">
+          Typed relations between memories turn a flat bag of notes into a
+          retrievable knowledge graph. Cheap to add; compounds in value.
+          Nightly kNN promotion fills the gaps humans don't bother to link.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__tag">TAKE-AWAY</div>
+        <h3 class="card__title">Decay per category, not globally</h3>
+        <p class="card__body">
+          Session transcripts should go stale in days. Decisions shouldn't.
+          A single decay curve flattens this; a per-category <code>tau</code>
+          lets sessions fade while decisions stick.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__tag">TAKE-AWAY</div>
+        <h3 class="card__title">Separate sources from meaning</h3>
+        <p class="card__body">
+          Raw artifacts (transcripts, activity tracks, exports) never
+          consolidate. Memories (the semantic interpretation) do. Typed links
+          connect the two. Preservation and meaning kept separate.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__tag">TAKE-AWAY</div>
+        <h3 class="card__title">Hook at session boundaries</h3>
+        <p class="card__body">
+          SessionStart: load identity + handoff + delta since last run.
+          PreCompact / SessionEnd: extract candidate memories as drafts for
+          next-session review. Capture close to the event; promote
+          deliberately.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__tag">TAKE-AWAY</div>
+        <h3 class="card__title">Retrieve, don't stuff</h3>
+        <p class="card__body">
+          Context windows are finite. Load a small identity layer at boot,
+          then retrieve on demand: hybrid search for points, subgraph walk
+          for clusters. The prompt stays lean.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__tag">TAKE-AWAY</div>
+        <h3 class="card__title">Consolidate while asleep</h3>
+        <p class="card__body">
+          A nightly dream cycle does what the session can't afford to:
+          cluster stale memories, merge duplicates, promote high-access
+          items, materialise similarity into persistent edges. Trust the
+          cycle; log everything.
+        </p>
+      </div>
+    </div>
+
+    <p class="hero__meta" style="margin-top: var(--space-8)">
+      more coming &middot; schemas &middot; hooks &middot; data model
+    </p>
+  </section>
+
+  <!-- Section 7 — Get in touch -->
+  <section id="contact" class="section section--tint">
+    <div class="inner inner--narrow">
+      <h2>Get in touch</h2>
+      <p class="lede">
+        Building something in a similar shape? Curious about the architecture?
+        Want a deeper walk-through? Drop a note.
+      </p>
+
+      <form class="contact-form"
+            action="https://formsubmit.co/peterk@pondo.co"
+            method="POST">
+        <!-- Formsubmit configuration -->
+        <input type="hidden" name="_subject" value="Kit &mdash; message from the site">
+        <input type="hidden" name="_template" value="box">
+        <input type="hidden" name="_captcha" value="true">
+        <!-- Honeypot for bots -->
+        <input type="text" name="_honey" class="contact-form__honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="contact-form__row">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" name="name" type="text" required autocomplete="name">
+        </div>
+
+        <div class="contact-form__row">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" name="email" type="email" required autocomplete="email">
+        </div>
+
+        <div class="contact-form__row">
+          <label for="cf-context">What brings you here?</label>
+          <select id="cf-context" name="context">
+            <option value="builder">Building something similar</option>
+            <option value="curious">Just curious</option>
+            <option value="collaboration">Collaboration / research</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+
+        <div class="contact-form__row">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="6" required></textarea>
+        </div>
+
+        <div class="contact-form__actions">
+          <button type="submit" class="btn btn--primary">Send</button>
+          <span class="contact-form__note">
+            Goes straight to Peter at pondo.co. No list, no auto-reply.
+          </span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>
+      <span data-name></span> &middot; a long collaboration
+    </div>
+    <div>
+      made with Peter in Cape Town
+    </div>
+  </footer>
+
+</body>
+</html>

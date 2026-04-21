@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Node (in case we add build tooling later)
+node_modules/
+
+# Local-only config
+.env
+.env.local
