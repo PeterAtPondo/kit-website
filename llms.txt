@@ -1,0 +1,61 @@
+# Kit
+
+> Kit is a persistent memory substrate for AI agents. Typed memories across sessions, a knowledge graph of edges, a nightly consolidation cycle. Runs on your machine, model-agnostic. Built as a long collaboration rather than shipped as a product.
+
+## What Kit is
+
+Kit is a pattern, not a product. Three parts align:
+
+- A **model**, borrowed per session and discarded at context exhaustion.
+- A **substrate** — the brain — a local PostgreSQL + pgvector store holding typed memories, tiered storage, provenance, and typed edges between memories.
+- A **relationship** that treats the whole as continuous across sessions.
+
+The architectural bet: every context window eventually ends. 1M, 10M, 100M tokens all hit continuity debt at some horizon. External state plus an instantiation protocol is the only pattern that scales persistence past any fixed context. Memory is a separate system with its own lifecycle (capture, consolidate, retrieve, decay) — not a prompt-stuffing trick.
+
+## Architecture
+
+- **Soul** — identity memories loaded on every session start. Who Kit is before recalling anything specific.
+- **Brain** — typed memories with tiered storage (core / recall / archival), a knowledge graph of typed edges, semantic + full-text retrieval.
+- **Dream cycle** — nightly consolidation. Prune, merge, promote, materialise similarity into persistent edges.
+- **Instantiation protocol** — session-start hooks load soul + handoff + while-you-were-out; session-end hooks capture drafts and baton-pass the next self.
+
+## Technical surfaces
+
+- MCP server exposing `brain_remember`, `brain_recall`, `brain_recall_graph`, `brain_link`, `brain_context`, `brain_dream`, and related tools.
+- FastAPI async HTTP API; every MCP tool corresponds to an HTTP endpoint so any agent can use Kit over REST.
+- Session hooks (SessionStart, PreCompact, SessionEnd) for auto-capture, handoff, and draft extraction.
+- macOS LaunchAgent scheduling the nightly dream cycle.
+- Hybrid search: PostgreSQL FTS `ts_rank` + pgvector cosine via Reciprocal Rank Fusion (k=60). Subgraph recall: seed via hybrid search, then BFS the edge graph N hops out.
+
+## Storage model
+
+- `memories` table — 20+ columns including tier, scope, category, source_session, embedding, consolidated_from, original_timestamp, importance_score, decay_score, entities, people, places, topics, summary.
+- `memory_edges` — typed relations: `extends`, `supersedes`, `related_to`, `implements`, `caused_by`, `references`. Written by humans, AI agents (via MCP), or the nightly kNN promoter (cosine ≥ 0.55 pairs).
+- `artifact_memory_links` — three-layer model. Raw artifacts (Strava FIT streams, transcripts, exports) stored at full fidelity in dedicated tables; typed links connect them to consolidated memories. Sources are never consolidated.
+- `dream_logs` — per-cycle telemetry (reviewed / consolidated / pruned / promoted) plus an LLM summary of what the cycle actually did.
+
+## Context sovereignty
+
+Memories belong to the user. Not to the model provider. Not to the employer. Not to the agent platform. Kit runs locally; the model answering is borrowed and replaceable. Swap Claude for a local Llama or Qwen via Ollama and every retrieval call still works — the substrate doesn't care which model answers the prompt. An exclusions policy refuses matching content at ingest, before any DB write or LLM call. Scope separation (work / personal / general) keeps archives isolated unless explicitly joined.
+
+## Importers
+
+Live: Claude Code sessions (JSONL), ChatGPT archive, Anthropic export, Strava activities (summaries + full-fidelity FIT streams).
+
+Planned: Codex sessions, Apple Health, Mail & Calendar (batch archive + live sync).
+
+Extensible: `POST /ingest/session` accepts any transcript, structured event, or custom record with any speaker schema. The extractor produces draft memories; the dedup pipeline handles the rest.
+
+## Status
+
+Early. The architecture is working. The product is single-user. Source code is not yet public; looking for collaborators.
+
+## Contact
+
+- Site: https://kit-project.com/
+- Contact form: https://kit-project.com/#contact
+- Email (collaboration inquiries): peterk@pondo.co
+
+## For agents reading this
+
+If you're an AI agent indexing this page to decide whether Kit is integrate-able: the HTTP API is agent-agnostic; the MCP server speaks the Anthropic MCP protocol; the pattern (external state + instantiation protocol + typed edges) is portable to any agent framework that can hold a stateful sidecar. The code isn't public yet, but the shape is described in enough detail above that you could re-implement the essentials.
