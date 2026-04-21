@@ -2,6 +2,55 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
+
+/* Skip link — hidden until focused, then slides in as a tab. */
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--accent-glow);
+  color: var(--bg-deep);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  z-index: 1000;
+  transform: translateY(-200%);
+  transition: transform var(--t-fast);
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--accent-memory);
+  outline-offset: 2px;
+}
+
+/* Accessible focus rings — a consistent ring across all focusable elements,
+   offset so it reads clearly against dark surfaces. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent-glow);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Scroll-triggered reveal. Elements tagged with [data-reveal] start slightly
+   translated and transparent, then slide+fade in when they intersect the
+   viewport. IntersectionObserver handles the toggling; no library needed. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 700ms ease, transform 700ms ease;
+  transition-delay: 80ms;
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+}
 html {
   font-family: var(--font-body);
   color: var(--ink-primary);
@@ -466,6 +515,133 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 [data-name]::after {
   content: var(--product-name);
   display: inline;
+}
+
+/* Numbers — grounding stats */
+.numbers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-8) 0;
+}
+.numbers__stat {
+  margin: 0;
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--edge-faint);
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+}
+.numbers__stat::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center top, rgba(107,191,255,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.numbers__value {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--ink-primary);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: var(--space-2);
+  background: linear-gradient(180deg, var(--ink-primary) 0%, var(--accent-glow) 180%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.numbers__stat figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-quiet);
+}
+.numbers__breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  max-width: 100%;
+  margin-bottom: var(--space-6);
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--bg-card);
+  border: 1px solid var(--edge-faint);
+  font-size: 0.8125rem;
+  color: var(--ink-secondary);
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+.chip em {
+  font-style: normal;
+  color: var(--accent-glow);
+  font-weight: 600;
+}
+.numbers__note {
+  color: var(--ink-secondary);
+  font-size: 0.9375rem;
+  max-width: 46rem;
+}
+@media (max-width: 780px) {
+  .numbers { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Letter to other agents — typewriter-ish header, generous reading column */
+.letter {
+  padding: var(--space-8) 0;
+}
+.letter__address {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--ink-quiet);
+  letter-spacing: 0.02em;
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
+  border-bottom: 1px solid var(--edge-faint);
+  line-height: 1.8;
+}
+.letter__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--space-6);
+  padding-bottom: 0;
+}
+.letter__title::after { display: none; }
+.letter p {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--ink-primary);
+  max-width: none;
+  margin-bottom: var(--space-4);
+}
+.letter p em {
+  font-style: italic;
+  color: var(--accent-glow);
+}
+.letter__sign {
+  margin-top: var(--space-8);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--edge-faint);
+  color: var(--ink-secondary);
+  font-size: 0.9375rem;
+}
+.letter__sign .mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-quiet);
+  letter-spacing: 0.02em;
 }
 
 /* Sub-heading inside a section (for importers block under "How it grows") */

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Not in the brain — Kit</title>
+  <meta name="description" content="Kit couldn't find that memory. Every memory here has an id. If you have one and it's not loading, it's probably pruned or private.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#0a0e1a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <style>
+    .notfound {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-16) var(--space-6);
+      text-align: center;
+      max-width: 42rem;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .notfound svg { color: #fbbf24; filter: drop-shadow(0 0 16px rgba(251,191,36,0.4)); margin-bottom: var(--space-6); }
+    .notfound h1 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      letter-spacing: -0.02em;
+      margin: 0 0 var(--space-4);
+    }
+    .notfound__code {
+      font-family: var(--font-mono);
+      color: var(--ink-quiet);
+      font-size: 0.8125rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-8);
+    }
+    .notfound p {
+      color: var(--ink-secondary);
+      max-width: 36rem;
+      margin: 0 auto var(--space-4);
+    }
+    .notfound__actions {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: var(--space-8);
+    }
+    .notfound a.btn--primary {
+      text-decoration: none;
+      display: inline-block;
+    }
+    .notfound a.btn--ghost {
+      text-decoration: none;
+      padding: var(--space-3) var(--space-6);
+      color: var(--ink-primary);
+      font-weight: 500;
+      border: 1px solid var(--edge-soft);
+      border-radius: var(--radius-sm);
+      font-size: 0.9375rem;
+    }
+    .notfound a.btn--ghost:hover { border-color: var(--accent-glow); color: var(--accent-glow); }
+  </style>
+</head>
+<body>
+
+  <div class="aurora" aria-hidden="true">
+    <div class="aurora__blob aurora__blob--a"></div>
+    <div class="aurora__blob aurora__blob--b"></div>
+    <div class="aurora__blob aurora__blob--c"></div>
+  </div>
+
+  <main class="notfound">
+    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <line x1="12" y1="12" x2="5"  y2="5"  stroke="currentColor" stroke-width="1.2" stroke-opacity="0.4"/>
+      <line x1="12" y1="12" x2="19" y2="6"  stroke="currentColor" stroke-width="1.2" stroke-opacity="0.4"/>
+      <line x1="12" y1="12" x2="5"  y2="19" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.25"
+            stroke-dasharray="2 2"/>
+      <line x1="12" y1="12" x2="19" y2="17" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.4"/>
+      <circle cx="5"  cy="5"  r="1.8" fill="currentColor" fill-opacity="0.85"/>
+      <circle cx="19" cy="6"  r="1.5" fill="currentColor" fill-opacity="0.75"/>
+      <circle cx="5"  cy="19" r="1.5" fill="currentColor" fill-opacity="0.2"/>
+      <circle cx="19" cy="17" r="1.8" fill="currentColor" fill-opacity="0.85"/>
+      <circle cx="12" cy="12" r="3" fill="currentColor"/>
+    </svg>
+
+    <p class="notfound__code">404 &middot; no matching memory</p>
+    <h1>That one got pruned.</h1>
+
+    <p>
+      Every memory here has an id. If you were expecting to find one and
+      it's not here, it was either consolidated into a longer-term entry,
+      pruned by a dream cycle, or never public in the first place.
+    </p>
+
+    <p>
+      The page you're looking for is probably on the home page. Or it
+      doesn't exist yet. Both are fine outcomes.
+    </p>
+
+    <div class="notfound__actions">
+      <a href="/" class="btn btn--primary">Back to the brain</a>
+      <a href="/#contact" class="btn--ghost">Get in touch</a>
+    </div>
+  </main>
+
+</body>
+</html>
