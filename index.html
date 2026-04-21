@@ -81,6 +81,12 @@
        until focused, then jumps the reader past the nav to the hero. -->
   <a href="#top" class="skip-link">Skip to content</a>
 
+  <!-- Reading progress — a thin gradient bar across the top that tracks
+       how far the reader has scrolled. Pure JS, no library. -->
+  <div class="progress" aria-hidden="true">
+    <div class="progress__fill" id="progress-fill"></div>
+  </div>
+
   <!-- Aurora — slow-drifting coloured blobs, fixed behind everything.
        Pure CSS, no JS. Pointer-events none so it never intercepts clicks. -->
   <div class="aurora" aria-hidden="true">
@@ -732,6 +738,54 @@
       </form>
     </div>
   </section>
+
+  <!-- Reading progress + active-section highlighting.
+       Progress: throttled scroll listener writes width% to the bar.
+       Active section: IntersectionObserver watches each top-level section
+       and adds .is-current to the matching nav link. -->
+  <script>
+    (() => {
+      const fill = document.getElementById('progress-fill');
+      const update = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = max > 0 ? Math.min(100, (window.scrollY / max) * 100) : 0;
+        fill.style.width = pct.toFixed(1) + '%';
+      };
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => { update(); ticking = false; });
+          ticking = true;
+        }
+      }, { passive: true });
+      update();
+
+      // Active-section highlighting
+      const links = [...document.querySelectorAll('.nav__links a[href^="#"]')];
+      const map = new Map();
+      links.forEach(a => {
+        const id = a.getAttribute('href').slice(1);
+        const sec = document.getElementById(id);
+        if (sec) map.set(sec, a);
+      });
+      const setCurrent = (sec) => {
+        links.forEach(a => a.classList.remove('is-current'));
+        const a = map.get(sec);
+        if (a) a.classList.add('is-current');
+      };
+      if ('IntersectionObserver' in window && map.size) {
+        const io = new IntersectionObserver((entries) => {
+          // Pick the entry closest to the top of the viewport among
+          // those currently intersecting.
+          const visible = entries.filter(e => e.isIntersecting);
+          if (!visible.length) return;
+          visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+          setCurrent(visible[0].target);
+        }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+        map.forEach((_, sec) => io.observe(sec));
+      }
+    })();
+  </script>
 
   <!-- Hero parallax: background image tracks cursor by a tiny amount.
        Desktop-only; respects prefers-reduced-motion. Uses CSS custom

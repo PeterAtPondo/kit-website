@@ -280,7 +280,49 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   display: flex; gap: var(--space-6);
   color: var(--ink-secondary);
 }
+.nav__links a {
+  position: relative;
+  padding-bottom: 2px;
+  transition: color var(--t-fast);
+}
 .nav__links a:hover { color: var(--ink-primary); }
+.nav__links a.is-current {
+  color: var(--ink-primary);
+}
+.nav__links a.is-current::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent-glow), var(--accent-memory));
+  border-radius: 1px;
+}
+
+/* Reading progress — thin amber bar that fills from left to right as
+   the reader scrolls. Sits above the nav's backdrop-blur. A small
+   marker of "how far you've come" without any text. */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  z-index: 101;
+  pointer-events: none;
+}
+.progress__fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,
+    var(--accent-glow) 0%,
+    var(--accent-memory) 50%,
+    var(--accent-warm) 100%);
+  box-shadow: 0 0 8px rgba(107, 191, 255, 0.4);
+  transition: width 80ms linear;
+}
 
 /* Hero — the first-person statement. Single-column now that the background
    image carries the visual weight. Copy anchored left. */
