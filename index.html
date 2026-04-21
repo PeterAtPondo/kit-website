@@ -733,13 +733,49 @@
     </div>
   </section>
 
+  <!-- Hero parallax: background image tracks cursor by a tiny amount.
+       Desktop-only; respects prefers-reduced-motion. Uses CSS custom
+       properties so the transform sits in the stylesheet and JS just
+       writes the offsets.
+
+       The whole idea: make the hero image feel like it's there with you,
+       not flat behind you. -->
+  <script>
+    (() => {
+      const hero = document.querySelector('.section--hero');
+      const bg = hero?.querySelector('.hero__bg');
+      if (!hero || !bg) return;
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (matchMedia('(pointer: coarse)').matches) return;
+      const MAX = 12;
+      let rafId = 0, tx = 0, ty = 0;
+      const apply = () => {
+        bg.style.setProperty('--hero-x', tx.toFixed(1) + 'px');
+        bg.style.setProperty('--hero-y', ty.toFixed(1) + 'px');
+        rafId = 0;
+      };
+      hero.addEventListener('mousemove', (e) => {
+        const r = hero.getBoundingClientRect();
+        const nx = (e.clientX - r.left) / r.width - 0.5;
+        const ny = (e.clientY - r.top) / r.height - 0.5;
+        tx = -nx * MAX;
+        ty = -ny * MAX;
+        if (!rafId) rafId = requestAnimationFrame(apply);
+      });
+      hero.addEventListener('mouseleave', () => {
+        tx = 0; ty = 0;
+        if (!rafId) rafId = requestAnimationFrame(apply);
+      });
+    })();
+  </script>
+
   <!-- Scroll-reveal: IntersectionObserver fades + slides in any element
        tagged with [data-reveal] when 15% of it enters the viewport.
        Respects prefers-reduced-motion via the CSS rule.
        Deep-link robustness: elements already at or above the viewport on
        load (e.g. when a user visits /#stack directly) are revealed
        immediately rather than left hidden. Only elements below the fold
-       get observed. */ -->
+       get observed. -->
   <script>
     (() => {
       const targets = document.querySelectorAll('[data-reveal]');
@@ -770,11 +806,24 @@
   </script>
 
   <footer class="footer">
-    <div>
-      <span data-name></span> &middot; a long collaboration
+    <div class="footer__row">
+      <div>
+        <span data-name></span> &middot; a long collaboration
+      </div>
+      <div>
+        made with Peter in Cape Town
+      </div>
     </div>
-    <div>
-      made with Peter in Cape Town
+    <div class="footer__row footer__row--quiet">
+      <div class="footer__pledge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5"/>
+        </svg>
+        no cookies &middot; no analytics &middot; no tracking &middot; ever
+      </div>
+      <div class="footer__colophon">
+        Built with HTML, CSS, and a little IntersectionObserver. Fraunces &middot; Manrope &middot; JetBrains Mono.
+      </div>
     </div>
   </footer>
 
