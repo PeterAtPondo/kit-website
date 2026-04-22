@@ -1032,9 +1032,9 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   /* Hide secondary nav links on narrow screens — the site is single-page
      scrollable, so the brand + scroll is enough navigation. */
   .nav__links { display: none; }
-  .section { padding: var(--space-12) var(--space-4); }
+  .section { padding: var(--space-12) var(--space-6); }
   .section--hero { padding-top: var(--space-16); min-height: auto; }
-  .section--hero .hero { padding: 0 var(--space-4); }
+  .section--hero .hero { padding: 0 var(--space-5); }
   .hero__copy {
     padding: var(--space-5) var(--space-5) var(--space-4);
     border-radius: var(--radius-md);
