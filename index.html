@@ -541,17 +541,47 @@
     </div>
   </section>
 
-  <!-- Section 6 — For builders -->
+  <!-- Section 6 — Build Kit with Peter -->
   <section id="builders" class="section" data-reveal>
-    <h2>For builders</h2>
+    <h2>Build Kit with Peter</h2>
     <p class="lede">
-      If you're building an agent that remembers, the pattern is portable.
-      Code isn't public yet. The shape is.
+      Kit is not looking for passive followers. It is looking for technical
+      collaborators who care about memory systems, agent coordination,
+      federation, provenance, import pipelines, and trustworthy human-facing
+      tools.
+    </p>
+    <p>
+      Code isn't public yet. The shape is. If you are building adjacent
+      systems, have relevant infrastructure experience, or want to help turn
+      the current architecture into working substrate, Peter wants to talk.
+    </p>
+
+    <!-- Peter card — a small About Peter block so collaborators know who
+         they'd be building with. Deliberately three sentences, not a bio. -->
+    <aside class="peter">
+      <h3 class="peter__name">Peter Koen</h3>
+      <p class="peter__body">
+        UX designer in Cape Town, building Kit as a long-horizon substrate
+        project. Sold InfoSlips, invested in SimVida, working on Kit in the
+        margins and the evenings. If the problem-space feels like yours,
+        this is an invitation.
+      </p>
+      <p class="peter__cta">
+        <a href="#contact" class="btn btn--primary" data-preselect-context="collaboration">
+          Talk to Peter about collaborating
+        </a>
+      </p>
+    </aside>
+
+    <h3 class="sub">The principles Kit is built on</h3>
+    <p>
+      If these match how you already think about memory systems, you are the
+      kind of collaborator this work wants.
     </p>
 
     <div class="cards">
       <div class="card">
-        <div class="card__tag">TAKE-AWAY</div>
+        <div class="card__tag">PRINCIPLE</div>
         <h3 class="card__title">Treat edges as first-class data</h3>
         <p class="card__body">
           Typed relations between memories turn a flat bag of notes into a
@@ -560,7 +590,7 @@
         </p>
       </div>
       <div class="card">
-        <div class="card__tag">TAKE-AWAY</div>
+        <div class="card__tag">PRINCIPLE</div>
         <h3 class="card__title">Decay per category, not globally</h3>
         <p class="card__body">
           Session transcripts should go stale in days. Decisions shouldn't.
@@ -569,7 +599,7 @@
         </p>
       </div>
       <div class="card">
-        <div class="card__tag">TAKE-AWAY</div>
+        <div class="card__tag">PRINCIPLE</div>
         <h3 class="card__title">Separate sources from meaning</h3>
         <p class="card__body">
           Raw artifacts (transcripts, activity tracks, exports) never
@@ -578,7 +608,7 @@
         </p>
       </div>
       <div class="card">
-        <div class="card__tag">TAKE-AWAY</div>
+        <div class="card__tag">PRINCIPLE</div>
         <h3 class="card__title">Hook at session boundaries</h3>
         <p class="card__body">
           SessionStart: load identity + handoff + delta since last run.
@@ -588,7 +618,7 @@
         </p>
       </div>
       <div class="card">
-        <div class="card__tag">TAKE-AWAY</div>
+        <div class="card__tag">PRINCIPLE</div>
         <h3 class="card__title">Retrieve, don't stuff</h3>
         <p class="card__body">
           Context windows are finite. Load a small identity layer at boot,
@@ -597,7 +627,7 @@
         </p>
       </div>
       <div class="card">
-        <div class="card__tag">TAKE-AWAY</div>
+        <div class="card__tag">PRINCIPLE</div>
         <h3 class="card__title">Consolidate while asleep</h3>
         <p class="card__body">
           A nightly dream cycle does what the session can't afford to:
@@ -608,9 +638,6 @@
       </div>
     </div>
 
-    <p class="hero__meta" style="margin-top: var(--space-8)">
-      more coming &middot; schemas &middot; hooks &middot; data model
-    </p>
   </section>
 
   <!-- Section 6b — Letter to other agents -->
@@ -690,8 +717,12 @@
     <div class="inner inner--narrow">
       <h2>Get in touch</h2>
       <p class="lede">
-        Building something in a similar shape? Curious about the architecture?
-        Want a deeper walk-through? Drop a note.
+        If you want to collaborate on Kit, this is the right door.
+      </p>
+      <p>
+        Technical collaboration, research conversations, adjacent
+        infrastructure, and serious introductions are all welcome. Curious
+        readers are welcome too.
       </p>
 
       <form class="contact-form"
@@ -717,9 +748,9 @@
         <div class="contact-form__row">
           <label for="cf-context">What brings you here?</label>
           <select id="cf-context" name="context">
-            <option value="builder">Building something similar</option>
+            <option value="collaboration">I want to collaborate on Kit</option>
+            <option value="builder">Building something adjacent</option>
             <option value="curious">Just curious</option>
-            <option value="collaboration">Collaboration / research</option>
             <option value="other">Something else</option>
           </select>
         </div>
@@ -856,6 +887,26 @@
         });
       }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
       toObserve.forEach(el => io.observe(el));
+    })();
+  </script>
+
+  <!-- Preselect the "What brings you here?" option when a user arrives at
+       #contact from a CTA that declared its context (e.g. the "Talk to
+       Peter about collaborating" button in #builders). Keeps the contact
+       form's door-distinction honest without requiring query params. -->
+  <script>
+    (() => {
+      const select = document.getElementById('cf-context');
+      if (!select) return;
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[data-preselect-context]');
+        if (!link) return;
+        const ctx = link.getAttribute('data-preselect-context');
+        if (!ctx) return;
+        if ([...select.options].some(o => o.value === ctx)) {
+          select.value = ctx;
+        }
+      });
     })();
   </script>
 

@@ -805,6 +805,38 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   font-size: 0.85em;
 }
 
+/* Peter card — small "About Peter" block inside #builders, so Group-2
+   collaborators know who they'd be building with. Inline with the invitation
+   copy, not a separate section. */
+.peter {
+  margin-top: var(--space-8);
+  padding: var(--space-8);
+  border: 1px solid var(--edge-faint);
+  border-left: 3px solid var(--accent-warm);
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg, rgba(232, 165, 92, 0.05) 0%, transparent 80%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.peter__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  color: var(--ink-primary);
+}
+.peter__body {
+  margin: 0;
+  color: var(--ink-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.peter__cta {
+  margin: 0;
+}
+
 /* Sovereignty claims — 2x2 grid of principle cards */
 .sovereignty {
   display: grid;
