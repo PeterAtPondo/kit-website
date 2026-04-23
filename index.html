@@ -808,9 +808,22 @@
         readers are welcome too.
       </p>
 
+      <!-- Inline status blocks. JS shows the success block and hides the
+           form on a successful AJAX submission; falls back to formsubmit's
+           redirect page if JS is disabled (the form action URL). -->
+      <div class="contact-form__status contact-form__status--success" hidden>
+        <h3>Message sent.</h3>
+        <p>Goes straight to Peter at pondo.co. No auto-reply, no list.</p>
+      </div>
+      <div class="contact-form__status contact-form__status--error" hidden>
+        <p>Something went wrong sending that. Try again, or email
+        <a href="mailto:peterk@pondo.co">peterk@pondo.co</a> directly.</p>
+      </div>
+
       <form class="contact-form"
             action="https://formsubmit.co/peterk@pondo.co"
-            method="POST">
+            method="POST"
+            data-ajax-endpoint="https://formsubmit.co/ajax/peterk@pondo.co">
         <!-- Formsubmit configuration -->
         <input type="hidden" name="_subject" value="Kit &mdash; message from the site">
         <input type="hidden" name="_template" value="box">
@@ -988,6 +1001,68 @@
         if (!ctx) return;
         if ([...select.options].some(o => o.value === ctx)) {
           select.value = ctx;
+        }
+      });
+    })();
+  </script>
+
+  <!-- Contact form AJAX submission. Intercepts the submit event, POSTs to
+       formsubmit.co's JSON endpoint, and shows an inline success/error
+       state without leaving the page. If JS is disabled or fetch fails
+       unexpectedly, the form's natural action URL still works (falls back
+       to formsubmit's redirect page). -->
+  <script>
+    (() => {
+      const form = document.querySelector('.contact-form');
+      if (!form || typeof fetch !== 'function') return;
+      const endpoint = form.dataset.ajaxEndpoint;
+      if (!endpoint) return;
+      const successEl = document.querySelector('.contact-form__status--success');
+      const errorEl = document.querySelector('.contact-form__status--error');
+      const section = document.getElementById('contact');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (errorEl) errorEl.hidden = true;
+
+        const submitBtn = form.querySelector('button[type=submit]');
+        const originalLabel = submitBtn ? submitBtn.textContent : null;
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending…';
+        }
+
+        try {
+          const data = new FormData(form);
+          const payload = {};
+          data.forEach((value, key) => { payload[key] = value; });
+
+          const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          const json = await response.json().catch(() => ({}));
+          // FormSubmit returns {"success":"true"} (string) on success.
+          const ok = json.success === true || json.success === 'true';
+          if (!ok) throw new Error(json.message || 'submission rejected');
+
+          form.hidden = true;
+          if (successEl) {
+            successEl.hidden = false;
+            if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        } catch (err) {
+          if (errorEl) errorEl.hidden = false;
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalLabel || 'Send';
+          }
         }
       });
     })();

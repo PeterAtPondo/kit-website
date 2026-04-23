@@ -953,6 +953,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   flex-direction: column;
   gap: var(--space-5);
 }
+.contact-form[hidden] { display: none; }
 .contact-form__honey {
   position: absolute;
   left: -9999px;
@@ -1051,6 +1052,51 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   font-size: 0.75rem;
   color: var(--ink-quiet);
   letter-spacing: 0.02em;
+}
+
+/* Inline submit states — success replaces the form, error sits above it
+   and lets the user retry without leaving the page. */
+.contact-form__status {
+  padding: var(--space-6) var(--space-8);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+}
+.contact-form__status--success {
+  border: 1px solid rgba(127, 232, 157, 0.3);
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(127, 232, 157, 0.06) 100%);
+  border-left: 3px solid var(--accent-green);
+}
+.contact-form__status--success h3 {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  color: var(--ink-primary);
+}
+.contact-form__status--success p {
+  margin: 0;
+  color: var(--ink-secondary);
+  font-size: 0.9375rem;
+}
+.contact-form__status--error {
+  border: 1px solid rgba(232, 127, 127, 0.35);
+  background: rgba(232, 127, 127, 0.06);
+  border-left: 3px solid rgba(232, 127, 127, 0.8);
+  color: var(--ink-secondary);
+  font-size: 0.9375rem;
+}
+.contact-form__status--error p {
+  margin: 0;
+}
+.contact-form__status--error a {
+  color: var(--accent-warm);
+  text-decoration: underline;
+}
+.contact-form button[type=submit]:disabled {
+  opacity: 0.55;
+  cursor: progress;
+  filter: none;
 }
 
 /* Footer */
