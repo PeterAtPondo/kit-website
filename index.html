@@ -451,17 +451,24 @@
         <figcaption>The Dashboard &mdash; dream consolidation history and 30-day activity by category.</figcaption>
       </figure>
 
-      <h3 class="sub">Importers today, more coming.</h3>
+      <h3 class="sub">Kit connects to</h3>
       <p>
-        A substrate isn't born full. Kit back-fills years of context from
-        existing sources so new sessions start deep, not shallow.
+        Two modes of connection. MCP integrations let agents call Kit's
+        memory directly mid-session, so work in progress can remember itself.
+        Importers back-fill years of context from existing sources so new
+        sessions start deep, not shallow.
       </p>
 
       <div class="sources">
         <div class="source source--live">
           <div class="source__status">LIVE</div>
-          <div class="source__name">Claude Code sessions</div>
-          <p class="source__desc">JSONL transcripts from <code>~/.claude/projects</code>. Extracts decisions, patterns, and gotchas; preserves session id, commit sha, and file paths touched.</p>
+          <div class="source__name">Claude Code <span class="spec__meta">(MCP)</span></div>
+          <p class="source__desc">Live MCP integration. Claude Code sessions call Kit's tools directly (<code>brain_remember</code>, <code>brain_recall</code>, <code>brain_recall_graph</code>, and more). JSONL transcripts from <code>~/.claude/projects</code> also back-fill; session id, commit sha, and file paths preserved.</p>
+        </div>
+        <div class="source source--live">
+          <div class="source__status">LIVE</div>
+          <div class="source__name">Codex <span class="spec__meta">(MCP)</span></div>
+          <p class="source__desc">Live MCP integration. OpenAI Codex sessions share the same Kit tool surface as Claude Code, with automatic onboarding so sessions start warm. Handoffs between substrates flow through kit-brain as shared state.</p>
         </div>
         <div class="source source--live">
           <div class="source__status">LIVE</div>
@@ -477,11 +484,6 @@
           <div class="source__status">LIVE</div>
           <div class="source__name">Strava activities</div>
           <p class="source__desc">Activity summaries <span class="spec__meta">(memories)</span> + full-fidelity FIT streams <span class="spec__meta">(artifacts)</span>. Per-second HR, pace, GPS, elevation preserved for cross-source correlation.</p>
-        </div>
-        <div class="source source--planned">
-          <div class="source__status">PLANNED</div>
-          <div class="source__name">Codex sessions</div>
-          <p class="source__desc">OpenAI Codex conversation export. Same pipeline as the Claude and ChatGPT importers; sessions land with full provenance and original timestamps.</p>
         </div>
         <div class="source source--planned">
           <div class="source__status">PLANNED</div>
