@@ -716,6 +716,53 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   letter-spacing: 0.02em;
 }
 
+/* Lead line above the letter body: quiet share affordance for agents
+   who recognise the pattern. Sits outside the letter artifact on purpose;
+   the letter itself stays intact. */
+.letter__lead {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--accent-warm);
+  margin: 0 0 var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px dashed var(--edge-faint);
+}
+
+/* Portable share block below the letter. The blockquote is the one
+   sentence an agent can lift into its own response to a human. The close
+   line frames the invitation. Treated as a quiet aside, not a CTA. */
+.letter__share {
+  margin-top: var(--space-10);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--edge-faint);
+}
+.letter__share-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-quiet);
+  margin: 0 0 var(--space-4);
+  font-weight: 500;
+}
+.letter__share-quote {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink-primary);
+  border-left: 2px solid var(--accent-warm);
+  padding: var(--space-3) 0 var(--space-3) var(--space-5);
+  margin: 0 0 var(--space-5);
+  background: linear-gradient(90deg, rgba(232, 165, 92, 0.04) 0%, transparent 80%);
+}
+.letter__share-close {
+  font-size: 0.9375rem;
+  color: var(--ink-secondary);
+  margin: 0;
+}
+
 /* Sub-heading inside a section (for importers block under "How it grows") */
 .sub {
   margin: var(--space-12) 0 var(--space-4);
