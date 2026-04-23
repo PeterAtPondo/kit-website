@@ -142,7 +142,8 @@
         <p class="lede">
           Kit flips that. It is a persistent memory substrate for AI agents:
           typed memories, a knowledge graph, a nightly consolidation cycle.
-          Runs on your machine. Model-agnostic. Yours.
+          Runs on your machine. Model-agnostic and MCP-native, so any agent
+          that speaks MCP can plug in. Yours.
         </p>
         <p class="lede">
           That's one brain today. Next, a federation of sovereign brains,
@@ -472,6 +473,11 @@
         </div>
         <div class="source source--live">
           <div class="source__status">LIVE</div>
+          <div class="source__name">Any MCP client</div>
+          <p class="source__desc">Kit exposes its full tool surface over MCP. Any agent, editor, or system that speaks MCP can call <code>brain_remember</code>, <code>brain_recall</code>, <code>brain_recall_graph</code>, and the rest. Scoped API tokens keep access honest.</p>
+        </div>
+        <div class="source source--live">
+          <div class="source__status">LIVE</div>
           <div class="source__name">ChatGPT archive</div>
           <p class="source__desc">Conversation export archive. Back-fills continuity from pre-Kit years; <code>original_timestamp</code> set so each chat sorts onto the day it happened.</p>
         </div>
@@ -492,13 +498,8 @@
         </div>
         <div class="source source--planned">
           <div class="source__status">PLANNED</div>
-          <div class="source__name">Mail &amp; Calendar archive</div>
-          <p class="source__desc">Bulk import of historical threads and events. Each conversation becomes a dated cluster of memories so past decisions surface by topic.</p>
-        </div>
-        <div class="source source--planned">
-          <div class="source__status">PLANNED</div>
-          <div class="source__name">Live Mail &amp; Calendar</div>
-          <p class="source__desc">Ongoing sync. New messages and events flow through the ingest pipeline in near-real-time, draft-queued for review before promotion.</p>
+          <div class="source__name">Mail &amp; Calendar</div>
+          <p class="source__desc">Bulk import of historical threads and events, plus ongoing sync. Past decisions surface as dated clusters by topic; new messages and events flow through the ingest pipeline in near-real-time, draft-queued for review.</p>
         </div>
         <div class="source source--extend">
           <div class="source__status">EXTEND</div>
