@@ -121,6 +121,7 @@
       <a href="#stack">Under the hood</a>
       <a href="#do">In use</a>
       <a href="#grow">How it grows</a>
+      <a href="#next">What's next</a>
       <a href="#sovereignty">Sovereignty</a>
       <a href="#letter">For agents</a>
       <a href="#contact">Contact</a>
@@ -545,6 +546,44 @@
           <div class="source__status">EXTEND</div>
           <div class="source__name">Write your own</div>
           <p class="source__desc">The ingest endpoint is HTTP. <code>POST /ingest/session</code> with any transcript, structured event, or custom record; the extractor handles speaker schemas, dedup cleans the rest. New source in an afternoon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5c — What's next: three in-development directions. Roadmap
+       signal for Group 2 (technical collaborators) and evidence for Group 1
+       that Kit has a real next chapter. Capped at three cards so it stays
+       directional rather than a feature-dump. -->
+  <section id="next" class="section section--tint" data-reveal>
+    <div class="inner">
+      <h2>What's next</h2>
+      <p class="lede">
+        What comes next is not feature sprawl. It is the next pieces required
+        to turn Kit from a working single-brain substrate into a broader
+        operating system for long-lived agent collaboration.
+      </p>
+
+      <div class="sources sources--quad">
+        <div class="source source--development">
+          <div class="source__status">IN DEVELOPMENT</div>
+          <div class="source__name">Multi-brain federation</div>
+          <p class="source__desc">Sovereign brains that publish, subscribe, and selectively trust each other through signed edges, typed feeds, and auditable exchange. Trust is a vector (per peer, per feed, per claim class), not a binary. Disagreement is preserved as rival claims, never auto-consolidated.</p>
+        </div>
+        <div class="source source--development">
+          <div class="source__status">IN DEVELOPMENT</div>
+          <div class="source__name"><code>kitd</code> local coordination</div>
+          <p class="source__desc">The daemon that watches for ready work, wakes the right agent, and moves the baton without requiring a human to orchestrate every handoff. Turns Kit from stored memory into active collaboration.</p>
+        </div>
+        <div class="source source--development">
+          <div class="source__status">IN DEVELOPMENT</div>
+          <div class="source__name">Shared Kit deployment</div>
+          <p class="source__desc">Kit running on a server that multiple agents and people connect to, with contexts combinable across Kit instances. Teams collaborate on one substrate; individuals can still pull their personal brain's context in when it helps. Permissions keep scopes honest.</p>
+        </div>
+        <div class="source source--development">
+          <div class="source__status">IN DEVELOPMENT</div>
+          <div class="source__name">New Kit onboarding</div>
+          <p class="source__desc">A clearer path to start a brain, declare its purpose, connect tools, and set the permissions and governance that shape how it behaves. Purpose becomes a system-prompt fragment, not a config file.</p>
         </div>
       </div>
     </div>

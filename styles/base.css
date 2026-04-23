@@ -844,6 +844,11 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   gap: var(--space-6);
   margin-top: var(--space-6);
 }
+/* #next uses the same card system but has 4 items, so lay them out as 2x2
+   on desktop. The stacked-on-mobile rule below still collapses to 1 column. */
+.sources--quad {
+  grid-template-columns: repeat(2, 1fr);
+}
 .source {
   background: var(--bg-card);
   border: 1px solid var(--edge-faint);
@@ -893,6 +898,18 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 .source--extend .source__status {
   color: var(--accent-memory);
   background: rgba(157, 127, 232, 0.12);
+}
+/* In-development cards — used in #next for horizon pieces (federation,
+   kitd, onboarding). Warm amber, same shape as planned, slightly stronger
+   presence so the roadmap reads as intention, not wishlist. */
+.source--development {
+  border-color: rgba(232, 165, 92, 0.4);
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(232, 165, 92, 0.06) 100%);
+}
+.source--development .source__status {
+  color: var(--accent-warm);
+  background: rgba(232, 165, 92, 0.14);
+  letter-spacing: 0.08em;
 }
 .source__name {
   font-family: var(--font-display);
