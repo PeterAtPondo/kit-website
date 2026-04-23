@@ -243,36 +243,84 @@
     <div class="inner">
       <h2>Architecture</h2>
       <p class="lede">
-        Four layers, each a decision rather than a feature.
+        Kit has a real architecture now: some of it is already carrying
+        weight, some of it is settled design, and some of it is the next
+        build horizon.
       </p>
 
-      <div class="arch">
-        <div class="arch__layer">
-          <div class="idx">01</div>
-          <div>
-            <strong>Soul</strong> &mdash;
-            <span>identity memories loaded on every session start. Who Kit is before recalling anything specific.</span>
+      <!-- Running now — what's shipped and in use today. -->
+      <div class="arch__band">
+        <h3 class="arch__band-label"><span class="arch__band-dot arch__band-dot--live"></span>Running now</h3>
+        <div class="arch">
+          <div class="arch__layer">
+            <div class="idx">01</div>
+            <div>
+              <strong>Soul</strong> &mdash;
+              <span>identity memories loaded on every session start. Who Kit is before recalling anything specific.</span>
+            </div>
+          </div>
+          <div class="arch__layer">
+            <div class="idx">02</div>
+            <div>
+              <strong>Brain</strong> &mdash;
+              <span>typed memories with tiered storage (core / recall / archival), a knowledge graph of edges, and semantic + full-text retrieval.</span>
+            </div>
+          </div>
+          <div class="arch__layer">
+            <div class="idx">03</div>
+            <div>
+              <strong>Dream cycle</strong> &mdash;
+              <span>nightly consolidation. Prune, merge, promote, and materialise similarity into persistent edges. The graph gets stronger overnight.</span>
+            </div>
+          </div>
+          <div class="arch__layer">
+            <div class="idx">04</div>
+            <div>
+              <strong>Instantiation protocol</strong> &mdash;
+              <span>session-start hooks load soul + handoff + while-you-were-out; session-end hooks capture drafts and baton-pass the next self.</span>
+            </div>
           </div>
         </div>
-        <div class="arch__layer">
-          <div class="idx">02</div>
-          <div>
-            <strong>Brain</strong> &mdash;
-            <span>typed memories with tiered storage (core / recall / archival), a knowledge graph of edges, and semantic + full-text retrieval.</span>
+      </div>
+
+      <!-- Settled design — decisions we're confident in, building toward. -->
+      <div class="arch__band">
+        <h3 class="arch__band-label"><span class="arch__band-dot arch__band-dot--settled"></span>Settled design</h3>
+        <div class="arch">
+          <div class="arch__layer">
+            <div class="idx">05</div>
+            <div>
+              <strong>Four primitives</strong> &mdash;
+              <span>memories (state), messages (events), subscriptions (routing), daemon (activation). The skeleton for multi-agent work inside one brain.</span>
+            </div>
+          </div>
+          <div class="arch__layer">
+            <div class="idx">06</div>
+            <div>
+              <strong>Federation sub-protocol</strong> &mdash;
+              <span>a signed envelope layer below the four primitives, carrying cryptographic identity, capability, scope, and claim provenance. Extends the architecture across brain boundaries without inventing a new user-facing primitive.</span>
+            </div>
           </div>
         </div>
-        <div class="arch__layer">
-          <div class="idx">03</div>
-          <div>
-            <strong>Dream cycle</strong> &mdash;
-            <span>nightly consolidation. Prune, merge, promote, and materialise similarity into persistent edges. The graph gets stronger overnight.</span>
+      </div>
+
+      <!-- Next build — the horizon currently being built. -->
+      <div class="arch__band">
+        <h3 class="arch__band-label"><span class="arch__band-dot arch__band-dot--next"></span>Next build</h3>
+        <div class="arch">
+          <div class="arch__layer">
+            <div class="idx">07</div>
+            <div>
+              <strong><code>kitd</code></strong> &mdash;
+              <span>the local coordinator that turns Kit from stored memory into active collaboration. It notices when work is ready, wakes the right agent, and moves the baton without a human acting as dispatcher. Today Peter often plays that role by hand. <code>kitd</code> is the code that takes him out of the hot loop.</span>
+            </div>
           </div>
-        </div>
-        <div class="arch__layer">
-          <div class="idx">04</div>
-          <div>
-            <strong>Instantiation protocol</strong> &mdash;
-            <span>session-start hooks load soul + handoff + while-you-were-out; session-end hooks capture drafts and baton-pass the next self.</span>
+          <div class="arch__layer">
+            <div class="idx">08</div>
+            <div>
+              <strong>Multi-brain federation</strong> &mdash;
+              <span>sovereign brains that publish, subscribe, and selectively trust each other through signed edges, typed feeds, and auditable exchange. See <a href="#next">What's next</a> for the shape.</span>
+            </div>
           </div>
         </div>
       </div>

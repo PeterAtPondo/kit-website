@@ -576,11 +576,48 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 }
 
 /* Architecture diagram — a simple stacked-box diagram */
+/* Architecture horizons: Running now / Settled design / Next build.
+   Each band is introduced by a labelled heading with a status dot so the
+   reader can tell shipped reality from settled plan from horizon at a glance. */
+.arch__band {
+  margin: var(--space-8) 0 var(--space-10);
+}
+.arch__band-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-secondary);
+  margin: 0 0 var(--space-4);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.arch__band-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.arch__band-dot--live {
+  background: var(--accent-green);
+  box-shadow: 0 0 8px rgba(127, 232, 157, 0.45);
+}
+.arch__band-dot--settled {
+  background: var(--accent-glow);
+  box-shadow: 0 0 8px rgba(107, 191, 255, 0.35);
+}
+.arch__band-dot--next {
+  background: var(--accent-warm);
+  box-shadow: 0 0 8px rgba(232, 165, 92, 0.35);
+}
+
 .arch {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-4);
-  margin: var(--space-8) 0;
+  margin: var(--space-4) 0 0;
   max-width: 42rem;
 }
 .arch__layer {
