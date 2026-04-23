@@ -364,6 +364,33 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   text-transform: uppercase;
 }
 
+/* Hero scope pair — names what Kit is and what it is not. Sits between
+   the ledes and the CTAs so readers calibrate expectations before they
+   act on the page. */
+.hero__scope {
+  margin-top: var(--space-8);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-secondary);
+  padding: var(--space-4) var(--space-5);
+  border-left: 2px solid var(--accent-warm);
+  background: linear-gradient(90deg, rgba(232, 165, 92, 0.05) 0%, transparent 80%);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.hero__scope strong {
+  color: var(--ink-primary);
+  font-weight: 500;
+}
+
+/* Hero CTAs — side-by-side on desktop, stacked on small screens. */
+.hero__ctas {
+  margin-top: var(--space-6);
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
 /* Hero parallax — the background image tracks the cursor by a few pixels.
    Subtle. Purely desktop; touch/reduced-motion gets static. Set by JS
    via CSS custom properties. */
@@ -1015,11 +1042,26 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   color: var(--bg-deep);
   background: linear-gradient(135deg, var(--accent-glow) 0%, var(--accent-memory) 100%);
   box-shadow: var(--glow-blue);
+  text-decoration: none;
+  display: inline-block;
 }
 .btn--primary:hover {
   transform: translateY(-1px);
   filter: brightness(1.08);
   box-shadow: 0 0 32px rgba(107, 191, 255, 0.45);
+}
+/* Ghost button for secondary hero CTA. Same shape, quieter fill. */
+.btn--ghost {
+  color: var(--ink-primary);
+  background: transparent;
+  border: 1px solid var(--edge-soft);
+  text-decoration: none;
+  display: inline-block;
+}
+.btn--ghost:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent-glow);
+  color: var(--accent-glow);
 }
 .contact-form__actions {
   display: flex;
