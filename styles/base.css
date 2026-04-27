@@ -580,7 +580,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
    Each band is introduced by a labelled heading with a status dot so the
    reader can tell shipped reality from settled plan from horizon at a glance. */
 .arch__band {
-  margin: var(--space-8) 0 var(--space-10);
+  margin: var(--space-8) 0 var(--space-12);
 }
 .arch__band-label {
   font-family: var(--font-mono);
@@ -720,7 +720,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
    sentence an agent can lift into its own response to a human. The close
    line frames the invitation. Treated as a quiet aside, not a CTA. */
 .letter__share {
-  margin-top: var(--space-10);
+  margin-top: var(--space-12);
   padding-top: var(--space-6);
   border-top: 1px solid var(--edge-faint);
 }
@@ -936,6 +936,34 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 .sovereignty__claim p em {
   font-style: italic;
   color: var(--ink-primary);
+}
+/* Honest scope under "Model-agnostic" — quietly distinct, marked as a
+   candor follow-up rather than a separate claim. */
+.sovereignty__claim-honest {
+  margin-top: var(--space-3) !important;
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--edge-faint);
+  color: var(--ink-quiet) !important;
+  font-size: 0.875rem !important;
+  font-style: italic;
+}
+/* The strategic-argument paragraph below the four claims. Distinct from
+   the claim grid: this is the moat-triad argument for collaborators who
+   want the why, not just the what. */
+.sovereignty__moat {
+  margin-top: var(--space-12);
+  padding: var(--space-6) var(--space-8);
+  border-left: 2px solid var(--accent-warm);
+  background: linear-gradient(90deg, rgba(232, 165, 92, 0.06) 0%, transparent 80%);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  color: var(--ink-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  max-width: 48rem;
+}
+.sovereignty__moat strong {
+  color: var(--ink-primary);
+  font-weight: 500;
 }
 @media (max-width: 780px) {
   .sovereignty { grid-template-columns: 1fr; }
