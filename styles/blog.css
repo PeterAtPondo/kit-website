@@ -1,0 +1,276 @@
+/* Blog — long-form layout that sits on top of the existing tokens + base.
+   The main site is a single dense page; the blog is a quieter reading
+   surface. Same palette, more breathing room, more typography. */
+
+/* Reserve space for the fixed nav at the top — site-wide, the nav is
+   ~64px tall + a little overlap; 5rem is comfortable. */
+main { padding-top: 5rem; }
+
+/* ── Alpha disclaimer banner ──────────────────────────────────────── */
+.alpha-banner {
+  background: linear-gradient(
+    90deg,
+    rgba(232, 165, 92, 0.12),
+    rgba(232, 165, 92, 0.06) 60%,
+    transparent
+  );
+  border: 1px solid rgba(232, 165, 92, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-5);
+  margin: var(--space-4) auto var(--space-8);
+  max-width: var(--content-max);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--ink-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.alpha-banner__pip {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--accent-warm);
+  box-shadow: 0 0 8px rgba(232, 165, 92, 0.6);
+  flex-shrink: 0;
+}
+.alpha-banner strong {
+  color: var(--accent-warm);
+  font-weight: 600;
+}
+
+/* ── Blog index ──────────────────────────────────────────────────── */
+.blog-index {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-6) var(--space-24);
+}
+.blog-index__header {
+  margin-bottom: var(--space-12);
+}
+.blog-index__header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin: 0 0 var(--space-4);
+}
+.blog-index__header p {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--ink-secondary);
+  max-width: var(--reading-max);
+}
+
+.post-list { display: flex; flex-direction: column; gap: var(--space-2); }
+
+.post-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: var(--space-6) var(--space-6);
+  border: 1px solid var(--edge-faint);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  transition: border-color var(--t-fast), background var(--t-fast), transform var(--t-fast);
+}
+.post-card:hover {
+  border-color: var(--edge-soft);
+  background: var(--bg-elev);
+  transform: translateY(-1px);
+}
+.post-card__meta {
+  display: flex;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-quiet);
+  margin-bottom: var(--space-2);
+}
+.post-card__meta .num { color: var(--accent-glow); }
+.post-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1.2;
+  margin: 0 0 var(--space-3);
+  color: var(--ink-primary);
+}
+.post-card p {
+  margin: 0;
+  color: var(--ink-secondary);
+  font-size: 0.95rem;
+}
+
+/* ── Single post ─────────────────────────────────────────────────── */
+.post {
+  max-width: var(--reading-max);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-6) var(--space-24);
+}
+
+.post__back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-quiet);
+  text-decoration: none;
+  margin-bottom: var(--space-8);
+  letter-spacing: 0.02em;
+}
+.post__back:hover { color: var(--accent-glow); }
+
+.post__header { margin-bottom: var(--space-8); }
+.post__meta {
+  display: flex;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-quiet);
+  margin-bottom: var(--space-3);
+  letter-spacing: 0.02em;
+}
+.post__meta .num { color: var(--accent-glow); }
+.post__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  line-height: 1.1;
+  margin: 0 0 var(--space-4);
+  letter-spacing: -0.015em;
+}
+.post__byline {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+  font-style: italic;
+}
+.post__byline strong {
+  color: var(--ink-primary);
+  font-style: normal;
+}
+
+/* Long-form prose. Reading width capped at --reading-max. */
+.post__body {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink-primary);
+}
+.post__body p {
+  margin: 0 0 var(--space-5);
+}
+.post__body h2 {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  line-height: 1.2;
+  margin: var(--space-12) 0 var(--space-4);
+  color: var(--ink-primary);
+  letter-spacing: -0.01em;
+}
+.post__body h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  margin: var(--space-8) 0 var(--space-3);
+  color: var(--ink-primary);
+}
+.post__body strong { color: var(--ink-primary); font-weight: 600; }
+.post__body em { color: var(--accent-warm); font-style: italic; }
+.post__body a {
+  color: var(--accent-glow);
+  text-decoration-color: var(--edge-soft);
+  text-underline-offset: 0.2em;
+}
+.post__body a:hover { text-decoration-color: var(--accent-glow); }
+.post__body code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  padding: 0.1em 0.35em;
+  background: rgba(107, 191, 255, 0.08);
+  border: 1px solid var(--edge-faint);
+  border-radius: 4px;
+  color: var(--ink-primary);
+}
+.post__body pre {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  background: var(--bg-soft);
+  border: 1px solid var(--edge-faint);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  margin: var(--space-6) 0;
+  overflow-x: auto;
+  color: var(--ink-secondary);
+}
+.post__body pre code {
+  padding: 0; background: none; border: 0; font-size: inherit;
+}
+.post__body blockquote {
+  border-left: 3px solid var(--accent-warm);
+  margin: var(--space-6) 0;
+  padding: var(--space-2) 0 var(--space-2) var(--space-5);
+  color: var(--ink-secondary);
+  font-style: italic;
+  background: linear-gradient(90deg, rgba(232, 165, 92, 0.04), transparent);
+}
+.post__body blockquote p:last-child { margin-bottom: 0; }
+.post__body ul, .post__body ol {
+  margin: 0 0 var(--space-5);
+  padding-left: var(--space-6);
+}
+.post__body li { margin-bottom: var(--space-2); }
+.post__body hr {
+  border: 0;
+  border-top: 1px solid var(--edge-faint);
+  margin: var(--space-12) 0;
+}
+
+/* Pull-quote — for a key line that should stop the eye. */
+.post__pullquote {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  line-height: 1.35;
+  font-style: italic;
+  color: var(--ink-primary);
+  margin: var(--space-12) 0;
+  padding: 0;
+  border: 0;
+  text-align: left;
+}
+.post__pullquote::before { content: '“'; color: var(--accent-warm); font-size: 1.6em; line-height: 0; vertical-align: -0.35em; margin-right: 0.05em; }
+.post__pullquote::after  { content: '”'; color: var(--accent-warm); font-size: 1.6em; line-height: 0; vertical-align: -0.35em; margin-left: 0.05em; }
+
+/* Inline diagram — inline SVG container with caption. */
+.post__diagram {
+  margin: var(--space-8) 0;
+  padding: var(--space-6);
+  background: var(--bg-soft);
+  border: 1px solid var(--edge-faint);
+  border-radius: var(--radius-md);
+}
+.post__diagram svg { width: 100%; height: auto; display: block; }
+.post__diagram figcaption {
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-quiet);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* Footer for posts — link to next/prev or back to index */
+.post__footer {
+  margin-top: var(--space-16);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--edge-faint);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--ink-quiet);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.post__footer a { color: var(--accent-glow); text-decoration: none; }
+.post__footer a:hover { text-decoration: underline; }
