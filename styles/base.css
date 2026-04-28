@@ -1200,9 +1200,13 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 }
 
 @media (max-width: 640px) {
-  /* Hide secondary nav links on narrow screens — the site is single-page
-     scrollable, so the brand + scroll is enough navigation. */
-  .nav__links { display: none; }
+  /* Hide in-page anchor links on narrow screens — the home page is
+     single-page scrollable, so the brand + scroll is enough navigation
+     for those. External links (Notes → /blog/) stay visible because
+     there's no other way to reach them on mobile. (2026-04-28: prior
+     rule hid the entire nav__links block, which left Notes unreachable.) */
+  .nav__links a:not([href="/blog/"]):not([href^="/blog/"]) { display: none; }
+  .nav__links { gap: 0; }
   .section { padding: var(--space-12) var(--space-6); }
   .section--hero { padding-top: var(--space-16); min-height: auto; }
   .section--hero .hero { padding: 0 var(--space-5); }
