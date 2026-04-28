@@ -268,6 +268,102 @@ main { padding-top: 5rem; }
   transform: translateX(-50%);
 }
 
+.compare-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-6);
+}
+
+.compare-card {
+  min-height: 21rem;
+  padding: var(--space-6);
+  border-radius: 1rem;
+  border: 1px solid var(--edge-faint);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0)),
+    var(--bg-card);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+.compare-card--featured {
+  min-height: 24rem;
+}
+
+.compare-card--violet {
+  border-color: rgba(157, 127, 232, 0.55);
+  background:
+    linear-gradient(180deg, rgba(157, 127, 232, 0.12), rgba(157, 127, 232, 0.02)),
+    var(--bg-card);
+}
+
+.compare-card--amber {
+  border-color: rgba(232, 165, 92, 0.55);
+  background:
+    linear-gradient(180deg, rgba(232, 165, 92, 0.12), rgba(232, 165, 92, 0.02)),
+    var(--bg-card);
+}
+
+.compare-card--blue {
+  border-width: 1.5px;
+  border-color: rgba(107, 191, 255, 0.72);
+  background:
+    linear-gradient(180deg, rgba(107, 191, 255, 0.14), rgba(107, 191, 255, 0.03)),
+    var(--bg-card);
+}
+
+.compare-card__eyebrow {
+  margin-bottom: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.compare-card--violet .compare-card__eyebrow { color: #ae93f4; }
+.compare-card--amber .compare-card__eyebrow { color: #f0b56a; }
+.compare-card--blue .compare-card__eyebrow { color: #89cbff; }
+
+.compare-card__title {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 2vw, 2.4rem);
+  line-height: 1.08;
+  color: var(--ink-primary);
+}
+
+.compare-card__copy,
+.compare-card__prompt {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink-secondary);
+}
+
+.compare-card__prompt strong {
+  color: var(--ink-primary);
+}
+
+.compare-card__rule {
+  width: 100%;
+  height: 1px;
+  margin: var(--space-5) 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05));
+}
+
+.compare-card__pill {
+  display: inline-flex;
+  align-items: center;
+  margin-top: var(--space-4);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(107, 191, 255, 0.35);
+  background: rgba(107, 191, 255, 0.10);
+  color: #d8ebff;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
 /* Comparison matrix */
 .post__table-wrap {
   margin: var(--space-8) 0;
@@ -385,6 +481,104 @@ main { padding-top: 5rem; }
     position: static;
     left: auto;
     transform: none;
+  }
+
+  .compare-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-card,
+  .compare-card--featured {
+    min-height: 0;
+  }
+
+  .post__table {
+    min-width: 760px;
+  }
+}
+
+@media (max-width: 720px) {
+  .post__diagram {
+    padding: var(--space-4);
+  }
+
+  .post__diagram--wide,
+  .post__table-wrap--wide {
+    width: calc(100vw - 1.5rem);
+  }
+
+  .compare-cards {
+    gap: var(--space-4);
+  }
+
+  .compare-card {
+    padding: var(--space-5);
+    border-radius: 0.9rem;
+  }
+
+  .compare-card__title {
+    font-size: 1.95rem;
+    line-height: 1.1;
+  }
+
+  .compare-card__copy,
+  .compare-card__prompt {
+    font-size: 0.95rem;
+  }
+
+  .compare-card__eyebrow {
+    font-size: 0.76rem;
+  }
+
+  .compare-card__pill {
+    font-size: 0.88rem;
+    padding: 0.32rem 0.75rem;
+  }
+
+  .post__table {
+    min-width: 680px;
+  }
+
+  .post__table caption {
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
+  .post__table tbody th {
+    width: 38%;
+  }
+}
+
+@media (max-width: 520px) {
+  .post__diagram {
+    padding: var(--space-3);
+  }
+
+  .post__diagram--wide,
+  .post__table-wrap--wide {
+    width: calc(100vw - 1rem);
+  }
+
+  .compare-card {
+    padding: 1rem;
+  }
+
+  .compare-card__title {
+    font-size: 1.72rem;
+  }
+
+  .compare-card__copy,
+  .compare-card__prompt {
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .compare-card__pill {
+    font-size: 0.82rem;
+  }
+
+  .post__table {
+    min-width: 620px;
   }
 }
 
