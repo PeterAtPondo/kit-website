@@ -259,6 +259,15 @@ main { padding-top: 5rem; }
   letter-spacing: 0.02em;
 }
 
+.post__diagram--wide,
+.post__table-wrap--wide {
+  width: min(1120px, calc(100vw - 3rem));
+  max-width: none;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 /* Comparison matrix */
 .post__table-wrap {
   margin: var(--space-8) 0;
@@ -267,7 +276,7 @@ main { padding-top: 5rem; }
 
 .post__table {
   width: 100%;
-  min-width: 680px;
+  min-width: 920px;
   border-collapse: collapse;
   border: 1px solid var(--edge-faint);
   border-radius: var(--radius-md);
@@ -306,7 +315,7 @@ main { padding-top: 5rem; }
 }
 
 .post__table tbody th {
-  width: 42%;
+  width: 34%;
   text-align: left;
   font-family: var(--font-body);
   font-weight: 600;
@@ -367,6 +376,16 @@ main { padding-top: 5rem; }
 
 .state-pill--no::before {
   background: rgba(167, 176, 198, 0.5);
+}
+
+@media (max-width: 980px) {
+  .post__diagram--wide,
+  .post__table-wrap--wide {
+    width: auto;
+    position: static;
+    left: auto;
+    transform: none;
+  }
 }
 
 /* Footer for posts — link to next/prev or back to index */
