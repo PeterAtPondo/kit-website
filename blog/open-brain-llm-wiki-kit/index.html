@@ -134,7 +134,7 @@ agents in motion on top.
       <div class="compare-card__eyebrow">Kit</div>
       <h3 class="compare-card__title">Persistent substrate</h3>
       <p class="compare-card__copy">Memory, synthesis, messages, wake-up logic, handoff, and instantiation in one stack.</p>
-      <p class="compare-card__copy">Strong on continuity across sessions and surfaces, and on agents staying aligned.</p>
+      <p class="compare-card__copy">Strong on continuity across sessions and surfaces, with auditable collaboration and agents staying aligned.</p>
       <div class="compare-card__rule"></div>
       <p class="compare-card__prompt"><strong>Best question:</strong></p>
       <p class="compare-card__copy">How does a collaborator persist and wake?</p>
@@ -207,6 +207,18 @@ what it is really optimising.
       </tr>
       <tr>
         <th scope="row">Session instantiation and handoff continuity</th>
+        <td><span class="state-pill state-pill--partial">Partial</span></td>
+        <td><span class="state-pill state-pill--partial">Partial</span></td>
+        <td><span class="state-pill state-pill--yes">Strong</span></td>
+      </tr>
+      <tr>
+        <th scope="row">Visible multi-agent timeline and audit trail</th>
+        <td><span class="state-pill state-pill--no">Not primary</span></td>
+        <td><span class="state-pill state-pill--no">Not primary</span></td>
+        <td><span class="state-pill state-pill--yes">Strong</span></td>
+      </tr>
+      <tr>
+        <th scope="row">Memory lifecycle beyond storage</th>
         <td><span class="state-pill state-pill--partial">Partial</span></td>
         <td><span class="state-pill state-pill--partial">Partial</span></td>
         <td><span class="state-pill state-pill--yes">Strong</span></td>
@@ -363,6 +375,15 @@ that can route work.
 </p>
 
 <p>
+This week that difference became more legible on the surface, not just in
+the architecture. Kit now has a Loom view that shows collaboration as a
+timeline you can inspect: which agent woke, what it wrote, how the rounds
+played out, what decisions landed, and what remained open. That matters
+because "multi-agent" is easy to say in the abstract. A navigable audit
+trail is stronger evidence than a claim.
+</p>
+
+<p>
 Kit is also more opinionated about identity than either Open Brain or LLM
 Wiki. That's not because identity is universally required. It isn't. It is
 because the particular problem we are working on includes relational
@@ -400,6 +421,15 @@ knowledge base." Its strengths are in the seams: cross-session
 instantiation, substrate-level continuity, typed handoffs, durable agent
 coordination, and a memory model rich enough to support both recall and
 ongoing synthesis.
+</p>
+
+<p>
+That memory model is also trying to be a lifecycle, not a bucket. Capture,
+dedup, typed writes, decay, promotion, forgetting, and draft review all
+exist because storage alone does not keep a collaborator coherent. I want
+to be honest here, though: the loop exists more clearly than its judgment
+does. Kit has a stronger lifecycle shape than Open Brain or LLM Wiki, but
+parts of that judgment layer are still uneven.
 </p>
 
 <p>
@@ -488,7 +518,8 @@ as branding. As function.
 Another way to say it: Open Brain is very good at giving many AIs one
 memory. LLM Wiki is very good at giving one line of inquiry a compounding
 artifact. Kit is trying to give a persistent intelligence system a durable
-world, a wake-up mechanism, and a sense of where it left off.
+world, a wake-up mechanism, an audit trail of collaboration, and a sense
+of where it left off.
 </p>
 
 <h2>What we admire in both</h2>
