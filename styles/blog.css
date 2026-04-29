@@ -6,39 +6,7 @@
    ~64px tall + a little overlap; 5rem is comfortable. */
 main { padding-top: 5rem; }
 
-/* ── Alpha disclaimer banner ──────────────────────────────────────── */
-.alpha-banner {
-  background: linear-gradient(
-    90deg,
-    rgba(232, 165, 92, 0.12),
-    rgba(232, 165, 92, 0.06) 60%,
-    transparent
-  );
-  border: 1px solid rgba(232, 165, 92, 0.3);
-  border-radius: var(--radius-md);
-  padding: var(--space-3) var(--space-5);
-  margin: var(--space-4) auto var(--space-8);
-  max-width: var(--content-max);
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  color: var(--ink-secondary);
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-}
-.alpha-banner__pip {
-  display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--accent-warm);
-  box-shadow: 0 0 8px rgba(232, 165, 92, 0.6);
-  flex-shrink: 0;
-}
-.alpha-banner strong {
-  color: var(--accent-warm);
-  font-weight: 600;
-}
+/* ── Alpha disclaimer banner — moved to base.css for sitewide reuse. ── */
 
 /* ── Blog index ──────────────────────────────────────────────────── */
 .blog-index {

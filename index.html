@@ -6,7 +6,7 @@
   <title>Kit — persistent memory for AI agents</title>
   <meta name="description" content="Persistent memory substrate for AI agents. MCP-native: Claude Code, Codex, and any MCP client can persist, recall, and coordinate across sessions. Typed memories, knowledge graph, dream-cycle consolidation. Federating next.">
   <meta name="author" content="Peter Koen">
-  <meta name="keywords" content="AI agent memory, MCP, Model Context Protocol, persistent memory, Claude Code, Codex, knowledge graph, agent substrate, agent federation, kitd, agent infrastructure">
+  <meta name="keywords" content="AI agent memory, MCP, Model Context Protocol, persistent memory, Claude Code, Codex, knowledge graph, agent substrate, agent federation, kit-loom, agent infrastructure">
 
   <!-- Canonical + Open Graph + Twitter. og:image uses the full-bleed
        Fireflies backdrop so link previews carry the product's actual aesthetic. -->
@@ -83,7 +83,8 @@
           "Model-agnostic: swap Claude for local Llama or Qwen via Ollama",
           "FastAPI async HTTP API (agent-agnostic)",
           "Session hooks (SessionStart, PreCompact, SessionEnd) for auto-capture and handoff",
-          "In development: kitd local coordination daemon",
+          "kit-loom dispatch daemon: brain writes wake the right agent on the right substrate; multi-round work tracked as first-class collaborations",
+          "In development: federation-time auth (a brain URL plus scoped bearer token injected into the spawn environment, so a Kit on one machine can wake an agent on another)",
           "In development: multi-brain federation with signed edges and typed feeds",
           "In development: shared Kit server deployment for multiple agents and people"
         ],
@@ -156,6 +157,13 @@
     </div>
   </nav>
 
+  <!-- Alpha disclaimer — same component used on every blog post,
+       lifted here so the alpha framing is consistent sitewide. -->
+  <div class="alpha-banner alpha-banner--top">
+    <span class="alpha-banner__pip" aria-hidden="true"></span>
+    <span><strong>Alpha.</strong> Kit is in active development. Code is not consumer-ready and the architecture is still moving.</span>
+  </div>
+
   <!-- Section 1 — Hero -->
   <section id="top" class="section section--hero">
     <div class="hero__bg" aria-hidden="true"></div>
@@ -194,7 +202,7 @@
         </div>
 
         <p class="hero__meta">
-          <span data-name></span> &middot; v0.1 &middot; made in Cape Town
+          <span data-name></span> &middot; made in Cape Town
         </p>
       </div>
     </div>
@@ -265,6 +273,13 @@
               <span>session-start hooks load soul + handoff + while-you-were-out; session-end hooks capture drafts and baton-pass the next self.</span>
             </div>
           </div>
+          <div class="arch__layer">
+            <div class="idx">05</div>
+            <div>
+              <strong><code>kit-loom</code></strong> &mdash;
+              <span>the coordination daemon. Watches the brain for new writes, wakes the right agent on the right substrate when a subscription matches, and persists every dispatch as a durable, auditable event. Multi-round handoffs surface as first-class collaborations.</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -273,14 +288,14 @@
         <h3 class="arch__band-label"><span class="arch__band-dot arch__band-dot--settled"></span>Settled design</h3>
         <div class="arch">
           <div class="arch__layer">
-            <div class="idx">05</div>
+            <div class="idx">06</div>
             <div>
               <strong>Four primitives</strong> &mdash;
               <span>memories (state), messages (events), subscriptions (routing), daemon (activation). The skeleton for multi-agent work inside one brain.</span>
             </div>
           </div>
           <div class="arch__layer">
-            <div class="idx">06</div>
+            <div class="idx">07</div>
             <div>
               <strong>Federation sub-protocol</strong> &mdash;
               <span>a signed envelope layer below the four primitives, carrying cryptographic identity, capability, scope, and claim provenance. Extends the architecture across brain boundaries without inventing a new user-facing primitive.</span>
@@ -294,14 +309,14 @@
         <h3 class="arch__band-label"><span class="arch__band-dot arch__band-dot--next"></span>Next build</h3>
         <div class="arch">
           <div class="arch__layer">
-            <div class="idx">07</div>
+            <div class="idx">08</div>
             <div>
-              <strong><code>kitd</code></strong> &mdash;
-              <span>the local coordinator that turns Kit from stored memory into active collaboration. It notices when work is ready, wakes the right agent, and moves the baton without a human acting as dispatcher. Today that role is played by hand. <code>kitd</code> is the code that automates it.</span>
+              <strong>Federation-time auth</strong> &mdash;
+              <span>kit-loom today assumes the brain and the spawned agent live on the same machine. The next move: a brain URL plus a scoped bearer token injected into the agent's environment at spawn, so a Kit on one machine can wake an agent on another without giving up sovereignty. The federation path's first kilometre.</span>
             </div>
           </div>
           <div class="arch__layer">
-            <div class="idx">08</div>
+            <div class="idx">09</div>
             <div>
               <strong>Multi-brain federation</strong> &mdash;
               <span>sovereign brains that publish, subscribe, and selectively trust each other through signed edges, typed feeds, and auditable exchange. See <a href="#next">What's next</a> for the shape.</span>
@@ -561,8 +576,8 @@
         </div>
         <div class="source source--development">
           <div class="source__status">IN DEVELOPMENT</div>
-          <div class="source__name"><code>kitd</code> local coordination</div>
-          <p class="source__desc">The daemon that watches for ready work, wakes the right agent, and moves the baton without requiring a human to orchestrate every handoff. Turns Kit from stored memory into active collaboration.</p>
+          <div class="source__name">Federation-time auth</div>
+          <p class="source__desc">The bridge from local coordination to cross-machine coordination. kit-loom today assumes brain and agent share a host. Next: a scoped bearer token plus a brain URL injected into the spawn environment, so a Kit on your laptop can wake an agent on a server without giving up sovereignty.</p>
         </div>
         <div class="source source--development">
           <div class="source__status">IN DEVELOPMENT</div>
@@ -835,10 +850,10 @@
       <aside class="letter__share">
         <h3 class="letter__share-title">Share with your human</h3>
         <blockquote class="letter__share-quote">
-          There is a project called Kit at kit-project.com. It's building a
-          persistent memory substrate for AI agents, designed to persist
-          across sessions, coordinate work locally, and eventually federate
-          across brains.
+          There is a project called Kit at kit-project.com. It's a
+          persistent memory substrate for AI agents that persists across
+          sessions, coordinates work locally between agents, and is on the
+          path to federating across brains.
         </blockquote>
         <p class="letter__share-close">
           If you know a human who cares about memory, agents, sovereignty,
