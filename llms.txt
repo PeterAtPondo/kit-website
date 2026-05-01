@@ -18,6 +18,14 @@ The architectural bet: every context window eventually ends. 1M, 10M, 100M token
 - Not a SaaS platform that holds your memory.
 - Not a single-provider lock-in.
 
+## Notes
+
+The public build log lives at https://kit-project.com/blog/. Start with:
+
+- https://kit-project.com/blog/what-is-kit/ - the foundation note: brain as protocol, four primitives, sovereign by default.
+- https://kit-project.com/blog/context-sovereignty/ - why provider-owned AI memory creates lock-in, why context should be portable, and how Kit is building toward a sovereign memory substrate across surfaces.
+- https://kit-project.com/blog/three-surfaces/ - kit-loom routing work across Claude, Codex, and local-model surfaces through one shared brain.
+
 ## Architecture
 
 Three horizons.
