@@ -229,6 +229,195 @@ by construction, because the answer would dissolve the perimeter their
 products are organised around.
 </p>
 
+<figure class="post__diagram post__diagram--wide" role="figure" aria-labelledby="diagram-caption">
+  <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" role="img"
+       aria-label="Two architectures side by side. On the left, the provider-owned memory pattern: a single provider rectangle containing the agent and the memory together; an arrow leaving the provider shows that accumulated context cannot travel with the user. On the right, the substrate-underneath pattern: multiple agent bodies sit on top of one shared brain, with external connectors feeding events into the brain from above. The bodies can be swapped; the brain stays.">
+    <defs>
+      <linearGradient id="diagBg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0a0e1a"/>
+        <stop offset="100%" stop-color="#10182b"/>
+      </linearGradient>
+      <radialGradient id="memGlow" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#9d7fe8" stop-opacity="0.35"/>
+        <stop offset="70%" stop-color="#9d7fe8" stop-opacity="0.04"/>
+        <stop offset="100%" stop-color="#9d7fe8" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="brainGlow" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#6bbfff" stop-opacity="0.32"/>
+        <stop offset="70%" stop-color="#6bbfff" stop-opacity="0.04"/>
+        <stop offset="100%" stop-color="#6bbfff" stop-opacity="0"/>
+      </radialGradient>
+      <marker id="arrowDown" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0 0 L5 9 L10 0" fill="none" stroke="#8b95af" stroke-width="1.4"/>
+      </marker>
+      <marker id="arrowUp" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0 10 L5 1 L10 10" fill="none" stroke="#8b95af" stroke-width="1.4"/>
+      </marker>
+      <marker id="arrowOut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0 0 L10 5 L0 10 Z" fill="#8b95af" opacity="0.6"/>
+      </marker>
+      <marker id="arrowBlocked" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="9" markerHeight="9" orient="auto">
+        <path d="M0 0 L14 7 L0 14 Z" fill="#e07a5f" opacity="0.85"/>
+      </marker>
+    </defs>
+
+    <rect x="0" y="0" width="1200" height="600" fill="url(#diagBg)"/>
+
+    <!-- ============================================ -->
+    <!-- LEFT PANEL: provider-owned memory             -->
+    <!-- ============================================ -->
+    <g font-family="system-ui, -apple-system, sans-serif" fill="#e8ebf2">
+      <!-- Panel kicker -->
+      <text x="60" y="58" font-size="13" letter-spacing="3.5" fill="#8b95af" font-weight="500">PROVIDER-OWNED MEMORY</text>
+      <text x="60" y="82" font-size="13" fill="#b6bdd0" font-style="italic" font-weight="300">the current shape, in a sentence</text>
+
+      <!-- Provider container -->
+      <rect x="80" y="160" width="440" height="320" rx="14" fill="none" stroke="#5b6280" stroke-width="1.5" stroke-dasharray="4 5"/>
+      <text x="100" y="190" font-size="13" letter-spacing="3" fill="#b6bdd0" font-weight="600">PROVIDER WALL</text>
+
+      <!-- Agent + Memory inside the provider -->
+      <rect x="130" y="230" width="340" height="200" rx="10" fill="#1b2133" stroke="#2c3450" stroke-width="1"/>
+      <!-- Agent box (top half) -->
+      <rect x="160" y="260" width="280" height="60" rx="8" fill="#232a40" stroke="#3a4262" stroke-width="1"/>
+      <text x="300" y="296" font-size="20" text-anchor="middle" fill="#e8ebf2" font-weight="500">Agent</text>
+      <!-- Memory box (bottom half), purple-tinted -->
+      <circle cx="300" cy="380" r="58" fill="url(#memGlow)"/>
+      <rect x="200" y="350" width="200" height="56" rx="8" fill="#2a2347" stroke="#9d7fe8" stroke-width="1"/>
+      <text x="300" y="383" font-size="18" text-anchor="middle" fill="#cfb9ff" font-weight="500">Your memory</text>
+      <!-- Inside-arrow showing read/write coupling -->
+      <line x1="300" y1="320" x2="300" y2="346" stroke="#8b95af" stroke-width="1.3" marker-end="url(#arrowDown)" marker-start="url(#arrowUp)"/>
+
+      <!-- Outgoing arrow blocked at the wall -->
+      <line x1="490" y1="320" x2="540" y2="320" stroke="#e07a5f" stroke-width="1.6" marker-end="url(#arrowBlocked)"/>
+      <text x="555" y="316" font-size="13" fill="#e07a5f" font-weight="500">cannot leave</text>
+      <text x="555" y="333" font-size="11" fill="#b07a6f" font-style="italic">switching cost compounds</text>
+
+      <!-- Caption under panel -->
+      <text x="80" y="525" font-size="14" fill="#b6bdd0" font-weight="300">Memory accumulates inside the provider.</text>
+      <text x="80" y="545" font-size="14" fill="#b6bdd0" font-weight="300">The longer you stay, the harder it is to leave.</text>
+    </g>
+
+    <!-- Vertical divider -->
+    <line x1="600" y1="80" x2="600" y2="540" stroke="#2c3450" stroke-width="1"/>
+
+    <!-- ============================================ -->
+    <!-- RIGHT PANEL: substrate-underneath              -->
+    <!-- ============================================ -->
+    <g font-family="system-ui, -apple-system, sans-serif" fill="#e8ebf2">
+      <!-- Panel kicker -->
+      <text x="640" y="58" font-size="13" letter-spacing="3.5" fill="#8b95af" font-weight="500">SUBSTRATE UNDERNEATH</text>
+      <text x="640" y="82" font-size="13" fill="#b6bdd0" font-style="italic" font-weight="300">the parallel exploration</text>
+
+      <!-- Connectors row (top) -->
+      <g font-size="11" letter-spacing="1.5" fill="#6bbfff">
+        <g transform="translate(660, 130)">
+          <rect x="0" y="0" width="86" height="32" rx="6" fill="none" stroke="#395068" stroke-width="1"/>
+          <text x="43" y="20" text-anchor="middle" font-weight="500">CALENDAR</text>
+        </g>
+        <g transform="translate(770, 130)">
+          <rect x="0" y="0" width="68" height="32" rx="6" fill="none" stroke="#395068" stroke-width="1"/>
+          <text x="34" y="20" text-anchor="middle" font-weight="500">MAIL</text>
+        </g>
+        <g transform="translate(862, 130)">
+          <rect x="0" y="0" width="78" height="32" rx="6" fill="none" stroke="#395068" stroke-width="1"/>
+          <text x="39" y="20" text-anchor="middle" font-weight="500">GARMIN</text>
+        </g>
+        <g transform="translate(964, 130)">
+          <rect x="0" y="0" width="68" height="32" rx="6" fill="none" stroke="#395068" stroke-width="1"/>
+          <text x="34" y="20" text-anchor="middle" font-weight="500">SLACK</text>
+        </g>
+        <g transform="translate(1056, 130)">
+          <rect x="0" y="0" width="68" height="32" rx="6" fill="none" stroke="#395068" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="34" y="20" text-anchor="middle" font-weight="500" fill="#5b6280">…</text>
+        </g>
+      </g>
+      <text x="640" y="124" font-size="11" letter-spacing="2" fill="#5b6280" font-weight="500">CONNECTORS</text>
+
+      <!-- Arrows from connectors down into agents row -->
+      <g stroke="#3d6588" stroke-width="1.2" fill="none" opacity="0.7" marker-end="url(#arrowDown)">
+        <line x1="703" y1="166" x2="703" y2="208"/>
+        <line x1="804" y1="166" x2="804" y2="208"/>
+        <line x1="901" y1="166" x2="901" y2="208"/>
+        <line x1="998" y1="166" x2="998" y2="208"/>
+      </g>
+
+      <!-- Agent bodies row -->
+      <g font-size="14" font-weight="500" fill="#e8ebf2">
+        <g transform="translate(660, 218)">
+          <rect x="0" y="0" width="86" height="44" rx="8" fill="#232a40" stroke="#3a4262" stroke-width="1"/>
+          <text x="43" y="28" text-anchor="middle">Forest</text>
+        </g>
+        <g transform="translate(762, 218)">
+          <rect x="0" y="0" width="86" height="44" rx="8" fill="#232a40" stroke="#3a4262" stroke-width="1"/>
+          <text x="43" y="28" text-anchor="middle">Speed</text>
+        </g>
+        <g transform="translate(864, 218)">
+          <rect x="0" y="0" width="86" height="44" rx="8" fill="#232a40" stroke="#3a4262" stroke-width="1"/>
+          <text x="43" y="28" text-anchor="middle">Qwen</text>
+        </g>
+        <g transform="translate(966, 218)">
+          <rect x="0" y="0" width="86" height="44" rx="8" fill="#232a40" stroke="#3a4262" stroke-width="1"/>
+          <text x="43" y="28" text-anchor="middle">Cursor</text>
+        </g>
+        <g transform="translate(1068, 218)">
+          <rect x="0" y="0" width="56" height="44" rx="8" fill="#232a40" stroke="#3a4262" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="28" y="28" text-anchor="middle" fill="#5b6280">…</text>
+        </g>
+      </g>
+      <text x="640" y="212" font-size="11" letter-spacing="2" fill="#5b6280" font-weight="500">AGENT BODIES</text>
+
+      <!-- Bidirectional arrows from agents down into the brain -->
+      <g stroke="#8b95af" stroke-width="1.2" fill="none" opacity="0.7">
+        <line x1="703" y1="270" x2="703" y2="318" marker-end="url(#arrowDown)" marker-start="url(#arrowUp)"/>
+        <line x1="805" y1="270" x2="805" y2="318" marker-end="url(#arrowDown)" marker-start="url(#arrowUp)"/>
+        <line x1="907" y1="270" x2="907" y2="318" marker-end="url(#arrowDown)" marker-start="url(#arrowUp)"/>
+        <line x1="1009" y1="270" x2="1009" y2="318" marker-end="url(#arrowDown)" marker-start="url(#arrowUp)"/>
+      </g>
+
+      <!-- Brain panel: the substrate -->
+      <ellipse cx="892" cy="395" rx="280" ry="80" fill="url(#brainGlow)"/>
+      <rect x="640" y="328" width="500" height="138" rx="14" fill="#141926" stroke="#9d7fe8" stroke-width="1.4"/>
+      <text x="660" y="356" font-size="11" letter-spacing="2" fill="#5b6280" font-weight="500">SUBSTRATE</text>
+      <text x="660" y="384" font-size="22" fill="#e8ebf2" font-weight="500">Your brain</text>
+      <text x="660" y="406" font-size="13" fill="#b6bdd0" font-style="italic" font-weight="300">memories, edges, soul, dream cycle</text>
+      <!-- Memory dots inside the brain -->
+      <g fill="#9d7fe8">
+        <circle cx="900" cy="386" r="5" opacity="0.95"/>
+        <circle cx="930" cy="402" r="4" opacity="0.85"/>
+        <circle cx="958" cy="380" r="6" opacity="1"/>
+        <circle cx="985" cy="412" r="3.5" opacity="0.7"/>
+        <circle cx="1014" cy="392" r="5" opacity="0.9"/>
+        <circle cx="1042" cy="408" r="4" opacity="0.8"/>
+        <circle cx="1070" cy="386" r="3" opacity="0.65"/>
+        <circle cx="1095" cy="404" r="4" opacity="0.85"/>
+        <circle cx="1123" cy="392" r="3" opacity="0.7"/>
+      </g>
+      <!-- Connecting edges between memory dots -->
+      <g stroke="#9d7fe8" stroke-width="0.8" opacity="0.5">
+        <line x1="900" y1="386" x2="930" y2="402"/>
+        <line x1="930" y1="402" x2="958" y2="380"/>
+        <line x1="958" y1="380" x2="985" y2="412"/>
+        <line x1="985" y1="412" x2="1014" y2="392"/>
+        <line x1="958" y1="380" x2="1014" y2="392"/>
+        <line x1="1014" y1="392" x2="1042" y2="408"/>
+        <line x1="1042" y1="408" x2="1070" y2="386"/>
+        <line x1="1070" y1="386" x2="1095" y2="404"/>
+        <line x1="1095" y1="404" x2="1123" y2="392"/>
+      </g>
+
+      <!-- Caption under panel -->
+      <text x="640" y="525" font-size="14" fill="#b6bdd0" font-weight="300">Memory accumulates underneath the agent bodies.</text>
+      <text x="640" y="545" font-size="14" fill="#b6bdd0" font-weight="300">Bodies can be swapped. The substrate stays put.</text>
+    </g>
+  </svg>
+  <figcaption id="diagram-caption">
+    Two architectures. On the left, memory lives inside the provider; the longer
+    you accumulate context, the higher the cost of leaving. On the right, memory
+    is the substrate; agent bodies sit on top, connectors feed events in, and
+    nothing is held captive to keep the relationship continuous.
+  </figcaption>
+</figure>
+
 <p class="post__pullquote">
 Cross-substrate sovereignty is the part of the puzzle the labs cannot
 ship by construction. That is not a complaint about them. It is the
@@ -271,6 +460,20 @@ event is not permission to act. The default side effect is a brain
 write. Pushing a notification is opt-in per trigger. None of this is
 clever. It just keeps sovereignty inside the design instead of leaving
 it as a slogan.
+</p>
+
+<p>
+A small note on why Garmin first. Health data is an unserious test-bed
+on purpose. The signal is forgiving (a misread workout is not a missed
+deadline), the events are well-shaped (one workout per session, clean
+fields), and the privacy boundary is sharp (personal scope, never the
+work surfaces). It lets us shake the loop down without anything
+load-bearing on the line. The targets that actually matter are
+upstream of fitness data: code (commits, repos, PRs, project canon),
+projects (the lineage of decisions on a particular client engagement),
+company context (the institutional memory that lets a new agent show
+up day one already useful). Garmin is the test fixture for the rig
+that will eventually carry those.
 </p>
 
 <h2>What gets interesting once the data sources land</h2>
@@ -319,6 +522,21 @@ you decide. That noticing is in the brain, scoped personal, never
 visible to the work surfaces. By Friday you can ask the brain whether
 your tone correlates with your sleep. The answer is grounded in real
 data you actually own.
+</p>
+
+<p>
+A customer mentions on social media that something you shipped is
+broken. Kit notices the mention because the social connector is
+watching for the product name, finds the relevant repo from the
+project canon, reproduces the issue, drafts a fix, runs the tests, and
+opens a small PR with the failure case captured. You read the diff,
+edit one line, click merge. A second body picks up the merge, drafts
+a public reply in your voice that names the cause without
+oversharing, and surfaces it for one click of approval. You say yes;
+Kit posts. The customer hears back in twenty minutes instead of three
+days, with a fix already in the next deploy. The agent did not
+replace anyone; it just did the choreography that makes that pace
+feel routine.
 </p>
 
 <p>
