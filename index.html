@@ -102,6 +102,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/blog.css">
   <!-- Placeholder brand name — swap `--product-name` in tokens.css when we land on the final name. -->
 </head>
 <body>
@@ -208,7 +209,32 @@
     </div>
   </section>
 
-  <!-- Section 2 — The pattern -->
+  <!-- Latest note: most recent build-log post, manually curated. -->
+  <section class="section section--note-strip" data-reveal>
+    <h2>Latest from the build log</h2>
+    <p class="lede">
+      We keep a build log inside <a href="/blog/">Notes</a>. Most recent post:
+    </p>
+
+    <a class="post-card post-card--featured" href="/blog/accidental-workflow-engine/">
+      <div class="post-card__meta">
+        <span class="num">No. 009</span>
+        <span>2026 · 05 · 13</span>
+        <span>· direction</span>
+      </div>
+      <h3>We accidentally built an agentic workflow engine</h3>
+      <p>
+        A week of agent-team coding and a video that named what we
+        were already doing. Why the deeply
+        unfashionable thing turns out to be the right shape for personal
+        AI to grow into company substrate.
+      </p>
+    </a>
+
+    <p class="note-strip__more"><a href="/blog/">See all notes &rarr;</a></p>
+  </section>
+
+  <!-- Section 2: The pattern -->
   <section id="what" class="section" data-reveal>
     <h2>The pattern</h2>
     <p class="lede">
