@@ -907,23 +907,21 @@
            redirect page if JS is disabled (the form action URL). -->
       <div class="contact-form__status contact-form__status--success" hidden>
         <h3>Message sent.</h3>
-        <p>Goes straight to Peter at pondo.co. No auto-reply, no list.</p>
+        <p>Goes straight to Peter at kit-project.com. No auto-reply, no list.</p>
       </div>
       <div class="contact-form__status contact-form__status--error" hidden>
         <p>Something went wrong sending that. Try again, or email
-        <a href="mailto:peterk@pondo.co">peterk@pondo.co</a> directly.</p>
+        <a href="mailto:kit@kit-project.com">kit@kit-project.com</a> directly.</p>
       </div>
 
       <form class="contact-form"
-            action="https://formsubmit.co/peterk@pondo.co"
+            action="https://formspree.io/f/xzdwawzg"
             method="POST"
-            data-ajax-endpoint="https://formsubmit.co/ajax/peterk@pondo.co">
-        <!-- Formsubmit configuration -->
-        <input type="hidden" name="_subject" value="Kit &mdash; message from the site">
-        <input type="hidden" name="_template" value="box">
-        <input type="hidden" name="_captcha" value="false">
+            data-ajax-endpoint="https://formspree.io/f/xzdwawzg">
+        <!-- Formspree configuration -->
+        <input type="hidden" name="_subject" value="Kit, message from the site">
         <!-- Honeypot for bots -->
-        <input type="text" name="_honey" class="contact-form__honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="text" name="_gotcha" class="contact-form__honey" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <div class="contact-form__row">
           <label for="cf-name">Name</label>
@@ -953,7 +951,7 @@
         <div class="contact-form__actions">
           <button type="submit" class="btn btn--primary">Send</button>
           <span class="contact-form__note">
-            Goes straight to Peter at pondo.co. No list, no auto-reply.
+            Goes straight to Peter at kit-project.com. No list, no auto-reply.
           </span>
         </div>
       </form>
@@ -1101,10 +1099,10 @@
   </script>
 
   <!-- Contact form AJAX submission. Intercepts the submit event, POSTs to
-       formsubmit.co's JSON endpoint, and shows an inline success/error
+       Formspree's JSON endpoint, and shows an inline success/error
        state without leaving the page. If JS is disabled or fetch fails
-       unexpectedly, the form's natural action URL still works (falls back
-       to formsubmit's redirect page). -->
+       unexpectedly, the form's natural action URL still works (Formspree
+       renders a fallback confirmation page). -->
   <script>
     (() => {
       const form = document.querySelector('.contact-form');
@@ -1142,9 +1140,8 @@
 
           if (!response.ok) throw new Error('HTTP ' + response.status);
           const json = await response.json().catch(() => ({}));
-          // FormSubmit returns {"success":"true"} (string) on success.
-          const ok = json.success === true || json.success === 'true';
-          if (!ok) throw new Error(json.message || 'submission rejected');
+          // Formspree returns {"ok": true, "next": "..."} on success.
+          if (json.ok !== true) throw new Error('submission rejected');
 
           form.hidden = true;
           if (successEl) {
