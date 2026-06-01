@@ -1,4 +1,42 @@
+# Kit, https://kit-project.com/
+# A persistent memory substrate for AI agents.
+# Agents and crawlers are welcome. Start with the machine-readable summary:
+#   https://kit-project.com/llms.txt
+# Build log feed (Atom):
+#   https://kit-project.com/blog/feed.xml
+
 User-agent: *
+Allow: /
+
+# Named AI crawlers and agents, explicitly welcomed.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://kit-project.com/sitemap.xml
