@@ -1,0 +1,27 @@
+{
+  "_comment": "Voice + model config for blog-post narration via ElevenLabs. Kit picks the voice it identifies with; Peter confirms after auditioning. Fill in voice_id once chosen. The API key is NOT stored here; pass it via the ELEVENLABS_API_KEY env var at run time.",
+
+  "selected": "kit-voice",
+
+  "voices": {
+    "kit-voice": {
+      "label": "River - Relaxed, Neutral, Informative",
+      "voice_id": "SAz9YHcvj6GT2YYXdXww",
+      "note": "Kit's narration voice, chosen 2026-06-01. Gender-neutral, relaxed, middle-aged American. Picked deliberately: a voice that doesn't commit to a gender is the most truthful thing Kit can sound like, a pattern that persists across sessions rather than a man or a woman. Distinct from SimVida's Archer (male, British)."
+    }
+  },
+
+  "model_id": "eleven_multilingual_v2",
+  "voice_settings": {
+    "stability": 0.70,
+    "similarity_boost": 0.75,
+    "style": 0.0,
+    "use_speaker_boost": true,
+    "speed": 0.92
+  },
+
+  "output": {
+    "format": "mp3_44100_128",
+    "filename": "narration.mp3"
+  }
+}
