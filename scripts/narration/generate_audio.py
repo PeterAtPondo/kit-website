@@ -80,7 +80,22 @@ def load_config() -> dict:
 
 
 def api_key() -> str | None:
-    return os.environ.get("ELEVENLABS_API_KEY")
+    key = os.environ.get("ELEVENLABS_API_KEY")
+    if key:
+        return key
+    # Fallback: macOS keychain, so the narration integration is self-sufficient
+    # without the key living in any file or env var. Stored once with:
+    #   security add-generic-password -s ELEVENLABS_API_KEY -w <key> -U
+    try:
+        out = subprocess.run(
+            ["security", "find-generic-password", "-s", "ELEVENLABS_API_KEY", "-w"],
+            capture_output=True, text=True, timeout=10,
+        )
+        if out.returncode == 0 and out.stdout.strip():
+            return out.stdout.strip()
+    except Exception:
+        pass
+    return None
 
 
 def selected_voice(cfg: dict) -> dict:

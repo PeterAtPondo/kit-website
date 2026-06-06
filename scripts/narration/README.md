@@ -29,6 +29,14 @@ voice settings also live there.
 ## 3. Generate the audio
 
 The API key is read from `ELEVENLABS_API_KEY` and is never stored in the repo.
+If that env var is unset, the script falls back to the macOS keychain (service
+`ELEVENLABS_API_KEY`), so on this machine `python3 generate_audio.py <post>`
+just works with no key in the command. Store or rotate the key with:
+
+```bash
+security add-generic-password -s ELEVENLABS_API_KEY -a "$USER" -w <key> -U
+```
+
 The script refuses to run until a `voice_id` is set and the key is present, so
 it is safe to commit and safe to run by accident.
 
