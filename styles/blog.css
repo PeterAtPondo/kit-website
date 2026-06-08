@@ -229,6 +229,7 @@ main { padding-top: 5rem; }
 
 .post__diagram--wide,
 .post__table-wrap--wide {
+  box-sizing: border-box;
   width: min(1120px, calc(100vw - 3rem));
   max-width: none;
   position: relative;
@@ -472,7 +473,7 @@ main { padding-top: 5rem; }
 
   .post__diagram--wide,
   .post__table-wrap--wide {
-    width: calc(100vw - 1.5rem);
+    width: 100%;
   }
 
   .compare-cards {
@@ -524,7 +525,7 @@ main { padding-top: 5rem; }
 
   .post__diagram--wide,
   .post__table-wrap--wide {
-    width: calc(100vw - 1rem);
+    width: 100%;
   }
 
   .compare-card {
