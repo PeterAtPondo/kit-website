@@ -20,3 +20,9 @@ blog/*/narration.txt
 # Video masters: the web-encoded .mp4 + poster .jpg are committed and served;
 # the raw .mov screen-recordings (hundreds of MB) stay local only.
 assets/video/*.mov
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
