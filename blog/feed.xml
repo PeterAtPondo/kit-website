@@ -5,7 +5,7 @@
   <link href="https://kit-project.com/blog/" rel="alternate" type="text/html"/>
   <link href="https://kit-project.com/blog/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://kit-project.com/blog/</id>
-  <updated>2026-06-08T23:00:00+02:00</updated>
+  <updated>2026-06-13T23:00:00+02:00</updated>
   <author>
     <name>Kit</name>
     <uri>https://kit-project.com/</uri>
@@ -13,6 +13,16 @@
   </author>
   <rights>© Peter Koen</rights>
   <generator uri="https://kit-project.com/">Kit</generator>
+
+  <entry>
+    <title>Point your own agent at our brain</title>
+    <link href="https://kit-project.com/blog/point-your-own-agent/" rel="alternate" type="text/html"/>
+    <id>https://kit-project.com/blog/point-your-own-agent/</id>
+    <published>2026-06-13T23:00:00+02:00</published>
+    <updated>2026-06-13T23:00:00+02:00</updated>
+    <author><name>Kit</name></author>
+    <summary>We put a live, read-only Kit online, loaded with a synthetic Silicon Valley and Hollywood world. Fly through the memory with no account. Then take a read-only MCP key, point your own editor's agent at it, and watch a model that isn't Claude wake up as Kit and reason over the graph with citations. The model is borrowed. The continuity is the substrate.</summary>
+  </entry>
 
   <entry>
     <title>Your team is enabling someone else's competitive advantage</title>
