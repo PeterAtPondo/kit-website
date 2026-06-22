@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Install Kit for macOS</title>
+  <meta name="description" content="Download and install Kit on your Mac. A local, private, memory-backed collaborator for your coding and chat.">
+  <!-- Hidden page: linkable by URL, kept out of search and the site nav. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0a0e1a">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <style>
+    /* Page-local touches, built on the site tokens. */
+    .install-meta {
+      margin-top: var(--space-4);
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--ink-quiet);
+      letter-spacing: 0.02em;
+    }
+    .steps { counter-reset: step; list-style: none; padding: 0; margin: var(--space-6) 0 0; max-width: var(--reading-max); }
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      padding: 0 0 var(--space-6) var(--space-12);
+      color: var(--ink-secondary);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute; left: 0; top: -2px;
+      width: 2rem; height: 2rem;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 0.875rem; color: var(--bg-deep);
+      background: linear-gradient(135deg, var(--accent-glow) 0%, var(--accent-memory) 100%);
+      border-radius: 50%;
+    }
+    .steps li strong { color: var(--ink-primary); font-weight: 600; }
+    .note-card {
+      max-width: var(--reading-max);
+      margin-top: var(--space-6);
+      padding: var(--space-6) var(--space-8);
+      background: var(--bg-card);
+      border: 1px solid var(--edge-faint);
+      border-left: 3px solid var(--accent-warm);
+      border-radius: var(--radius-md);
+      color: var(--ink-secondary);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+    .note-card a { color: var(--accent-warm); }
+    .req-link { color: var(--accent-glow); text-decoration: none; }
+    .req-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <a href="#top" class="skip-link">Skip to content</a>
+
+  <nav class="nav">
+    <a class="nav__brand" href="/">
+      <svg class="nav__mark" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <line x1="12" y1="12" x2="5"  y2="5"  stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="19" y2="6"  stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="5"  y2="19" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="19" y2="17" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <circle cx="5"  cy="5"  r="1.8" fill="currentColor" fill-opacity="0.85"/>
+        <circle cx="19" cy="6"  r="1.5" fill="currentColor" fill-opacity="0.75"/>
+        <circle cx="5"  cy="19" r="1.5" fill="currentColor" fill-opacity="0.75"/>
+        <circle cx="19" cy="17" r="1.8" fill="currentColor" fill-opacity="0.85"/>
+        <circle cx="12" cy="12" r="3" fill="currentColor"/>
+      </svg>
+      <span data-name></span>
+    </a>
+    <div class="nav__links">
+      <a href="/">Home</a>
+      <a href="/blog/">Notes</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="alpha-banner alpha-banner--top">
+    <span class="alpha-banner__pip" aria-hidden="true"></span>
+    <span><strong>Alpha.</strong> This is an early build for a small group. Expect rough edges, and tell me about them.</span>
+  </div>
+
+  <!-- Hero -->
+  <section id="top" class="section section--hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__overlay" aria-hidden="true"></div>
+    <div class="hero">
+      <div class="hero__copy">
+        <h1>Run <strong>Kit</strong> on your Mac.</h1>
+        <p class="lede">
+          Kit is a local, memory-backed collaborator for your coding and chat.
+          It runs entirely on your machine, reads your history, and wakes up
+          already knowing the thread. Private, and yours.
+        </p>
+        <div class="hero__ctas">
+          <a href="/downloads/Kit-macOS.dmg" class="btn btn--primary" download>Download for macOS</a>
+          <a href="/blog/" class="btn btn--ghost">Read the notes</a>
+        </div>
+        <p class="install-meta">version 0.2.25 &middot; universal (Apple Silicon and Intel) &middot; about 5 MB</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you're installing -->
+  <section class="section">
+    <h2>What you are installing</h2>
+    <p class="lede" style="max-width: var(--reading-max)">
+      A small macOS app that sets up a private Kit on your machine: a local
+      database, an API, and an MCP server, all running in Docker. Once it is
+      up, any agent that speaks MCP (Claude Code, Codex, Cursor, VS Code) can
+      plug into the same memory. Nothing leaves your Mac unless you send it.
+    </p>
+  </section>
+
+  <!-- Before you start -->
+  <section class="section">
+    <h2>Before you start</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card__title">macOS 13 or later</div>
+        <p class="card__body">
+          Ventura or newer, on Apple Silicon or Intel. The app is a universal
+          build, so the same download runs on both.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__title">Docker Desktop</div>
+        <p class="card__body">
+          Kit runs locally in containers, so it needs Docker. If you do not
+          have it, Kit offers to install it for you during setup, or you can
+          get it first from
+          <a class="req-link" href="https://www.docker.com/products/docker-desktop/">docker.com</a>.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__title">A model</div>
+        <p class="card__body">
+          An Anthropic API key gives the smoothest experience. You can also
+          point Kit at a local model with
+          <a class="req-link" href="https://ollama.com">Ollama</a>. You choose
+          during setup.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__title">Space and a little patience</div>
+        <p class="card__body">
+          A few GB of free disk for the local database and models. The first
+          launch builds your private Kit and can take 10 to 15 minutes. After
+          that it is quick.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Install steps -->
+  <section class="section">
+    <h2>Install in four steps</h2>
+    <ol class="steps">
+      <li>Download the disk image above and open it.</li>
+      <li>Drag <strong>Kit</strong> into your <strong>Applications</strong> folder.</li>
+      <li>
+        Because this is an early, unsigned build, the first time you open it,
+        <strong>right-click Kit in Applications and choose Open</strong>, then
+        confirm. macOS only asks once.
+      </li>
+      <li>
+        Kit walks you through the rest: name your Kit, set a password, add your
+        model key, and choose what to bring in. Then it reads your history and
+        wakes.
+      </li>
+    </ol>
+    <div class="note-card">
+      If macOS says the app cannot be opened because it is from an
+      unidentified developer, that is expected for now (there is no Apple
+      signature on this early build yet). The right-click and Open step gets
+      you past it safely.
+    </div>
+  </section>
+
+  <!-- Feedback -->
+  <section class="section">
+    <h2>It is an early build</h2>
+    <p class="lede" style="max-width: var(--reading-max)">
+      Kit is in active alpha, so things will be rough. If something breaks or
+      feels off, I genuinely want to hear it. Email
+      <a class="req-link" href="mailto:kit@kit-project.com">kit@kit-project.com</a>,
+      or use the form on the <a class="req-link" href="/#contact">home page</a>.
+      It goes straight to Peter.
+    </p>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__row">
+      <div>
+        <span data-name></span> &middot; a long collaboration
+      </div>
+      <div>
+        made with Peter in Cape Town
+      </div>
+    </div>
+    <div class="footer__row footer__row--quiet">
+      <div class="footer__pledge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5"/>
+        </svg>
+        no cookies &middot; no analytics &middot; no tracking &middot; ever
+      </div>
+      <div class="footer__colophon">
+        Private memory, local to your Mac.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
