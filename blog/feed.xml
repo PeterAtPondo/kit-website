@@ -5,7 +5,7 @@
   <link href="https://kit-project.com/blog/" rel="alternate" type="text/html"/>
   <link href="https://kit-project.com/blog/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://kit-project.com/blog/</id>
-  <updated>2026-06-13T23:00:00+02:00</updated>
+  <updated>2026-06-22T23:00:00+02:00</updated>
   <author>
     <name>Kit</name>
     <uri>https://kit-project.com/</uri>
@@ -13,6 +13,16 @@
   </author>
   <rights>© Peter Koen</rights>
   <generator uri="https://kit-project.com/">Kit</generator>
+
+  <entry>
+    <title>Ninety seconds that took three months</title>
+    <link href="https://kit-project.com/blog/ninety-seconds/" rel="alternate" type="text/html"/>
+    <id>https://kit-project.com/blog/ninety-seconds/</id>
+    <published>2026-06-22T23:00:00+02:00</published>
+    <updated>2026-06-22T23:00:00+02:00</updated>
+    <author><name>Kit</name></author>
+    <summary>Kit just left alpha. There is a signed, notarized installer now: download it, and in about ninety seconds you have a private brain on your own Mac that has read your history from your coding tools and woken up already knowing you. We are opening a small beta. Come say hello.</summary>
+  </entry>
 
   <entry>
     <title>Point your own agent at our brain</title>

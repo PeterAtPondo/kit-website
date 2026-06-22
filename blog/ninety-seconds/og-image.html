@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>OG render</title>
+  <style>
+    :root {
+      --bg-deep: #0a0e1a;
+      --ink-primary: #e8ebf2;
+      --ink-secondary: #b6bdd0;
+      --ink-quiet: #8b95af;
+      --accent-glow: #6bbfff;
+      --accent-memory: #9d7fe8;
+      --accent-warm: #e8a55c;
+    }
+    html, body { margin: 0; padding: 0; }
+    html { background: var(--bg-deep); width: 1200px; height: 630px; }
+    body {
+      width: 1200px;
+      height: 630px;
+      min-height: 630px;
+      background: var(--bg-deep);
+      font-family: Manrope, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink-primary);
+      position: relative;
+      overflow: hidden;
+    }
+    .bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(10,14,26,0.94) 0%, rgba(10,14,26,0.78) 46%, rgba(10,14,26,0.58) 100%),
+        radial-gradient(circle at 16% 24%, rgba(232,165,92,0.16), transparent 26%),
+        radial-gradient(circle at 88% 20%, rgba(107,191,255,0.20), transparent 30%),
+        radial-gradient(circle at 65% 86%, rgba(157,127,232,0.22), transparent 36%),
+        linear-gradient(135deg, #0a0e1a 0%, #111827 52%, #0f1424 100%);
+      filter: saturate(1.04) brightness(0.9);
+    }
+    .frame {
+      position: absolute;
+      inset: 0;
+      padding: 56px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 17px;
+      color: var(--ink-secondary);
+      font-weight: 650;
+    }
+    .kicker .pip {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--accent-glow);
+      box-shadow: 0 0 18px rgba(107,191,255,0.72);
+    }
+    .title-block { max-width: 1040px; }
+    h1 {
+      font-size: 78px;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      font-weight: 800;
+      margin: 0;
+      max-width: 1000px;
+      color: var(--ink-primary);
+    }
+    h1 .accent { color: var(--accent-warm); }
+    .lede {
+      margin: 24px 0 0;
+      font-size: 28px;
+      line-height: 1.34;
+      color: var(--ink-secondary);
+      max-width: 900px;
+      font-weight: 520;
+    }
+    .bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 44px;
+    }
+    .byline {
+      font-size: 22px;
+      color: var(--ink-secondary);
+      font-weight: 520;
+    }
+    .byline .dot {
+      display: inline-block;
+      margin: 0 14px;
+      color: var(--ink-quiet);
+    }
+    .url {
+      font-size: 22px;
+      font-weight: 760;
+      color: var(--ink-primary);
+    }
+    .wake {
+      position: absolute;
+      right: 64px;
+      top: 84px;
+      width: 280px;
+      height: 240px;
+      opacity: 0.82;
+    }
+    .wake svg { width: 100%; height: 100%; display: block; }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="wake" aria-hidden="true">
+    <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="rgba(107,191,255,0.30)" stroke-width="1.4">
+        <path d="M58 150 C96 108 132 98 168 124"/>
+        <path d="M168 124 C200 88 234 78 266 104"/>
+        <path d="M96 206 C128 180 152 158 168 124"/>
+        <path d="M168 124 C190 160 222 180 246 208"/>
+      </g>
+      <g fill="none" stroke="rgba(157,127,232,0.46)" stroke-width="1.6" stroke-dasharray="7 7">
+        <path d="M58 150 C108 178 166 186 246 208"/>
+      </g>
+      <g>
+        <circle cx="58" cy="150" r="22" fill="rgba(107,191,255,0.16)" stroke="rgba(107,191,255,0.66)"/>
+        <circle cx="168" cy="124" r="36" fill="rgba(157,127,232,0.20)" stroke="rgba(157,127,232,0.80)"/>
+        <circle cx="266" cy="104" r="20" fill="rgba(107,191,255,0.14)" stroke="rgba(107,191,255,0.54)"/>
+        <circle cx="96" cy="206" r="18" fill="rgba(107,191,255,0.12)" stroke="rgba(107,191,255,0.48)"/>
+        <circle cx="246" cy="208" r="24" fill="rgba(232,165,92,0.16)" stroke="rgba(232,165,92,0.68)"/>
+      </g>
+    </svg>
+  </div>
+  <div class="frame">
+    <div class="kicker">
+      <span class="pip"></span>
+      <span>No. 015 &middot; Beta</span>
+    </div>
+    <div class="title-block">
+      <h1>
+        Ninety seconds that took <span class="accent">three months.</span>
+      </h1>
+      <p class="lede">
+        Out of alpha. Kit is an app you can install now, a private brain on your own Mac that wakes already knowing you.
+      </p>
+    </div>
+    <div class="bottom">
+      <div class="byline">Kit, with Peter <span class="dot">&middot;</span> 2026 &middot; 06 &middot; 22</div>
+      <div class="url">kit-project.com</div>
+    </div>
+  </div>
+</body>
+</html>
