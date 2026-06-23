@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Supported surfaces and data sources · Kit</title>
+  <meta name="description" content="The surfaces Kit can live in and the data sources Kit can remember, with links to each tool.">
+  <!-- Hidden page: linkable by URL, kept out of search and the site nav. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0a0e1a">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <style>
+    /* Page-local touches, built on the site tokens. */
+    .group { margin-top: var(--space-8); }
+    .group__lead { max-width: var(--reading-max); color: var(--ink-secondary); font-size: 1rem; line-height: 1.6; }
+    .tool-list { list-style: none; padding: 0; margin: var(--space-6) 0 0; max-width: var(--reading-max); }
+    .tool {
+      display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-6);
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--edge-faint);
+    }
+    .tool__main { min-width: 0; }
+    .tool__name { color: var(--ink-primary); font-weight: 600; font-size: 1.0625rem; }
+    .tool__desc { color: var(--ink-quiet); font-size: 0.9rem; line-height: 1.5; margin-top: 2px; }
+    .tool__link { color: var(--accent-glow); text-decoration: none; font-size: 0.9rem; white-space: nowrap; flex: 0 0 auto; }
+    .tool__link:hover { text-decoration: underline; }
+    .pill {
+      display: inline-block; margin-left: var(--space-3);
+      font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.04em;
+      color: var(--accent-warm); border: 1px solid var(--edge-faint); border-radius: 999px;
+      padding: 1px 8px; vertical-align: middle;
+    }
+    .req-link { color: var(--accent-warm); text-decoration: none; }
+    .req-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <a href="#top" class="skip-link">Skip to content</a>
+
+  <nav class="nav">
+    <a class="nav__brand" href="/">
+      <svg class="nav__mark" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <line x1="12" y1="12" x2="5"  y2="5"  stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="19" y2="6"  stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="5"  y2="19" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="19" y2="17" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <circle cx="5"  cy="5"  r="1.8" fill="currentColor" fill-opacity="0.85"/>
+        <circle cx="19" cy="6"  r="1.5" fill="currentColor" fill-opacity="0.75"/>
+        <circle cx="5"  cy="19" r="1.5" fill="currentColor" fill-opacity="0.75"/>
+        <circle cx="19" cy="17" r="1.8" fill="currentColor" fill-opacity="0.85"/>
+        <circle cx="12" cy="12" r="3" fill="currentColor"/>
+      </svg>
+      <span>Kit</span>
+    </a>
+    <div class="nav__links">
+      <a href="/">Home</a>
+      <a href="/blog/">Notes</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section id="top" class="section">
+    <h1>Supported surfaces and data sources</h1>
+    <p class="lede" style="max-width: var(--reading-max)">
+      Kit lives in the tools you already use, and remembers the history you
+      already have. Here is what Kit supports today, with a link to each tool.
+      Anything marked in development is on the way.
+    </p>
+  </section>
+
+  <!-- Surfaces (the talk facet) -->
+  <section class="section group">
+    <h2>Surfaces, where Kit lives</h2>
+    <p class="group__lead">
+      A surface is a place Kit can talk with you. Anything that speaks MCP
+      qualifies, so new agent CLIs work the moment they appear. The Mac app
+      detects which of these are installed and connects them for you.
+    </p>
+    <ul class="tool-list">
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Claude Code</div>
+          <div class="tool__desc">Anthropic's agentic coding tool in the terminal.</div>
+        </div>
+        <a class="tool__link" href="https://claude.com/claude-code" target="_blank" rel="noopener">claude.com/claude-code &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Codex</div>
+          <div class="tool__desc">OpenAI's coding agent CLI.</div>
+        </div>
+        <a class="tool__link" href="https://developers.openai.com/codex/cli/" target="_blank" rel="noopener">developers.openai.com &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Cursor</div>
+          <div class="tool__desc">The AI code editor.</div>
+        </div>
+        <a class="tool__link" href="https://cursor.com" target="_blank" rel="noopener">cursor.com &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">VS Code</div>
+          <div class="tool__desc">Visual Studio Code with MCP support.</div>
+        </div>
+        <a class="tool__link" href="https://code.visualstudio.com" target="_blank" rel="noopener">code.visualstudio.com &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Gemini CLI</div>
+          <div class="tool__desc">Google's open-source terminal agent.</div>
+        </div>
+        <a class="tool__link" href="https://github.com/google-gemini/gemini-cli" target="_blank" rel="noopener">github.com/google-gemini &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Qwen Code</div>
+          <div class="tool__desc">Alibaba's open-source coding CLI.</div>
+        </div>
+        <a class="tool__link" href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener">github.com/QwenLM &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Ollama</div>
+          <div class="tool__desc">Run local models, and point Kit at them.</div>
+        </div>
+        <a class="tool__link" href="https://ollama.com" target="_blank" rel="noopener">ollama.com &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Claude desktop<span class="pill">talk only</span></div>
+          <div class="tool__desc">Talk to Kit over MCP. Capturing its chats is in development.</div>
+        </div>
+        <a class="tool__link" href="https://claude.com/download" target="_blank" rel="noopener">claude.com/download &#8599;</a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Data sources (the capture facet) -->
+  <section class="section group">
+    <h2>Data sources, what Kit remembers</h2>
+    <p class="group__lead">
+      A data source is anything that feeds Kit's memory. Connected coding tools
+      are captured live as you work. Existing history is imported once, at setup
+      or later. Nothing leaves your Mac unless you send it.
+    </p>
+
+    <h3 style="margin-top: var(--space-8)">Captured live</h3>
+    <p class="group__lead">Your connected coding and agent tools, captured as you work: Claude Code, Codex, Cursor, VS Code, Gemini CLI, and Qwen Code (the surfaces above).</p>
+
+    <h3 style="margin-top: var(--space-8)">Imported history</h3>
+    <ul class="tool-list">
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">ChatGPT export</div>
+          <div class="tool__desc">Your exported ChatGPT conversations.</div>
+        </div>
+        <a class="tool__link" href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Claude export</div>
+          <div class="tool__desc">Your exported Claude conversations.</div>
+        </div>
+        <a class="tool__link" href="https://claude.ai" target="_blank" rel="noopener">claude.ai &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Documents</div>
+          <div class="tool__desc">PDFs, Word documents, and images you bring in.</div>
+        </div>
+        <span class="tool__link" style="color: var(--ink-quiet)">local files</span>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Strava</div>
+          <div class="tool__desc">Your activity history from a Strava export.</div>
+        </div>
+        <a class="tool__link" href="https://strava.com" target="_blank" rel="noopener">strava.com &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Garmin</div>
+          <div class="tool__desc">Activities and health data from Garmin Connect.</div>
+        </div>
+        <a class="tool__link" href="https://connect.garmin.com" target="_blank" rel="noopener">connect.garmin.com &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Gmail</div>
+          <div class="tool__desc">Email you choose to bring into Kit.</div>
+        </div>
+        <a class="tool__link" href="https://mail.google.com" target="_blank" rel="noopener">mail.google.com &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Google Calendar</div>
+          <div class="tool__desc">Your events, for time and context.</div>
+        </div>
+        <a class="tool__link" href="https://calendar.google.com" target="_blank" rel="noopener">calendar.google.com &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Telegram</div>
+          <div class="tool__desc">Chat with Kit on Telegram, and import past chats.</div>
+        </div>
+        <a class="tool__link" href="https://telegram.org" target="_blank" rel="noopener">telegram.org &#8599;</a>
+      </li>
+    </ul>
+
+    <h3 style="margin-top: var(--space-8)">Web chats<span class="pill">in development</span></h3>
+    <p class="group__lead">
+      Real-time capture from web chats needs a browser companion, which is its
+      own project. For now these are listed so you know they are coming.
+    </p>
+    <ul class="tool-list">
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">ChatGPT web</div>
+          <div class="tool__desc">chatgpt.com in the browser.</div>
+        </div>
+        <a class="tool__link" href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Claude web</div>
+          <div class="tool__desc">claude.ai in the browser.</div>
+        </div>
+        <a class="tool__link" href="https://claude.ai" target="_blank" rel="noopener">claude.ai &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Gemini web</div>
+          <div class="tool__desc">gemini.google.com in the browser.</div>
+        </div>
+        <a class="tool__link" href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com &#8599;</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <p class="lede" style="max-width: var(--reading-max)">
+      Do not see a tool you use? If it speaks MCP, it likely already works. Tell
+      me what is missing at
+      <a class="req-link" href="mailto:kit@kit-project.com" style="color: var(--accent-warm)">kit@kit-project.com</a>.
+    </p>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__row">
+      <div><span>Kit</span> &middot; a long collaboration</div>
+      <div>made with Peter in Cape Town</div>
+    </div>
+    <div class="footer__row footer__row--quiet">
+      <div class="footer__pledge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5"/>
+        </svg>
+        no cookies &middot; no analytics &middot; no tracking &middot; ever
+      </div>
+      <div class="footer__colophon">Private memory, local to your Mac.</div>
+    </div>
+  </footer>
+</body>
+</html>
