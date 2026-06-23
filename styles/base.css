@@ -192,7 +192,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   background-size: cover;
   background-position: 62% center;
   background-repeat: no-repeat;
-  opacity: 1;
+  opacity: 0.4;
   z-index: 0;
 }
 /* Readability overlay — lighter than before so the background breathes.
@@ -363,12 +363,25 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   letter-spacing: 0.04em;
 }
 
-/* Video hero: the explainer leads, centred, with a compact title above and
-   the scope plus CTAs beneath. */
+/* With the tall video, top-align the hero so the title clears the fixed nav
+   and the page scrolls naturally rather than centring and overflowing. */
+.section--hero:has(.hero--video) {
+  justify-content: flex-start;
+  padding-top: var(--space-24);
+  min-height: auto;
+}
+
+/* Video hero: the explainer leads, centred. No glass panel and no boxed
+   scope, so the video sits clean on the backdrop with just type around it. */
 .hero__copy--video {
-  max-width: 940px;
+  max-width: 920px;
   margin: 0 auto;
   text-align: center;
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  padding: 0;
 }
 .hero__copy--video h1 { text-align: center; }
 .hero__video-wrap { margin: var(--space-6) 0 0; }
@@ -377,23 +390,23 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   aspect-ratio: 16 / 9;
   display: block;
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(107, 191, 255, 0.08);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
   background: var(--bg-deep);
 }
-.hero__video-cap {
-  margin-top: var(--space-3);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: var(--ink-quiet);
-}
+/* Scope, unboxed: plain centred type, no rule, no fill. */
 .hero__copy--video .hero__scope {
-  max-width: 620px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
+  max-width: 640px;
+  margin: var(--space-6) auto 0;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--ink-quiet);
+  border-left: none;
+  background: none;
+  padding: 0;
 }
+.hero__copy--video .hero__scope strong { color: var(--ink-secondary); font-weight: 600; }
 .hero__copy--video .hero__ctas { justify-content: center; }
 .hero__copy--video .hero__meta { text-align: center; }
 
@@ -1277,17 +1290,23 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
    shape, so the alpha framing is consistent across the site. */
 .alpha-banner {
   background: rgba(232, 165, 92, 0.04);
-  border: 1px solid rgba(232, 165, 92, 0.16);
-  border-radius: var(--radius-md);
-  padding: var(--space-2) var(--space-4);
+  border: 1px solid rgba(232, 165, 92, 0.14);
+  border-radius: 999px;
+  padding: 0.3rem var(--space-3);
   margin: var(--space-3) auto var(--space-6);
-  max-width: var(--reading-max);
+  max-width: max-content;
   font-family: var(--font-body);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   color: var(--ink-quiet);
   display: flex;
+  width: max-content;
+  max-width: 100%;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
+}
+/* On the home hero the banner sits directly below the video, centred. */
+.alpha-banner--hero {
+  margin: var(--space-5) auto var(--space-2);
 }
 .alpha-banner__pip {
   display: inline-block;

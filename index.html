@@ -164,14 +164,7 @@
     </div>
   </nav>
 
-  <!-- Beta banner, same component used on every blog post,
-       lifted here so the beta framing is consistent sitewide. -->
-  <div class="alpha-banner alpha-banner--top">
-    <span class="alpha-banner__pip" aria-hidden="true"></span>
-    <span><strong>Beta.</strong> Kit is out of alpha. There is an installer you can run on your own Mac, and we are opening it to a small beta group. Want to test it? <a href="/#contact">Get in touch.</a></span>
-  </div>
-
-  <!-- Section 1 — Hero -->
+  <!-- Section 1: Hero -->
   <section id="top" class="section section--hero">
     <div class="hero__bg" aria-hidden="true"></div>
     <div class="hero__overlay" aria-hidden="true"></div>
@@ -179,27 +172,29 @@
       <div class="hero__copy hero__copy--video">
         <h1>This is <strong>Kit.</strong></h1>
 
-        <!-- How Kit works: ~90s explainer, voiced by Kit (River). Ambient
-             muted autoplay loop; controls let the reader unmute to hear it. -->
+        <!-- How Kit works: ~90s explainer, voiced by Kit (River). Click to
+             play; controls and sound on. No autoplay. -->
         <figure class="hero__video-wrap">
           <video
             class="hero__video"
             controls
             playsinline
-            muted
-            autoplay
-            loop
             preload="metadata"
             poster="/assets/video/how-kit-works-poster.jpg"
           >
             <source src="/assets/video/how-kit-works.mp4" type="video/mp4" />
           </video>
-          <figcaption class="hero__video-cap">How Kit works &middot; 90 seconds</figcaption>
         </figure>
+
+        <!-- Beta status, slim, directly below the video. -->
+        <div class="alpha-banner alpha-banner--hero">
+          <span class="alpha-banner__pip" aria-hidden="true"></span>
+          <span><strong>Beta.</strong> Kit runs on your own Mac, by invite. <a href="/#contact">Get in touch.</a></span>
+        </div>
 
         <!-- Scope, named honestly. Kit is for AI coding agents today. -->
         <p class="hero__scope">
-          <strong>What Kit is:</strong> a persistent memory substrate for your AI coding agents.<br>
+          <strong>What Kit is:</strong> a persistent memory substrate for your AI coding agents.
           <strong>What Kit is not:</strong> a polished consumer AI assistant product.
         </p>
 
