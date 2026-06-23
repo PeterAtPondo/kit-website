@@ -361,8 +361,41 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   color: var(--ink-quiet);
   margin-top: var(--space-8);
   letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
+
+/* Video hero: the explainer leads, centred, with a compact title above and
+   the scope plus CTAs beneath. */
+.hero__copy--video {
+  max-width: 940px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero__copy--video h1 { text-align: center; }
+.hero__video-wrap { margin: var(--space-6) 0 0; }
+.hero__video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(107, 191, 255, 0.08);
+  background: var(--bg-deep);
+}
+.hero__video-cap {
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-quiet);
+}
+.hero__copy--video .hero__scope {
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+.hero__copy--video .hero__ctas { justify-content: center; }
+.hero__copy--video .hero__meta { text-align: center; }
 
 /* Hero scope pair — names what Kit is and what it is not. Sits between
    the ledes and the CTAs so readers calibrate expectations before they
@@ -1243,37 +1276,32 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
    Used on the main page and every blog post. Same component, same
    shape, so the alpha framing is consistent across the site. */
 .alpha-banner {
-  background: linear-gradient(
-    90deg,
-    rgba(232, 165, 92, 0.12),
-    rgba(232, 165, 92, 0.06) 60%,
-    transparent
-  );
-  border: 1px solid rgba(232, 165, 92, 0.3);
+  background: rgba(232, 165, 92, 0.04);
+  border: 1px solid rgba(232, 165, 92, 0.16);
   border-radius: var(--radius-md);
-  padding: var(--space-3) var(--space-5);
-  margin: var(--space-4) auto var(--space-8);
-  max-width: var(--content-max);
+  padding: var(--space-2) var(--space-4);
+  margin: var(--space-3) auto var(--space-6);
+  max-width: var(--reading-max);
   font-family: var(--font-body);
-  font-size: 0.85rem;
-  color: var(--ink-secondary);
+  font-size: 0.78rem;
+  color: var(--ink-quiet);
   display: flex;
   align-items: center;
   gap: var(--space-3);
 }
 .alpha-banner__pip {
   display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.4rem;
+  height: 0.4rem;
   border-radius: 50%;
-  background: var(--accent-warm);
-  box-shadow: 0 0 8px rgba(232, 165, 92, 0.6);
+  background: rgba(232, 165, 92, 0.7);
   flex-shrink: 0;
 }
 .alpha-banner strong {
-  color: var(--accent-warm);
+  color: var(--ink-secondary);
   font-weight: 600;
 }
+.alpha-banner a { color: var(--ink-secondary); }
 /* When the banner is a direct child of body (no <main> wrapper around
    it), give it enough top margin to clear the fixed nav. Blog pages
    have <main padding-top: 5rem> so they don't need this. */
