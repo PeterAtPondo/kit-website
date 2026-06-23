@@ -54,6 +54,20 @@
     .note-card a { color: var(--accent-warm); }
     .req-link { color: var(--accent-glow); text-decoration: none; }
     .req-link:hover { text-decoration: underline; }
+    /* Release notes: a growing log, newest first. Calm and short. */
+    .releases { max-width: var(--reading-max); margin-top: var(--space-6); }
+    .release { padding: var(--space-6) 0; border-top: 1px solid var(--edge-faint); }
+    .release:first-child { border-top: 0; }
+    .release__head { display: flex; align-items: baseline; gap: var(--space-4); }
+    .release__ver { color: var(--ink-primary); font-weight: 600; font-size: 1.0625rem; }
+    .release__date { color: var(--ink-quiet); font-family: var(--font-mono); font-size: 0.8125rem; }
+    .release__kind { margin-top: var(--space-4); }
+    .release__kind h4 {
+      margin: 0 0 var(--space-2); font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.06em; color: var(--accent-warm);
+    }
+    .release__kind ul { margin: 0; padding-left: 1.1rem; }
+    .release__kind li { color: var(--ink-secondary); font-size: 0.9375rem; line-height: 1.55; margin: 4px 0; }
   </style>
 </head>
 <body>
@@ -99,7 +113,7 @@
           already knowing the thread. Private, and yours.
         </p>
         <div class="hero__ctas">
-          <a href="/downloads/Kit-macOS.dmg" class="btn btn--primary" download>Download for macOS</a>
+          <a id="download-link" href="/downloads/Kit-macOS.dmg" class="btn btn--primary" download>Download for macOS</a>
           <a href="/blog/" class="btn btn--ghost">Read the notes</a>
         </div>
         <p class="install-meta" id="install-meta" data-suffix="universal (Apple Silicon and Intel)">version 0.2.28 &middot; universal (Apple Silicon and Intel)</p>
@@ -172,6 +186,59 @@
     </ol>
   </section>
 
+  <!-- Release notes: newest first, short and high level. Add a .release block
+       at the top of .releases each time we ship. Two kinds: Improvements and
+       Bug fixes. -->
+  <section class="section">
+    <h2>Release notes</h2>
+    <p class="lede" style="max-width: var(--reading-max)">
+      A short, high-level log of what each release brought. Newest first.
+    </p>
+    <div class="releases">
+
+      <article class="release">
+        <div class="release__head">
+          <span class="release__ver">0.2.29</span>
+          <span class="release__date">June 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Improvements</h4>
+          <ul>
+            <li>Health at a glance: a calm status light in the app and the menu bar shows how Kit's dreams, surfaces, and data sources are doing, with one-tap fixes when something needs attention.</li>
+            <li>Surfaces you do not have installed now link you to where to get them, instead of showing a switch that cannot do anything.</li>
+          </ul>
+        </div>
+        <div class="release__kind">
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>You can no longer switch on a coding tool that is not installed on your Mac.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="release">
+        <div class="release__head">
+          <span class="release__ver">0.2.28</span>
+          <span class="release__date">June 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Improvements</h4>
+          <ul>
+            <li>Clearer memory cards on the dashboard.</li>
+          </ul>
+        </div>
+        <div class="release__kind">
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>Fixed a case where new memories could silently fail to save on some models.</li>
+            <li>Fixed your name showing incorrectly on a fresh install.</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
   <!-- Feedback -->
   <section class="section">
     <h2>It is an early build</h2>
@@ -211,9 +278,17 @@
     fetch('/downloads/latest.json', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
-        if (!d || !d.version) return;
-        var el = document.getElementById('install-meta');
-        if (el) el.textContent = 'version ' + d.version + ' · ' + (el.dataset.suffix || '');
+        if (!d) return;
+        if (d.version) {
+          var el = document.getElementById('install-meta');
+          if (el) el.textContent = 'version ' + d.version + ' · ' + (el.dataset.suffix || '');
+        }
+        // Drive the download link off latest.json so a release only updates this
+        // one file (version + url), never the hardcoded href below.
+        if (d.url) {
+          var dl = document.getElementById('download-link');
+          if (dl) dl.href = d.url;
+        }
       })
       .catch(function () {});
   </script>
