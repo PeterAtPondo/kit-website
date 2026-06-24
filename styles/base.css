@@ -181,36 +181,57 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   width: 100%;
 }
 
-/* Hero backdrop — the Fireflies-style ambient image, full-bleed.
-   Clipped to the hero section, positioned right-biased so the Kit cluster
-   (warm glow on the right side of the source image) visually echoes the
-   "This is Kit." headline. */
+/* Hero backdrop: a deep, cool glow that gently breathes behind the living
+   constellation (see .hero__graph). Deliberately distinct from the page
+   aurora below, which is warmer and drifts sideways; this one is cooler,
+   centred, and pulses, so the hero reads as its own moment. */
 .hero__bg {
   position: absolute;
   inset: 0;
-  background-image: url('../assets/img/background.png');
-  background-size: cover;
-  background-position: 62% center;
-  background-repeat: no-repeat;
-  opacity: 0.4;
+  background: radial-gradient(135% 105% at 50% -10%, #131a2e 0%, #0a0e1a 60%);
+  opacity: 1;
   z-index: 0;
+  overflow: hidden;
 }
-/* Readability overlay — lighter than before so the background breathes.
-   Just enough contrast for the copy on the left, almost nothing on the right. */
+.hero__bg::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(44% 52% at 50% 36%, rgba(107,191,255,0.30) 0%, rgba(96,150,255,0.10) 46%, transparent 72%),
+    radial-gradient(40% 46% at 64% 78%, rgba(127,232,200,0.16) 0%, rgba(127,232,200,0.05) 48%, transparent 74%),
+    radial-gradient(34% 40% at 30% 66%, rgba(157,127,232,0.16) 0%, rgba(157,127,232,0.05) 46%, transparent 72%);
+  filter: blur(54px);
+  animation: hero-breathe 14s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+@keyframes hero-breathe {
+  0%, 100% { transform: scale(1);    opacity: 0.82; }
+  50%      { transform: scale(1.07); opacity: 1; }
+}
+/* The interactive constellation: nodes drift, attract to each other and the
+   cursor, and pulse on click. Sits above the glow + vignette so it reads
+   crisply, below the hero copy. Pointer is handled on the hero section. */
+.hero__graph {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  display: block;
+}
+/* Readability overlay: a balanced vignette so the centred video reads clean.
+   Darker at the top (under the nav) and bottom (into the page), soft in the
+   middle where the aurora shows through. */
 .hero__overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg,
-      rgba(10,14,26,0.72) 0%,
-      rgba(10,14,26,0.45) 40%,
-      rgba(10,14,26,0.12) 75%,
-      rgba(10,14,26,0) 100%),
+    radial-gradient(130% 85% at 50% 42%, transparent 40%, rgba(10,14,26,0.42) 100%),
     linear-gradient(180deg,
-      rgba(10,14,26,0.25) 0%,
-      rgba(10,14,26,0) 25%,
-      rgba(10,14,26,0) 75%,
-      rgba(10,14,26,0.45) 100%);
+      rgba(10,14,26,0.4) 0%,
+      rgba(10,14,26,0) 22%,
+      rgba(10,14,26,0) 68%,
+      rgba(10,14,26,0.6) 100%);
   z-index: 1;
 }
 .section--hero .hero { position: relative; z-index: 2; }
@@ -393,41 +414,8 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
   background: var(--bg-deep);
 }
-/* Scope, unboxed: plain centred type, no rule, no fill. */
-.hero__copy--video .hero__scope {
-  max-width: 640px;
-  margin: var(--space-6) auto 0;
-  text-align: center;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--ink-quiet);
-  border-left: none;
-  background: none;
-  padding: 0;
-}
-.hero__copy--video .hero__scope strong { color: var(--ink-secondary); font-weight: 600; }
 .hero__copy--video .hero__ctas { justify-content: center; }
 .hero__copy--video .hero__meta { text-align: center; }
-
-/* Hero scope pair — names what Kit is and what it is not. Sits between
-   the ledes and the CTAs so readers calibrate expectations before they
-   act on the page. */
-.hero__scope {
-  margin-top: var(--space-8);
-  font-family: var(--font-display);
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--ink-secondary);
-  padding: var(--space-4) var(--space-5);
-  border-left: 2px solid var(--accent-warm);
-  background: linear-gradient(90deg, rgba(232, 165, 92, 0.05) 0%, transparent 80%);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-}
-.hero__scope strong {
-  color: var(--ink-primary);
-  font-weight: 500;
-}
 
 /* Hero CTAs — side-by-side on desktop, stacked on small screens. */
 .hero__ctas {
@@ -447,6 +435,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero__bg { transform: none !important; transition: none; }
+  .hero__bg::before { animation: none; }
 }
 
 /* The hero screenshot — the real Fireflies 3D graph. */
@@ -495,6 +484,18 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   max-width: 54rem;
   margin-left: auto;
   margin-right: auto;
+}
+/* Video inside a .shot figure fills the frame like the image does. */
+.shot video {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: var(--bg-deep);
+}
+/* Demo videos (install + in action) are tall screen recordings, so cap
+   their width tighter than a wide screenshot to keep them calm. */
+.demo-figure {
+  max-width: 46rem;
 }
 
 /* Section titles */
@@ -1235,7 +1236,6 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   .hero__copy { padding: var(--space-6) var(--space-6) var(--space-5); }
   h1 { font-size: 2.25rem; }
   p.lede { font-size: 1.0625rem; }
-  .hero__bg { background-position: 68% center; }
   .hero__overlay {
     background:
       linear-gradient(180deg,

@@ -151,6 +151,8 @@
       <span data-name></span>
     </a>
     <div class="nav__links">
+      <a href="#install">Install</a>
+      <a href="#in-action">In action</a>
       <a href="#what">Pattern</a>
       <a href="#arch">Architecture</a>
       <a href="#stack">Under the hood</a>
@@ -168,6 +170,7 @@
   <section id="top" class="section section--hero">
     <div class="hero__bg" aria-hidden="true"></div>
     <div class="hero__overlay" aria-hidden="true"></div>
+    <canvas class="hero__graph" aria-hidden="true"></canvas>
     <div class="hero hero--video">
       <div class="hero__copy hero__copy--video">
         <h1>This is <strong>Kit.</strong></h1>
@@ -191,12 +194,6 @@
           <span class="alpha-banner__pip" aria-hidden="true"></span>
           <span><strong>Beta.</strong> Kit runs on your own Mac, by invite. <a href="/#contact">Get in touch.</a></span>
         </div>
-
-        <!-- Scope, named honestly. Kit is for AI coding agents today. -->
-        <p class="hero__scope">
-          <strong>What Kit is:</strong> a persistent memory substrate for your AI coding agents.
-          <strong>What Kit is not:</strong> a polished consumer AI assistant product.
-        </p>
 
         <div class="hero__ctas">
           <a href="#arch" class="btn btn--ghost">See the architecture</a>
@@ -235,8 +232,66 @@
     <p class="note-strip__more"><a href="/blog/">See all notes &rarr;</a></p>
   </section>
 
+  <!-- Install the beta: the signed installer walkthrough from the latest note. -->
+  <section id="install" class="section section--tint" data-reveal>
+    <div class="inner">
+      <h2>Install the beta</h2>
+      <p class="lede">
+        Kit is a signed Mac app. Download it, drag it in, and in about ninety
+        seconds you have a private brain on your own machine: it reads your
+        coding history, consolidates it, and wakes already knowing you.
+      </p>
+      <figure class="shot shot--wide demo-figure">
+        <video
+          class="demo-video"
+          controls
+          playsinline
+          preload="none"
+          poster="/blog/ninety-seconds/video/kit-onboarding-poster.jpg"
+        >
+          <source src="/blog/ninety-seconds/video/kit-onboarding.mp4" type="video/mp4" />
+        </video>
+        <figcaption>The install, start to finish &mdash; download, open, and the brain builds itself.</figcaption>
+      </figure>
+      <p>
+        Everything stays on your Mac. The beta is invite-only while we widen
+        the door slowly: <a href="/#contact">get in touch</a> and we'll bring
+        you in.
+      </p>
+    </div>
+  </section>
+
+  <!-- Kit in action: the coding demo from the latest note, building Hamster Mittens. -->
+  <section id="in-action" class="section" data-reveal>
+    <h2>Kit in action</h2>
+    <p class="lede">
+      Watch Kit work inside a real coding session: we build a new pattern for
+      <a href="https://hamster-mittens.vercel.app" target="_blank" rel="noopener">Hamster Mittens</a>,
+      a little shop for mittens for hamsters, with Kit carrying the context the
+      whole way.
+    </p>
+    <figure class="shot shot--wide demo-figure">
+      <video
+        class="demo-video"
+        controls
+        playsinline
+        preload="none"
+        poster="/blog/ninety-seconds/video/kit-coding-poster.jpg"
+      >
+        <source src="/blog/ninety-seconds/video/kit-coding.mp4" type="video/mp4" />
+      </video>
+      <figcaption>A coding session, end to end &mdash; a new pattern for Hamster Mittens.</figcaption>
+    </figure>
+  </section>
+
   <!-- Section 2: The pattern -->
   <section id="what" class="section" data-reveal>
+    <figure class="shot shot--wide">
+      <img src="assets/img/fireflies.png"
+           alt="Kit brain UI: the Fireflies 3D knowledge graph. Glowing nodes in named clusters (Kit, Simvida, Sessions, Preferences, Relationships) connected by curved edges over dark navy. Tier / category / project filters at the top, legend at the bottom showing memory counts by source."
+           loading="lazy" decoding="async">
+      <figcaption>The Brain layer, visualised &mdash; memories clustered by project, edges showing typed relations.</figcaption>
+    </figure>
     <h2>The pattern</h2>
     <p class="lede">
       Every context window eventually ends. 1M tokens, 10M, 100M &mdash; all
@@ -351,13 +406,6 @@
           </div>
         </div>
       </div>
-
-      <figure class="shot shot--wide">
-        <img src="assets/img/fireflies.png"
-             alt="Kit brain UI: the Fireflies 3D knowledge graph. Glowing nodes in named clusters (Kit, Simvida, Sessions, Preferences, Relationships) connected by curved edges over dark navy. Tier / category / project filters at the top, legend at the bottom showing memory counts by source."
-             loading="lazy" decoding="async">
-        <figcaption>The Brain layer, visualised &mdash; memories clustered by project, edges showing typed relations.</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -1040,6 +1088,226 @@
         tx = 0; ty = 0;
         if (!rafId) rafId = requestAnimationFrame(apply);
       });
+    })();
+  </script>
+
+  <!-- Hero constellation: a living node graph behind the hero, echoing the
+       Kit mark (nodes + edges). Nodes drift, attract to each other and to the
+       cursor, and pulse on click. Pauses off-screen and when the tab is
+       hidden; honours prefers-reduced-motion by drawing one settled frame. -->
+  <script>
+    (() => {
+      const canvas = document.querySelector('.hero__graph');
+      const hero = document.querySelector('.section--hero');
+      if (!canvas || !hero) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const coarse = matchMedia('(pointer: coarse)').matches;
+
+      // Kit palette: soft blue is the default node, with green / violet / warm
+      // accents echoing edge, dream, and human in the brain UI.
+      const COLORS = [
+        [107, 191, 255], [107, 191, 255], [107, 191, 255],
+        [127, 232, 157], [157, 127, 232], [232, 165, 92],
+      ];
+      const rand = (a, b) => a + Math.random() * (b - a);
+
+      let W = 0, H = 0, dpr = 1;
+      let nodes = [];
+      const ripples = [];
+      const pointer = { x: 0, y: 0, active: false };
+
+      // Pre-rendered glow sprite per colour, so each node is one cheap drawImage.
+      const sprites = new Map();
+      function sprite(c) {
+        const key = c.join(',');
+        if (sprites.has(key)) return sprites.get(key);
+        const S = 64, oc = document.createElement('canvas');
+        oc.width = oc.height = S;
+        const o = oc.getContext('2d');
+        const g = o.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, S / 2);
+        const [r, gr, b] = c;
+        g.addColorStop(0, 'rgba(255,255,255,0.95)');
+        g.addColorStop(0.18, 'rgba(' + r + ',' + gr + ',' + b + ',0.85)');
+        g.addColorStop(0.5, 'rgba(' + r + ',' + gr + ',' + b + ',0.22)');
+        g.addColorStop(1, 'rgba(' + r + ',' + gr + ',' + b + ',0)');
+        o.fillStyle = g; o.fillRect(0, 0, S, S);
+        sprites.set(key, oc);
+        return oc;
+      }
+
+      function resize() {
+        const r = hero.getBoundingClientRect();
+        const w = r.width || window.innerWidth;
+        const h = r.height || window.innerHeight;
+        if (w < 1 || h < 1) return false;
+        // If the box changed size, rescale node positions so the field keeps
+        // filling the hero (covers responsive resizes and any late first layout).
+        if (nodes.length && W > 0 && (w !== W || h !== H)) {
+          const sx = w / W, sy = h / H;
+          for (const n of nodes) { n.x *= sx; n.y *= sy; }
+        }
+        W = w; H = h;
+        dpr = Math.min(2, window.devicePixelRatio || 1);
+        // Size only the backing store; CSS inset:0 keeps the element full-bleed.
+        canvas.width = Math.round(W * dpr);
+        canvas.height = Math.round(H * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        return true;
+      }
+      function build() {
+        const count = Math.max(20, Math.min(72, Math.round((W * H) / 17000)));
+        nodes = Array.from({ length: count }, () => ({
+          x: rand(0, W), y: rand(0, H),
+          vx: rand(-0.15, 0.15), vy: rand(-0.15, 0.15),
+          r: rand(1.8, 3.8),
+          c: COLORS[(Math.random() * COLORS.length) | 0],
+          ph: Math.random() * Math.PI * 2,
+          glow: 0,
+        }));
+      }
+
+      const LINK = 150, MOUSE_R = 240;
+
+      function step(t) {
+        for (let i = 0; i < nodes.length; i++) {
+          const n = nodes[i];
+          for (let j = i + 1; j < nodes.length; j++) {
+            const m = nodes[j];
+            const dx = m.x - n.x, dy = m.y - n.y;
+            const d = Math.hypot(dx, dy) || 0.001;
+            const ux = dx / d, uy = dy / d;
+            // soft mutual repulsion on every pair: spreads the field evenly
+            // across the hero so it frames the video symmetrically.
+            const rep = Math.min(0.09, 140 / (d * d));
+            n.vx -= ux * rep; n.vy -= uy * rep; m.vx += ux * rep; m.vy += uy * rep;
+            // gentle cohesion within link range so neighbours court, not collapse
+            if (d < LINK) {
+              const f = (1 - d / LINK) * 0.004;
+              n.vx += ux * f; n.vy += uy * f; m.vx -= ux * f; m.vy -= uy * f;
+            }
+          }
+          if (pointer.active) {
+            const dx = pointer.x - n.x, dy = pointer.y - n.y;
+            const d = Math.hypot(dx, dy);
+            if (d < MOUSE_R && d > 0.001) {
+              const f = (1 - d / MOUSE_R) * 0.10;
+              n.vx += (dx / d) * f; n.vy += (dy / d) * f;
+            }
+          }
+          for (const rp of ripples) {
+            const dx = n.x - rp.x, dy = n.y - rp.y;
+            const d = Math.hypot(dx, dy) || 0.001;
+            if (Math.abs(d - rp.r) < 36) {
+              const f = rp.power * 0.5 * (1 - Math.abs(d - rp.r) / 36);
+              n.vx += (dx / d) * f; n.vy += (dy / d) * f;
+              n.glow = Math.min(1.4, n.glow + f * 1.6);
+            }
+          }
+          n.vx += Math.cos(t * 0.0004 + n.ph) * 0.008;
+          n.vy += Math.sin(t * 0.0005 + n.ph) * 0.008;
+          n.vx *= 0.94; n.vy *= 0.94;
+          const sp = Math.hypot(n.vx, n.vy);
+          if (sp > 1.6) { n.vx = n.vx / sp * 1.6; n.vy = n.vy / sp * 1.6; }
+          n.x += n.vx; n.y += n.vy;
+          const pad = 10;
+          if (n.x < pad) { n.x = pad; n.vx = Math.abs(n.vx) * 0.5; }
+          if (n.x > W - pad) { n.x = W - pad; n.vx = -Math.abs(n.vx) * 0.5; }
+          if (n.y < pad) { n.y = pad; n.vy = Math.abs(n.vy) * 0.5; }
+          if (n.y > H - pad) { n.y = H - pad; n.vy = -Math.abs(n.vy) * 0.5; }
+          n.glow *= 0.94;
+        }
+        for (let k = ripples.length - 1; k >= 0; k--) {
+          ripples[k].r += 9; ripples[k].power *= 0.965;
+          if (ripples[k].r > Math.hypot(W, H)) ripples.splice(k, 1);
+        }
+      }
+
+      function draw(t) {
+        ctx.clearRect(0, 0, W, H);
+        ctx.globalAlpha = 1;
+        ctx.lineWidth = 1;
+        for (let i = 0; i < nodes.length; i++) {
+          const n = nodes[i];
+          for (let j = i + 1; j < nodes.length; j++) {
+            const m = nodes[j];
+            const dx = m.x - n.x, dy = m.y - n.y;
+            const d = Math.hypot(dx, dy);
+            if (d < LINK) {
+              let a = (1 - d / LINK) * 0.55;
+              if (pointer.active) {
+                const md = Math.hypot((n.x + m.x) / 2 - pointer.x, (n.y + m.y) / 2 - pointer.y);
+                if (md < MOUSE_R) a += (1 - md / MOUSE_R) * 0.45;
+              }
+              a = Math.min(0.85, a);
+              ctx.strokeStyle = 'rgba(140, 205, 225,' + (a * 0.7) + ')';
+              ctx.beginPath();
+              ctx.moveTo(n.x, n.y); ctx.lineTo(m.x, m.y); ctx.stroke();
+            }
+          }
+        }
+        for (const n of nodes) {
+          const tw = 0.6 + 0.4 * Math.sin(t * 0.002 + n.ph);
+          ctx.globalAlpha = Math.max(0.28, Math.min(1, 0.72 * tw + n.glow));
+          const s = n.r * 11 * (1 + n.glow * 0.35);
+          ctx.drawImage(sprite(n.c), n.x - s / 2, n.y - s / 2, s, s);
+        }
+        ctx.globalAlpha = 1;
+        for (const rp of ripples) {
+          ctx.strokeStyle = 'rgba(150, 205, 255,' + (0.4 * rp.power) + ')';
+          ctx.lineWidth = 1.4;
+          ctx.beginPath();
+          ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2); ctx.stroke();
+        }
+      }
+
+      let raf = 0, running = false;
+      function frame(t) { step(t); draw(t); raf = requestAnimationFrame(frame); }
+      function start() { if (running || reduce) return; running = true; raf = requestAnimationFrame(frame); }
+      function stop() { running = false; if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+      if (!coarse) {
+        hero.addEventListener('mousemove', (e) => {
+          const r = hero.getBoundingClientRect();
+          pointer.x = e.clientX - r.left; pointer.y = e.clientY - r.top; pointer.active = true;
+        });
+        hero.addEventListener('mouseleave', () => { pointer.active = false; });
+      }
+      hero.addEventListener('pointerdown', (e) => {
+        const r = hero.getBoundingClientRect();
+        ripples.push({ x: e.clientX - r.left, y: e.clientY - r.top, r: 0, power: 1 });
+        if (ripples.length > 6) ripples.shift();
+      });
+      window.addEventListener('resize', resize, { passive: true });
+      document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+
+      // Size from a ResizeObserver: it fires after layout with the real hero
+      // box, dodging the zero-width reads that happen during initial parse.
+      if (resize() && !nodes.length) build();
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(() => { if (resize() && !nodes.length) build(); }).observe(hero);
+      }
+
+      if (reduce) {
+        const settle = () => {
+          if (!resize()) { requestAnimationFrame(settle); return; }
+          if (!nodes.length) build();
+          for (let i = 0; i < 80; i++) step(i * 16);
+          draw(0);
+        };
+        settle();
+        return;
+      }
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          entries.forEach((en) => { en.isIntersecting ? start() : stop(); });
+        }, { threshold: 0 }).observe(hero);
+      } else {
+        start();
+      }
     })();
   </script>
 
