@@ -116,7 +116,7 @@
           <a id="download-link" href="/downloads/Kit-macOS.dmg" class="btn btn--primary" download>Download for macOS</a>
           <a href="/blog/" class="btn btn--ghost">Read the notes</a>
         </div>
-        <p class="install-meta" id="install-meta" data-suffix="universal (Apple Silicon and Intel)">version 0.2.28 &middot; universal (Apple Silicon and Intel)</p>
+        <p class="install-meta" id="install-meta" data-suffix="universal (Apple Silicon and Intel)">version 0.2.47 &middot; universal (Apple Silicon and Intel)</p>
       </div>
     </div>
   </section>
@@ -195,6 +195,34 @@
       A short, high-level log of what each release brought. Newest first.
     </p>
     <div class="releases">
+
+      <article class="release">
+        <div class="release__head">
+          <span class="release__ver">0.2.47</span>
+          <span class="release__date">June 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Improvements</h4>
+          <ul>
+            <li>Kit wakes much sooner during setup: it reads your most recent history first and starts being useful while the rest finishes quietly in the background.</li>
+            <li>A new dreaming view shows when Kit is consolidating, with a calm animation, what it is working on, and a tap to peek at a memory or connection it just made.</li>
+            <li>A quieter first run: no file-permission pop-ups during setup.</li>
+            <li>You can point Kit at your own model: any self-hosted, OpenAI-compatible server (for example a Qwen box on your network).</li>
+            <li>If the model you choose is too slow, Kit now tells you while you pick it, and lets you switch to a faster one without restarting setup.</li>
+            <li>Kit writes in British English and refers to itself by the name you gave it.</li>
+          </ul>
+        </div>
+        <div class="release__kind">
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>Fixed a long-standing failure in Kit's nightly dream that could stop it consolidating.</li>
+            <li>Uninstalling Kit no longer crashes, and leaves nothing behind.</li>
+            <li>The health screen now reads correctly while Kit is doing its first consolidation.</li>
+            <li>Setup progress is steadier, and common snags like Docker not running now offer a clear retry instead of a dead end.</li>
+            <li>Faster, more reliable indexing of your conversations.</li>
+          </ul>
+        </div>
+      </article>
 
       <article class="release">
         <div class="release__head">
