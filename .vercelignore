@@ -1,0 +1,2 @@
+# Large local-only media not served by the site; keeps CLI deploys under the 100MB/file limit.
+assets/video/demo-walkthrough.mov
