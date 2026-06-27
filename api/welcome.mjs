@@ -178,7 +178,7 @@ export function buildWelcomeEmail(operatorName, kitName, surfaces) {
             <td style="padding:26px 30px 22px;border-bottom:1px solid rgba(148,163,184,0.12)">
               <table role="presentation" cellpadding="0" cellspacing="0"><tr>
                 <td style="vertical-align:middle;padding-right:14px">
-                  <div style="width:46px;height:46px;border-radius:50%;background:${accentDeep};background-image:radial-gradient(circle at 34% 30%, #d8ccff 0%, ${accentDeep} 56%, #5b21b6 100%);box-shadow:0 0 22px rgba(139,92,246,0.45)">&nbsp;</div>
+                  <img src="https://kit-project.com/assets/img/kit-glyph.png" width="48" height="48" alt="Kit" style="display:block;width:48px;height:48px;border-radius:12px">
                 </td>
                 <td style="vertical-align:middle">
                   <div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:1;font-weight:600;color:#f8fafc">Kit</div>
