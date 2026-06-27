@@ -39,8 +39,10 @@ const SURFACE_LABELS = {
   gemini: "Gemini CLI",
   qwen: "Qwen Code",
   anythingllm: "AnythingLLM",
+  codewhale: "CodeWhale",
+  antigravity: "Antigravity",
 };
-const SURFACE_ORDER = ["claude-code", "codex", "cursor", "vscode", "gemini", "qwen", "anythingllm"];
+const SURFACE_ORDER = ["claude-code", "codex", "cursor", "vscode", "gemini", "qwen", "anythingllm", "codewhale", "antigravity"];
 const MAIN_EDITORS = ["claude-code", "codex", "cursor", "vscode"];
 
 function escapeHtml(s) {
@@ -124,22 +126,38 @@ export function buildWelcomeEmail(operatorName, kitName, surfaces) {
     "(kit-project.com/blog). Hit a rough edge or have feedback? Just reply, it goes " +
     `straight to Peter.\n\nGlad you're here.\n${kitRaw}\n`;
 
-  const amber = "#e8a55c";
+  // Accent echoes the app's welcome screen (violet), not the old amber, so the
+  // email and the onboarding read as the same Kit. Solid colour fallbacks are
+  // given before every gradient/border-radius so Outlook (which drops both)
+  // still renders a clean violet block.
+  const accent = "#c4b5fd";
+  const accentDeep = "#8b5cf6";
   const body = "#cbd5e1";
   const bright = "#f1f5f9";
+  const chipBg = "#161d30";
 
-  const menuRow = (label, rest) =>
-    `<p style="margin:0 0 9px;font-size:14px;color:${body};line-height:1.5">` +
-    `<span style="color:${bright};font-weight:600">${label}</span> ${rest}</p>`;
+  // A list row with a small violet chip on the left, echoing the numbered step
+  // markers on the welcome screen. `chip` is the chip's inner HTML (a number,
+  // or the dot below).
+  const chipRow = (chip, label, rest) =>
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 10px"><tr>` +
+    `<td width="30" style="width:30px;vertical-align:top">` +
+    `<div style="width:22px;height:22px;border-radius:50%;background:${chipBg};border:1px solid rgba(196,181,253,0.34);color:${accent};font-size:11px;font-weight:700;text-align:center;line-height:21px">${chip}</div>` +
+    `</td>` +
+    `<td style="vertical-align:top;font-size:14px;color:${body};line-height:1.5">` +
+    `<span style="color:${bright};font-weight:600">${label}</span> ${rest}</td>` +
+    `</tr></table>`;
+
+  const dot = `<span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:${accent};vertical-align:middle">&nbsp;</span>`;
 
   const menuItems =
-    menuRow("View Memories", "see what I've learned and what I'm still forming.") +
-    menuRow("Settings", "connect more tools, pick your model, manage your Kit.") +
-    menuRow("Full Web UI", "the complete app in your browser.");
+    chipRow(dot, "View Memories", "see what I've learned and what I'm still forming.") +
+    chipRow(dot, "Settings", "connect more tools, pick your model, manage your Kit.") +
+    chipRow(dot, "Full Web UI", "the complete app in your browser.");
   const tryItems =
-    menuRow("Ask", "&ldquo;what do you know about me so far?&rdquo;") +
-    menuRow("Tell me", "something to remember, then ask about it tomorrow.") +
-    menuRow("Just work", "I'm listening in the background, getting to know you.");
+    chipRow("1", "Ask", "&ldquo;what do you know about me so far?&rdquo;") +
+    chipRow("2", "Tell me", "something to remember, then ask about it tomorrow.") +
+    chipRow("3", "Just work", "I'm listening in the background, getting to know you.");
 
   const html = `<!doctype html>
 <html lang="en">
@@ -155,11 +173,18 @@ export function buildWelcomeEmail(operatorName, kitName, surfaces) {
     <tr>
       <td align="center" style="padding:32px 16px">
         <table role="presentation" width="480" cellpadding="0" cellspacing="0"
-               style="width:480px;max-width:480px;background:#0f1729;border:1px solid rgba(232,165,92,0.24);border-radius:18px;overflow:hidden">
+               style="width:480px;max-width:480px;background:#0f1729;border:1px solid rgba(196,181,253,0.22);border-radius:18px;overflow:hidden">
           <tr>
             <td style="padding:26px 30px 22px;border-bottom:1px solid rgba(148,163,184,0.12)">
-              <div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:1;font-weight:600;color:#f8fafc">Kit</div>
-              <div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:0.14em;color:${amber};margin-top:5px">private memory, local to your mac</div>
+              <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+                <td style="vertical-align:middle;padding-right:14px">
+                  <div style="width:46px;height:46px;border-radius:50%;background:${accentDeep};background-image:radial-gradient(circle at 34% 30%, #d8ccff 0%, ${accentDeep} 56%, #5b21b6 100%);box-shadow:0 0 22px rgba(139,92,246,0.45)">&nbsp;</div>
+                </td>
+                <td style="vertical-align:middle">
+                  <div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:1;font-weight:600;color:#f8fafc">Kit</div>
+                  <div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:0.14em;color:${accent};margin-top:5px">private memory, local to your mac</div>
+                </td>
+              </tr></table>
             </td>
           </tr>
           <tr>
@@ -171,25 +196,25 @@ export function buildWelcomeEmail(operatorName, kitName, surfaces) {
           </tr>
           <tr>
             <td style="padding:18px 30px 2px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
-              <div style="font-size:11px;letter-spacing:0.1em;color:${amber};margin-bottom:10px">where i show up</div>
+              <div style="font-size:11px;letter-spacing:0.1em;color:${accent};margin-bottom:10px">where i show up</div>
               <p style="margin:0 0 4px;font-size:14px;color:${body};line-height:1.55">${surfaceLine}</p>
             </td>
           </tr>
           <tr>
             <td style="padding:16px 30px 2px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
-              <div style="font-size:11px;letter-spacing:0.1em;color:${amber};margin-bottom:10px">from the menu bar &middot; the kit icon, top right</div>
+              <div style="font-size:11px;letter-spacing:0.1em;color:${accent};margin-bottom:10px">from the menu bar &middot; the kit icon, top right</div>
               ${menuItems}
             </td>
           </tr>
           <tr>
             <td style="padding:16px 30px 2px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
-              <div style="font-size:11px;letter-spacing:0.1em;color:${amber};margin-bottom:10px">${tryHeadingHtml}</div>
+              <div style="font-size:11px;letter-spacing:0.1em;color:${accent};margin-bottom:10px">${tryHeadingHtml}</div>
               ${tryItems}
             </td>
           </tr>
           <tr>
             <td style="padding:14px 30px 6px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
-              <p style="margin:0 0 11px;font-size:14px;color:${body};line-height:1.55">Learn more at <a href="https://kit-project.com" style="color:${amber};text-decoration:none">kit-project.com</a>, latest notes on the <a href="https://kit-project.com/blog/" style="color:${amber};text-decoration:none">Kit blog</a>.</p>
+              <p style="margin:0 0 11px;font-size:14px;color:${body};line-height:1.55">Learn more at <a href="https://kit-project.com" style="color:${accent};text-decoration:none">kit-project.com</a>, latest notes on the <a href="https://kit-project.com/blog/" style="color:${accent};text-decoration:none">Kit blog</a>.</p>
               <p style="margin:0 0 4px;font-size:14px;color:${body};line-height:1.55">Hit a rough edge or have feedback? Just reply to this email, it goes straight to Peter.</p>
             </td>
           </tr>
