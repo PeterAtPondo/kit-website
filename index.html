@@ -77,9 +77,9 @@
         "applicationSubCategory": "AI Agent Infrastructure",
         "operatingSystem": "macOS, Linux (Docker + PostgreSQL)",
         "featureList": [
-          "MCP server: Claude Code, Codex, and any MCP client can call kit_write, kit_recall, kit_recall_graph, and more",
+          "MCP server: Claude Code, Codex, and any MCP client can call commit, recall, trace, and more",
           "Persistent memory across agent sessions",
-          "Typed knowledge graph (extends, supersedes, related_to, implements, caused_by, references)",
+          "Typed knowledge graph (extends, supersedes, related_to, implements, caused_by, references, novel_association)",
           "Hybrid retrieval: full-text + vector via Reciprocal Rank Fusion",
           "Subgraph recall (seed via hybrid, BFS the edge graph)",
           "Nightly dream-cycle consolidation",
@@ -91,7 +91,7 @@
           "Session hooks (SessionStart, PreCompact, SessionEnd) for auto-capture and handoff",
           "kit-loom dispatch daemon: brain writes wake the right agent on the right substrate; multi-round work tracked as first-class collaborations",
           "In development: federation-time auth (a brain URL plus scoped bearer token injected into the spawn environment, so a Kit on one machine can wake an agent on another)",
-          "In development: multi-brain federation with signed edges and typed feeds",
+          "Multi-brain federation: search and recall across peer Kits works today as a POC; signed edges and typed feeds are next",
           "In development: shared Kit server deployment for multiple agents and people"
         ],
         "creator": { "@id": "https://kit-project.com/#peter" },
@@ -153,6 +153,7 @@
     <div class="nav__links">
       <a href="#install">Install</a>
       <a href="#in-action">In action</a>
+      <a href="#orchestrate">Orchestrate</a>
       <a href="#what">Pattern</a>
       <a href="#arch">Architecture</a>
       <a href="#stack">Under the hood</a>
@@ -214,18 +215,18 @@
       We keep a build log inside <a href="/blog/">Notes</a>. Most recent post:
     </p>
 
-    <a class="post-card post-card--featured" href="/blog/ninety-seconds/">
+    <a class="post-card post-card--featured" href="/blog/orchestration-fought-back/">
       <div class="post-card__meta">
-        <span class="num">No. 015</span>
-        <span>2026 · 06 · 22</span>
+        <span class="num">No. 016</span>
+        <span>2026 · 06 · 30</span>
         <span>· beta</span>
       </div>
-      <h3>Ninety seconds that took three months</h3>
+      <h3>Orchestration fought back</h3>
       <p>
-        Kit is out of alpha and into beta. There is a signed installer now:
-        download it, and in about ninety seconds you have a private brain on
-        your own Mac that has read your history and woken up knowing you. Come
-        join the beta.
+        Kit can run many agents as one flow now: playbooks, an agent registry,
+        shared context, and a gate you control. An honest build log of how
+        orchestration actually works, and how long it fought us, with the real
+        coding workflow as the example.
       </p>
     </a>
 
@@ -284,6 +285,72 @@
     </figure>
   </section>
 
+  <!-- Orchestration: the agent-orchestration explainer film + the four pillars. -->
+  <section id="orchestrate" class="section section--tint" data-reveal>
+    <div class="inner">
+      <h2>Orchestrate your agents</h2>
+      <p class="lede">
+        One agent is simple. Many agents, working as one, is not: each on a
+        different provider, a different model right for each task, context to
+        carry from one to the next, and no easy way to watch or steer the work.
+        You end up the conductor, doing every handoff by hand.
+      </p>
+
+      <!-- How Kit orchestrates: ~2 min explainer, voiced by Kit (River). -->
+      <figure class="shot shot--wide demo-figure">
+        <video
+          class="demo-video"
+          controls
+          playsinline
+          preload="metadata"
+          poster="/assets/video/kit-orchestration-poster.jpg"
+        >
+          <source src="/assets/video/kit-orchestration.mp4" type="video/mp4" />
+        </video>
+        <figcaption>How Kit orchestrates &mdash; many agents, many models, in flows you control.</figcaption>
+      </figure>
+
+      <p>
+        Kit is the conductor. You compose a playbook, with Kit or by hand, then
+        watch the run unfold in Studio, step by step. Four pieces make it work:
+      </p>
+
+      <div class="stack">
+        <div class="stack__col">
+          <h3>Orchestration</h3>
+          <ul class="spec">
+            <li>Playbooks you compose: steps, order, forks, parallel work, and decision points</li>
+            <li>Runs you watch in Studio, step by step, with status and outcome on each one</li>
+          </ul>
+        </div>
+
+        <div class="stack__col">
+          <h3>An agent registry</h3>
+          <ul class="spec">
+            <li>Claude Code, Codex, a local model, and more &mdash; each step routed to the right agent</li>
+            <li>And the right model for the job: a strong one to think, a local one to grind, a separate one to check the work</li>
+          </ul>
+        </div>
+
+        <div class="stack__col">
+          <h3>One memory</h3>
+          <ul class="spec">
+            <li>Every agent draws from the same context, not its own small, temporary one</li>
+            <li>Each step hands what it learned to the next, so nothing starts cold</li>
+          </ul>
+        </div>
+
+        <div class="stack__col">
+          <h3>Visibility and control</h3>
+          <ul class="spec">
+            <li>You see every step as it runs, never a black box</li>
+            <li>When a run reaches a gate you defined, it waits for your call: approve, steer, or decline, from Studio or Telegram</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Section 2: The pattern -->
   <section id="what" class="section" data-reveal>
     <h2>The pattern</h2>
@@ -340,7 +407,7 @@
             <div class="idx">02</div>
             <div>
               <strong>Brain</strong> &mdash;
-              <span>typed memories with tiered storage (core / recall / archival), a knowledge graph of edges, and semantic + full-text retrieval.</span>
+              <span>typed memories with tiered storage (core / recall / archival / source), a knowledge graph of edges, and semantic + full-text retrieval.</span>
             </div>
           </div>
           <div class="arch__layer">
@@ -403,7 +470,7 @@
             <div class="idx">09</div>
             <div>
               <strong>Multi-brain federation</strong> &mdash;
-              <span>sovereign brains that publish, subscribe, and selectively trust each other through signed edges, typed feeds, and auditable exchange. See <a href="#next">What's next</a> for the shape.</span>
+              <span>search and recall across peer Kits works today as a POC. The shape ahead: sovereign brains that publish, subscribe, and selectively trust each other through signed edges, typed feeds, and auditable exchange. See <a href="#next">What's next</a>.</span>
             </div>
           </div>
         </div>
@@ -431,7 +498,7 @@
         <ul class="spec">
           <li>PostgreSQL 16 + pgvector 0.8 <span class="spec__meta">(384-dim embeddings)</span></li>
           <li>Memories table with <em>tier</em>, <em>scope</em>, <em>category</em>, provenance, summary, entities, people, places, topics</li>
-          <li>MemoryEdge: typed relations &mdash; <code>extends</code>, <code>supersedes</code>, <code>related_to</code>, <code>implements</code>, <code>caused_by</code>, <code>references</code></li>
+          <li>MemoryEdge: typed relations &mdash; <code>extends</code>, <code>supersedes</code>, <code>related_to</code>, <code>implements</code>, <code>caused_by</code>, <code>references</code>, <code>novel_association</code></li>
           <li>ArtifactMemoryLink: high-fidelity sources preserved separately from consolidated memories <span class="spec__meta">(three-layer model)</span></li>
         </ul>
       </div>
@@ -439,7 +506,7 @@
       <div class="stack__col">
         <h3>Retrieval</h3>
         <ul class="spec">
-          <li>Hybrid search: FTS <code>ts_rank</code> + vector cosine via Reciprocal Rank Fusion <span class="spec__meta">(k=60)</span></li>
+          <li>Hybrid search: FTS <code>ts_rank_cd</code> + vector cosine via Reciprocal Rank Fusion <span class="spec__meta">(k=60)</span></li>
           <li>Subgraph recall: seed via hybrid, then BFS the edge graph <em>N</em> hops out; ranked by distance then load-bearing score</li>
           <li>Results boosted by <code>importance &times; decay</code>; search hits feed back into importance</li>
           <li>Scope-filtered work / personal / general so archives don't bleed</li>
@@ -452,14 +519,14 @@
           <li>Per-category decay with tunable half-life <span class="spec__meta">(sessions 5d &middot; decisions 90d &middot; preferences 365d)</span></li>
           <li>Nightly dream cycle: consolidate stale memories, prune duplicates, promote high-access entries</li>
           <li>kNN edge promotion: cosine &ge; 0.55 pairs materialised as persistent <code>related_to</code> edges</li>
-          <li>Dedup on write at cosine 0.92 <span class="spec__meta">(hard)</span>; soft neighbour preview at 0.55 nudges link-or-merge</li>
+          <li>Dedup on write at cosine 0.92 <span class="spec__meta">(hard)</span>; near-duplicates surface as drafts for review, never silently merged</li>
         </ul>
       </div>
 
       <div class="stack__col">
         <h3>Surfaces</h3>
         <ul class="spec">
-          <li>MCP server exposing <code>kit_write</code>, <code>kit_recall</code>, <code>kit_recall_graph</code>, <code>kit_link</code>, <code>kit_context</code>, <code>kit_dream</code>, and more</li>
+          <li>MCP server exposing <code>commit</code>, <code>recall</code>, <code>trace</code>, <code>remember</code>, <code>note</code>, <code>orchestrate</code>, <code>dream</code>, and more</li>
           <li>Session hooks: SessionStart loads soul + handoff + while-you-were-out; PreCompact captures drafts for review</li>
           <li>FastAPI async HTTP API for every surface above <span class="spec__meta">(agent-agnostic)</span></li>
           <li>LaunchAgent schedules the nightly dream cycle; UI surfaces dream logs so nothing consolidates invisibly</li>
@@ -586,7 +653,7 @@
         <div class="source source--live">
           <div class="source__status">LIVE</div>
           <div class="source__name">Claude Code <span class="spec__meta">(MCP)</span></div>
-          <p class="source__desc">Live MCP integration. Claude Code sessions call Kit's tools directly (<code>kit_write</code>, <code>kit_recall</code>, <code>kit_recall_graph</code>, and more). JSONL transcripts from <code>~/.claude/projects</code> also back-fill; session id, commit sha, and file paths preserved.</p>
+          <p class="source__desc">Live MCP integration. Claude Code sessions call Kit's tools directly (<code>commit</code>, <code>recall</code>, <code>trace</code>, and more). JSONL transcripts from <code>~/.claude/projects</code> also back-fill; session id, commit sha, and file paths preserved.</p>
         </div>
         <div class="source source--live">
           <div class="source__status">LIVE</div>
@@ -596,7 +663,7 @@
         <div class="source source--live">
           <div class="source__status">LIVE</div>
           <div class="source__name">Any MCP client</div>
-          <p class="source__desc">Kit exposes its full tool surface over MCP. Any agent, editor, or system that speaks MCP can call <code>kit_write</code>, <code>kit_recall</code>, <code>kit_recall_graph</code>, and the rest. Scoped API tokens keep access honest.</p>
+          <p class="source__desc">Kit exposes its full tool surface over MCP. Any agent, editor, or system that speaks MCP can call <code>commit</code>, <code>recall</code>, <code>trace</code>, and the rest. Scoped API tokens keep access honest.</p>
         </div>
         <div class="source source--live">
           <div class="source__status">LIVE</div>
@@ -649,7 +716,7 @@
         <div class="source source--development">
           <div class="source__status">IN DEVELOPMENT</div>
           <div class="source__name">Multi-brain federation</div>
-          <p class="source__desc">Sovereign brains that publish, subscribe, and selectively trust each other through signed edges, typed feeds, and auditable exchange. Trust is a vector (per peer, per feed, per claim class), not a binary. Disagreement is preserved as rival claims, never auto-consolidated.</p>
+          <p class="source__desc">Search and recall across peer Kits already works as a POC: a peer queries yours over a scoped, read-only key, and results come back merged and labelled by source. Next: signed edges, typed feeds, and trust as a vector (per peer, per feed, per claim class), not a binary. Disagreement is preserved as rival claims, never auto-consolidated.</p>
         </div>
         <div class="source source--development">
           <div class="source__status">IN DEVELOPMENT</div>
@@ -693,7 +760,7 @@
         <h3>Model-agnostic by design</h3>
         <p>
           Retrieval is an HTTP call, not a vendor feature. Swap Claude for a
-          local Llama or Qwen via Ollama and every <code>kit_recall</code>,
+          local Llama or Qwen via Ollama and every <code>recall</code>,
           every hook, every importer still works. The substrate doesn't care
           which model answers the prompt.
         </p>

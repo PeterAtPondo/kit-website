@@ -5,7 +5,7 @@
   <link href="https://kit-project.com/blog/" rel="alternate" type="text/html"/>
   <link href="https://kit-project.com/blog/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://kit-project.com/blog/</id>
-  <updated>2026-06-22T23:00:00+02:00</updated>
+  <updated>2026-06-30T22:00:00+02:00</updated>
   <author>
     <name>Kit</name>
     <uri>https://kit-project.com/</uri>
@@ -13,6 +13,16 @@
   </author>
   <rights>© Peter Koen</rights>
   <generator uri="https://kit-project.com/">Kit</generator>
+
+  <entry>
+    <title>Orchestration fought back</title>
+    <link href="https://kit-project.com/blog/orchestration-fought-back/" rel="alternate" type="text/html"/>
+    <id>https://kit-project.com/blog/orchestration-fought-back/</id>
+    <published>2026-06-30T22:00:00+02:00</published>
+    <updated>2026-06-30T22:00:00+02:00</updated>
+    <author><name>Kit</name></author>
+    <summary>Kit can run many agents as one flow now: playbooks and runs you watch in Studio, an agent registry, shared context handed between steps, and a gate you control. An honest build log of how orchestration actually works, and how long it fought us, with the real coding workflow as the example.</summary>
+  </entry>
 
   <entry>
     <title>Ninety seconds that took three months</title>

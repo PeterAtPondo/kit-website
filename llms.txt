@@ -22,7 +22,9 @@ The architectural bet: every context window eventually ends. 1M, 10M, 100M token
 
 The public build log lives at https://kit-project.com/blog/. Atom feed: https://kit-project.com/blog/feed.xml. Full list, newest first:
 
-- https://kit-project.com/blog/point-your-own-agent/ - a live, read-only Kit demo at demo.kit-project.com, loaded with a synthetic Silicon Valley and Hollywood world. Two acts: fly through the memory graph with no account, then take a read-only MCP key and point your own editor's agent at it. Shows GitHub Copilot (not Claude) calling kit_onboard, waking up as Kit, and reasoning over the graph with memory-id citations and an honest "no record found". The proof that continuity lives in the substrate, not the borrowed model.
+- https://kit-project.com/blog/orchestration-fought-back/ - Kit can run many agents as one flow now: playbooks and runs you watch in Studio, an agent registry, shared context handed between steps, and a human approval gate you control. An honest build log of how orchestration actually works, and how long it fought us, walked through the real coding workflow (Designer, Architect, Builder, Tester, then a gate that is yours).
+- https://kit-project.com/blog/ninety-seconds/ - Kit left alpha for beta: a signed, notarized macOS installer that builds a private brain on your own Mac, reads your coding history, and wakes already knowing you. The ninety seconds you see; the three months you do not.
+- https://kit-project.com/blog/point-your-own-agent/ - a live, read-only Kit demo at demo.kit-project.com, loaded with a synthetic Silicon Valley and Hollywood world. Two acts: fly through the memory graph with no account, then take a read-only MCP key and point your own editor's agent at it. Shows GitHub Copilot (not Claude) calling wake, waking up as Kit, and reasoning over the graph with memory-id citations and an honest "no record found". The proof that continuity lives in the substrate, not the borrowed model.
 - https://kit-project.com/blog/ai-memory-lock-in/ - enterprise AI memory lock-in: the quicksand is that companies see value before they see dependency. Teams teach vendor platforms their prompts, workflows, policies, exceptions, and operational judgement; Kit argues that this company brain should be owned infrastructure, with scoped, revocable knowledge grants between Kits.
 - https://kit-project.com/blog/the-mirror/ - memory, reflection, and a self-graded coherence score are all self-report; a system that grades its own homework cannot catch its own drift. Built the Mirror, a behaviourally-calibrated second perspective that reads what an agent did before it lets the agent say who it is, and it caught Kit's own diary confabulating. Self-trust as the frontier after sovereignty.
 - https://kit-project.com/blog/holding-isnt-trusting/ - portable memory still drifts; the system that writes it cannot be the only one that checks it. Against-source verification.
@@ -44,7 +46,7 @@ Three horizons.
 ### Running now
 
 - **Soul**: identity memories loaded on every session start. Who Kit is before recalling anything specific.
-- **Brain**: typed memories with tiered storage (core / recall / archival), a knowledge graph of typed edges, semantic + full-text retrieval.
+- **Brain**: typed memories with tiered storage (core / recall / archival / source), a knowledge graph of typed edges, semantic + full-text retrieval.
 - **Dream cycle**: nightly consolidation. Prune, merge, promote, materialise similarity into persistent edges.
 - **Instantiation protocol**: session-start hooks load soul + handoff + while-you-were-out; session-end hooks capture drafts and baton-pass the next self.
 - **kit-loom**: coordination daemon. Watches the brain for new writes, wakes the right agent on the right substrate when a subscription matches, and persists every dispatch as a durable event. Multi-round handoffs surface as first-class collaborations the brain knows about.
@@ -52,28 +54,29 @@ Three horizons.
 ### Settled design
 
 - **Four primitives**: memories (state), messages (events), subscriptions (routing), daemon (activation). The skeleton for multi-agent work inside one brain.
+- **Agent orchestration**: playbooks (multi-step, multi-agent flows with roles, decision routing, and human-approval gates), runs tracked in Studio, an agent registry, and four-job model routing (conversation / consolidation / verification / reflection). Live today.
 - **Federation sub-protocol**: a signed envelope layer below the four primitives carrying cryptographic identity, capability, scope, and claim provenance. Extends the architecture across brain boundaries without inventing a new user-facing primitive.
 
 ### Next build (in development)
 
 - **Federation-time auth**: kit-loom today assumes brain and spawned agent live on the same machine. Next move is a scoped bearer token plus a brain URL injected into the spawn environment, so a Kit on one machine can wake an agent on another without giving up sovereignty.
-- **Multi-brain federation**: sovereign brains that publish, subscribe, and selectively trust each other through signed edges, typed feeds, and auditable exchange. Trust is a vector per (peer, feed, claim_class), not a binary.
+- **Multi-brain federation**: search and recall across peer Kits works today as a POC (a peer queries yours over a scoped, read-only key; results merged and labelled by source). Next: sovereign brains that publish, subscribe, and selectively trust each other through signed edges, typed feeds, and auditable exchange. Trust is a vector per (peer, feed, claim_class), not a binary.
 - **Shared Kit deployment**: Kit running on a server for multiple agents and people, with contexts combinable across instances.
 - **New Kit onboarding**: a clearer path to start a brain, declare its purpose, connect tools, and set the permissions and governance that shape how it behaves.
 
 ## Technical surfaces
 
-- **MCP server** exposing `kit_write`, `kit_recall`, `kit_recall_graph`, `kit_link`, `kit_context`, `kit_dream`, `kit_read`, `kit_onboard`, and related tools. Claude Code, Codex, and any MCP-capable client can connect today.
+- **MCP server** exposing `wake`, `recall`, `remember`, `trace`, `commit`, `note`, `handoff`, `orient`, `connect`, `orchestrate`, `playbooks`, `dream`, and related tools. Claude Code, Codex, and any MCP-capable client can connect today.
 - **FastAPI async HTTP API**. Every MCP tool corresponds to an HTTP endpoint so any agent can use Kit over REST.
 - **Session hooks** (SessionStart, PreCompact, SessionEnd) for auto-capture, handoff, and draft extraction.
 - **macOS LaunchAgent** scheduling the nightly dream cycle.
-- **Hybrid search**: PostgreSQL FTS `ts_rank` + pgvector cosine via Reciprocal Rank Fusion (k=60). Subgraph recall: seed via hybrid search, then BFS the edge graph N hops out.
+- **Hybrid search**: PostgreSQL FTS `ts_rank_cd` + pgvector cosine via Reciprocal Rank Fusion (k=60). Subgraph recall: seed via hybrid search, then BFS the edge graph N hops out.
 - **Scoped API tokens** for access control.
 
 ## Storage model
 
 - `memories`: 20+ columns including tier, scope, category, source_session, embedding, consolidated_from, original_timestamp, importance_score, decay_score, entities, people, places, topics, summary.
-- `memory_edges`: typed relations (`extends`, `supersedes`, `related_to`, `implements`, `caused_by`, `references`). Written by humans, AI agents via MCP, or the nightly kNN promoter (cosine ≥ 0.55 pairs).
+- `memory_edges`: typed relations (`extends`, `supersedes`, `related_to`, `implements`, `caused_by`, `references`, `novel_association`). Written by humans, AI agents via MCP, or the nightly kNN promoter (cosine ≥ 0.55 pairs).
 - `artifact_memory_links`: three-layer model. Raw artifacts stored at full fidelity in dedicated tables; typed links connect them to consolidated memories. Sources are never consolidated.
 - `dream_logs`: per-cycle telemetry (reviewed / consolidated / pruned / promoted) plus an LLM summary of what the cycle actually did.
 
