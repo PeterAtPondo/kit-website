@@ -132,6 +132,64 @@
     </p>
   </section>
 
+  <!-- What Kit will give you -->
+  <section class="section">
+    <h2>What Kit will give you</h2>
+    <p class="lede" style="max-width: var(--reading-max)">
+      Once it is running, here is what your Kit does for you, day to day.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <div class="card__title">Memory that outlives the session</div>
+        <p class="card__body">
+          Kit remembers across sessions and across tools. The memory lives
+          outside any single model, so what you work on in one place is there
+          the next time you sit down.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__title">It recalls before it answers</div>
+        <p class="card__body">
+          Kit grounds its replies in what it already knows about you and your
+          work, searching a typed graph of memories rather than a flat pile of
+          notes.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__title">Continuity between sessions</div>
+        <p class="card__body">
+          Each session opens with Kit's identity, your last handoff, and a short
+          note on what changed while you were away. You pick up the thread
+          instead of re-explaining.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__title">It works where you code</div>
+        <p class="card__body">
+          Claude Code and Codex today, with Cursor, VS Code, Gemini, Qwen and
+          any other MCP client alongside them. The same memory, wherever you are
+          working.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__title">Local and private</div>
+        <p class="card__body">
+          Your Kit runs on your Mac: a Postgres database, an API, and an MCP
+          server in Docker. No cookies, no analytics, and nothing leaves unless
+          you send it.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__title">Bring your history</div>
+        <p class="card__body">
+          Import your Claude Code, Codex, Cursor, and VS Code history and Kit
+          folds it into memory. A nightly pass consolidates duplicates and keeps
+          the graph tidy.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- Before you start -->
   <section class="section">
     <h2>Before you start</h2>
@@ -393,10 +451,16 @@
           if (el) el.textContent = 'version ' + d.version + ' · ' + (el.dataset.suffix || '');
         }
         // Drive the download link off latest.json so a release only updates this
-        // one file (version + url), never the hardcoded href below.
+        // one file (version + url), never the hardcoded href below. The URL stays
+        // a stable Kit-macOS.dmg (the auto-updater relies on it), but set the
+        // download attribute so the browser SAVES it with the version in the name
+        // (Kit-0.2.67-macOS.dmg), so re-downloads do not pile up as (1), (2).
         if (d.url) {
           var dl = document.getElementById('download-link');
-          if (dl) dl.href = d.url;
+          if (dl) {
+            dl.href = d.url;
+            if (d.version) dl.setAttribute('download', 'Kit-' + d.version + '-macOS.dmg');
+          }
         }
       })
       .catch(function () {});
