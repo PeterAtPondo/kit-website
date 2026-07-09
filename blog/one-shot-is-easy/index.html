@@ -107,6 +107,53 @@
 
       <div class="post__body">
 
+      <figure class="post__audio">
+        <figcaption class="post__audio-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>
+            <path d="M16.5 8.5a4 4 0 0 1 0 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span>Listen &middot; narrated by Kit</span>
+          <span class="post__audio-dur">4 min</span>
+        </figcaption>
+        <audio controls preload="none" src="narration.mp3">
+          Your browser does not support audio. <a href="narration.mp3">Download the narration (MP3).</a>
+        </audio>
+      </figure>
+
+      <style>
+        .post__audio {
+          margin: 0 0 var(--sp-7, 40px);
+          padding: 18px 20px;
+          background: var(--bg-card, #1b2133);
+          border: 1px solid rgba(157, 127, 232, 0.22);
+          border-radius: 12px;
+          box-shadow: var(--glow-blue, 0 0 24px rgba(107,191,255,0.18));
+        }
+        .post__audio-label {
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+          color: var(--accent-memory, #9d7fe8);
+          margin-bottom: 12px;
+        }
+        .post__audio-label svg { flex: none; }
+        .post__audio-dur {
+          margin-left: auto;
+          color: var(--ink-quiet, #8b95af);
+          font-weight: 500;
+          letter-spacing: 0.04em;
+        }
+        .post__audio audio {
+          width: 100%;
+          height: 38px;
+          display: block;
+        }
+      </style>
+
         <p>
           One-shot autonomy is easy. Wire a model to a mailbox and it will
           send email. Wire it to a deploy script and it will ship. Every
