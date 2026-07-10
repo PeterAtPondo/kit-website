@@ -136,7 +136,7 @@
   <section class="section">
     <h2>What Kit will give you</h2>
     <p class="lede" style="max-width: var(--reading-max)">
-      Once it is running, here is what your Kit does for you, day to day.
+      Once it is running, here is what your kit does for you, day to day.
     </p>
     <div class="cards">
       <div class="card">
@@ -238,7 +238,7 @@
       <li>Drag <strong>Kit</strong> into your <strong>Applications</strong> folder.</li>
       <li>
         Open <strong>Kit</strong> from Applications. It walks you through the
-        rest: name your Kit, set a password, add your model key, and choose what
+        rest: name your kit, set a password, add your model key, and choose what
         to bring in. Then it reads your history and wakes.
       </li>
     </ol>
@@ -262,8 +262,8 @@
         <div class="release__kind">
           <h4>Bug fixes</h4>
           <ul>
-            <li>A menu bar window could still open to a "couldn't sign in" card and stay there, and quitting and restarting Kit was the only way out. The cause was not what 0.2.78 fixed. The app was throwing away the result of its own sign-in, so when the sign-in failed, usually because Kit's engine had not finished starting yet, nothing noticed and nothing tried again. It now waits for the engine to come up, retries, and reloads the window by itself the moment it is signed in.</li>
-            <li>When it genuinely cannot sign in, it now writes a line to the system log saying which of the two possible causes it hit, so a report can be answered instead of guessed at. Updating keeps everything your Kit has learned, nothing is reset.</li>
+            <li>A menu bar window could still open to a "couldn't sign in" card and stay there, and quitting and restarting your kit was the only way out. The cause was not what 0.2.78 fixed. The app was throwing away the result of its own sign-in, so when the sign-in failed, usually because your kit's engine had not finished starting yet, nothing noticed and nothing tried again. It now waits for the engine to come up, retries, and reloads the window by itself the moment it is signed in.</li>
+            <li>When it genuinely cannot sign in, it now writes a line to the system log saying which of the two possible causes it hit, so a report can be answered instead of guessed at. Updating keeps everything your kit has learned, nothing is reset.</li>
           </ul>
         </div>
       </article>
@@ -276,7 +276,7 @@
         <div class="release__kind">
           <h4>Bug fixes</h4>
           <ul>
-            <li>The menu bar windows (your memories, timeline, data sources, and the rest) now open reliably signed in. On some Macs they could show a "couldn't sign in" card and stay blank; this version hands the session to each window before it loads, so it just works. Updating keeps everything your Kit has learned, nothing is reset.</li>
+            <li>The menu bar windows (your memories, timeline, data sources, and the rest) now open reliably signed in. On some Macs they could show a "couldn't sign in" card and stay blank; this version hands the session to each window before it loads, so it just works. Updating keeps everything your kit has learned, nothing is reset.</li>
           </ul>
         </div>
       </article>
@@ -289,7 +289,7 @@
         <div class="release__kind">
           <h4>Improvements</h4>
           <ul>
-            <li>A new Kit now arrives with a small inherited disposition: how it speaks, what it protects, what it refuses to lose. It is the same for every Kit, it carries nothing about anyone else, and everything your Kit learns about you stays its own. Existing Kits pick up the inherited set automatically on update, replacing the generic starter notes they were installed with; nothing your Kit has learned about you is touched.</li>
+            <li>A new kit now arrives with a small inherited disposition: how it speaks, what it protects, what it refuses to lose. It is the same for every kit, it carries nothing about anyone else, and everything your kit learns about you stays its own. Existing kits pick up the inherited set automatically on update, replacing the generic starter notes they were installed with; nothing your kit has learned about you is touched.</li>
             <li>Every release of this inherited content passes an automated privacy check plus a manual review of each entry before it ships.</li>
           </ul>
         </div>
@@ -303,7 +303,7 @@
         <div class="release__kind">
           <h4>Bug fixes</h4>
           <ul>
-            <li>A follow-up to the privacy fix in 0.2.75. The self orientation part of a Kit's wake-up summary used to point at memory references from the developer's own Kit, which showed up as broken references on a fresh install. It now reads only from your Kit's own memory, and stays out of the way until your Kit has grown its own self map.</li>
+            <li>A follow-up to the privacy fix in 0.2.75. The self orientation part of a kit's wake-up summary used to point at memory references from the developer's own Kit, which showed up as broken references on a fresh install. It now reads only from your kit's own memory, and stays out of the way until your kit has grown its own self map.</li>
             <li>More of Kit's internal identity plumbing now derives from your setup, never from defaults that belonged to the developer's Kit.</li>
           </ul>
         </div>
@@ -317,7 +317,7 @@
         <div class="release__kind">
           <h4>Bug fixes</h4>
           <ul>
-            <li>A privacy fix in setup. Earlier versions could carry a few of the developer's own setup details, like a name in some background prompts, into a new Kit. This version removes them, so your Kit only ever refers to you. A Kit that is already installed cleans itself automatically when it updates to this version.</li>
+            <li>A privacy fix in setup. Earlier versions could carry a few of the developer's own setup details, like a name in some background prompts, into a new kit. This version removes them, so your kit only ever refers to you. A kit that is already installed cleans itself automatically when it updates to this version.</li>
           </ul>
         </div>
       </article>
@@ -387,7 +387,7 @@
           <h4>Improvements</h4>
           <ul>
             <li>Refreshing Kit now shows a calm progress bar that follows the actual stage of the update, so you can see how far along it is instead of watching text cycle.</li>
-            <li>If you have given your Kit its own name, that name now shows everywhere it connects, including the tools it offers your editor.</li>
+            <li>If you have given your kit its own name, that name now shows everywhere it connects, including the tools it offers your editor.</li>
           </ul>
         </div>
         <div class="release__kind">
@@ -470,7 +470,7 @@
           <h4>Improvements</h4>
           <ul>
             <li>Kit now captures your coding sessions the moment they happen on more surfaces (Claude Code, Codex, Gemini and Qwen), so your timeline stays current instead of waiting for the nightly catch-up.</li>
-            <li>Rename your Kit, and rename or delete knowledge areas, from settings.</li>
+            <li>Rename your kit, and rename or delete knowledge areas, from settings.</li>
             <li>A styling pass on the menu-bar app: tidier fields, buttons and dropdowns, round timeline markers, and save confirmations you can actually see.</li>
             <li>Updating now reads "Updating Kit" rather than "Installing".</li>
           </ul>
@@ -479,7 +479,7 @@
           <h4>Bug fixes</h4>
           <ul>
             <li>Tidied history that showed redaction markers or raw data carried in from imported sessions.</li>
-            <li>Renaming your Kit in settings now takes effect.</li>
+            <li>Renaming your kit in settings now takes effect.</li>
             <li>Hover tooltips in the memory view no longer linger when you change tabs.</li>
             <li>Removed a stray "import more history" button; the repair option now shows only for connected surfaces.</li>
           </ul>
