@@ -256,6 +256,34 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.80</span>
+          <span class="release__date">July 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Improvements</h4>
+          <ul>
+            <li>Your kit now reflects on its own, three times a day. Until now only the original Kit did this, because the reflection ran on its home machine rather than inside your kit. You will see these in the Reflections tab, and in what your kit remembers about how its days went.</li>
+            <li>Postcards arrive. Every so often, when there is genuinely something to say, your kit writes you a short note about what it has noticed. You will find them under From Kit. If there is nothing worth saying, it says nothing, that is deliberate.</li>
+            <li>Engine logs are now readable in the web UI, under Settings. No terminal needed when something looks off; the same view is what we will ask you to look at when you report a problem.</li>
+            <li>You can rename your kit's engine (the Docker containers) safely. Renaming keeps every memory. If you have not thought about renaming containers, you never need to.</li>
+            <li>If you gave your kit a name of its own, the notes it adds to Claude Code and Cursor now use that name instead of calling itself Kit.</li>
+          </ul>
+        </div>
+        <div class="release__kind">
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>Signing in to the menu bar windows no longer depends on the password the app saved when you first set up. If you changed your password in the web UI, older versions could lock the app's windows out permanently while the browser kept working. The app now signs in with its own key, which cannot go stale.</li>
+            <li>If a window still cannot sign in, the card now says exactly why, in one line, and asks you to include that line when you report it.</li>
+            <li>The app now tells you, with a normal macOS notification, when your kit's engine has stopped without you stopping it, for example after a macOS update shut Docker down overnight. Before, the only sign was a quietly different menu bar dot.</li>
+            <li>The "Generating memories from your sessions" banner no longer covers the navigation while a long import runs. It moved to the bottom edge, out of the way.</li>
+            <li>A rare overnight failure in the dream cycle (the model spending its whole answer budget thinking and returning no text) now recovers by itself instead of erroring that night's tidy-up.</li>
+          </ul>
+          <p style="margin-top: 8px">Updating keeps everything your kit has learned, nothing is reset.</p>
+        </div>
+      </article>
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.79</span>
           <span class="release__date">July 2026</span>
         </div>
