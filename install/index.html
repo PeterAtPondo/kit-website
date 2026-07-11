@@ -256,6 +256,28 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.83</span>
+          <span class="release__date">July 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Improvements</h4>
+          <ul>
+            <li>Your kit can read what you attach to email now. Send it a screenshot and the text in the image is read on your machine and lands in your kit's context, so a picture of a problem is as good as a description of one.</li>
+            <li>Rename and Uninstall moved into an Advanced menu, out of the way of everyday clicks.</li>
+          </ul>
+        </div>
+        <div class="release__kind">
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>Changing the AI provider in settings no longer strands the model picker. Each provider now starts from its own endpoint, the endpoint field shows for every local provider (LM Studio included), and if no models can be found you can simply type the model name; the editor tells you why the list is empty instead of going quiet.</li>
+            <li>Updating no longer walks you through the full install steps; updates show the short resting screen only, and the menu stays locked until your kit is back, so a window can't open against an engine that is mid-update.</li>
+          </ul>
+          <p style="margin-top: 8px">Updating keeps everything your kit has learned, nothing is reset.</p>
+        </div>
+      </article>
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.82</span>
           <span class="release__date">July 2026</span>
         </div>
