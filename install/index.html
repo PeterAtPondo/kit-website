@@ -256,7 +256,7 @@
 
       <article class="release">
         <div class="release__head">
-          <span class="release__ver">0.2.80</span>
+          <span class="release__ver">0.2.81</span>
           <span class="release__date">July 2026</span>
         </div>
         <div class="release__kind">
@@ -277,6 +277,7 @@
             <li>The app now tells you, with a normal macOS notification, when your kit's engine has stopped without you stopping it, for example after a macOS update shut Docker down overnight. Before, the only sign was a quietly different menu bar dot.</li>
             <li>The "Generating memories from your sessions" banner no longer covers the navigation while a long import runs. It moved to the bottom edge, out of the way.</li>
             <li>A rare overnight failure in the dream cycle (the model spending its whole answer budget thinking and returning no text) now recovers by itself instead of erroring that night's tidy-up.</li>
+            <li>An 0.2.80 build existed for about half an hour and never reached anyone; its version of the rename safety net could stop a kit from starting. 0.2.81 is that release, fixed, and it repairs any install that launched 0.2.80 automatically.</li>
           </ul>
           <p style="margin-top: 8px">Updating keeps everything your kit has learned, nothing is reset.</p>
         </div>
