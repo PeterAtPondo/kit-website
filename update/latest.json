@@ -1,11 +1,11 @@
 {
-  "version": "0.2.88",
-  "url": "https://kit-project.com/downloads/Kit-0.2.88-macOS.dmg",
+  "version": "0.2.89",
+  "url": "https://kit-project.com/downloads/Kit-0.2.89-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Kit now relaunches reliably after a Mac restart.",
-    "Reflections stay focused on your own work and setup.",
-    "Removed unused components; privacy and stability hardening under the hood."
+    "Fixes a Not Found error when opening Settings.",
+    "Kit relaunches reliably after a Mac restart.",
+    "Reflections stay focused on your own work; privacy and stability hardening."
   ]
 }
