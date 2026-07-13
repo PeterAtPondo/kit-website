@@ -1,6 +1,11 @@
 {
-  "version": "0.2.86",
-  "url": "https://kit-project.com/downloads/Kit-0.2.86-macOS.dmg",
+  "version": "0.2.88",
+  "url": "https://kit-project.com/downloads/Kit-0.2.88-macOS.dmg",
   "page": "https://kit-project.com/install/",
-  "min_macos": "13.0"
+  "min_macos": "13.0",
+  "notes": [
+    "Kit now relaunches reliably after a Mac restart.",
+    "Reflections stay focused on your own work and setup.",
+    "Removed unused components; privacy and stability hardening under the hood."
+  ]
 }
