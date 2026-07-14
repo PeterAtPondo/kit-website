@@ -1,11 +1,11 @@
 {
-  "version": "0.2.89",
-  "url": "https://kit-project.com/downloads/Kit-0.2.89-macOS.dmg",
+  "version": "0.2.93",
+  "url": "https://kit-project.com/downloads/Kit-0.2.93-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Fixes a Not Found error when opening Settings.",
-    "Kit relaunches reliably after a Mac restart.",
-    "Reflections stay focused on your own work; privacy and stability hardening."
+    "Kit now lives in time: it knows what part of your day it is, how long it has been since you last spoke, and how old it is.",
+    "Every so often, Kit brings something back on its own: a thread from your work worth returning to.",
+    "Sharper recall: Kit follows the links between related memories, so more of what connects surfaces when it remembers."
   ]
 }
