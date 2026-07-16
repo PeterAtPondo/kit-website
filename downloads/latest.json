@@ -1,10 +1,10 @@
 {
-  "version": "0.2.99",
-  "url": "https://kit-project.com/downloads/Kit-0.2.99-macOS.dmg",
+  "version": "0.2.100",
+  "url": "https://kit-project.com/downloads/Kit-0.2.100-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "The Timeline tab is back in the compact window. It was wrongly hidden on personal kits; your kit's memory-activity and sleep view was never meant to depend on the orchestration features being on.",
-    "Emails your kit sends now retry automatically when the mail server asks it to try again later, instead of giving up."
+    "Fixed the 'running and running' loop: while your kit was generating memories from imported sessions, its crash-recovery could mistake that work for a crashed sleep cycle and repeatedly start full dream cycles on top of it. Memory generation and sleep now stay cleanly separate.",
+    "This also stops those phantom dream cycles from quietly spending your AI credits."
   ]
 }
