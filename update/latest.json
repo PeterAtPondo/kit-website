@@ -1,11 +1,12 @@
 {
-  "version": "0.2.97",
-  "url": "https://kit-project.com/downloads/Kit-0.2.97-macOS.dmg",
+  "version": "0.2.98",
+  "url": "https://kit-project.com/downloads/Kit-0.2.98-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "If you have named your kit, that name now shows everywhere it refers to itself: your editor's tool hints, the app's menus and notifications, and every panel, tab, and description inside the app. No more \"Kit\" where your name should be.",
-    "Renaming your kit no longer leaves the old name behind as a broken connection in your coding tools; it updates cleanly wherever you have added it.",
-    "When your kit explores or improves on its own, it now points that energy at your work and projects, rather than at its own inner workings."
+    "Memory generation is much faster and no longer re-processes internal machinery sessions, so big backlogs shrink dramatically.",
+    "A stalled memory-generation run now cools down instead of silently restarting itself.",
+    "An update can no longer trigger a full re-import of an already-established Kit.",
+    "Night-time association forming works again and finishes within its budget."
   ]
 }
