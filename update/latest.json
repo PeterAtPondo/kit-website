@@ -1,10 +1,11 @@
 {
-  "version": "0.2.100",
-  "url": "https://kit-project.com/downloads/Kit-0.2.100-macOS.dmg",
+  "version": "0.2.101",
+  "url": "https://kit-project.com/downloads/Kit-0.2.101-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Fixed the 'running and running' loop: while your kit was generating memories from imported sessions, its crash-recovery could mistake that work for a crashed sleep cycle and repeatedly start full dream cycles on top of it. Memory generation and sleep now stay cleanly separate.",
-    "This also stops those phantom dream cycles from quietly spending your AI credits."
+    "Ask your kit anything, right from the first tab: the compact window and the menu bar now lead with a full-window chat, named after your kit.",
+    "Asking a question over the memories view now lights up the memories the answer drew on.",
+    "The full web interface is set aside while it is being finished; the app's own views are the supported surface for now."
   ]
 }
