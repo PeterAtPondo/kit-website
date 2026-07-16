@@ -256,6 +256,20 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.100</span>
+          <span class="release__date">July 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>Fixed the "running and running" loop: while your kit was generating memories from imported sessions, its crash-recovery could mistake that work for a crashed sleep cycle and repeatedly start full dream cycles on top of it. Memory generation and sleep now stay cleanly separate, and those phantom cycles no longer spend your AI credits.</li>
+          </ul>
+          <p style="margin-top: 8px">Updating keeps everything your kit has learned, nothing is reset.</p>
+        </div>
+      </article>
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.99</span>
           <span class="release__date">July 2026</span>
         </div>
