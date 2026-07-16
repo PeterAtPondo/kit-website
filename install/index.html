@@ -256,6 +256,23 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.98</span>
+          <span class="release__date">July 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>Memory generation after an update is much faster, and no longer re-processes your kit's own internal machinery sessions, so a large backlog shrinks dramatically instead of grinding for hours.</li>
+            <li>A stalled memory-generation run now cools down and waits instead of silently restarting itself in a loop.</li>
+            <li>An update can no longer trigger a full re-import of an already-established kit.</li>
+            <li>Night-time association forming (part of your kit's sleep cycle) works again and finishes within its budget.</li>
+          </ul>
+          <p style="margin-top: 8px">Updating keeps everything your kit has learned, nothing is reset.</p>
+        </div>
+      </article>
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.97</span>
           <span class="release__date">July 2026</span>
         </div>
