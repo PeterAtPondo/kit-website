@@ -1,10 +1,12 @@
 {
-  "version": "0.2.109",
-  "url": "https://kit-project.com/downloads/Kit-0.2.109-macOS.dmg",
+  "version": "0.2.110",
+  "url": "https://kit-project.com/downloads/Kit-0.2.110-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Fixed: updating Kit no longer silently disarms its start-at-login entry, so Kit truly comes back after a restart.",
-    "Kit now verifies on every update that its login item is genuinely registered, and repairs it if macOS lost it."
+    "Your Kit's wake card grew up: a fourteen-day sleep strip (memories per day, a dot for each dream cycle), a one-line summary of the last session with a Resume button beside it, and chips that choose where new memories are stored.",
+    "Pick a knowledge area (or leave it on General) and optionally a project on the wake card; your Kit files everything it saves there for the rest of the session.",
+    "The recall card now leads with what was actually found: \"recalled that <memory> and 6 others\" instead of a bare count.",
+    "Resume now always points at the real last session, and every card speaks your Kit's own name, including when it is offline."
   ]
 }
