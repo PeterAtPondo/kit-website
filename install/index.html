@@ -256,6 +256,21 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.106</span>
+          <span class="release__date">July 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>Interrupted history processing now clears itself promptly after an app update or restart, even when the replacement worker happens to reuse the old process number.</li>
+            <li>Model calls used while forming memories now have a firm time limit, and progress stays consistent across multi-worker kits, so a dead request cannot leave sleep looking alive indefinitely.</li>
+          </ul>
+          <p style="margin-top: 8px">Updating keeps everything your kit has learned, nothing is reset.</p>
+        </div>
+      </article>
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.105</span>
           <span class="release__date">July 2026</span>
         </div>
