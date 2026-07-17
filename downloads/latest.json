@@ -1,11 +1,12 @@
 {
-  "version": "0.2.101",
-  "url": "https://kit-project.com/downloads/Kit-0.2.101-macOS.dmg",
+  "version": "0.2.102",
+  "url": "https://kit-project.com/downloads/Kit-0.2.102-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Ask your kit anything, right from the first tab: the compact window and the menu bar now lead with a full-window chat, named after your kit.",
-    "Asking a question over the memories view now lights up the memories the answer drew on.",
-    "The full web interface is set aside while it is being finished; the app's own views are the supported surface for now."
+    "Your kit keeps its inner workings to itself now: notes about its own memory system no longer appear in your views, your search, or your postcards, and it answers briefly by default.",
+    "Everything your kit says uses your name and its own, everywhere.",
+    "The answer box over the memories view can be collapsed, and the welcome message on a young kit can be dismissed, so the field is always yours to see.",
+    "The Ask tab is tucked away for now; asking from the memories view is the front door."
   ]
 }
