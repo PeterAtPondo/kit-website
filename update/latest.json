@@ -1,11 +1,10 @@
 {
-  "version": "0.2.107",
-  "url": "https://kit-project.com/downloads/Kit-0.2.107-macOS.dmg",
+  "version": "0.2.109",
+  "url": "https://kit-project.com/downloads/Kit-0.2.109-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Kit now comes back on its own after a restart: if the engine is down when the app starts, Kit starts it quietly in the background, no clicks needed.",
-    "Stopping Kit by hand is respected: a Kit you stopped stays stopped until you press Start.",
-    "If macOS is holding Kit's start-at-login permission, Kit now tells you and offers the one switch that fixes it."
+    "Fixed: updating Kit no longer silently disarms its start-at-login entry, so Kit truly comes back after a restart.",
+    "Kit now verifies on every update that its login item is genuinely registered, and repairs it if macOS lost it."
   ]
 }
