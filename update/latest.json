@@ -1,11 +1,11 @@
 {
-  "version": "0.2.106",
-  "url": "https://kit-project.com/downloads/Kit-0.2.106-macOS.dmg",
+  "version": "0.2.107",
+  "url": "https://kit-project.com/downloads/Kit-0.2.107-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Interrupted import sleeps now clear promptly after an app or container restart, even when the replacement process reuses the old worker number.",
-    "Remote model calls used by history processing now have a bounded timeout, so a dead request cannot keep a kit in a live-looking sleep indefinitely.",
-    "Cross-worker progress totals are persisted immediately at batch boundaries for steadier status on multi-worker kits."
+    "Kit now comes back on its own after a restart: if the engine is down when the app starts, Kit starts it quietly in the background, no clicks needed.",
+    "Stopping Kit by hand is respected: a Kit you stopped stays stopped until you press Start.",
+    "If macOS is holding Kit's start-at-login permission, Kit now tells you and offers the one switch that fixes it."
   ]
 }
