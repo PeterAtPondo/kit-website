@@ -1,9 +1,11 @@
 {
-  "version": "0.2.104",
-  "url": "https://kit-project.com/downloads/Kit-0.2.104-macOS.dmg",
+  "version": "0.2.105",
+  "url": "https://kit-project.com/downloads/Kit-0.2.105-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "The filter chips, connection lists, and working-memory halos now show only your own content, completing the cleanup from the previous update."
+    "Dreaming and background history processing now report their true state, recover cleanly when a worker stops, and can no longer show an impossible since-sleep count.",
+    "Import processing is now single-flight across API workers and only links memories created by that import, preventing duplicate jobs and whole-brain graph scans.",
+    "Failed imports stop immediately and surface an honest warning instead of continuing into an expensive sleep cycle."
   ]
 }
