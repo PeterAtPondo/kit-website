@@ -1,10 +1,9 @@
 {
-  "version": "0.2.103",
-  "url": "https://kit-project.com/downloads/Kit-0.2.103-macOS.dmg",
+  "version": "0.2.104",
+  "url": "https://kit-project.com/downloads/Kit-0.2.104-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "The memories views now show only your own content: your kit's built-in starting notes no longer appear in the counts, the field, the sunburst, or the group drill-downs, and clicking around can no longer hit a 'memory not found' dead end.",
-    "Category counts always match what the list actually shows."
+    "The filter chips, connection lists, and working-memory halos now show only your own content, completing the cleanup from the previous update."
   ]
 }
