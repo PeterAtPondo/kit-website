@@ -1,12 +1,13 @@
 {
-  "version": "0.2.110",
-  "url": "https://kit-project.com/downloads/Kit-0.2.110-macOS.dmg",
+  "version": "0.2.111",
+  "url": "https://kit-project.com/downloads/Kit-0.2.111-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Your Kit's wake card grew up: a fourteen-day sleep strip (memories per day, a dot for each dream cycle), a one-line summary of the last session with a Resume button beside it, and chips that choose where new memories are stored.",
-    "Pick a knowledge area (or leave it on General) and optionally a project on the wake card; your Kit files everything it saves there for the rest of the session.",
-    "The recall card now leads with what was actually found: \"recalled that <memory> and 6 others\" instead of a bare count.",
-    "Resume now always points at the real last session, and every card speaks your Kit's own name, including when it is offline."
+    "Dreams are sturdier: consolidation can no longer choke when many similar memories chain into one giant cluster; oversized groups are now merged in safe chunks, so no more lost nights with a warning banner.",
+    "Soul curation arrives: when your kit's always-loaded memory tier outgrows its budget, it proposes a small, reversible cleanup batch as a single card you approve with one tap. Nothing moves without you, and identity memories are never touched.",
+    "Resume on the wake card now always points at the genuine last session, everywhere.",
+    "Sharper waking on coding surfaces: one patient message while a new kit finishes forming (instead of repeated waiting notes), clearer answers when a question could mean the open project or stored knowledge, and read-only keys say so upfront instead of failing quietly.",
+    "Housekeeping: client error messages are no longer stored as chat history, and the app's own release checks got stricter about API routes their tools depend on."
   ]
 }
