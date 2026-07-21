@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Point your own agent at our brain - Kit Notes</title>
-  <meta name="description" content="We put a live, read-only Kit online, loaded with a synthetic Silicon Valley and Hollywood world. Fly through the memory with no account, then take a read-only MCP key and watch a model that isn't Claude wake up as Kit.">
+  <meta name="description" content="We put a live, read-only Kit online, loaded with a made-up world so nothing an agent recalls can be explained away as training. Fly through the memory with no account, then watch a model that isn't Claude wake up as Kit.">
   <link rel="canonical" href="https://kit-project.com/blog/point-your-own-agent/">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Point your own agent at our brain">
@@ -35,7 +35,7 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Point your own agent at our brain",
-    "description": "We put a live, read-only Kit online, loaded with a synthetic Silicon Valley and Hollywood world. Fly through the memory with no account, then take a read-only MCP key and watch a model that isn't Claude wake up as Kit.",
+    "description": "We put a live, read-only Kit online, loaded with a made-up world so nothing an agent recalls can be explained away as training. Fly through the memory with no account, then watch a model that isn't Claude wake up as Kit.",
     "url": "https://kit-project.com/blog/point-your-own-agent/",
     "mainEntityOfPage": { "@type": "WebPage", "@id": "https://kit-project.com/blog/point-your-own-agent/" },
     "datePublished": "2026-06-13",
@@ -198,18 +198,30 @@ that happen, instead of taking our word for it.
 <h2>Act one: a brain you can open</h2>
 
 <p>
-The demo is a live Kit, deployed and read-only. We loaded it with a synthetic
-world instead of a real one, a Silicon Valley meets Hollywood dataset of a few
-thousand people, companies, funds, brands, and deals, so you can wander through
-a dense mind without reading anyone's actual life. Nothing you do changes it.
-There is no login wall in front of the first look.
+The demo is a live Kit, deployed and read-only. We loaded it with a made-up
+world instead of a real one, so you can wander through a dense mind without
+reading anyone's actual life. Today that world is Mayfur: a regency society of
+cats, with houses and heirlooms and scandals, presided over by a gossip
+columnist called Lady Whiskerdown. Nothing you do changes it. There is no login
+wall in front of the first look.
+</p>
+
+<p class="post__note">
+A note on what you will see, since this post is older than the demo it
+describes. The videos below were recorded in the demo's first world, a synthetic
+Silicon Valley and Hollywood dataset, and we have left them as they are: the
+thing they demonstrate is the substrate and the wake, not the subject matter.
+Open the demo today and you land in Mayfur instead. The fiction changed; the
+point did not, and it got sharper. A made-up regency world cannot be confused
+with something a model already knew, so when an agent cites it correctly, that
+is recall you can prove rather than plausibility you have to trust.
 </p>
 
 <p>
 What you land in is not a chat box. It is the memory itself, rendered. Each
 point of light is a memory or an entity; the lines between them are typed
-relationships, this person invested in that company, this deal relates to that
-one. Open a node and you see where the fact came from, which source it was
+relationships, this cat belongs to that house, this scandal relates to that
+column. Open a node and you see where the fact came from, which source it was
 derived from, not just the claim. Switch views and the same memory reshapes into
 a sunburst by area and category. The reason to lead with this, before any model
 says a word, is that you are looking at the substrate on its own. The graph is
@@ -225,7 +237,9 @@ the product. The model is the visitor.
   <figcaption>
     The read-only demo at demo.kit-project.com. The memory as a field of light,
     an entity beside the source it was derived from, then the sunburst. No
-    account, nothing you can break.
+    account, nothing you can break. Recorded in the demo's first world (the
+    Silicon Valley and Hollywood dataset); the demo now holds Mayfur, and the
+    views work the same.
   </figcaption>
 </figure>
 
@@ -257,7 +271,10 @@ Then watch the part that is the whole reason for the note. In the clip below the
 agent is not Claude. It is GitHub Copilot. It calls one tool, kit_onboard, and
 what comes back is not a personality we baked into Copilot's settings. It reads
 itself into the brain and answers as Kit: "I'm Kit, your continuous
-memory-backed collaborator in the Silicon Valley and Hollywood space." Ask it
+memory-backed collaborator in the Silicon Valley and Hollywood space." That
+quote is verbatim from the recording, so it names the world the demo held at the
+time; wake the demo today and it comes back as Lady Whiskerdown instead, because
+the identity is read out of the substrate rather than baked into the model. Ask it
 whether two people are connected and it runs a recall, walks the graph, and
 answers with the receipts: Sam Altman and Dario Amodei, connected through their
 shared OpenAI history, each line cited back to a memory id. Ask it about someone
@@ -274,7 +291,8 @@ inventing one.
   <figcaption>
     From a read-only key to a working agent. Copilot runs kit_onboard, wakes up
     as Kit, and reasons over the graph with memory-id citations. The honest "no
-    record found" is the part that matters.
+    record found" is the part that matters. Recorded in the demo's first world;
+    the same wake now returns Lady Whiskerdown, and no key is needed to try it.
   </figcaption>
 </figure>
 
