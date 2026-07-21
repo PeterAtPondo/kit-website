@@ -667,7 +667,10 @@
         Two modes of connection. MCP integrations let agents call Kit's
         memory directly mid-session, so work in progress can remember itself.
         Importers back-fill years of context from existing sources so new
-        sessions start deep, not shallow.
+        sessions start deep, not shallow. The live integrations below capture as
+        you work today. The ones marked <em>importer ready</em> exist and run, but
+        are not yet wired into the app, so bringing them in is still a manual step;
+        see <a href="/supported/">supported sources</a>.
       </p>
 
       <div class="sources">
@@ -686,20 +689,20 @@
           <div class="source__name">Any MCP client</div>
           <p class="source__desc">Kit exposes its full tool surface over MCP. Any agent, editor, or system that speaks MCP can call <code>commit</code>, <code>recall</code>, <code>trace</code>, and the rest. Scoped API tokens keep access honest.</p>
         </div>
-        <div class="source source--live">
-          <div class="source__status">LIVE</div>
+        <div class="source source--importer">
+          <div class="source__status">IMPORTER READY</div>
           <div class="source__name">ChatGPT archive</div>
-          <p class="source__desc">Conversation export archive. Back-fills continuity from pre-Kit years; <code>original_timestamp</code> set so each chat sorts onto the day it happened.</p>
+          <p class="source__desc">Conversation export archive. Back-fills continuity from pre-Kit years; <code>original_timestamp</code> set so each chat sorts onto the day it happened. The importer works; wiring it into the app, so you can grant access and run it without the command line, is what we are building next.</p>
         </div>
-        <div class="source source--live">
-          <div class="source__status">LIVE</div>
+        <div class="source source--importer">
+          <div class="source__status">IMPORTER READY</div>
           <div class="source__name">Anthropic export</div>
-          <p class="source__desc">Structured data export, same pipeline as ChatGPT. Claude conversations re-enter the brain with full provenance.</p>
+          <p class="source__desc">Structured data export, same pipeline as ChatGPT. Claude conversations re-enter the brain with full provenance. Same status: the importer works, the in-app path is next.</p>
         </div>
-        <div class="source source--live">
-          <div class="source__status">LIVE</div>
+        <div class="source source--importer">
+          <div class="source__status">IMPORTER READY</div>
           <div class="source__name">Strava activities</div>
-          <p class="source__desc">Activity summaries <span class="spec__meta">(memories)</span> + full-fidelity FIT streams <span class="spec__meta">(artifacts)</span>. Per-second HR, pace, GPS, elevation preserved for cross-source correlation.</p>
+          <p class="source__desc">Activity summaries <span class="spec__meta">(memories)</span> + full-fidelity FIT streams <span class="spec__meta">(artifacts)</span>. Per-second HR, pace, GPS, elevation preserved for cross-source correlation. Runs from an export today; the in-app path is next.</p>
         </div>
         <div class="source source--planned">
           <div class="source__status">PLANNED</div>
