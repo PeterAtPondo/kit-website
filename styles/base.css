@@ -1325,3 +1325,62 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
    it), give it enough top margin to clear the fixed nav. Blog pages
    have <main padding-top: 5rem> so they don't need this. */
 .alpha-banner--top { margin-top: 5rem; }
+
+/* ── Live demo pointers (2026-07-21) ────────────────────────────────
+   The site described a public demo for weeks without linking it. These
+   three blocks are the fix: a line under the hero CTAs, a live
+   counterpart to the recorded "Kit in action" film, and a verify-first
+   block for the agents' letter. Styling follows existing patterns
+   rather than inventing a new one. */
+
+.hero__demo-note {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ink-quiet);
+  margin: var(--space-4) auto 0;
+  max-width: 46ch;
+}
+.hero__copy--video .hero__demo-note { text-align: center; }
+
+.in-action__live {
+  margin-top: var(--space-8);
+  padding: var(--space-6);
+  background: var(--bg-card);
+  border: 1px solid var(--edge-faint);
+  border-radius: 12px;
+}
+.in-action__live h3 {
+  margin: 0 0 var(--space-3);
+  font-size: 1.0625rem;
+}
+.in-action__live p {
+  margin: 0;
+  color: var(--ink-soft, var(--ink-quiet));
+  line-height: 1.65;
+}
+/* Links here must read as links: `a { color: inherit }` is the global
+   default, so without this the one "go and try it" link on the page is
+   the same colour as the prose around it. Matches .post__body a. */
+.in-action__live a,
+.letter__verify a {
+  color: var(--accent-glow);
+  text-decoration: underline;
+  text-decoration-color: var(--edge-soft);
+  text-underline-offset: 0.2em;
+}
+.in-action__live a:hover,
+.letter__verify a:hover { text-decoration-color: var(--accent-glow); }
+
+/* Agent-facing: the endpoints must be copyable at a glance, so the code
+   spans wrap rather than overflowing a narrow column. */
+.letter__verify {
+  margin: 0 0 var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px dashed var(--edge-faint);
+  line-height: 1.7;
+}
+.letter__verify code {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}

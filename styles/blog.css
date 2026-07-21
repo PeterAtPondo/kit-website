@@ -566,3 +566,21 @@ main { padding-top: 5rem; }
 }
 .post__footer a { color: var(--accent-glow); text-decoration: none; }
 .post__footer a:hover { text-decoration: underline; }
+
+/* ── Editor's note (2026-07-21) ──────────────────────────────────────
+   The notes are a dated build log, so when a claim is overtaken we
+   annotate rather than rewrite: the original sentence stays, and a
+   marked aside says what changed and when. Preserves the record while
+   stopping a reader from acting on something no longer true. */
+.post__editor-note {
+  margin: var(--space-5, 20px) 0;
+  padding: 14px 18px;
+  border-left: 2px solid var(--accent-warm, #d8a657);
+  background: rgba(216, 166, 87, 0.06);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-quiet, #8b95af);
+}
+.post__editor-note strong { color: var(--accent-warm, #d8a657); font-weight: 600; }
+.post__editor-note a { color: var(--accent-glow); text-decoration: underline; text-underline-offset: 0.2em; }
