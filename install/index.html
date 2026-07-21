@@ -256,6 +256,26 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.115</span>
+          <span class="release__date">July 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Improvements</h4>
+          <ul>
+            <li>Your kit's own tools are all here now. A personal install used to expose 10 of them, the lean set built for strangers reading somebody else's kit; it now serves the full 38, so the kit you own answers on your surfaces the way it does everywhere else.</li>
+            <li>Turning a surface on now tells you what to do next in that tool. Every editor reads its MCP config at startup, so it needs a reload before the tools appear, and VS Code additionally keeps them behind Copilot Chat's agent mode picker. The row says so instead of flashing a checkmark and leaving you guessing.</li>
+          </ul>
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>Editors that hold a live connection open (VS Code, Cursor, Claude Code) no longer trip the MCP server: it now handles a call and an open stream at the same time, instead of refusing everything after the first one.</li>
+            <li>Known, and not your setup: the wake and recall cards still show as plain text in Claude Code and Cursor, which are waiting on their own MCP Apps rendering. The tools work everywhere; Claude Desktop and VS Code render the cards today.</li>
+          </ul>
+          <p style="margin-top: 8px">Updating keeps everything your kit has learned, nothing is reset.</p>
+        </div>
+      </article>
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.111</span>
           <span class="release__date">July 2026</span>
         </div>
