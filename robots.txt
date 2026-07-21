@@ -40,3 +40,6 @@ User-agent: CCBot
 Allow: /
 
 Sitemap: https://kit-project.com/sitemap.xml
+
+# A live, keyless kit for agents to read: map at
+# https://demo.kit-project.com/llms.txt

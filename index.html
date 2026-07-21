@@ -664,58 +664,67 @@
 
       <h3 class="sub">Kit connects to</h3>
       <p>
-        Two modes of connection. MCP integrations let agents call Kit's
-        memory directly mid-session, so work in progress can remember itself.
+        Two modes of connection. Surfaces talk to Kit live over MCP: the agent
+        calls Kit's tools mid-session and the session is captured as you work.
         Importers back-fill years of context from existing sources so new
-        sessions start deep, not shallow. The live integrations below capture as
-        you work today. The ones marked <em>importer ready</em> exist and run, but
-        are not yet wired into the app, so bringing them in is still a manual step;
-        see <a href="/supported/">supported sources</a>.
+        sessions start deep, not shallow.
+      </p>
+
+      <h4 class="sub sub--minor">Surfaces, live today</h4>
+      <ul class="surface-strip" aria-label="Surfaces Kit connects to today">
+        <li class="surface-chip"><img src="assets/icons/claude.svg" alt="" width="20" height="20" loading="lazy"><span>Claude Code</span></li>
+        <li class="surface-chip"><span class="surface-chip__mono" aria-hidden="true">CX</span><span>Codex</span></li>
+        <li class="surface-chip"><img src="assets/icons/cursor.svg" alt="" width="20" height="20" loading="lazy"><span>Cursor</span></li>
+        <li class="surface-chip"><span class="surface-chip__mono" aria-hidden="true">VS</span><span>VS Code</span></li>
+        <li class="surface-chip"><img src="assets/icons/googlegemini.svg" alt="" width="20" height="20" loading="lazy"><span>Gemini CLI</span></li>
+        <li class="surface-chip"><img src="assets/icons/qwen.svg" alt="" width="20" height="20" loading="lazy"><span>Qwen Code</span></li>
+        <li class="surface-chip"><img src="assets/icons/ollama.svg" alt="" width="20" height="20" loading="lazy"><span>Ollama Code</span></li>
+        <li class="surface-chip"><span class="surface-chip__mono" aria-hidden="true">A</span><span>AnythingLLM</span></li>
+        <li class="surface-chip"><span class="surface-chip__mono" aria-hidden="true">CW</span><span>CodeWhale</span></li>
+        <li class="surface-chip"><span class="surface-chip__mono" aria-hidden="true">AG</span><span>Antigravity</span></li>
+        <li class="surface-chip surface-chip--soon"><img src="assets/icons/claude.svg" alt="" width="20" height="20" loading="lazy"><span>Claude desktop</span><span class="surface-chip__soon">in development</span></li>
+      </ul>
+      <p class="surface-strip__note">
+        One toggle per surface in the app; Kit writes the MCP config and the
+        surface carries the full tool set. The ones marked <em>importer
+        ready</em> below exist and run, but are not yet wired into the app, so
+        bringing them in is still a manual step. Full detail:
+        <a href="/supported/">supported sources</a>.
       </p>
 
       <div class="sources">
         <div class="source source--live">
-          <div class="source__status">LIVE</div>
-          <div class="source__name">Claude Code <span class="spec__meta">(MCP)</span></div>
-          <p class="source__desc">Live MCP integration. Claude Code sessions call Kit's tools directly (<code>commit</code>, <code>recall</code>, <code>trace</code>, and more). JSONL transcripts from <code>~/.claude/projects</code> also back-fill; session id, commit sha, and file paths preserved.</p>
-        </div>
-        <div class="source source--live">
-          <div class="source__status">LIVE</div>
-          <div class="source__name">Codex <span class="spec__meta">(MCP)</span></div>
-          <p class="source__desc">Live MCP integration. OpenAI Codex sessions share the same Kit tool surface as Claude Code, with automatic onboarding so sessions start warm. Handoffs between substrates flow through kit-brain as shared state.</p>
-        </div>
-        <div class="source source--live">
-          <div class="source__status">LIVE</div>
+          <div class="source__status">Live</div>
           <div class="source__name">Any MCP client</div>
           <p class="source__desc">Kit exposes its full tool surface over MCP. Any agent, editor, or system that speaks MCP can call <code>commit</code>, <code>recall</code>, <code>trace</code>, and the rest. Scoped API tokens keep access honest.</p>
         </div>
         <div class="source source--importer">
-          <div class="source__status">IMPORTER READY</div>
+          <div class="source__status">Importer ready</div>
           <div class="source__name">ChatGPT archive</div>
           <p class="source__desc">Conversation export archive. Back-fills continuity from pre-Kit years; <code>original_timestamp</code> set so each chat sorts onto the day it happened. The importer works; wiring it into the app, so you can grant access and run it without the command line, is what we are building next.</p>
         </div>
         <div class="source source--importer">
-          <div class="source__status">IMPORTER READY</div>
+          <div class="source__status">Importer ready</div>
           <div class="source__name">Anthropic export</div>
           <p class="source__desc">Structured data export, same pipeline as ChatGPT. Claude conversations re-enter the brain with full provenance. Same status: the importer works, the in-app path is next.</p>
         </div>
         <div class="source source--importer">
-          <div class="source__status">IMPORTER READY</div>
+          <div class="source__status">Importer ready</div>
           <div class="source__name">Strava activities</div>
           <p class="source__desc">Activity summaries <span class="spec__meta">(memories)</span> + full-fidelity FIT streams <span class="spec__meta">(artifacts)</span>. Per-second HR, pace, GPS, elevation preserved for cross-source correlation. Runs from an export today; the in-app path is next.</p>
         </div>
         <div class="source source--planned">
-          <div class="source__status">PLANNED</div>
+          <div class="source__status">Planned</div>
           <div class="source__name">Apple Health</div>
           <p class="source__desc">Sleep, HR variability, workouts. Cross-correlates with Strava and chat transcripts for body/mood signals.</p>
         </div>
         <div class="source source--planned">
-          <div class="source__status">PLANNED</div>
+          <div class="source__status">Planned</div>
           <div class="source__name">Mail &amp; Calendar</div>
           <p class="source__desc">Bulk import of historical threads and events, plus ongoing sync. Past decisions surface as dated clusters by topic; new messages and events flow through the ingest pipeline in near-real-time, draft-queued for review.</p>
         </div>
         <div class="source source--extend">
-          <div class="source__status">EXTEND</div>
+          <div class="source__status">Extend</div>
           <div class="source__name">Write your own</div>
           <p class="source__desc">The ingest endpoint is HTTP. <code>POST /ingest/session</code> with any transcript, structured event, or custom record; the extractor handles speaker schemas, dedup cleans the rest. New source in an afternoon.</p>
         </div>

@@ -1393,3 +1393,64 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   font-size: 0.8125rem;
   overflow-wrap: anywhere;
 }
+
+/* ── Surface strip (2026-07-21) ──────────────────────────────────────
+   The full list of surfaces Kit connects to, as calm logo chips. Brand
+   marks where a clean official SVG exists (tinted to ink-quiet so the
+   grid reads as one system); a matching monogram tile where it does not
+   (Codex, VS Code, AnythingLLM, CodeWhale, Antigravity), which is
+   deliberate rather than a missing asset. */
+.sub--minor {
+  font-size: 0.9375rem;
+  color: var(--ink-soft, var(--ink));
+  margin: var(--space-7, 32px) 0 var(--space-4, 16px);
+}
+.surface-strip {
+  list-style: none;
+  margin: 0 0 var(--space-4, 16px);
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.surface-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--edge-faint);
+  border-radius: 10px;
+  font-size: 0.875rem;
+  color: var(--ink-soft, var(--ink));
+  line-height: 1;
+}
+.surface-chip img { display: block; opacity: 0.85; }
+.surface-chip__mono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--ink-quiet);
+  border-radius: 5px;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.02em;
+  color: var(--ink-quiet);
+  opacity: 0.9;
+}
+.surface-chip--soon { border-style: dashed; opacity: 0.65; }
+.surface-chip__soon {
+  font-size: 0.6875rem;
+  color: var(--ink-quiet);
+  border-left: 1px solid var(--edge-faint);
+  padding-left: 9px;
+}
+.surface-strip__note {
+  font-size: 0.875rem;
+  color: var(--ink-quiet);
+  line-height: 1.6;
+  margin: 0 0 var(--space-6, 24px);
+  max-width: 62ch;
+}
