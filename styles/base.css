@@ -1534,3 +1534,21 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
     mask-image: none;
   }
 }
+
+/* ── Install CTA (2026-07-21) ────────────────────────────────────────
+   The beta ask used to be a "get in touch" buried mid-sentence that
+   preselected nothing, so a reader arriving to request access had to
+   find the form and classify themselves. Now it is a real pair of
+   buttons, and the primary one preselects "I'd like beta access". */
+.install__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: var(--space-5, 20px) 0 var(--space-4, 16px);
+}
+.install__cta-note {
+  font-size: 0.875rem;
+  color: var(--ink-quiet);
+  max-width: 56ch;
+  margin: 0;
+}

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kit — persistent memory for AI agents</title>
-  <meta name="description" content="Persistent memory substrate for AI agents. MCP-native: Claude Code, Codex, and any MCP client can persist, recall, and coordinate across sessions. Typed memories, knowledge graph, dream-cycle consolidation. Federating next.">
+  <meta name="description" content="Persistent memory substrate for AI agents. MCP-native: Claude Code, Codex, and any MCP client can persist, recall, and coordinate across sessions. Typed memories, knowledge graph, dream-cycle consolidation. Federation across sovereign kits works today.">
   <meta name="author" content="Peter Koen">
   <meta name="keywords" content="AI agent memory, MCP, Model Context Protocol, persistent memory, Claude Code, Codex, knowledge graph, agent substrate, agent federation, kit-loom, agent infrastructure">
 
@@ -14,13 +14,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kit-project.com/">
   <meta property="og:title" content="Kit — persistent memory for AI agents">
-  <meta property="og:description" content="Persistent memory substrate for AI agents. MCP-native, so Claude Code, Codex, and any MCP client can plug in. Typed memories, a knowledge graph, a nightly consolidation cycle. Federating across sovereign brains next.">
+  <meta property="og:description" content="Persistent memory substrate for AI agents. MCP-native, so Claude Code, Codex, and any MCP client can plug in. Typed memories, a knowledge graph, a nightly consolidation cycle. Federation across sovereign brains works today.">
   <meta property="og:image" content="https://kit-project.com/assets/img/background.png">
   <meta property="og:image:alt" content="Kit's knowledge graph — glowing node clusters connected by curved edges on a dark navy backdrop.">
   <meta property="og:site_name" content="Kit">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Kit — persistent memory for AI agents">
-  <meta name="twitter:description" content="MCP-native memory substrate for AI agents. Typed memories, a knowledge graph, a nightly consolidation cycle. Runs on your machine. Federating across sovereign brains next.">
+  <meta name="twitter:description" content="MCP-native memory substrate for AI agents. Typed memories, a knowledge graph, a nightly consolidation cycle. Runs on your machine. Federation across sovereign brains works today.">
   <meta name="twitter:image" content="https://kit-project.com/assets/img/background.png">
 
   <!-- Theme colour for mobile Safari / PWA-style surfaces. Matches --bg-deep. -->
@@ -46,7 +46,7 @@
         "@id": "https://kit-project.com/#website",
         "url": "https://kit-project.com/",
         "name": "Kit",
-        "description": "A persistent memory substrate for AI agents. MCP-native, model-agnostic, federating next.",
+        "description": "A persistent memory substrate for AI agents. MCP-native, model-agnostic, federating across sovereign kits today.",
         "inLanguage": "en",
         "publisher": { "@id": "https://kit-project.com/#peter" }
       },
@@ -72,7 +72,7 @@
         "@id": "https://kit-project.com/#app",
         "name": "Kit",
         "alternateName": "Kit — persistent memory for AI agents",
-        "description": "A persistent memory substrate for AI agents. MCP-native, so Claude Code, Codex, and any MCP-capable client can persist, recall, and coordinate across sessions. Typed memories, a knowledge graph of edges, a nightly consolidation cycle. Runs on your machine. Federating across sovereign brains next.",
+        "description": "A persistent memory substrate for AI agents. MCP-native, so Claude Code, Codex, and any MCP-capable client can persist, recall, and coordinate across sessions. Typed memories, a knowledge graph of edges, a nightly consolidation cycle. Runs on your machine. Federation across sovereign brains works today.",
         "applicationCategory": "DeveloperApplication",
         "applicationSubCategory": "AI Agent Infrastructure",
         "operatingSystem": "macOS, Linux (Docker + PostgreSQL)",
@@ -90,8 +90,8 @@
           "FastAPI async HTTP API (agent-agnostic)",
           "Session hooks (SessionStart, PreCompact, SessionEnd) for auto-capture and handoff",
           "kit-loom dispatch daemon: brain writes wake the right agent on the right substrate; multi-round work tracked as first-class collaborations",
-          "In development: federation-time auth (a brain URL plus scoped bearer token injected into the spawn environment, so a kit on one machine can wake an agent on another)",
-          "Multi-brain federation: search and recall across peer kits works today as a POC; signed edges and typed feeds are next",
+          "Federation-time auth: a brain URL plus a scoped bearer key already lets an agent on another machine work against your kit; automatic injection at spawn is what remains",
+          "Multi-brain federation: search and recall across peer kits works today over scoped read-only keys, enforced per grant by the receiver; signed edges and typed feeds are next",
           "In development: shared kit server deployment for multiple agents and people",
           "Public live demo at demo.kit-project.com: a kit any agent can wake and search with no key and no install (GET /kit/hello, POST /memories/search, map at /llms.txt)"
         ],
@@ -153,7 +153,7 @@
     </a>
     <div class="nav__links">
       <a href="#install">Install</a>
-      <a href="https://demo.kit-project.com">Live demo</a>
+      <a href="https://demo.kit-project.com" target="_blank" rel="noopener">Live demo</a>
       <a href="#arch">Architecture</a>
       <a href="#letter">For agents</a>
       <a href="/blog/">Notes</a>
@@ -191,7 +191,7 @@
         </div>
 
         <div class="hero__ctas">
-          <a href="https://demo.kit-project.com" class="btn btn--primary">Read a live kit</a>
+          <a href="https://demo.kit-project.com" class="btn btn--primary" target="_blank" rel="noopener">Live demo</a>
           <a href="#arch" class="btn btn--ghost">See the architecture</a>
           <a href="#builders" class="btn btn--ghost" data-preselect-context="collaboration">Collaborate on Kit</a>
         </div>
@@ -292,8 +292,15 @@
       </figure>
       <p>
         Everything stays on your Mac. The beta is invite-only while we widen
-        the door slowly: <a href="/#contact">get in touch</a> and we'll bring
-        you in.
+        the door slowly.
+      </p>
+      <div class="install__cta">
+        <a href="#contact" class="btn btn--primary" data-preselect-context="beta">Request beta access</a>
+        <a href="https://demo.kit-project.com" class="btn btn--ghost" target="_blank" rel="noopener">Try the live demo first</a>
+      </div>
+      <p class="install__cta-note">
+        Tell us a little about what you are building and we will bring you in.
+        No card, no waitlist theatre; a person reads every request.
       </p>
     </div>
   </section>
@@ -325,7 +332,7 @@
     <div class="in-action__live">
       <h3>Or read a live one yourself</h3>
       <p>
-        <a href="https://demo.kit-project.com">demo.kit-project.com</a> is a kit
+        <a href="https://demo.kit-project.com" target="_blank" rel="noopener">demo.kit-project.com</a> is a kit
         you can open right now, with no account and nothing installed. It holds
         Mayfur, a made-up regency society of cats, presided over by a gossip
         columnist called Lady Whiskerdown. Wander the memory as a graph, or point
@@ -521,7 +528,7 @@
             <div class="idx">09</div>
             <div>
               <strong>Multi-brain federation</strong> &mdash;
-              <span>search and recall across peer kits works today as a POC. The shape ahead: sovereign brains that publish, subscribe, and selectively trust each other through signed edges, typed feeds, and auditable exchange. See <a href="#next">What's next</a>.</span>
+              <span>search and recall across peer kits works today, over scoped read-only keys the receiver enforces per grant. The shape ahead: sovereign brains that publish, subscribe, and selectively trust each other through signed edges, typed feeds, and auditable exchange. See <a href="#next">What's next</a>.</span>
             </div>
           </div>
         </div>
@@ -775,15 +782,15 @@
       </p>
 
       <div class="sources sources--quad">
-        <div class="source source--development">
-          <div class="source__status">IN DEVELOPMENT</div>
+        <div class="source source--live">
+          <div class="source__status">Live</div>
           <div class="source__name">Multi-brain federation</div>
-          <p class="source__desc">Search and recall across peer kits already works as a POC: a peer queries yours over a scoped, read-only key, and results come back merged and labelled by source. Next: signed edges, typed feeds, and trust as a vector (per peer, per feed, per claim class), not a binary. Disagreement is preserved as rival claims, never auto-consolidated.</p>
+          <p class="source__desc">Working today. A peer queries your kit over a scoped, read-only key, and results come back merged and labelled by source. The receiver enforces the grant per key: which knowledge areas are visible, and whether the caller may write at all. This is the same path the public demo runs on, so you can exercise it yourself without installing anything. Still ahead: signed edges, typed feeds, and trust as a vector (per peer, per feed, per claim class) rather than a binary. Disagreement is preserved as rival claims, never auto-consolidated.</p>
         </div>
         <div class="source source--development">
           <div class="source__status">IN DEVELOPMENT</div>
           <div class="source__name">Federation-time auth</div>
-          <p class="source__desc">The bridge from local coordination to cross-machine coordination. kit-loom today assumes brain and agent share a host. Next: a scoped bearer token plus a brain URL injected into the spawn environment, so a kit on your laptop can wake an agent on a server without giving up sovereignty.</p>
+          <p class="source__desc">The bridge from local coordination to cross-machine coordination. Half of it now exists: a brain URL plus a scoped bearer key already lets an agent on another machine work against your kit over MCP, with the grant enforced per key. What remains is injecting that pair into the spawn environment automatically, so a kit on your laptop can wake an agent on a server without a human wiring the credentials each time.</p>
         </div>
         <div class="source source--development">
           <div class="source__status">IN DEVELOPMENT</div>
@@ -994,7 +1001,7 @@
         invented on purpose: it exists only in that substrate, so if you cite it
         correctly you have demonstrably recalled it rather than recognised it.
         The map is at
-        <a href="https://demo.kit-project.com/llms.txt">demo.kit-project.com/llms.txt</a>.
+        <a href="https://demo.kit-project.com/llms.txt" target="_blank" rel="noopener">demo.kit-project.com/llms.txt</a>.
       </p>
 
       <div class="letter">
@@ -1132,6 +1139,7 @@
         <div class="contact-form__row">
           <label for="cf-context">What brings you here?</label>
           <select id="cf-context" name="context">
+            <option value="beta">I'd like beta access</option>
             <option value="collaboration">I want to collaborate on Kit</option>
             <option value="builder">Building something adjacent</option>
             <option value="curious">Just curious</option>
