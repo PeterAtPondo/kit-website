@@ -215,6 +215,44 @@
     </div>
   </section>
 
+  <!-- Surfaces marquee: every coding surface Kit connects to, drifting slowly
+       under the hero. Decorative duplication is aria-hidden; the sr-only line
+       carries the list for screen readers, and the chip strip further down
+       repeats it accessibly with detail. Motion pauses on hover and is
+       disabled entirely under prefers-reduced-motion. -->
+  <section class="surface-marquee" aria-label="Surfaces Kit works with">
+    <p class="surface-marquee__label">Works where you code</p>
+    <div class="surface-marquee__viewport" aria-hidden="true">
+      <div class="surface-marquee__track">
+        <div class="surface-marquee__group">
+        <span class="surface-marquee__item"><img src="assets/icons/claude.svg" alt="" width="22" height="22" loading="lazy"><span>Claude Code</span></span>
+        <span class="surface-marquee__item"><span class="surface-marquee__mono" aria-hidden="true">CX</span><span>Codex</span></span>
+        <span class="surface-marquee__item"><img src="assets/icons/cursor.svg" alt="" width="22" height="22" loading="lazy"><span>Cursor</span></span>
+        <span class="surface-marquee__item"><span class="surface-marquee__mono" aria-hidden="true">VS</span><span>VS Code</span></span>
+        <span class="surface-marquee__item"><img src="assets/icons/googlegemini.svg" alt="" width="22" height="22" loading="lazy"><span>Gemini CLI</span></span>
+        <span class="surface-marquee__item"><img src="assets/icons/qwen.svg" alt="" width="22" height="22" loading="lazy"><span>Qwen Code</span></span>
+        <span class="surface-marquee__item"><img src="assets/icons/ollama.svg" alt="" width="22" height="22" loading="lazy"><span>Ollama Code</span></span>
+        <span class="surface-marquee__item"><span class="surface-marquee__mono" aria-hidden="true">A</span><span>AnythingLLM</span></span>
+        <span class="surface-marquee__item"><span class="surface-marquee__mono" aria-hidden="true">CW</span><span>CodeWhale</span></span>
+        <span class="surface-marquee__item"><span class="surface-marquee__mono" aria-hidden="true">AG</span><span>Antigravity</span></span>
+        </div>
+        <div class="surface-marquee__group">
+        <span class="surface-marquee__item"><img src="assets/icons/claude.svg" alt="" width="22" height="22" loading="lazy"><span>Claude Code</span></span>
+        <span class="surface-marquee__item"><span class="surface-marquee__mono" aria-hidden="true">CX</span><span>Codex</span></span>
+        <span class="surface-marquee__item"><img src="assets/icons/cursor.svg" alt="" width="22" height="22" loading="lazy"><span>Cursor</span></span>
+        <span class="surface-marquee__item"><span class="surface-marquee__mono" aria-hidden="true">VS</span><span>VS Code</span></span>
+        <span class="surface-marquee__item"><img src="assets/icons/googlegemini.svg" alt="" width="22" height="22" loading="lazy"><span>Gemini CLI</span></span>
+        <span class="surface-marquee__item"><img src="assets/icons/qwen.svg" alt="" width="22" height="22" loading="lazy"><span>Qwen Code</span></span>
+        <span class="surface-marquee__item"><img src="assets/icons/ollama.svg" alt="" width="22" height="22" loading="lazy"><span>Ollama Code</span></span>
+        <span class="surface-marquee__item"><span class="surface-marquee__mono" aria-hidden="true">A</span><span>AnythingLLM</span></span>
+        <span class="surface-marquee__item"><span class="surface-marquee__mono" aria-hidden="true">CW</span><span>CodeWhale</span></span>
+        <span class="surface-marquee__item"><span class="surface-marquee__mono" aria-hidden="true">AG</span><span>Antigravity</span></span>
+        </div>
+      </div>
+    </div>
+    <p class="sr-only">Kit connects to Claude Code, Codex, Cursor, VS Code, Gemini CLI, Qwen Code, Ollama Code, AnythingLLM, CodeWhale, and Antigravity.</p>
+  </section>
+
   <!-- Latest note: most recent build-log post, manually curated. -->
   <section class="section section--note-strip" data-reveal>
     <h2>Latest from the build log</h2>
@@ -682,15 +720,12 @@
         <li class="surface-chip" title="Desktop LLM workspace. One toggle."><span class="surface-chip__mono" aria-hidden="true">A</span><span>AnythingLLM</span></li>
         <li class="surface-chip" title="Coding agent. One toggle; history captured by polling."><span class="surface-chip__mono" aria-hidden="true">CW</span><span>CodeWhale</span></li>
         <li class="surface-chip" title="Google's agent editor. One toggle; conversations captured by polling."><span class="surface-chip__mono" aria-hidden="true">AG</span><span>Antigravity</span></li>
-        <li class="surface-chip" title="Chat conversations in Anthropic's desktop app, which use its own connector settings rather than Claude Code's config. Add Kit there by hand; this is the mode that renders Kit's wake and recall cards. Chat capture is in development."><img src="assets/icons/claude.svg" alt="" width="20" height="20" loading="lazy"><span>Claude desktop</span><span class="surface-chip__soon">manual add</span></li>
       </ul>
       <p class="surface-strip__note">
         One toggle per surface in the app; Kit writes the MCP config and the
-        surface carries the full tool set. Claude desktop works today too, added
-        by hand rather than by toggle, and it is one of the hosts that renders
-        Kit's wake and recall cards. The ones marked <em>importer ready</em>
-        below exist and run, but are not yet wired into the app, so bringing
-        them in is still a manual step. Full detail:
+        surface carries the full tool set. The ones marked <em>importer
+        ready</em> below exist and run, but are not yet wired into the app, so
+        bringing them in is still a manual step. Full detail:
         <a href="/supported/">supported sources</a>.
       </p>
 
