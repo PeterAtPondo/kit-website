@@ -1552,3 +1552,8 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   max-width: 56ch;
   margin: 0;
 }
+
+/* Antigravity ships press assets as PNG only, and its one-colour mark is
+   white. Dim it so it carries the same weight as the ink-tinted SVGs
+   rather than glaring next to them. */
+.mark--png { opacity: 0.62; }
