@@ -1,13 +1,12 @@
 {
-  "version": "0.2.111",
-  "url": "https://kit-project.com/downloads/Kit-0.2.111-macOS.dmg",
+  "version": "0.2.115",
+  "url": "https://kit-project.com/downloads/Kit-0.2.115-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Dreams are sturdier: consolidation can no longer choke when many similar memories chain into one giant cluster; oversized groups are now merged in safe chunks, so no more lost nights with a warning banner.",
-    "Soul curation arrives: when your kit's always-loaded memory tier outgrows its budget, it proposes a small, reversible cleanup batch as a single card you approve with one tap. Nothing moves without you, and identity memories are never touched.",
-    "Resume on the wake card now always points at the genuine last session, everywhere.",
-    "Sharper waking on coding surfaces: one patient message while a new kit finishes forming (instead of repeated waiting notes), clearer answers when a question could mean the open project or stored knowledge, and read-only keys say so upfront instead of failing quietly.",
-    "Housekeeping: client error messages are no longer stored as chat history, and the app's own release checks got stricter about API routes their tools depend on."
+    "Your Kit's own tools are all here now. A personal install used to expose 10 of them, the lean set built for strangers reading someone else's Kit. It now serves the full 38, so the Kit you own answers on your surfaces the way it does everywhere else.",
+    "Editors that hold a live connection (VS Code, Cursor, Claude Code) no longer trip over themselves: the MCP server now handles a call and an open stream at the same time, instead of refusing everything after the first one.",
+    "Turning a surface on now tells you what to do next in that tool. Every editor reads its MCP config at startup, so it needs a reload before the tools appear, and VS Code additionally hides them behind Copilot Chat's agent mode picker. The row says so instead of flashing a checkmark and leaving you guessing.",
+    "Known, and not your setup: the wake and recall cards still show as plain text in Claude Code and Cursor. Both are waiting on their own MCP Apps rendering (Cursor has it behind a server-side flag that is currently off). The tools themselves work everywhere; Claude Desktop and VS Code render the cards today."
   ]
 }
