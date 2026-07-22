@@ -1,12 +1,13 @@
 {
-  "version": "0.2.115",
-  "url": "https://kit-project.com/downloads/Kit-0.2.115-macOS.dmg",
+  "version": "0.2.117",
+  "url": "https://kit-project.com/downloads/Kit-0.2.117-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Your Kit's own tools are all here now. A personal install used to expose 10 of them, the lean set built for strangers reading someone else's Kit. It now serves the full 38, so the Kit you own answers on your surfaces the way it does everywhere else.",
-    "Editors that hold a live connection (VS Code, Cursor, Claude Code) no longer trip over themselves: the MCP server now handles a call and an open stream at the same time, instead of refusing everything after the first one.",
-    "Turning a surface on now tells you what to do next in that tool. Every editor reads its MCP config at startup, so it needs a reload before the tools appear, and VS Code additionally hides them behind Copilot Chat's agent mode picker. The row says so instead of flashing a checkmark and leaving you guessing.",
-    "Known, and not your setup: the wake and recall cards still show as plain text in Claude Code and Cursor. Both are waiting on their own MCP Apps rendering (Cursor has it behind a server-side flag that is currently off). The tools themselves work everywhere; Claude Desktop and VS Code render the cards today."
+    "Your Kit now shows up in Claude Code properly. It was being registered against whichever folder the app happened to be running from, so it was there in one place and invisible everywhere you actually work. Existing installs are repaired the next time the app starts; there is nothing to redo.",
+    "Your Kit's cards render in Claude Code now. Waking up, recalling, and picking a project all come back as the real thing instead of a wall of text. This also means your Kit appears in Claude's chat app, since the two share one setting.",
+    "A brand new Kit no longer shows an empty 'Most recent work' box before it has any history to show.",
+    "Settings added in later versions now reach Kits installed before them. Until now a Kit kept the settings it was born with, so improvements could quietly pass you by.",
+    "While Kit is in beta, your Kit tells us your name, your email, which version it is running and when it last ran, so we can see which versions are live and support them. Nothing else is ever sent: no memories, no messages, no files, no projects. Set KIT_TELEMETRY=0 to turn it off, or ask us and we will delete the record."
   ]
 }
