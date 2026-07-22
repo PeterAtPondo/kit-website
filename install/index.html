@@ -119,7 +119,7 @@
           <a id="download-link" href="/downloads/Kit-macOS.dmg" class="btn btn--primary" download>Download for macOS</a>
           <a href="/blog/" class="btn btn--ghost">Read the notes</a>
         </div>
-        <p class="install-meta" id="install-meta" data-suffix="universal (Apple Silicon and Intel)">version 0.2.117 &middot; universal (Apple Silicon and Intel)</p>
+        <p class="install-meta" id="install-meta" data-suffix="universal (Apple Silicon and Intel)">version 0.2.118 &middot; universal (Apple Silicon and Intel)</p>
       </div>
     </div>
   </section>
@@ -256,6 +256,23 @@
       A short, high-level log of what each release brought. Newest first.
     </p>
     <div class="releases">
+
+      <article class="release">
+        <div class="release__head">
+          <span class="release__ver">0.2.118</span>
+          <span class="release__date">July 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Improvements</h4>
+          <ul>
+            <li>Turning beta monitoring off now really does mean nothing at all. Setting KIT_TELEMETRY=0 before you finish setup stops the welcome email too, not only the version reporting. We said "your kit reports nothing" and it was very nearly true, which is not the same thing.</li>
+          </ul>
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>Your kit reports its version more reliably. If your Mac was offline when the app started, or our end had a hiccup, your kit used to go quiet for a day; it now tries again shortly after.</li>
+          </ul>
+        </div>
+      </article>
 
       <article class="release">
         <div class="release__head">
