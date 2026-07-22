@@ -1,10 +1,12 @@
 {
-  "version": "0.2.119",
-  "url": "https://kit-project.com/downloads/Kit-0.2.119-macOS.dmg",
+  "version": "0.2.120",
+  "url": "https://kit-project.com/downloads/Kit-0.2.120-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "In VS Code, your kit now wakes on its own at the start of a chat instead of waiting to be asked. It was the one editor we never gave a guidance note to, so nothing ever told Copilot your kit was there to wake.",
-    "Waking your kit no longer fails in VS Code and Copilot with an \"invalid parameter format\" error. The assistant phrases the request slightly differently there, and we were being stricter than we needed to be."
+    "Your kit now tells you when it is still running an older version than the app, instead of quietly staying behind. One button brings it up to date, and nothing is lost when it does.",
+    "Importing your history no longer gets stuck on a single conversation. If one never finishes, your kit steps over it and carries on, instead of starting from the beginning and stopping in the same place every time.",
+    "Repair now spots a connected tool that is holding a key your kit no longer accepts, and fixes it. That was the \"rejected the API key\" error when waking your kit in Claude Code.",
+    "Every setup and update run now keeps a log on your Mac, so when something does go wrong there is something to look at."
   ]
 }
