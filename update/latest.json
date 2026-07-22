@@ -1,11 +1,12 @@
 {
-  "version": "0.2.122",
-  "url": "https://kit-project.com/downloads/Kit-0.2.122-macOS.dmg",
+  "version": "0.2.123",
+  "url": "https://kit-project.com/downloads/Kit-0.2.123-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Importing your history on a local model is dramatically better. Your kit now listens while the model writes instead of giving up after ninety seconds, keeps the model warm between calls, and asks for tighter summaries, so each conversation takes about half the time and none of them fail for being slow.",
-    "You can now watch your kit dream. While it is importing or dreaming, click the status line in the menu bar and the dreaming screen opens: which conversation it is reading, the memories forming word by word, and how long is left.",
-    "The import progress line now shows real pace, measured on your machine, not a guess."
+    "Closing the setup window no longer strands you. Setup remembers where you were: relaunching the app takes you straight back, and the menu bar offers Finish setting up whenever steps remain.",
+    "The model check now tells a stuck server from a slow model, and can restart Ollama for you with one click. A model paying its one-time load from disk is no longer called slow.",
+    "If your kit's first sleep stops early, it now says so plainly and Try again picks up where it left off, instead of claiming to be reading your history while nothing ran. See dream progress opens the real dreaming screen.",
+    "Import progress counts all your conversations rather than just the first batch, and no longer narrates serial numbers when conversations have no titles yet."
   ]
 }
