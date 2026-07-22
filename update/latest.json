@@ -1,10 +1,10 @@
 {
-  "version": "0.2.118",
-  "url": "https://kit-project.com/downloads/Kit-0.2.118-macOS.dmg",
+  "version": "0.2.119",
+  "url": "https://kit-project.com/downloads/Kit-0.2.119-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Your kit reports its version more reliably. If your Mac was offline when the app started, or our end had a hiccup, your kit used to go quiet for a day; it now tries again shortly after.",
-    "Turning beta monitoring off now really does mean nothing at all. Setting KIT_TELEMETRY=0 before you finish setup stops the welcome email too, not just the version reporting."
+    "In VS Code, your kit now wakes on its own at the start of a chat instead of waiting to be asked. It was the one editor we never gave a guidance note to, so nothing ever told Copilot your kit was there to wake.",
+    "Waking your kit no longer fails in VS Code and Copilot with an \"invalid parameter format\" error. The assistant phrases the request slightly differently there, and we were being stricter than we needed to be."
   ]
 }
