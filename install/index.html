@@ -259,6 +259,39 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.121</span>
+          <span class="release__date">July 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>Importing your history is much faster on the newer Claude models, and no longer stops with nothing to show for it. Your kit was thinking hard about each conversation before summarising it, which is not something that job needs. On the newer models that turned a few seconds per conversation into a few minutes, until it ran out of room and gave up.</li>
+            <li>Your kit's health page now shows how many chat turns you actually have, instead of always saying zero. If you read that as an empty kit, it never was: the number was simply never being counted.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="release">
+        <div class="release__head">
+          <span class="release__ver">0.2.120</span>
+          <span class="release__date">July 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Improvements</h4>
+          <ul>
+            <li>Your kit now tells you when it is still running an older version than the app, instead of quietly staying behind. Update now brings it up to date, and nothing is lost when it does. The app and your kit update separately, and until now nothing compared the two, so a kit could sit on an old version for days with no sign of it anywhere.</li>
+            <li>Every setup and update run now keeps a log on your Mac, and the details are on screen if a run does not finish. When something goes wrong there is now something to look at.</li>
+          </ul>
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>Importing your history no longer gets stuck on a single conversation. If one never finishes, your kit steps over it and carries on, rather than starting from the beginning and stopping in the same place every time.</li>
+            <li>Repair now spots a connected tool that is holding a key your kit no longer accepts, and fixes it. That was the "rejected the API key" error when waking your kit in Claude Code, which Repair previously reported as already in sync.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.119</span>
           <span class="release__date">July 2026</span>
         </div>
