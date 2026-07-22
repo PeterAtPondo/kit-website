@@ -29,20 +29,24 @@
 //
 // Env (kit-website Vercel project):
 //   - KIT_WELCOME_TOKEN   the app token the macOS app already carries
-//   - KV_REST_API_URL     Vercel KV (Upstash) REST endpoint
-//   - KV_REST_API_TOKEN   Vercel KV REST token
+//   - SUPABASE_URL                both injected by the Vercel marketplace
+//   - SUPABASE_SERVICE_ROLE_KEY   integration; scoped to this database alone
 //
-// Storage shape:
-//   beta:installs             a set of install ids
-//   beta:install:<id>         JSON blob per install
-// The id is a hash of the lowercased email, so the key space carries no
-// address and one person reinstalling stays one row rather than becoming two.
+// Storage shape: one row per install in beta_installs, keyed on a hash of the
+// lowercased email, so the key carries no address and one person reinstalling
+// stays one row rather than becoming two.
 
 import { createHash } from "node:crypto";
 
 const APP_TOKEN = (process.env.KIT_WELCOME_TOKEN || "").trim();
-const KV_URL = (process.env.KV_REST_API_URL || "").trim();
-const KV_TOKEN = (process.env.KV_REST_API_TOKEN || "").trim();
+// Supabase, connected through the Vercel marketplace. Postgres rather than a
+// key-value store because the credential can be scoped to this one database:
+// the roster holds beta users' names and email addresses, and the thing
+// guarding it should reach that and nothing else. Reached over its REST API
+// with plain fetch, since this project has no package.json to hang a client
+// library on.
+const DB_URL = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "").trim().replace(/\/$/, "");
+const DB_KEY = (process.env.SUPABASE_SERVICE_ROLE_KEY || "").trim();
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 const VERSION_RE = /^\d{1,3}(\.\d{1,5}){0,3}$/;
@@ -52,15 +56,22 @@ const VERSION_RE = /^\d{1,3}(\.\d{1,5}){0,3}$/;
 const cap = (v, n) => String(v ?? "").trim().slice(0, n);
 const version = (v) => (VERSION_RE.test(String(v ?? "").trim()) ? String(v).trim() : null);
 
-async function kv(commands) {
-  if (!KV_URL || !KV_TOKEN) return null;
-  const resp = await fetch(`${KV_URL}/pipeline`, {
+// Upsert one install. first_seen is deliberately NOT sent: the column defaults
+// to now() on insert, and PostgREST leaves columns absent from the body alone
+// on conflict, so an install's start date survives every later heartbeat.
+async function upsertInstall(record) {
+  if (!DB_URL || !DB_KEY) return false;
+  const resp = await fetch(`${DB_URL}/rest/v1/beta_installs?on_conflict=id`, {
     method: "POST",
-    headers: { Authorization: `Bearer ${KV_TOKEN}`, "Content-Type": "application/json" },
-    body: JSON.stringify(commands),
+    headers: {
+      apikey: DB_KEY,
+      Authorization: `Bearer ${DB_KEY}`,
+      "Content-Type": "application/json",
+      Prefer: "resolution=merge-duplicates,return=minimal",
+    },
+    body: JSON.stringify([record]),
   });
-  if (!resp.ok) return null;
-  return resp.json();
+  return resp.ok;
 }
 
 async function readBody(req) {
@@ -87,22 +98,7 @@ export default async function handler(req, res) {
     if (!EMAIL_RE.test(email)) return done();
 
     const id = createHash("sha256").update(email).digest("hex").slice(0, 32);
-    const key = `beta:install:${id}`;
     const now = new Date().toISOString();
-
-    // Preserve first_seen across heartbeats: this endpoint is called on every
-    // launch, and an install's start date is worth more than its last write.
-    let firstSeen = now;
-    const existing = await kv([["GET", key]]);
-    const prevRaw = existing?.[0]?.result;
-    if (prevRaw) {
-      try {
-        const prev = JSON.parse(prevRaw);
-        if (prev?.first_seen) firstSeen = prev.first_seen;
-      } catch {
-        /* a corrupt row is replaced, not mourned */
-      }
-    }
 
     const record = {
       id,
@@ -117,14 +113,10 @@ export default async function handler(req, res) {
       // see before (kit memory m#158827).
       app_version: version(body.app_version),
       stack_version: version(body.stack_version),
-      first_seen: firstSeen,
       last_seen: now,
     };
 
-    await kv([
-      ["SET", key, JSON.stringify(record)],
-      ["SADD", "beta:installs", id],
-    ]);
+    await upsertInstall(record);
   } catch {
     // Fail silent by design.
   }

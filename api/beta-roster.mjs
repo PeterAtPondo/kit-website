@@ -25,21 +25,27 @@
 //
 // Env (kit-website Vercel project):
 //   - KIT_BETA_ADMIN_TOKEN  long random string, yours alone, not in any build
-//   - KV_REST_API_URL / KV_REST_API_TOKEN  same store beta-ping writes to
+//   - SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY  same database beta-ping writes
+//     to, injected by the Vercel marketplace integration
 
 const ADMIN_TOKEN = (process.env.KIT_BETA_ADMIN_TOKEN || "").trim();
-const KV_URL = (process.env.KV_REST_API_URL || "").trim();
-const KV_TOKEN = (process.env.KV_REST_API_TOKEN || "").trim();
+const DB_URL = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "").trim().replace(/\/$/, "");
+const DB_KEY = (process.env.SUPABASE_SERVICE_ROLE_KEY || "").trim();
 
-async function kv(commands) {
-  if (!KV_URL || !KV_TOKEN) return null;
-  const resp = await fetch(`${KV_URL}/pipeline`, {
-    method: "POST",
-    headers: { Authorization: `Bearer ${KV_TOKEN}`, "Content-Type": "application/json" },
-    body: JSON.stringify(commands),
+async function db(path, init = {}) {
+  if (!DB_URL || !DB_KEY) return null;
+  const resp = await fetch(`${DB_URL}/rest/v1/${path}`, {
+    ...init,
+    headers: {
+      apikey: DB_KEY,
+      Authorization: `Bearer ${DB_KEY}`,
+      "Content-Type": "application/json",
+      ...(init.headers || {}),
+    },
   });
   if (!resp.ok) return null;
-  return resp.json();
+  if (resp.status === 204) return [];
+  return resp.json().catch(() => null);
 }
 
 function esc(s) {
@@ -210,30 +216,17 @@ export default async function handler(req, res) {
 
   const forget = (url.searchParams.get("forget") || "").trim();
   if (/^[a-f0-9]{8,64}$/.test(forget)) {
-    await kv([
-      ["DEL", `beta:install:${forget}`],
-      ["SREM", "beta:installs", forget],
-    ]);
+    await db(`beta_installs?id=eq.${encodeURIComponent(forget)}`, {
+      method: "DELETE",
+      headers: { Prefer: "return=minimal" },
+    });
     res.statusCode = 302;
     res.setHeader("Location", url.pathname);
     return res.end();
   }
 
-  const idsResp = await kv([["SMEMBERS", "beta:installs"]]);
-  const ids = idsResp?.[0]?.result || [];
-  const rows = [];
-  if (ids.length) {
-    const blobs = await kv([["MGET", ...ids.map((id) => `beta:install:${id}`)]]);
-    for (const raw of blobs?.[0]?.result || []) {
-      if (!raw) continue;
-      try {
-        rows.push(JSON.parse(raw));
-      } catch {
-        /* skip a corrupt row rather than failing the page */
-      }
-    }
-  }
-  rows.sort((a, b) => String(b.last_seen || "").localeCompare(String(a.last_seen || "")));
+  // Newest first, straight from the database rather than sorted here.
+  const rows = (await db("beta_installs?select=*&order=last_seen.desc")) || [];
 
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/html; charset=utf-8");
