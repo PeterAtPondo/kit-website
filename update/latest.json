@@ -1,13 +1,10 @@
 {
-  "version": "0.2.117",
-  "url": "https://kit-project.com/downloads/Kit-0.2.117-macOS.dmg",
+  "version": "0.2.118",
+  "url": "https://kit-project.com/downloads/Kit-0.2.118-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Your Kit now shows up in Claude Code properly. It was being registered against whichever folder the app happened to be running from, so it was there in one place and invisible everywhere you actually work. Existing installs are repaired the next time the app starts; there is nothing to redo.",
-    "Your Kit's cards render in Claude Code now. Waking up, recalling, and picking a project all come back as the real thing instead of a wall of text. This also means your Kit appears in Claude's chat app, since the two share one setting.",
-    "A brand new Kit no longer shows an empty 'Most recent work' box before it has any history to show.",
-    "Settings added in later versions now reach Kits installed before them. Until now a Kit kept the settings it was born with, so improvements could quietly pass you by.",
-    "While Kit is in beta, your Kit tells us your name, your email, which version it is running and when it last ran, so we can see which versions are live and support them. Nothing else is ever sent: no memories, no messages, no files, no projects. Set KIT_TELEMETRY=0 to turn it off, or ask us and we will delete the record."
+    "Your kit reports its version more reliably. If your Mac was offline when the app started, or our end had a hiccup, your kit used to go quiet for a day; it now tries again shortly after.",
+    "Turning beta monitoring off now really does mean nothing at all. Setting KIT_TELEMETRY=0 before you finish setup stops the welcome email too, not just the version reporting."
   ]
 }
