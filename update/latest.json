@@ -1,11 +1,11 @@
 {
-  "version": "0.2.121",
-  "url": "https://kit-project.com/downloads/Kit-0.2.121-macOS.dmg",
+  "version": "0.2.122",
+  "url": "https://kit-project.com/downloads/Kit-0.2.122-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Importing your history is much faster on the newer Claude models, and no longer stops with nothing to show for it. Your kit was thinking hard about each conversation before summarising it, which is not something that job needs.",
-    "Your kit's health page now shows how many chat turns you actually have, instead of always saying zero. If you were reading that as an empty kit, it never was.",
-    "If an import stalls, Retry processing now picks up where it stopped rather than starting again from the beginning."
+    "Importing your history on a local model is dramatically better. Your kit now listens while the model writes instead of giving up after ninety seconds, keeps the model warm between calls, and asks for tighter summaries, so each conversation takes about half the time and none of them fail for being slow.",
+    "You can now watch your kit dream. While it is importing or dreaming, click the status line in the menu bar and the dreaming screen opens: which conversation it is reading, the memories forming word by word, and how long is left.",
+    "The import progress line now shows real pace, measured on your machine, not a guess."
   ]
 }
