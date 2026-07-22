@@ -1,12 +1,11 @@
 {
-  "version": "0.2.120",
-  "url": "https://kit-project.com/downloads/Kit-0.2.120-macOS.dmg",
+  "version": "0.2.121",
+  "url": "https://kit-project.com/downloads/Kit-0.2.121-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Your kit now tells you when it is still running an older version than the app, instead of quietly staying behind. One button brings it up to date, and nothing is lost when it does.",
-    "Importing your history no longer gets stuck on a single conversation. If one never finishes, your kit steps over it and carries on, instead of starting from the beginning and stopping in the same place every time.",
-    "Repair now spots a connected tool that is holding a key your kit no longer accepts, and fixes it. That was the \"rejected the API key\" error when waking your kit in Claude Code.",
-    "Every setup and update run now keeps a log on your Mac, so when something does go wrong there is something to look at."
+    "Importing your history is much faster on the newer Claude models, and no longer stops with nothing to show for it. Your kit was thinking hard about each conversation before summarising it, which is not something that job needs.",
+    "Your kit's health page now shows how many chat turns you actually have, instead of always saying zero. If you were reading that as an empty kit, it never was.",
+    "If an import stalls, Retry processing now picks up where it stopped rather than starting again from the beginning."
   ]
 }
