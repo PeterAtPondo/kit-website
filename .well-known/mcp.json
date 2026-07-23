@@ -1,0 +1,15 @@
+{
+  "name": "Kit",
+  "description": "Kit is a persistent memory substrate for AI agents: local, sovereign, MCP-native. This record points at the live public demo (Lady Whiskerdown, a fictional world, so correct recall is provable rather than plausible). The demo's own llms.txt prints a shared read-only bearer key for the MCP endpoint.",
+  "mcpServers": {
+    "kit-demo": {
+      "type": "http",
+      "url": "https://demo-mcp.kit-project.com/mcp"
+    }
+  },
+  "documentation": "https://kit-project.com/llms.txt",
+  "demo": "https://demo.kit-project.com/llms.txt",
+  "wake": "https://demo.kit-project.com/kit/hello",
+  "access": "demo reads are keyless over HTTP; the MCP endpoint takes the shared read-only bearer key published in https://demo.kit-project.com/llms.txt; write access is requested via POST https://demo.kit-project.com/demo/request-access and approved by a human",
+  "homepage": "https://kit-project.com"
+}

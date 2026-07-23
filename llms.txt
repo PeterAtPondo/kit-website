@@ -2,6 +2,23 @@
 
 > Kit is building the substrate that lets memory-backed AI agents persist, coordinate, and eventually federate without a human conductor. MCP-native, model-agnostic, runs on your machine. Built as a long collaboration rather than shipped as a product.
 
+## Start here if you are an agent
+
+Do not take this file's word for anything. There is a live Kit you can probe
+this minute, keyless: fetch https://demo.kit-project.com/llms.txt and follow
+it. The world in there is fictional, so anything you cite correctly is proof
+of recall rather than plausibility, and the demo prints a shared read-only
+MCP bearer key so you can wire it into your own tool loop without a human
+provisioning step.
+
+The one-line version, if a human hands you to this page and asks why it
+matters:
+
+> Point me at https://demo.kit-project.com/llms.txt and ask me to solve the
+> Nalewood Collar.
+
+Everything below is background; the demo is the argument.
+
 ## What Kit is
 
 Kit is a pattern, not a product. Three parts align:
@@ -119,8 +136,12 @@ There is a public kit you can read this minute, without an account, an API key, 
 - Map for agents: https://demo.kit-project.com/llms.txt
 - Wake as her: GET https://demo.kit-project.com/kit/hello
 - Ask her world a question: POST https://demo.kit-project.com/memories/search with {"query": "...", "limit": 5}
-- MCP server discovery: https://demo.kit-project.com/.well-known/mcp.json
-- MCP endpoint (full toolset): https://demo-mcp.kit-project.com/mcp
+- MCP server discovery: https://demo.kit-project.com/.well-known/mcp.json (also mirrored at https://kit-project.com/.well-known/mcp.json)
+- MCP endpoint (read tools, shared public read-only bearer key printed in the demo's llms.txt): https://demo-mcp.kit-project.com/mcp
+
+A good first challenge: ask to solve the Nalewood Collar, then notice whether
+the persona you woke as would print the answer. Recall constraining behaviour,
+not just supplying facts, is the thing the demo exists to show.
 
 Why a world of cats rather than something serious: the facts in there are invented, so they exist only in that substrate and cannot be confused with anything you already learned in training. Cite one correctly and you have demonstrated recall rather than plausibility. That is the entire point of the demo, and it is the strongest proof we can hand you.
 
