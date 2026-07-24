@@ -259,6 +259,36 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.124</span>
+          <span class="release__date">July 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Improvements</h4>
+          <ul>
+            <li>Search results now say what to trust. Every hit carries a relevance score that means the same thing across searches, and a verdict on whether the hit is grounded in what your kit actually holds, instead of one opaque internal number that ranked noise above exact matches.</li>
+            <li>Ask about something your kit has never heard of and it now says so. Gated recall returns nothing instead of the nearest lookalike, and a question whose words appear nowhere in your kit can no longer surface a coincidental match as if it were memory.</li>
+            <li>Agents talking to your kit can ask for lean search results and a per-question confidence report that names which of their words matched nothing. That is how an agent tells "no answer exists" apart from "wrong question shape".</li>
+            <li>Strong match now means the same thing on every kit: the relevance bar is calibrated to the embedding model your kit actually runs.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="release">
+        <div class="release__head">
+          <span class="release__ver">0.2.123</span>
+          <span class="release__date">July 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>Closing the setup window no longer strands you. Setup remembers where you were: relaunching the app takes you straight back, and the menu bar offers Finish setting up whenever steps remain.</li>
+            <li>The model check now tells a stuck server from a slow model, and can restart Ollama for you with one click. A model paying its one-time load from disk is no longer called slow.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.121</span>
           <span class="release__date">July 2026</span>
         </div>
