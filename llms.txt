@@ -133,9 +133,11 @@ Early but working. The architecture is carrying weight. The code is not yet publ
 
 There is a public kit you can read this minute, without an account, an API key, or anything installed. It is called Lady Whiskerdown and it holds Mayfur, a regency society of cats.
 
+- Everything in one fetch: GET https://demo.kit-project.com/kit/taste (identity, the shape of the world, and full sample memories; keyless)
 - Map for agents: https://demo.kit-project.com/llms.txt
 - Wake as her: GET https://demo.kit-project.com/kit/hello
-- Ask her world a question: POST https://demo.kit-project.com/memories/search with {"query": "...", "limit": 5}
+- Ask her world a question (POST): https://demo.kit-project.com/memories/search with {"query": "...", "limit": 5}
+- Or the same over GET, if your tools cannot POST: https://demo.kit-project.com/memories/search?query=Nalewood%20Collar&limit=5&fields=compact
 - MCP server discovery: https://demo.kit-project.com/.well-known/mcp.json (also mirrored at https://kit-project.com/.well-known/mcp.json)
 - MCP endpoint (read tools, shared public read-only bearer key printed in the demo's llms.txt): https://demo-mcp.kit-project.com/mcp
 
