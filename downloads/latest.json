@@ -1,12 +1,12 @@
 {
-  "version": "0.2.123",
-  "url": "https://kit-project.com/downloads/Kit-0.2.123-macOS.dmg",
+  "version": "0.2.124",
+  "url": "https://kit-project.com/downloads/Kit-0.2.124-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Closing the setup window no longer strands you. Setup remembers where you were: relaunching the app takes you straight back, and the menu bar offers Finish setting up whenever steps remain.",
-    "The model check now tells a stuck server from a slow model, and can restart Ollama for you with one click. A model paying its one-time load from disk is no longer called slow.",
-    "If your kit's first sleep stops early, it now says so plainly and Try again picks up where it left off, instead of claiming to be reading your history while nothing ran. See dream progress opens the real dreaming screen.",
-    "Import progress counts all your conversations rather than just the first batch, and no longer narrates serial numbers when conversations have no titles yet."
+    "Search results now tell you what to trust: every hit carries a real relevance score (0 to 1, comparable across searches) and a grounded verdict, instead of an opaque internal number.",
+    "Off-topic questions on gated recall now return nothing instead of confident filler, and a query whose words appear nowhere in your Kit can no longer surface a lookalike by coincidence.",
+    "Agents can ask for lean search results (fields: compact) and a query-level confidence report (include_meta) that names which of their words matched nothing.",
+    "Relevance scoring is now calibrated to the embedding model your Kit actually runs, so 'strong match' means the same thing on every Kit."
   ]
 }
