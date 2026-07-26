@@ -1380,6 +1380,74 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 .in-action__live a:hover,
 .letter__verify a:hover { text-decoration-color: var(--accent-glow); }
 
+/* ── Connect your agent (2026-07-26) ─────────────────────────────────
+   Per-tool copy-paste snippets for the hosted demo kits. Shares the
+   .in-action__live card; these rules only add the tab row, the code
+   panels, and the copy affordance. Commands wrap rather than scroll so
+   a phone reader still sees the whole key. */
+.connect__lede { margin-bottom: var(--space-4); }
+.connect__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 var(--space-4);
+}
+.connect__tab {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--edge-faint);
+  background: transparent;
+  color: var(--ink-quiet);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.connect__tab:hover { color: var(--ink-primary); border-color: var(--edge-soft, var(--edge-faint)); }
+.connect__tab.is-active {
+  color: var(--ink-primary);
+  border-color: var(--accent-glow);
+  background: rgba(107, 191, 255, 0.08);
+}
+.connect__panel { position: relative; display: none; }
+.connect__panel.is-active { display: block; }
+.connect__panel pre {
+  margin: 0;
+  padding: var(--space-4);
+  padding-right: 64px; /* room for the copy button */
+  background: var(--bg-deep, #0a0e1a);
+  border: 1px solid var(--edge-faint);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.65;
+  color: var(--ink-secondary);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.connect__copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--edge-faint);
+  background: var(--bg-card);
+  color: var(--ink-quiet);
+  cursor: pointer;
+}
+.connect__copy:hover { color: var(--ink-primary); border-color: var(--accent-glow); }
+.connect__hint,
+.connect__note {
+  margin: var(--space-4) 0 0;
+  font-size: 0.875rem;
+  color: var(--ink-quiet);
+  line-height: 1.6;
+}
+.connect__hint code { font-size: 0.8125rem; }
+
 /* Agent-facing: the endpoints must be copyable at a glance, so the code
    spans wrap rather than overflowing a narrow column. */
 .letter__verify {

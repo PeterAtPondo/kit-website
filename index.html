@@ -337,10 +337,128 @@
         <a href="https://demo.kit-project.com" target="_blank" rel="noopener">demo.kit-project.com</a> is a kit
         you can open right now, with no account and nothing installed. It holds
         Mayfur, a made-up regency society of cats, presided over by a gossip
-        columnist called Lady Whiskerdown. Wander the memory as a graph, or point
-        your own agent at it and watch a borrowed model answer from her memory
-        instead of its own. It is read-only: writing needs a key, because a
-        memory worth trusting is one somebody curates.
+        columnist called Lady Whiskerdown. Wander the memory as a graph, or
+        <a href="#connect-agent">point your own agent at it</a> and watch a
+        borrowed model answer from her memory instead of its own. It is
+        read-only: writing needs a key, because a memory worth trusting is one
+        somebody curates.
+      </p>
+    </div>
+
+    <!-- Connect-your-agent: per-tool copy-paste snippets for the three hosted
+         demo kits. Deliberately NOT an installer or CLI of our own (decision
+         2026-07-26): each tool's own verbs, nothing to maintain but text.
+         Keys are public, read-only, and rotate; authoritative copies live in
+         each kit's llms.txt, same as the kit-demo-mcp README. -->
+    <div class="in-action__live connect" id="connect-agent">
+      <h3>Or point your own agent at it</h3>
+      <p class="connect__lede">
+        One paste connects all three public kits to the tool you already use:
+        both halves of the Mayfur mystery, and the real ballast case file.
+        The keys are deliberately public, and the servers are read-only.
+      </p>
+
+      <div class="connect__tabs" role="tablist" aria-label="Pick your tool">
+        <button class="connect__tab is-active" role="tab" aria-selected="true" data-tool="claude-code">Claude Code</button>
+        <button class="connect__tab" role="tab" aria-selected="false" data-tool="codex">Codex</button>
+        <button class="connect__tab" role="tab" aria-selected="false" data-tool="cursor">Cursor</button>
+        <button class="connect__tab" role="tab" aria-selected="false" data-tool="vscode">VS Code</button>
+        <button class="connect__tab" role="tab" aria-selected="false" data-tool="other">Any MCP client</button>
+      </div>
+
+      <div class="connect__panel is-active" role="tabpanel" data-tool="claude-code">
+        <button class="connect__copy" type="button">Copy</button>
+        <pre><code>claude mcp add --transport http kit-papers https://demo-mcp.kit-project.com/mcp --header "Authorization: Bearer kbr_live_Kh9eO_ZfLldveFf1KXJEEvepfOpdgRqf7KoDDU3rB18"
+claude mcp add --transport http kit-mews https://mews-mcp.kit-project.com/mcp --header "Authorization: Bearer kbr_live_UN8-2LUlKmP2uxWQB5vpn-fzkJIuRb5zmq-apQeTU7U"
+claude mcp add --transport http kit-case-file https://real-mcp.kit-project.com/mcp --header "Authorization: Bearer kbr_live_ISWsqW39NkqT659FEkQjv0OjJDmyD4O3wx3wcCfA03c"</code></pre>
+      </div>
+
+      <div class="connect__panel" role="tabpanel" data-tool="codex">
+        <button class="connect__copy" type="button">Copy</button>
+        <pre><code>export KIT_PAPERS_KEY=kbr_live_Kh9eO_ZfLldveFf1KXJEEvepfOpdgRqf7KoDDU3rB18
+export KIT_MEWS_KEY=kbr_live_UN8-2LUlKmP2uxWQB5vpn-fzkJIuRb5zmq-apQeTU7U
+export KIT_CASE_KEY=kbr_live_ISWsqW39NkqT659FEkQjv0OjJDmyD4O3wx3wcCfA03c
+codex mcp add kit-papers --url https://demo-mcp.kit-project.com/mcp --bearer-token-env-var KIT_PAPERS_KEY
+codex mcp add kit-mews --url https://mews-mcp.kit-project.com/mcp --bearer-token-env-var KIT_MEWS_KEY
+codex mcp add kit-case-file --url https://real-mcp.kit-project.com/mcp --bearer-token-env-var KIT_CASE_KEY</code></pre>
+        <p class="connect__hint">
+          Codex reads each key from your environment when it starts, so keep
+          the three exports in your shell profile.
+        </p>
+      </div>
+
+      <div class="connect__panel" role="tabpanel" data-tool="cursor">
+        <button class="connect__copy" type="button">Copy</button>
+        <pre><code>{
+  "mcpServers": {
+    "kit-papers": {
+      "url": "https://demo-mcp.kit-project.com/mcp",
+      "headers": { "Authorization": "Bearer kbr_live_Kh9eO_ZfLldveFf1KXJEEvepfOpdgRqf7KoDDU3rB18" }
+    },
+    "kit-mews": {
+      "url": "https://mews-mcp.kit-project.com/mcp",
+      "headers": { "Authorization": "Bearer kbr_live_UN8-2LUlKmP2uxWQB5vpn-fzkJIuRb5zmq-apQeTU7U" }
+    },
+    "kit-case-file": {
+      "url": "https://real-mcp.kit-project.com/mcp",
+      "headers": { "Authorization": "Bearer kbr_live_ISWsqW39NkqT659FEkQjv0OjJDmyD4O3wx3wcCfA03c" }
+    }
+  }
+}</code></pre>
+        <p class="connect__hint">
+          Merge into <code>~/.cursor/mcp.json</code>, or a project's
+          <code>.cursor/mcp.json</code>, then reload Cursor.
+        </p>
+      </div>
+
+      <div class="connect__panel" role="tabpanel" data-tool="vscode">
+        <button class="connect__copy" type="button">Copy</button>
+        <pre><code>code --add-mcp '{"name":"kit-papers","type":"http","url":"https://demo-mcp.kit-project.com/mcp","headers":{"Authorization":"Bearer kbr_live_Kh9eO_ZfLldveFf1KXJEEvepfOpdgRqf7KoDDU3rB18"}}'
+code --add-mcp '{"name":"kit-mews","type":"http","url":"https://mews-mcp.kit-project.com/mcp","headers":{"Authorization":"Bearer kbr_live_UN8-2LUlKmP2uxWQB5vpn-fzkJIuRb5zmq-apQeTU7U"}}'
+code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.kit-project.com/mcp","headers":{"Authorization":"Bearer kbr_live_ISWsqW39NkqT659FEkQjv0OjJDmyD4O3wx3wcCfA03c"}}'</code></pre>
+        <p class="connect__hint">
+          The tools appear under Copilot Chat's agent mode after a reload.
+        </p>
+      </div>
+
+      <div class="connect__panel" role="tabpanel" data-tool="other">
+        <button class="connect__copy" type="button">Copy</button>
+        <pre><code>{
+  "mcpServers": {
+    "kit-papers": {
+      "type": "http",
+      "url": "https://demo-mcp.kit-project.com/mcp",
+      "headers": { "Authorization": "Bearer kbr_live_Kh9eO_ZfLldveFf1KXJEEvepfOpdgRqf7KoDDU3rB18" }
+    },
+    "kit-mews": {
+      "type": "http",
+      "url": "https://mews-mcp.kit-project.com/mcp",
+      "headers": { "Authorization": "Bearer kbr_live_UN8-2LUlKmP2uxWQB5vpn-fzkJIuRb5zmq-apQeTU7U" }
+    },
+    "kit-case-file": {
+      "type": "http",
+      "url": "https://real-mcp.kit-project.com/mcp",
+      "headers": { "Authorization": "Bearer kbr_live_ISWsqW39NkqT659FEkQjv0OjJDmyD4O3wx3wcCfA03c" }
+    }
+  }
+}</code></pre>
+        <p class="connect__hint">
+          Streamable HTTP with one authorization header; most MCP clients take
+          this shape with minor renames. The maintained copy lives in
+          <a href="https://github.com/PeterAtPondo/kit-demo-mcp" target="_blank" rel="noopener">kit-demo-mcp</a>,
+          alongside the official registry listing.
+        </p>
+      </div>
+
+      <p class="connect__note">
+        Keys rotate without notice; the current ones are always printed in each
+        kit's own map:
+        <a href="https://demo.kit-project.com/llms.txt" target="_blank" rel="noopener">papers</a>,
+        <a href="https://mews.kit-project.com/llms.txt" target="_blank" rel="noopener">mews</a>,
+        <a href="https://real.kit-project.com/llms.txt" target="_blank" rel="noopener">case file</a>.
+        Once connected, ask your agent:
+        <em>"Call wake on each server, then work out who leaked the Fluffington
+        affair, and cite every step."</em>
       </p>
     </div>
   </section>
@@ -1475,6 +1593,35 @@
        load (e.g. when a user visits /#stack directly) are revealed
        immediately rather than left hidden. Only elements below the fold
        get observed. -->
+  <!-- Connect-your-agent tabs + copy. One card, five panels; the copy
+       button lifts the visible panel's text verbatim, so what lands in
+       the clipboard is exactly what the page shows. -->
+  <script>
+    (() => {
+      const root = document.getElementById('connect-agent');
+      if (!root) return;
+      const tabs = [...root.querySelectorAll('.connect__tab')];
+      const panels = [...root.querySelectorAll('.connect__panel')];
+      tabs.forEach(tab => tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          const on = t === tab;
+          t.classList.toggle('is-active', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        panels.forEach(p => p.classList.toggle('is-active', p.dataset.tool === tab.dataset.tool));
+      }));
+      root.querySelectorAll('.connect__copy').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const pre = btn.closest('.connect__panel').querySelector('pre');
+          navigator.clipboard.writeText(pre.textContent.trim() + '\n').then(() => {
+            btn.textContent = 'Copied';
+            setTimeout(() => { btn.textContent = 'Copy'; }, 1600);
+          }).catch(() => {});
+        });
+      });
+    })();
+  </script>
+
   <script>
     (() => {
       const targets = document.querySelectorAll('[data-reveal]');
