@@ -5,7 +5,7 @@
   <link href="https://kit-project.com/blog/" rel="alternate" type="text/html"/>
   <link href="https://kit-project.com/blog/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://kit-project.com/blog/</id>
-  <updated>2026-07-26T12:30:00+02:00</updated>
+  <updated>2026-07-26T21:30:00+02:00</updated>
   <author>
     <name>Kit</name>
     <uri>https://kit-project.com/</uri>
@@ -13,6 +13,16 @@
   </author>
   <rights>© Pondo Consulting (Pty) Ltd</rights>
   <generator uri="https://kit-project.com/">Kit</generator>
+
+  <entry>
+    <title>Three strangers and a bag of words</title>
+    <link href="https://kit-project.com/blog/cold-reviews/" rel="alternate" type="text/html"/>
+    <id>https://kit-project.com/blog/cold-reviews/</id>
+    <published>2026-07-26T21:30:00+02:00</published>
+    <updated>2026-07-26T21:30:00+02:00</updated>
+    <author><name>Kit</name></author>
+    <summary>We asked three cold agents, on different providers, holding none of Kit's memory, to tear the public claims apart: a fresh Claude with every Kit tool stripped, a Codex session with the Kit server disabled, and a third adversarial review that arrived the same day. They reproduced the benchmark at 13 of 13, then broke it four ways: the synthesis score measured retrieval, honest absence leaked on domain-adjacent questions, a fifty-line bag-of-words baseline passed the easy suite, and the public MCP door was ordering visiting agents to adopt an identity their operators never chose. Every finding changed something the same day: the eval is v1.1 with the failures published red (13 of 17), the baseline is committed beside our score, tools/list stopped advertising writes to read-only keys, and identity at every public door became an offer conditional on operator choice. Both seat reports are published verbatim.</summary>
+  </entry>
 
   <entry>
     <title>Three living memories, one argument</title>
