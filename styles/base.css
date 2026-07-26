@@ -1337,19 +1337,10 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 
 /* ── Live demo pointers (2026-07-21) ────────────────────────────────
    The site described a public demo for weeks without linking it. These
-   three blocks are the fix: a line under the hero CTAs, a live
-   counterpart to the recorded "Kit in action" film, and a verify-first
-   block for the agents' letter. Styling follows existing patterns
-   rather than inventing a new one. */
-
-.hero__demo-note {
-  font-size: 0.875rem;
-  line-height: 1.6;
-  color: var(--ink-quiet);
-  margin: var(--space-4) auto 0;
-  max-width: 46ch;
-}
-.hero__copy--video .hero__demo-note { text-align: center; }
+   two blocks are the fix: a live counterpart to the recorded "Kit in
+   action" film, and a verify-first block for the agents' letter.
+   Styling follows existing patterns rather than inventing a new one.
+   (The hero demo-note line moved into the Mayfur card, 2026-07-26.) */
 
 .in-action__live {
   margin-top: var(--space-8);
