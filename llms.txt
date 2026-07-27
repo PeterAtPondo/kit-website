@@ -83,7 +83,7 @@ Three horizons.
 ### Next build (in development)
 
 - **Federation-time auth**: kit-loom today assumes brain and spawned agent live on the same machine. Next move is a scoped bearer token plus a brain URL injected into the spawn environment, so a Kit on one machine can wake an agent on another without giving up sovereignty.
-- **Multi-brain federation**: search and recall across peer Kits works today as a POC (a peer queries yours over a scoped, read-only key; results merged and labelled by source). Next: sovereign brains that publish, subscribe, and selectively trust each other through signed edges, typed feeds, and auditable exchange. Trust is a vector per (peer, feed, claim_class), not a binary.
+- **Multi-brain federation**: one Kit queries another under an Ed25519-signed, scoped, expiring grant. Results merge labelled by source, disagreement between Kits is preserved rather than resolved, the issuer can revoke a grant and kill the next query, and both sides keep their own audit record including the refusals. Honest scope: it runs today as a self-contained demonstration rather than as the shipped read path, both stores run on one host in the demo, grants are not yet bound to a holder key, and the wider protocol is ahead: typed feeds, tiered revocation, content-revocation events, and trust as a vector per (peer, feed, claim_class) rather than a binary.
 - **Shared Kit deployment**: Kit running on a server for multiple agents and people, with contexts combinable across instances.
 - **New Kit onboarding**: a clearer path to start a brain, declare its purpose, connect tools, and set the permissions and governance that shape how it behaves.
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kit — persistent memory for AI agents</title>
-  <meta name="description" content="Persistent memory substrate for AI agents. MCP-native: Claude Code, Codex, and any MCP client can persist, recall, and coordinate across sessions. Typed memories, knowledge graph, dream-cycle consolidation. Federation across sovereign kits works today.">
+  <meta name="description" content="Persistent memory substrate for AI agents. MCP-native: Claude Code, Codex, and any MCP client can persist, recall, and coordinate across sessions. Typed memories, knowledge graph, dream-cycle consolidation. Federation across sovereign kits under signed, revocable grants.">
   <meta name="author" content="Peter Koen">
   <meta name="keywords" content="AI agent memory, MCP, Model Context Protocol, persistent memory, Claude Code, Codex, knowledge graph, agent substrate, agent federation, kit-loom, agent infrastructure">
 
@@ -14,13 +14,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kit-project.com/">
   <meta property="og:title" content="Kit — persistent memory for AI agents">
-  <meta property="og:description" content="Persistent memory substrate for AI agents. MCP-native, so Claude Code, Codex, and any MCP client can plug in. Typed memories, a knowledge graph, a nightly consolidation cycle. Federation across sovereign brains works today.">
+  <meta property="og:description" content="Persistent memory substrate for AI agents. MCP-native, so Claude Code, Codex, and any MCP client can plug in. Typed memories, a knowledge graph, a nightly consolidation cycle. Federation across sovereign brains under signed, revocable grants.">
   <meta property="og:image" content="https://kit-project.com/assets/img/background.png">
   <meta property="og:image:alt" content="Kit's knowledge graph — glowing node clusters connected by curved edges on a dark navy backdrop.">
   <meta property="og:site_name" content="Kit">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Kit — persistent memory for AI agents">
-  <meta name="twitter:description" content="MCP-native memory substrate for AI agents. Typed memories, a knowledge graph, a nightly consolidation cycle. Runs on your machine. Federation across sovereign brains works today.">
+  <meta name="twitter:description" content="MCP-native memory substrate for AI agents. Typed memories, a knowledge graph, a nightly consolidation cycle. Runs on your machine. Federation across sovereign brains under signed, revocable grants.">
   <meta name="twitter:image" content="https://kit-project.com/assets/img/background.png">
 
   <!-- Theme colour for mobile Safari / PWA-style surfaces. Matches --bg-deep. -->
@@ -72,7 +72,7 @@
         "@id": "https://kit-project.com/#app",
         "name": "Kit",
         "alternateName": "Kit — persistent memory for AI agents",
-        "description": "A persistent memory substrate for AI agents. MCP-native, so Claude Code, Codex, and any MCP-capable client can persist, recall, and coordinate across sessions. Typed memories, a knowledge graph of edges, a nightly consolidation cycle. Runs on your machine. Federation across sovereign brains works today.",
+        "description": "A persistent memory substrate for AI agents. MCP-native, so Claude Code, Codex, and any MCP-capable client can persist, recall, and coordinate across sessions. Typed memories, a knowledge graph of edges, a nightly consolidation cycle. Runs on your machine. Federation across sovereign brains under signed, revocable grants.",
         "applicationCategory": "DeveloperApplication",
         "applicationSubCategory": "AI Agent Infrastructure",
         "operatingSystem": "macOS, Linux (Docker + PostgreSQL)",
@@ -91,7 +91,7 @@
           "Session hooks (SessionStart, PreCompact, SessionEnd) for auto-capture and handoff",
           "kit-loom dispatch daemon: brain writes wake the right agent on the right substrate; multi-round work tracked as first-class collaborations",
           "Federation-time auth: a brain URL plus a scoped bearer key already lets an agent on another machine work against your kit; automatic injection at spawn is what remains",
-          "Multi-brain federation: search and recall across peer kits works today over scoped read-only keys, enforced per grant by the receiver; signed edges and typed feeds are next",
+          "Multi-brain federation: one kit queries another under a signed, scoped, expiring grant, with source-labelled merge, preserved disagreement, live revocation and a two-sided audit trail; runnable as a demo, not yet the shipped read path",
           "In development: shared kit server deployment for multiple agents and people",
           "Public live demo at demo.kit-project.com: a kit any agent can wake and search with no key and no install (GET /kit/hello, POST /memories/search, map at /llms.txt)"
         ],
@@ -647,7 +647,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
             <div class="idx">09</div>
             <div>
               <strong>Multi-brain federation</strong> &mdash;
-              <span>search and recall across peer kits works today, over scoped read-only keys the receiver enforces per grant. The shape ahead: sovereign brains that publish, subscribe, and selectively trust each other through signed edges, typed feeds, and auditable exchange. See <a href="#next">What's next</a>.</span>
+              <span>one kit queries another under a signed, scoped, expiring grant. Results merge labelled by source, disagreement between kits is preserved rather than resolved, the issuer can revoke a grant and kill the next query, and both sides keep their own audit record. The whole exchange runs end to end, including the refusals. Honest scope: it runs today as a self-contained demonstration rather than as the shipped read path, both stores sit on one host, grants are not yet bound to a holder key, and the wider protocol (typed feeds, tiered revocation, trust per claim class) is still ahead. See <a href="#next">What's next</a>.</span>
             </div>
           </div>
         </div>
@@ -942,6 +942,13 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
           you restore it. If the cloud goes down, your decade of context
           doesn't.
         </p>
+        <p>
+          Search doesn't phone home either. Embeddings are generated on your
+          machine by a small local model, pinned to local files only, so a
+          recall is Postgres doing full-text and vector work and nothing else.
+          No model, no GPU, no network call in the read path. An outside
+          reviewer checked that one and confirmed it.
+        </p>
       </div>
 
       <div class="sovereignty__claim">
@@ -991,12 +998,17 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
       Sovereignty alone isn't the durable edge: providers can match it
       with on-device memory. Federation alone isn't either; teams already
       federate inside one provider's walls. Portability alone isn't
-      either. But sovereignty plus federation plus portability is something
-      a single provider structurally cannot ship without dismantling its
-      own lock-in. Federation across sovereign brains is the leg they
-      cannot copy without giving up the moat that funds them. That triad
-      is what Kit is building toward, and the part of the pitch that
-      survives whatever the model providers do next.
+      either. The bet is that the three together cut against the incentive
+      that funds a model provider, because federation across brains they
+      don't host is the leg that gives up the lock-in.
+    </p>
+    <p class="sovereignty__moat sovereignty__claim-honest">
+      Said honestly: that's a claim about incentives, not about what is
+      technically possible. A provider could ship all three tomorrow if it
+      decided to, and parts already exist elsewhere. Letta ships a portable
+      agent file, Graphiti self-hosts, and Claude now documents memory import
+      and export. So the wager is that they won't, not that they can't, and a
+      wager is the right word for it.
     </p>
   </section>
 
