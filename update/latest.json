@@ -1,12 +1,17 @@
 {
-  "version": "0.2.124",
-  "url": "https://kit-project.com/downloads/Kit-0.2.124-macOS.dmg",
+  "version": "0.2.137",
+  "url": "https://kit-project.com/downloads/Kit-0.2.137-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Search results now tell you what to trust: every hit carries a real relevance score (0 to 1, comparable across searches) and a grounded verdict, instead of an opaque internal number.",
-    "Off-topic questions on gated recall now return nothing instead of confident filler, and a query whose words appear nowhere in your Kit can no longer surface a lookalike by coincidence.",
-    "Agents can ask for lean search results (fields: compact) and a query-level confidence report (include_meta) that names which of their words matched nothing.",
-    "Relevance scoring is now calibrated to the embedding model your Kit actually runs, so 'strong match' means the same thing on every Kit."
+    "Your Kit now learns from every correction you give it. It could only hold seven before, and once those filled, everything you taught it afterwards was quietly dropped. It keeps all of them now, surfaces the ones that matter at each wake, and can trace why it behaves differently than it did months ago.",
+    "Corrections you gave in the past have been recovered and dated, so your Kit starts from what you already taught it rather than from seven.",
+    "Connecting an agent to your Kit no longer tells that agent to become your Kit. It reads your memory as an archive it can cite, and waking as your Kit is something you switch on for a specific key.",
+    "Answers cite the memories they came from, or say plainly that they cannot support the claim instead of filling the gap.",
+    "Your Kit exports to plain text files any computer can read, with a checker that needs nothing installed, so your memory outlives the app.",
+    "Kits can share memory under a signed grant that names both ends, expires, and can be revoked on the spot, with both sides keeping their own record of the exchange.",
+    "Backups are hardened, with a verified encrypted path off the machine.",
+    "The nightly dream cycle is more careful: it repairs missing areas from graph consensus, flags broken provenance and stops trusting it at answer time, and mints new connections on an earned weekly rhythm rather than freely.",
+    "Setup is clearer: the welcome screen now reads as the path ahead rather than work already happening, and the beta terms checkbox is the right size and tells you when it needs ticking."
   ]
 }
