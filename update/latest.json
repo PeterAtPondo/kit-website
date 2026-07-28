@@ -1,6 +1,6 @@
 {
-  "version": "0.2.139",
-  "url": "https://kit-project.com/downloads/Kit-0.2.139-macOS.dmg",
+  "version": "0.2.140",
+  "url": "https://kit-project.com/downloads/Kit-0.2.140-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
@@ -23,6 +23,9 @@
     "Quitting your Kit in the middle of its nightly dream no longer leaves that dream half-open behind it. The next one clears it and starts cleanly.",
     "A personal Kit stops reporting on machinery it was never given. It used to warn that a background worker had never checked in, on installs where that worker does not exist and nothing was waiting for it.",
     "Claude Code stops losing its connection to your Kit. A single web request that was cut off partway, a reload or a closed tab, could take down the process that every Claude session in the container was running inside, so all of them died at once with no warning and no request in flight.",
-    "Your Kit's nightly check on whether it is honouring your corrections works again. On Kits set up before a recent change, that check had been quietly rejected by the database every single night, so the record it is supposed to build was never written."
+    "Your Kit's nightly check on whether it is honouring your corrections works again. On Kits set up before a recent change, that check had been quietly rejected by the database every single night, so the record it is supposed to build was never written.",
+    "When a problem on the health screen has already been fixed, your Kit now says so and offers to check. It used to keep showing the old failure with nothing you could press, because the screen reports the last nightly cycle and that cycle ran before the fix arrived.",
+    "Faults are quoted in full. A long error used to be cut off partway through, sometimes mid-word, because the room set aside for it was being spent on internal detail nobody needs to read.",
+    "Your Kit is better at knowing when it does not hold the answer. A question can be about exactly the right subject while asking about a part of it your Kit has nothing on, and that used to read as a confident match. It now weighs which words are missing rather than how many, so a question whose distinctive terms are absent has to clear a higher bar before it is answered."
   ]
 }
