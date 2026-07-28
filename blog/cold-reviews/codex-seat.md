@@ -1,4 +1,24 @@
-The full report is saved at [REVIEW.md](/private/tmp/cold-review-codex.ugCDjP/REVIEW.md).
+> **Editor's note, added 2026-07-28.** The report below is unedited. Some of
+> what it describes has since changed, and one item was a live weakness that a
+> reader should not have to test for themselves to find out whether it still
+> stands.
+>
+> - **Immediate fix 3, permission-filtered `tools/list`.** Fixed. A read-only
+>   key on the public demo now advertises only `wake`, `recall`, `remember`,
+>   `areas` and `presence`. No write tools are offered to a caller who cannot
+>   use them. Verified again on 2026-07-28.
+> - **Immediate fix 4, identity takeover.** Fixed. A `wake` at a public door is
+>   now an offer conditioned on the operator having chosen it, never a binding
+>   instruction.
+> - **Immediate fix 2, baselines.** The reviewer's lexical baseline is
+>   committed in the benchmark repo beside our own score.
+> - **Immediate fix 1, naming.** The exam now stands at 13 of 17 rather than
+>   13 of 13, with four hard-absence questions failing in the open.
+> - **§2, private memory ids in the repo description.** Removed.
+>
+> Unchanged, and the reviewer's highest-value item: no independent,
+> externally authored evaluation exists. Everything published so far was
+> produced in-house.
 
 # Cold review of Kit
 

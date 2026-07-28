@@ -1,3 +1,25 @@
+> **Editor's note, added 2026-07-28.** The report below is unedited. Two days
+> after it was written, some of what it describes is no longer true, so here is
+> what changed, for a reader who should not have to guess which findings are
+> live.
+>
+> - **§2, domain-adjacent absence.** The exam now carries four hard-absence
+>   questions and stands at 13 of 17, with those four failing in the open
+>   rather than removed.
+> - **§4 and the bag-of-words point.** The reviewer's own 50-line baseline is
+>   committed beside our score in the benchmark repo. It scores 11 of 17 and
+>   beats Kit on hard absence.
+> - **Claim 16 and §7.3, identity.** The claim is now stated on the site as
+>   continuity rather than continuous identity, and it carries a scope note
+>   saying the reviewers were right on the evidence then available. The
+>   falsification protocol was written and sealed before the data existed.
+> - **The public MCP door.** A `wake` there is now an offer conditioned on the
+>   operator's choice, never a binding instruction. Read-only keys no longer
+>   advertise write tools.
+>
+> Unchanged, and the reviewer's own top recommendation: no independent party
+> has run Kit on a shared harness. Every number published so far is ours.
+
 The report is written to `REVIEW.md`. Here it is in full.
 
 ---

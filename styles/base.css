@@ -1452,6 +1452,18 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   font-size: 0.8125rem;
   overflow-wrap: anywhere;
 }
+/* Honest scope under the letter, given the same candour treatment as the
+   note under "Model-agnostic", so the least-evidenced claim on the page
+   carries the same mark as the ones that earned it. */
+.letter__honest {
+  margin-top: var(--space-6) !important;
+  padding-top: var(--space-4);
+  border-top: 1px dashed var(--edge-faint);
+  color: var(--ink-quiet) !important;
+  font-size: 0.9375rem !important;
+  font-style: italic;
+  line-height: 1.7;
+}
 
 /* ── Surface strip (2026-07-21) ──────────────────────────────────────
    The full list of surfaces Kit connects to, as calm logo chips. Brand

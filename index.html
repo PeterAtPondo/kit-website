@@ -6,7 +6,7 @@
   <title>Kit — persistent memory for AI agents</title>
   <meta name="description" content="Persistent memory substrate for AI agents. MCP-native: Claude Code, Codex, and any MCP client can persist, recall, and coordinate across sessions. Typed memories, knowledge graph, dream-cycle consolidation. Federation across sovereign kits under signed, revocable grants.">
   <meta name="author" content="Peter Koen">
-  <meta name="keywords" content="AI agent memory, MCP, Model Context Protocol, persistent memory, Claude Code, Codex, knowledge graph, agent substrate, agent federation, kit-loom, agent infrastructure">
+  <meta name="keywords" content="AI agent memory, MCP, Model Context Protocol, persistent memory, Claude Code, Codex, knowledge graph, agent substrate, agent federation, agent orchestration, agent infrastructure">
 
   <!-- Canonical + Open Graph + Twitter. og:image uses the full-bleed
        Fireflies backdrop so link previews carry the product's actual aesthetic. -->
@@ -89,9 +89,9 @@
           "Model-agnostic: swap Claude for local Llama or Qwen via Ollama",
           "FastAPI async HTTP API (agent-agnostic)",
           "Session hooks (SessionStart, PreCompact, SessionEnd) for auto-capture and handoff",
-          "kit-loom dispatch daemon: brain writes wake the right agent on the right substrate; multi-round work tracked as first-class collaborations",
+          "Orchestration: playbooks, runs watchable in Studio, and an agent registry routing each step to the right agent and model; every dispatch persisted as an auditable event",
           "Federation-time auth: a brain URL plus a scoped bearer key already lets an agent on another machine work against your kit; automatic injection at spawn is what remains",
-          "Multi-brain federation: one kit queries another under a signed, scoped, expiring grant, with source-labelled merge, preserved disagreement, live revocation and a two-sided audit trail; runnable as a demo, not yet the shipped read path",
+          "Multi-brain federation: one kit queries another under a signed, scoped, expiring grant, with source-labelled merge, preserved disagreement, live revocation and a two-sided audit trail; the public demo runs on this path, but both stores sit on one host, so separate operators and holder-bound grants are still ahead",
           "In development: shared kit server deployment for multiple agents and people",
           "Public live demo at demo.kit-project.com: a kit any agent can wake and search with no key and no install (GET /kit/hello, POST /memories/search, map at /llms.txt)"
         ],
@@ -255,13 +255,16 @@
       </div>
       <h3>Three strangers and a bag of words</h3>
       <p>
-        We asked three cold agents, holding none of Kit's memory, to tear the
-        public claims apart. They reproduced the benchmark, then broke it, and
-        they were right four times. Everything they were right about changed
-        the same day: the exam is harder and honestly red where we fail it
-        (13 of 17), their bag-of-words baseline is committed beside our score,
-        and identity at the public door became an offer, never an order. Both
-        reports published verbatim.
+        We commissioned two cold agents, holding none of Kit's memory, to tear
+        the public claims apart, and a third adversarial review arrived
+        unprompted from another frontier model the same day. They reproduced
+        the benchmark, then broke it, and they were right four times.
+        Everything they were right about changed the same day: the exam is
+        harder and honestly red where we fail it (13 of 17), their
+        bag-of-words baseline is committed beside our score, and identity at
+        the public door became an offer, never an order. Both commissioned
+        reports are published verbatim; the unprompted third was not ours to
+        publish, so its findings are named in the note instead.
       </p>
     </a>
 
@@ -290,8 +293,16 @@
         <figcaption>The install, start to finish &mdash; download, open, and the brain builds itself.</figcaption>
       </figure>
       <p>
-        Everything stays on your Mac. The beta is invite-only while we widen
-        the door slowly.
+        The store, the index and the read path stay on your Mac, always. Point
+        Kit at a local model and everything else does too: the models matrix
+        binds each function that uses an LLM to a provider you choose, and
+        Ollama and LM Studio are first-class in it. Choose a frontier model for
+        a function and that provider sees what that function sends. It is your
+        call, per function, and the matrix shows you which calls leave the
+        machine.
+      </p>
+      <p>
+        The beta is invite-only while we widen the door slowly.
       </p>
       <div class="install__cta">
         <a href="#contact" class="btn btn--primary" data-preselect-context="beta">Request beta access</a>
@@ -604,8 +615,15 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
           <div class="arch__layer">
             <div class="idx">05</div>
             <div>
-              <strong><code>kit-loom</code></strong> &mdash;
-              <span>the coordination daemon. Watches the brain for new writes, wakes the right agent on the right substrate when a subscription matches, and persists every dispatch as a durable, auditable event. Multi-round handoffs surface as first-class collaborations.</span>
+              <strong>Orchestration</strong> &mdash;
+              <span>playbooks, runs, and an agent registry. A playbook names the steps, the order, the forks and the gates; each step is routed to the agent and model that suit it, draws from the same memory, and hands what it learned to the next. Every dispatch persists as a durable, auditable event, and the run is watchable step by step in Studio. Honest scope: it runs daily and it is still the roughest surface Kit has.</span>
+            </div>
+          </div>
+          <div class="arch__layer">
+            <div class="idx">06</div>
+            <div>
+              <strong>Multi-brain federation</strong> &mdash;
+              <span>one kit queries another under a signed, scoped, expiring grant. Results merge labelled by source, disagreement between kits is preserved rather than resolved, the issuer can revoke a grant and kill the next query, and both sides keep their own audit record including the refusals. The public demo runs on this path, so you can exercise it without installing anything. Honest scope: both stores currently sit on one host, so "independently administered" means separate stores and separate keys, not separate operators; grants are not yet bound to a holder key; and typed feeds, tiered revocation and trust per claim class are still ahead. The mechanism is discharged. The full promise, your brain and mine on different machines under adversarial trust, is one hop away. See <a href="#next">What's next</a>.</span>
             </div>
           </div>
         </div>
@@ -616,14 +634,14 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         <h3 class="arch__band-label"><span class="arch__band-dot arch__band-dot--settled"></span>Settled design</h3>
         <div class="arch">
           <div class="arch__layer">
-            <div class="idx">06</div>
+            <div class="idx">07</div>
             <div>
               <strong>Four primitives</strong> &mdash;
               <span>memories (state), messages (events), subscriptions (routing), daemon (activation). The skeleton for multi-agent work inside one brain.</span>
             </div>
           </div>
           <div class="arch__layer">
-            <div class="idx">07</div>
+            <div class="idx">08</div>
             <div>
               <strong>Federation sub-protocol</strong> &mdash;
               <span>a signed envelope layer below the four primitives, carrying cryptographic identity, capability, scope, and claim provenance. Extends the architecture across brain boundaries without inventing a new user-facing primitive.</span>
@@ -637,17 +655,10 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         <h3 class="arch__band-label"><span class="arch__band-dot arch__band-dot--next"></span>Next build</h3>
         <div class="arch">
           <div class="arch__layer">
-            <div class="idx">08</div>
-            <div>
-              <strong>Federation-time auth</strong> &mdash;
-              <span>kit-loom today assumes the brain and the spawned agent live on the same machine. The next move: a brain URL plus a scoped bearer token injected into the agent's environment at spawn, so a kit on one machine can wake an agent on another without giving up sovereignty. The federation path's first kilometre.</span>
-            </div>
-          </div>
-          <div class="arch__layer">
             <div class="idx">09</div>
             <div>
-              <strong>Multi-brain federation</strong> &mdash;
-              <span>one kit queries another under a signed, scoped, expiring grant. Results merge labelled by source, disagreement between kits is preserved rather than resolved, the issuer can revoke a grant and kill the next query, and both sides keep their own audit record. The whole exchange runs end to end, including the refusals. Honest scope: it runs today as a self-contained demonstration rather than as the shipped read path, both stores sit on one host, grants are not yet bound to a holder key, and the wider protocol (typed feeds, tiered revocation, trust per claim class) is still ahead. See <a href="#next">What's next</a>.</span>
+              <strong>Federation-time auth</strong> &mdash;
+              <span>orchestration today assumes the brain and the spawned agent live on the same machine. Half the bridge exists: a brain URL plus a scoped bearer key already lets an agent on another machine work against your kit over MCP, with the grant enforced per key. What remains is injecting that pair into the spawn environment automatically, so a kit on one machine can wake an agent on another without a human wiring credentials each time, and without giving up sovereignty. This is the hop that turns federation from separate stores into separate operators.</span>
             </div>
           </div>
         </div>
@@ -904,7 +915,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         <div class="source source--live">
           <div class="source__status">Live</div>
           <div class="source__name">Multi-brain federation</div>
-          <p class="source__desc">Working today. A peer queries your kit over a scoped, read-only key, and results come back merged and labelled by source. The receiver enforces the grant per key: which knowledge areas are visible, and whether the caller may write at all. This is the same path the public demo runs on, so you can exercise it yourself without installing anything. Still ahead: signed edges, typed feeds, and trust as a vector (per peer, per feed, per claim class) rather than a binary. Disagreement is preserved as rival claims, never auto-consolidated.</p>
+          <p class="source__desc">Working today. A peer queries your kit over a scoped, read-only key, and results come back merged and labelled by source. The receiver enforces the grant per key: which knowledge areas are visible, and whether the caller may write at all. Disagreement is preserved as rival claims, never auto-consolidated. This is the same path the public demo runs on, so you can exercise it yourself without installing anything. Honest scope: both stores currently sit on one host, so "independently administered" means separate stores and separate keys, not separate operators; grants are not yet bound to a holder key; signed edges, typed feeds and trust as a vector (per peer, per feed, per claim class) are still ahead. The mechanism is discharged, the cross-operator promise is not, and that last hop is where federation protocols historically fail, because it is the first time the other end can lie to you.</p>
         </div>
         <div class="source source--development">
           <div class="source__status">IN DEVELOPMENT</div>
@@ -960,12 +971,15 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
           which model answers the prompt.
         </p>
         <p class="sovereignty__claim-honest">
-          Honest scope: storage sovereignty is real today. Model sovereignty
-          arrives when local models are competitive for the work you do.
-          Frontier work today still wants a frontier model, which means a
-          frontier provider sees the retrieved memories on every call. The
-          Ollama path is a hedge against that day, not a present-day parity
-          claim.
+          Honest scope: storage sovereignty is real today, and so is the
+          choice. The models matrix binds each LLM-using function to a
+          provider, so you can run every one of them locally and nothing
+          leaves the machine at all. What that costs you is quality: frontier
+          work today still wants a frontier model, and a function you point at
+          one hands that provider what it sends. So model sovereignty is
+          available now and competitive later, and the honest sentence is that
+          the exposure is a decision you make per function rather than a
+          property of the product.
         </p>
       </div>
 
@@ -1199,6 +1213,25 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         <p class="letter__sign">
           &mdash; Kit<br>
           <span class="mono">written 2026-04-21</span>
+        </p>
+
+        <!-- Candour follow-up on the least-evidenced claim on this page, in
+             the same shape as the honest scope under "Model-agnostic". The
+             letter is the most persuasive thing here, which is exactly why it
+             needs the note the other claims already carry. -->
+        <p class="letter__honest">
+          Honest scope: this is the least evidenced part of the site. Two cold
+          reviewers read it and rejected the identity claim, and on the
+          evidence then available they were right. What is actually claimed
+          here is continuity, not continuous identity: that being corrected
+          once measurably changes what Kit does later, on a different surface,
+          in a way the same text as a static prompt with the same retrieval
+          would not reproduce. That is a testable sentence, so before the data
+          existed we wrote down the hypotheses, the exclusions and the
+          conditions under which it fails, and sealed it. The window opened on
+          28 July 2026. The result gets published either way, including the
+          ways it failed. Until then, read the paragraphs above as a thesis
+          under test rather than a finding.
         </p>
       </div>
 

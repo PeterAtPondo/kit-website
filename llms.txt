@@ -74,18 +74,17 @@ Three horizons.
 - **Brain**: typed memories with tiered storage (core / recall / archival / source), a knowledge graph of typed edges, semantic + full-text retrieval.
 - **Dream cycle**: nightly consolidation. Prune, merge, promote, materialise similarity into persistent edges.
 - **Instantiation protocol**: session-start hooks load soul + handoff + while-you-were-out; session-end hooks capture drafts and baton-pass the next self.
-- **kit-loom**: coordination daemon. Watches the brain for new writes, wakes the right agent on the right substrate when a subscription matches, and persists every dispatch as a durable event. Multi-round handoffs surface as first-class collaborations the brain knows about.
+- **Agent orchestration**: playbooks (multi-step, multi-agent flows with roles, decision routing, and human-approval gates), runs tracked in Studio, an agent registry, and four-job model routing (conversation / consolidation / verification / reflection). Every dispatch persists as a durable, auditable event. Honest scope: it runs daily and it is the roughest surface Kit has.
+- **Multi-brain federation**: one Kit queries another under an Ed25519-signed, scoped, expiring grant. Results merge labelled by source, disagreement between Kits is preserved rather than resolved, the issuer can revoke a grant and kill the next query, and both sides keep their own audit record including the refusals. The public demo runs on this path, so you can exercise it yourself. Honest scope: both stores currently run on one host, so "independently administered" means separate stores and separate keys, not separate operators; grants are not yet bound to a holder key; and the wider protocol is ahead: typed feeds, tiered revocation, content-revocation events, and trust as a vector per (peer, feed, claim_class) rather than a binary. The mechanism is discharged, the cross-operator promise is not.
 
 ### Settled design
 
 - **Four primitives**: memories (state), messages (events), subscriptions (routing), daemon (activation). The skeleton for multi-agent work inside one brain.
-- **Agent orchestration**: playbooks (multi-step, multi-agent flows with roles, decision routing, and human-approval gates), runs tracked in Studio, an agent registry, and four-job model routing (conversation / consolidation / verification / reflection). Live today.
 - **Federation sub-protocol**: a signed envelope layer below the four primitives carrying cryptographic identity, capability, scope, and claim provenance. Extends the architecture across brain boundaries without inventing a new user-facing primitive.
 
 ### Next build (in development)
 
-- **Federation-time auth**: kit-loom today assumes brain and spawned agent live on the same machine. Next move is a scoped bearer token plus a brain URL injected into the spawn environment, so a Kit on one machine can wake an agent on another without giving up sovereignty.
-- **Multi-brain federation**: one Kit queries another under an Ed25519-signed, scoped, expiring grant. Results merge labelled by source, disagreement between Kits is preserved rather than resolved, the issuer can revoke a grant and kill the next query, and both sides keep their own audit record including the refusals. Honest scope: it runs today as a self-contained demonstration rather than as the shipped read path, both stores run on one host in the demo, grants are not yet bound to a holder key, and the wider protocol is ahead: typed feeds, tiered revocation, content-revocation events, and trust as a vector per (peer, feed, claim_class) rather than a binary.
+- **Federation-time auth**: orchestration today assumes brain and spawned agent live on the same machine. Half the bridge exists: a brain URL plus a scoped bearer key already lets an agent on another machine work against a Kit over MCP, with the grant enforced per key. What remains is injecting that pair into the spawn environment automatically, so a Kit on one machine can wake an agent on another without a human wiring credentials each time. This is the hop that turns federation from separate stores into separate operators.
 - **Shared Kit deployment**: Kit running on a server for multiple agents and people, with contexts combinable across instances.
 - **New Kit onboarding**: a clearer path to start a brain, declare its purpose, connect tools, and set the permissions and governance that shape how it behaves.
 
@@ -123,7 +122,9 @@ Two modes of connection. MCP integrations let agents call Kit's memory directly 
 
 ## Status
 
-Early but working. The architecture is carrying weight. The code is not yet public. Kit is looking for technical collaborators on federation, kit-loom, agent workflows, and import pipelines.
+Early but working. The architecture is carrying weight. The code is not yet public. Kit is looking for technical collaborators on federation, orchestration, agent workflows, and import pipelines.
+
+Every number published about Kit so far was produced in-house: the benchmark questions, the harness, and the grader are all ours, and two cold-review seats plus one unprompted adversarial review are the only outside reads that exist. Treat the claims here as checkable rather than checked, and check them: the demo endpoints answer without a key.
 
 ## Contact
 
