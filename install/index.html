@@ -259,6 +259,55 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.140</span>
+          <span class="release__date">July 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Improvements</h4>
+          <ul>
+            <li>Your kit is better at knowing when it does not hold the answer. A question can be about exactly the right subject while asking about a part of it your kit has nothing on, and that used to read as a confident match. It now weighs which words are missing rather than how many, so a question whose distinctive terms are absent has to clear a higher bar before it is answered.</li>
+            <li>Asking about something your kit has never come across returns quickly. That was the one case where a search had to read every memory before it could answer, and on a large kit it showed.</li>
+          </ul>
+        </div>
+        <div class="release__kind">
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>When a problem on the health screen has already been fixed, your kit says so and offers to check. It used to keep showing the old failure with nothing you could press, because the screen reports the last nightly cycle and that cycle ran before the fix arrived.</li>
+            <li>Faults are quoted in full. A long error used to be cut off partway through, sometimes mid-word, because the room set aside for it was being spent on internal detail nobody needs to read.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="release">
+        <div class="release__head">
+          <span class="release__ver">0.2.139</span>
+          <span class="release__date">July 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Improvements</h4>
+          <ul>
+            <li>You can name a fallback model in Settings, Models. When the provider running a job stops answering, because the account is out of credit or the key has stopped working, your kit finishes the job on the fallback instead of going quiet. Point it at a local model and your kit keeps working even when a paid account goes dark.</li>
+            <li>When the health screen reports a problem, it now tells you the cause. It used to name only what had failed, so a card could say a nightly job went quiet while the real reason, an expired key or an account out of credit, sat unread underneath it.</li>
+            <li>Times on the health screen are written the way people say them, so you read "no progress for 40 minutes" instead of a raw timestamp in another timezone.</li>
+          </ul>
+        </div>
+        <div class="release__kind">
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>Claude Code stops losing its connection to your kit. A single web request that was cut off partway, a reload or a closed tab, could take down the process that every Claude session was running inside, so all of them died at once with no warning and no request in flight.</li>
+            <li>Your kit's nightly check on whether it is honouring your corrections works again. On kits set up before a recent change, that check had been quietly rejected by the database every night, so the record it is supposed to build was never written.</li>
+            <li>The buttons on the health screen do something you can see. Starting a dream from a card used to sit silent for several minutes with no sign it had begun, which read as a broken button. It now starts in the background and says so.</li>
+            <li>Your kit no longer accuses itself of being stuck when it is merely working slowly. It watches over a real stretch of time before saying anything, so a kit you have just started, or one taking its time with a large import, is left to get on with it. It also stops quietly restarting that work over and over behind the scenes.</li>
+            <li>Quitting your kit in the middle of its nightly dream no longer leaves that dream half-open behind it. The next one clears it and starts cleanly.</li>
+            <li>A personal kit stops reporting on machinery it was never given. It used to warn that a background worker had never checked in, on installs where that worker does not exist and nothing was waiting for it.</li>
+            <li>When something breaks, your kit tells you what broke. It used to say it hit a snag whatever the cause; now it names the fault, and messages you as soon as it happens rather than the next time you say hello.</li>
+            <li>Spend alerts keep speaking. They used to warn once a day and then fall silent no matter how far past the budget a day ran.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.137</span>
           <span class="release__date">July 2026</span>
         </div>
