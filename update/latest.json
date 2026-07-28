@@ -1,6 +1,6 @@
 {
-  "version": "0.2.137",
-  "url": "https://kit-project.com/downloads/Kit-0.2.137-macOS.dmg",
+  "version": "0.2.139",
+  "url": "https://kit-project.com/downloads/Kit-0.2.139-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
@@ -12,6 +12,17 @@
     "Kits can share memory under a signed grant that names both ends, expires, and can be revoked on the spot, with both sides keeping their own record of the exchange.",
     "Backups are hardened, with a verified encrypted path off the machine.",
     "The nightly dream cycle is more careful: it repairs missing areas from graph consensus, flags broken provenance and stops trusting it at answer time, and mints new connections on an earned weekly rhythm rather than freely.",
-    "Setup is clearer: the welcome screen now reads as the path ahead rather than work already happening, and the beta terms checkbox is the right size and tells you when it needs ticking."
+    "Setup is clearer: the welcome screen now reads as the path ahead rather than work already happening, and the beta terms checkbox is the right size and tells you when it needs ticking.",
+    "You can name a fallback model in Settings, Models. When the provider running a job stops answering, because the account is out of credit or the key has stopped working, your Kit finishes the job on the fallback instead of going quiet. Point it at a local model and your Kit keeps working even when a paid account goes dark.",
+    "When something does break, your Kit tells you what broke. It used to say it hit a snag whatever the cause; now it names the fault, and messages you as soon as it happens rather than the next time you say hello.",
+    "Spend alerts keep speaking. They used to warn once a day and then fall silent no matter how far past the budget a day ran.",
+    "When your Kit's health screen reports a problem, it now tells you the cause. It used to name only what had failed, so a card could say a nightly job went quiet while the real reason, an expired key or an account out of credit, sat unread underneath it.",
+    "The buttons on that screen do something you can see. Starting a dream from a health card used to sit silent for several minutes with no sign it had begun, which read as a broken button. It now starts in the background and says so.",
+    "Times on the health screen are written the way people say them, so you read 'no progress for 40 minutes' instead of a raw timestamp in another timezone.",
+    "Your Kit no longer accuses itself of being stuck when it is merely working slowly. It watches over a real stretch of time before saying anything, so a Kit you have just started, or one simply taking its time with a large import, is left to get on with it. It also stops quietly restarting that work over and over behind the scenes.",
+    "Quitting your Kit in the middle of its nightly dream no longer leaves that dream half-open behind it. The next one clears it and starts cleanly.",
+    "A personal Kit stops reporting on machinery it was never given. It used to warn that a background worker had never checked in, on installs where that worker does not exist and nothing was waiting for it.",
+    "Claude Code stops losing its connection to your Kit. A single web request that was cut off partway, a reload or a closed tab, could take down the process that every Claude session in the container was running inside, so all of them died at once with no warning and no request in flight.",
+    "Your Kit's nightly check on whether it is honouring your corrections works again. On Kits set up before a recent change, that check had been quietly rejected by the database every single night, so the record it is supposed to build was never written."
   ]
 }
