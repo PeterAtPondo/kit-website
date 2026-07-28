@@ -100,7 +100,7 @@ Three horizons.
 ## Storage model
 
 - `memories`: 20+ columns including tier, scope, category, source_session, embedding, consolidated_from, original_timestamp, importance_score, decay_score, entities, people, places, topics, summary.
-- `memory_edges`: typed relations (`extends`, `supersedes`, `related_to`, `implements`, `caused_by`, `references`, `novel_association`). Written by humans, AI agents via MCP, or the nightly kNN promoter (cosine ≥ 0.55 pairs).
+- `memory_edges`: typed relations on an **open vocabulary**. Four types drive behaviour and are guarded against misspelling: `supersedes` (the supersession walk), `related_to` (what the nightly kNN promoter writes, cosine ≥ 0.55 pairs), `novel_association` (graduates to a durable edge once it has surfaced enough), `references` (read by provenance). Any other value is accepted as-is and is descriptive only: the dream cycle mints its own (`consolidated_from`, `derived_from`, `summary_of`, `extracted_from`) and an imported corpus keeps the relations native to it rather than being flattened. Written by humans, AI agents via MCP, or the nightly promoter.
 - `artifact_memory_links`: three-layer model. Raw artifacts stored at full fidelity in dedicated tables; typed links connect them to consolidated memories. Sources are never consolidated.
 - `dream_logs`: per-cycle telemetry (reviewed / consolidated / pruned / promoted) plus an LLM summary of what the cycle actually did.
 

@@ -686,7 +686,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         <ul class="spec">
           <li>PostgreSQL 16 + pgvector 0.8 <span class="spec__meta">(384-dim embeddings)</span></li>
           <li>Memories table with <em>tier</em>, <em>scope</em>, <em>category</em>, provenance, summary, entities, people, places, topics</li>
-          <li>MemoryEdge: typed relations &mdash; <code>extends</code>, <code>supersedes</code>, <code>related_to</code>, <code>implements</code>, <code>caused_by</code>, <code>references</code>, <code>novel_association</code></li>
+          <li>MemoryEdge: typed relations, on an open vocabulary. Four types drive behaviour and are guarded against misspelling: <code>supersedes</code> (the supersession walk), <code>related_to</code> (what nightly kNN promotion writes), <code>novel_association</code> (graduates to a durable edge once it has surfaced enough), <code>references</code> (read by provenance). Every other type is descriptive and free-form, so the dream cycle mints its own as it consolidates &mdash; <code>consolidated_from</code>, <code>derived_from</code>, <code>summary_of</code> &mdash; and an imported corpus keeps the relations native to it rather than being flattened into <code>related_to</code></li>
           <li>ArtifactMemoryLink: high-fidelity sources preserved separately from consolidated memories <span class="spec__meta">(three-layer model)</span></li>
         </ul>
       </div>
