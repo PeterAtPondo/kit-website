@@ -27,6 +27,12 @@ create table if not exists public.beta_installs (
 create index if not exists beta_installs_last_seen_idx
   on public.beta_installs (last_seen desc);
 
+-- Why an update failed, when the app recorded one (added 2026-07-31): kind,
+-- detail, timestamp, and the sanitised error lines from the run. Null once
+-- app and stack agree again. Bounded by beta-ping.mjs before it gets here.
+alter table public.beta_installs
+  add column if not exists update_failure jsonb;
+
 -- The roster is reached only by our two serverless functions, which hold the
 -- service role key. RLS on with no policies means anon and authenticated
 -- callers can read nothing at all, so a leaked anon key exposes no one.

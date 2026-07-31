@@ -77,6 +77,15 @@ function page(rows) {
           // older code than its version number claims.
           const skewed = r.app_version && r.stack_version && r.app_version !== r.stack_version;
           const stale = Date.parse(r.last_seen || 0) < Date.now() - 7 * 86400000;
+          // Failure evidence the app pushed with its heartbeat: why the
+          // update did not land, without asking the operator for logs.
+          const failure = r.update_failure && typeof r.update_failure === "object" ? r.update_failure : null;
+          const failureRow = failure
+            ? `<tr class="skew"><td colspan="8" class="failure"><details>
+      <summary>${esc(failure.kind || "update failure")} · ${esc(ago(failure.at))}${failure.detail ? ` · ${esc(failure.detail)}` : ""}</summary>
+      <pre>${esc(failure.log_tail || "the report carried no log lines")}</pre>
+    </details></td></tr>`
+            : "";
           return `<tr class="${skewed ? "skew" : ""}">
       <td><strong>${esc(r.operator_name || "unnamed")}</strong><div class="sub">${esc(r.email)}</div></td>
       <td>${esc(r.kit_name || "Kit")}</td>
@@ -86,7 +95,7 @@ function page(rows) {
       <td class="${stale ? "stale" : ""}">${esc(ago(r.last_seen))}</td>
       <td class="sub">${esc((r.first_seen || "").slice(0, 10))}</td>
       <td><a class="forget" href="?forget=${encodeURIComponent(r.id)}">forget</a></td>
-    </tr>`;
+    </tr>${failureRow}`;
         })
         .join("\n")
     : `<tr><td colspan="8" class="sub">No installs have reported yet.</td></tr>`;
@@ -114,6 +123,12 @@ function page(rows) {
          font-size: 10.5px; background: rgba(240,184,77,0.14); color: #f0b84d; }
   .forget { color: #64748b; font-size: 12px; text-decoration: none; }
   .forget:hover { color: #f87171; text-decoration: underline; }
+  .failure { padding-top: 0; }
+  .failure summary { cursor: pointer; color: #f0b84d; font-size: 12px; }
+  .failure pre { margin: 8px 0 4px; padding: 10px 12px; border-radius: 10px;
+                 background: rgba(0,0,0,0.35); color: #94a3b8; font-size: 11.5px;
+                 line-height: 1.5; white-space: pre-wrap; word-break: break-word;
+                 max-height: 320px; overflow: auto; }
 </style></head>
 <body>
   <h1>Beta installs</h1>

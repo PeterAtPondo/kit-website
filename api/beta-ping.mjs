@@ -113,6 +113,23 @@ export default async function handler(req, res) {
       // see before (kit memory m#158827).
       app_version: version(body.app_version),
       stack_version: version(body.stack_version),
+      // Why an update failed, when the app recorded one: the roster showing
+      // "update not applied" with no reason still meant asking the operator
+      // to dig logs out of their Mac (Ian, 2026-07-31). Rebuilt field by
+      // field and bounded, never stored raw. The app strips credentials from
+      // log_tail before sending; the caps here are the second fence. Always
+      // written, null when the ping carries none: PostgREST leaves absent
+      // columns alone on merge, so a cleared failure must clear explicitly.
+      update_failure:
+        body.update_failure && typeof body.update_failure === "object"
+          ? {
+              kind: cap(body.update_failure.kind, 40),
+              detail: cap(body.update_failure.detail, 300),
+              app_version: version(body.update_failure.app_version),
+              at: cap(body.update_failure.at, 40),
+              log_tail: cap(body.update_failure.log_tail, 3000),
+            }
+          : null,
       last_seen: now,
     };
 
