@@ -23,6 +23,19 @@ export default function middleware(request) {
     // The installed app polls latest.json for update checks: keep it open.
     if (url.pathname.endsWith("/latest.json")) return;
 
+    // Sparkle's auto-update download: an installed app fetching the dmg sends
+    // the app token header (the same one beta-ping authenticates with). The
+    // person already passed the beta gate to install; their app should not
+    // need the password again to stay current.
+    const appToken = process.env.KIT_WELCOME_TOKEN;
+    if (
+      appToken &&
+      url.pathname.endsWith(".dmg") &&
+      request.headers.get("x-kit-app-token") === appToken
+    ) {
+      return;
+    }
+
     const expected = process.env.KIT_INSTALL_PASSWORD;
     if (!expected) return; // gate off until a password is configured
 
