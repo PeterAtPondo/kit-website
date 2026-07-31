@@ -1,14 +1,11 @@
 {
-  "version": "0.2.141",
-  "url": "https://kit-project.com/downloads/Kit-0.2.141-macOS.dmg",
+  "version": "0.2.142",
+  "url": "https://kit-project.com/downloads/Kit-0.2.142-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Updates land themselves now. When an earlier update had not actually reached the running Kit, the app used to show a screen with a button and otherwise wait; it now quietly reruns the update at the next launch, and only asks you to press the button if that self-heal fails too.",
-    "An update waits for your Kit to finish dreaming or reading your history before it restarts anything, so that work is never killed mid-flight. A wait that drags past three hours goes ahead anyway rather than holding your Kit on old code forever.",
-    "Each successful update cleans up the images earlier versions left behind. They used to pile up quietly until Docker's disk filled and every later update failed at that same wall.",
-    "An update that cannot verify what is running now says exactly that and retries at the next launch. It used to record success on silence, which could leave a Kit convinced it was current while running weeks-old code.",
-    "If an update fails, your Kit sends us the error lines from that run, with your sign-in details stripped, so we can fix what went wrong without asking you to dig logs out of your Mac. The beta disclosure at install time names this.",
-    "This version renames your Kit's internal containers to say what they are. The updater retires the old ones itself, in the right order, so the swap is clean: your Kit keeps running on the old version until the new one is fully built, and your memories sit in storage that the rename never touches."
+    "Updates now arrive inside the app. When a new version is ready, your Kit tells you and one click installs it and relaunches; no more visiting the site, downloading, and dragging. This version is the last one you install by hand, and the download stays behind your beta access either way.",
+    "You can put your Kit on Telegram. A new step near the end of setup walks you through it in about two minutes: your Kit gets its own private bot, yours alone, so messages travel between your phone and your Mac without passing through anyone else, and your Kit checks it is really you before it answers anyone. Skip it during setup and the same flow waits in the menu under Connect Telegram, whenever you want it.",
+    "Messages sent while your Mac is asleep are not lost; they queue on Telegram's side and your Kit works through them when it wakes."
   ]
 }
