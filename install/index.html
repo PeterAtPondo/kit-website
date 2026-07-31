@@ -247,15 +247,39 @@
     </ol>
   </section>
 
-  <!-- Release notes: newest first, short and high level. Add a .release block
-       at the top of .releases each time we ship. Two kinds: Improvements and
-       Bug fixes. -->
+  <!-- Release notes: newest first, short and high level. release-app.sh
+       inserts a .release block at the top of .releases on every publish,
+       from the release's NOTES.json; it anchors on the .releases opening
+       tag, so keep that line intact when restyling. -->
   <section class="section">
     <h2>Release notes</h2>
     <p class="lede" style="max-width: var(--reading-max)">
       A short, high-level log of what each release brought. Newest first.
     </p>
     <div class="releases">
+
+      <article class="release">
+        <div class="release__head">
+          <span class="release__ver">0.2.141</span>
+          <span class="release__date">July 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>Improvements</h4>
+          <ul>
+            <li>Your kit's internal parts are now named for what they are, and the updater retires the old ones itself, in the right order: your kit keeps running on the old version until the new one is fully built, and your memories sit in storage the change never touches.</li>
+            <li>If an update fails, your kit sends us the error lines from that run, with your sign-in details stripped, so we can fix what went wrong without asking you to dig logs out of your Mac. The disclosure at install time says exactly this.</li>
+          </ul>
+        </div>
+        <div class="release__kind">
+          <h4>Bug fixes</h4>
+          <ul>
+            <li>Updates land themselves. When an earlier update had not actually reached the running kit, the app used to show a screen with a button and otherwise wait; it now quietly reruns the update at the next launch, and only asks for the button press if that self-heal fails too.</li>
+            <li>An update waits for your kit to finish dreaming or reading your history before it restarts anything, so that work is never lost mid-flight.</li>
+            <li>Each successful update cleans up what earlier versions left behind. Old runtime images used to pile up quietly until the disk Docker uses filled and every later update failed at that same wall.</li>
+            <li>An update that cannot verify what is running says exactly that and retries at the next launch. It used to record success on silence, which could leave a kit convinced it was current while running weeks-old code.</li>
+          </ul>
+        </div>
+      </article>
 
       <article class="release">
         <div class="release__head">
