@@ -4,7 +4,7 @@
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Telegram works properly now. The first version could lose your bot token in setup, drop your very first message, and answer questions at essay length. Pairing now completes reliably, your first message is always held for your confirmation instead of ignored, and replies are short, phone-shaped, and end with a quiet note saying which memories they came from.",
-    "If your Kit ever cannot answer on Telegram, it now says why in its logs instead of going silent."
+    "Internal groundwork for features that are still in testing, plus quieter, more reliable logs for the background services.",
+    "When something in the background cannot do its job, it now says why in its logs instead of going silent."
   ]
 }

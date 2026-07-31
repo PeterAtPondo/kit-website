@@ -8,7 +8,7 @@
       <sparkle:version>0.2.144</sparkle:version>
       <sparkle:shortVersionString>0.2.144</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Telegram works properly now. The first version could lose your bot token in setup, drop your very first message, and answer questions at essay length. Pairing now completes reliably, your first message is always held for your confirmation instead of ignored, and replies are short, phone-shaped, and end with a quiet note saying which memories they came from.</li><li>If your Kit ever cannot answer on Telegram, it now says why in its logs instead of going silent.</li></ul>]]></description>
+      <description><![CDATA[<ul><li>Internal groundwork for features that are still in testing, plus quieter, more reliable logs for the background services.</li><li>When something in the background cannot do its job, it now says why in its logs instead of going silent.</li></ul>]]></description>
       <enclosure url="https://kit-project.com/downloads/Kit-0.2.144-macOS.dmg"
         type="application/octet-stream" sparkle:edSignature="hG61JbFvSyY7ORIyu+QbLplqOiq8kNJFvWN495yGxaS0VS6fnosfid8pJnQNb49qpykDhq89JXf+TrtROvaGBQ==" length="8279969"/>
     </item>
