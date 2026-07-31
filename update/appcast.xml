@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.143</title>
-      <pubDate>Fri, 31 Jul 2026 17:37:48 -0000</pubDate>
-      <sparkle:version>0.2.143</sparkle:version>
-      <sparkle:shortVersionString>0.2.143</sparkle:shortVersionString>
+      <title>0.2.144</title>
+      <pubDate>Fri, 31 Jul 2026 20:57:19 -0000</pubDate>
+      <sparkle:version>0.2.144</sparkle:version>
+      <sparkle:shortVersionString>0.2.144</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>The first update to arrive through the app itself. Nothing else changed; this release exists to walk the new path end to end before your Kit asks you to trust it with a real one.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.143-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="W5XXWimqxu6U3RauOyhefU9yr8MUOwgrGweTg+GK1yw9rzH9fLifsa3x0Si1AJi/jcSTzh8RwiH9BHNzJJP7Bw==" length="8603910"/>
+      <description><![CDATA[<ul><li>Telegram works properly now. The first version could lose your bot token in setup, drop your very first message, and answer questions at essay length. Pairing now completes reliably, your first message is always held for your confirmation instead of ignored, and replies are short, phone-shaped, and end with a quiet note saying which memories they came from.</li><li>If your Kit ever cannot answer on Telegram, it now says why in its logs instead of going silent.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.144-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="hG61JbFvSyY7ORIyu+QbLplqOiq8kNJFvWN495yGxaS0VS6fnosfid8pJnQNb49qpykDhq89JXf+TrtROvaGBQ==" length="8279969"/>
     </item>
   </channel>
 </rss>

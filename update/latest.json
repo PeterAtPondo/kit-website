@@ -1,9 +1,10 @@
 {
-  "version": "0.2.143",
-  "url": "https://kit-project.com/downloads/Kit-0.2.143-macOS.dmg",
+  "version": "0.2.144",
+  "url": "https://kit-project.com/downloads/Kit-0.2.144-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "The first update to arrive through the app itself. Nothing else changed; this release exists to walk the new path end to end before your Kit asks you to trust it with a real one."
+    "Telegram works properly now. The first version could lose your bot token in setup, drop your very first message, and answer questions at essay length. Pairing now completes reliably, your first message is always held for your confirmation instead of ignored, and replies are short, phone-shaped, and end with a quiet note saying which memories they came from.",
+    "If your Kit ever cannot answer on Telegram, it now says why in its logs instead of going silent."
   ]
 }
