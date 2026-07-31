@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.144</title>
-      <pubDate>Fri, 31 Jul 2026 20:57:19 -0000</pubDate>
-      <sparkle:version>0.2.144</sparkle:version>
-      <sparkle:shortVersionString>0.2.144</sparkle:shortVersionString>
+      <title>0.2.145</title>
+      <pubDate>Fri, 31 Jul 2026 21:18:30 -0000</pubDate>
+      <sparkle:version>0.2.145</sparkle:version>
+      <sparkle:shortVersionString>0.2.145</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Internal groundwork for features that are still in testing, plus quieter, more reliable logs for the background services.</li><li>When something in the background cannot do its job, it now says why in its logs instead of going silent.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.144-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="hG61JbFvSyY7ORIyu+QbLplqOiq8kNJFvWN495yGxaS0VS6fnosfid8pJnQNb49qpykDhq89JXf+TrtROvaGBQ==" length="8279969"/>
+      <description><![CDATA[<ul><li>Housekeeping: background services are quieter and more honest in their logs, and groundwork continues for a feature in private testing.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.145-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="Ncd86PN5CWcZF3aYAdX9z7v1oVz+4KgfStNGy2ZJCVzmhRXjWG9FhHUjhOMOjukq3reaBI4hihCxcESmnoaJBA==" length="8273518"/>
     </item>
   </channel>
 </rss>
