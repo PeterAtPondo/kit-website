@@ -1,0 +1,13 @@
+{
+  "pack_version": "5896bdfa2f97",
+  "url": "https://github.com/PeterAtPondo/kit-releases/releases/download/pack-5896bdfa2f97/kit-runtime-pack-5896bdfa2f97.tar.gz",
+  "sha256": "4aecf8f5a83d31f12e512952429f3f33576d7dfdada77aa9abc7bf87ebd94bbe",
+  "size": 340908810,
+  "arch": "arm64",
+  "contents": {
+    "python": "Python 3.12.13",
+    "node": "v22.22.0",
+    "postgres": "postgres (PostgreSQL) 16.4 (Postgres.app)",
+    "requirements": "sha256 570a4380e6e6364040317e7ba44688cac1899b9d3ea37603b4cb6d875b632d4a"
+  }
+}
