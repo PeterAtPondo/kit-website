@@ -1,9 +1,13 @@
 {
-  "version": "0.2.145",
-  "url": "https://kit-project.com/downloads/Kit-0.2.145-macOS.dmg",
+  "version": "0.2.146",
+  "url": "https://kit-project.com/downloads/Kit-0.2.146-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Housekeeping: background services are quieter and more honest in their logs, and groundwork continues for a feature in private testing."
+    "A dream interrupted by a database hiccup now resumes where it left off instead of failing.",
+    "Kit stays responsive while it imports and generates memories.",
+    "Claude Desktop and Claude Code reconnect cleanly after a Kit rename.",
+    "Your model choice now applies to everything Kit does, not just chat.",
+    "Beta monitoring now reports which runtime Kit runs on and whether its services are healthy; the terms page spells out exactly what is sent."
   ]
 }

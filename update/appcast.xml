@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.145</title>
-      <pubDate>Fri, 31 Jul 2026 21:18:30 -0000</pubDate>
-      <sparkle:version>0.2.145</sparkle:version>
-      <sparkle:shortVersionString>0.2.145</sparkle:shortVersionString>
+      <title>0.2.146</title>
+      <pubDate>Sat, 01 Aug 2026 16:42:35 -0000</pubDate>
+      <sparkle:version>0.2.146</sparkle:version>
+      <sparkle:shortVersionString>0.2.146</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Housekeeping: background services are quieter and more honest in their logs, and groundwork continues for a feature in private testing.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.145-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="Ncd86PN5CWcZF3aYAdX9z7v1oVz+4KgfStNGy2ZJCVzmhRXjWG9FhHUjhOMOjukq3reaBI4hihCxcESmnoaJBA==" length="8273518"/>
+      <description><![CDATA[<ul><li>A dream interrupted by a database hiccup now resumes where it left off instead of failing.</li><li>Kit stays responsive while it imports and generates memories.</li><li>Claude Desktop and Claude Code reconnect cleanly after a Kit rename.</li><li>Your model choice now applies to everything Kit does, not just chat.</li><li>Beta monitoring now reports which runtime Kit runs on and whether its services are healthy; the terms page spells out exactly what is sent.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.146-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="rfAOUQFtG+AZxPzhNaQMM+eFwbEk3QCXbNEQWFI+omRGHJK7/6o1rBzzL1N0clyCF6oWx82sqRJTYoY1MCB4BQ==" length="8731942"/>
     </item>
   </channel>
 </rss>
