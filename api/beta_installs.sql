@@ -33,6 +33,16 @@ create index if not exists beta_installs_last_seen_idx
 alter table public.beta_installs
   add column if not exists update_failure jsonb;
 
+-- Structural diagnostics (added 2026-08-01): runtime docker|native, the
+-- installed-version marker, skew flag, background process alive/restart
+-- counts, health rollup, operator-stopped flag. One jsonb column so future
+-- debug fields need no further migrations; PostgREST rejects whole rows on
+-- unknown columns and the receiver falls back to a debug-less write until
+-- this has been applied. States and counts only, never content; rebuilt
+-- field by field and bounded by beta-ping.mjs before it gets here.
+alter table public.beta_installs
+  add column if not exists debug jsonb;
+
 -- The roster is reached only by our two serverless functions, which hold the
 -- service role key. RLS on with no policies means anon and authenticated
 -- callers can read nothing at all, so a leaked anon key exposes no one.

@@ -86,6 +86,28 @@ function page(rows) {
       <pre>${esc(failure.log_tail || "the report carried no log lines")}</pre>
     </details></td></tr>`
             : "";
+          // The structural debug block, one compact line under the row: which
+          // runtime, whether anything is crash-looping or the operator simply
+          // stopped Kit, and the third version when it disagrees.
+          const dbg = r.debug && typeof r.debug === "object" ? r.debug : null;
+          const dbgBits = [];
+          if (dbg) {
+            dbgBits.push(esc(dbg.runtime || "docker"));
+            if (dbg.installed_version && dbg.installed_version !== r.app_version)
+              dbgBits.push(`installed ${esc(dbg.installed_version)}`);
+            if (Array.isArray(dbg.native_processes)) {
+              const dead = dbg.native_processes.filter((p) => !p.alive).map((p) => esc(p.name));
+              const restarts = dbg.native_processes.reduce((n, p) => n + (p.restarts || 0), 0);
+              if (dead.length) dbgBits.push(`down: ${dead.join(", ")}`);
+              if (restarts) dbgBits.push(`${restarts} restart${restarts === 1 ? "" : "s"}`);
+            }
+            if (dbg.health && dbg.health.overall && dbg.health.overall !== "ok")
+              dbgBits.push(`health ${esc(dbg.health.overall)}${dbg.health.attention ? ` (${dbg.health.attention})` : ""}`);
+            if (dbg.operator_stopped) dbgBits.push("stopped by operator");
+          }
+          const dbgRow = dbgBits.length > 1 || (dbgBits.length === 1 && dbgBits[0] !== "docker")
+            ? `<tr><td colspan="8" class="sub">${dbgBits.join(" · ")}</td></tr>`
+            : "";
           return `<tr class="${skewed ? "skew" : ""}">
       <td><strong>${esc(r.operator_name || "unnamed")}</strong><div class="sub">${esc(r.email)}</div></td>
       <td>${esc(r.kit_name || "Kit")}</td>
@@ -95,7 +117,7 @@ function page(rows) {
       <td class="${stale ? "stale" : ""}">${esc(ago(r.last_seen))}</td>
       <td class="sub">${esc((r.first_seen || "").slice(0, 10))}</td>
       <td><a class="forget" href="?forget=${encodeURIComponent(r.id)}">forget</a></td>
-    </tr>${failureRow}`;
+    </tr>${dbgRow}${failureRow}`;
         })
         .join("\n")
     : `<tr><td colspan="8" class="sub">No installs have reported yet.</td></tr>`;

@@ -43,7 +43,7 @@
     <article class="post">
       <header class="post__header">
         <div class="post__meta">
-          <span>Version 2026-07-26</span>
+          <span>Version 2026-08-01</span>
           <span>&middot; beta</span>
         </div>
         <h1 class="post__title">Kit beta terms</h1>
@@ -76,7 +76,7 @@ software, name, and branding remain ours.
 <h2>3. Where your data lives, and exactly what leaves your Mac</h2>
 <p>
 Your Kit's memory lives in a database on your machine. We run no server that
-holds your memories and we cannot read them. Three things do leave your Mac,
+holds your memories and we cannot read them. Four things do leave your Mac,
 and this list is intended to be complete:
 </p>
 <ul>
@@ -87,6 +87,15 @@ and this list is intended to be complete:
   send you your welcome mail and, rarely, beta-critical notices.</li>
   <li><strong>Update checks.</strong> The app checks kit-project.com for new versions.
   This carries version information, not memory content.</li>
+  <li><strong>Beta monitoring.</strong> While Kit is in beta, your Kit reports daily:
+  your name and setup email, its name, which versions it is running, which
+  connected surfaces it manages, which runtime it is on, and whether its
+  background services are up (states and restart counts). If an update fails,
+  it also sends the error lines from that update run with sign-in details
+  stripped, so we can fix it without asking you to dig out logs. Never
+  memories, messages, files, or anything you or your Kit work on. Set
+  KIT_TELEMETRY=0 in your Kit's .env to turn all of it off, or ask us to
+  remove you and we delete the record.</li>
 </ul>
 <p>
 There is no analytics or telemetry beyond the above. If that ever changes, these

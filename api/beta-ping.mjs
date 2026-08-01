@@ -24,7 +24,10 @@
 //
 // What is stored, and nothing else:
 //   email, operator name, Kit name, connected surface ids, app version,
-//   stack version, first seen, last seen.
+//   stack version, first seen, last seen, and a structural debug block
+//   (runtime docker|native, the installed-version marker, skew flag,
+//   background process alive/restart counts, health rollup id, an
+//   operator-stopped flag). States and counts, never content.
 // Never: memories, message content, file paths, project names, IP addresses.
 //
 // Env (kit-website Vercel project):
@@ -59,19 +62,27 @@ const version = (v) => (VERSION_RE.test(String(v ?? "").trim()) ? String(v).trim
 // Upsert one install. first_seen is deliberately NOT sent: the column defaults
 // to now() on insert, and PostgREST leaves columns absent from the body alone
 // on conflict, so an install's start date survives every later heartbeat.
+// PostgREST rejects the WHOLE row on an unknown column, silently under our
+// 204-for-everything contract, so a record carrying the debug column falls
+// back to a debug-less write if the schema migration has not run yet: a new
+// app must never lose its heartbeat to an old table.
 async function upsertInstall(record) {
   if (!DB_URL || !DB_KEY) return false;
-  const resp = await fetch(`${DB_URL}/rest/v1/beta_installs?on_conflict=id`, {
-    method: "POST",
-    headers: {
-      apikey: DB_KEY,
-      Authorization: `Bearer ${DB_KEY}`,
-      "Content-Type": "application/json",
-      Prefer: "resolution=merge-duplicates,return=minimal",
-    },
-    body: JSON.stringify([record]),
-  });
-  return resp.ok;
+  const post = (r) =>
+    fetch(`${DB_URL}/rest/v1/beta_installs?on_conflict=id`, {
+      method: "POST",
+      headers: {
+        apikey: DB_KEY,
+        Authorization: `Bearer ${DB_KEY}`,
+        "Content-Type": "application/json",
+        Prefer: "resolution=merge-duplicates,return=minimal",
+      },
+      body: JSON.stringify([r]),
+    });
+  const resp = await post(record);
+  if (resp.ok || !("debug" in record)) return resp.ok;
+  const { debug, ...withoutDebug } = record;
+  return (await post(withoutDebug)).ok;
 }
 
 async function readBody(req) {
@@ -132,6 +143,35 @@ export default async function handler(req, res) {
           : null,
       last_seen: now,
     };
+
+    // Structural diagnostics (2026-08-01: a beta dream crash was diagnosed
+    // from a screenshot while the answer sat one query away on the
+    // operator's Mac). Rebuilt field by field like update_failure: fixed
+    // vocabularies and bounded numbers only, so nothing free-text rides in.
+    if (body.debug && typeof body.debug === "object") {
+      const d = body.debug;
+      const debug = {
+        runtime: d.runtime === "native" ? "native" : "docker",
+      };
+      const installed = version(d.installed_version);
+      if (installed) debug.installed_version = installed;
+      if (typeof d.skew === "boolean") debug.skew = d.skew;
+      if (Array.isArray(d.native_processes)) {
+        debug.native_processes = d.native_processes.slice(0, 8).map((p) => ({
+          name: cap(p?.name, 20),
+          alive: p?.alive === true,
+          restarts: Number.isFinite(Number(p?.restarts)) ? Math.min(Math.max(0, Number(p.restarts)), 9999) : 0,
+        }));
+      }
+      if (d.health && typeof d.health === "object") {
+        debug.health = {
+          overall: cap(d.health.overall, 20),
+          attention: Number.isFinite(Number(d.health.attention)) ? Math.min(Math.max(0, Number(d.health.attention)), 999) : 0,
+        };
+      }
+      if (d.operator_stopped === true) debug.operator_stopped = true;
+      record.debug = debug;
+    }
 
     await upsertInstall(record);
   } catch {
