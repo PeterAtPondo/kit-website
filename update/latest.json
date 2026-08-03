@@ -1,11 +1,11 @@
 {
-  "version": "0.2.150",
-  "url": "https://kit-project.com/downloads/Kit-0.2.150-macOS.dmg",
+  "version": "0.2.151",
+  "url": "https://kit-project.com/downloads/Kit-0.2.151-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Kit follows a conversation properly now: a short follow-up like \"yes\" no longer dead-ends with \"I don't have that noted\" when the answer is right there in the thread.",
-    "When a search finds nothing, Kit looks again using what you were just talking about before it says it has nothing.",
-    "Telegram in Settings reports the real state of the connection, so a saved token is no longer mistaken for a working channel."
+    "Moving your Kit to the new runtime no longer quietly changes it. The settings that shape how it remembers, and whether it asks you to sign in, now travel with it instead of being left behind.",
+    "The menu bar is tidier: Health, Settings and Send us feedback moved into Advanced, so the top level is just the places you go inside your Kit. If something needs attention, Advanced still carries the count.",
+    "The fireflies view is for looking again. The ask box has been removed; Talk to your Kit is where a conversation belongs."
   ]
 }

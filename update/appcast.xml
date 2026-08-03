@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.150</title>
-      <pubDate>Mon, 03 Aug 2026 13:38:48 -0000</pubDate>
-      <sparkle:version>0.2.150</sparkle:version>
-      <sparkle:shortVersionString>0.2.150</sparkle:shortVersionString>
+      <title>0.2.151</title>
+      <pubDate>Mon, 03 Aug 2026 19:34:26 -0000</pubDate>
+      <sparkle:version>0.2.151</sparkle:version>
+      <sparkle:shortVersionString>0.2.151</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Kit follows a conversation properly now: a short follow-up like &quot;yes&quot; no longer dead-ends with &quot;I don&#x27;t have that noted&quot; when the answer is right there in the thread.</li><li>When a search finds nothing, Kit looks again using what you were just talking about before it says it has nothing.</li><li>Telegram in Settings reports the real state of the connection, so a saved token is no longer mistaken for a working channel.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.150-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="yNlJjK4R09MW9vVS0tE3MP+7tBWM9HHw8QIeLjp0Fd6JvgRz4MQRLNNEwPJrFjRMry3YC/lScoYO/AOmfjsJCg==" length="15649159"/>
+      <description><![CDATA[<ul><li>Moving your Kit to the new runtime no longer quietly changes it. The settings that shape how it remembers, and whether it asks you to sign in, now travel with it instead of being left behind.</li><li>The menu bar is tidier: Health, Settings and Send us feedback moved into Advanced, so the top level is just the places you go inside your Kit. If something needs attention, Advanced still carries the count.</li><li>The fireflies view is for looking again. The ask box has been removed; Talk to your Kit is where a conversation belongs.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.151-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="vWnscPBnbXfmuXIXIsVOw3PrPa12NO9g32Vx/yBeM2JjpX8nbjgvX4KpSif2SWa9QggQl8lPt2Cvl3lPINY3Dg==" length="15629496"/>
     </item>
   </channel>
 </rss>
