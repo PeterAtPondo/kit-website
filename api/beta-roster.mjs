@@ -81,7 +81,7 @@ function page(rows) {
           // update did not land, without asking the operator for logs.
           const failure = r.update_failure && typeof r.update_failure === "object" ? r.update_failure : null;
           const failureRow = failure
-            ? `<tr class="skew"><td colspan="8" class="failure"><details>
+            ? `<tr><td colspan="8" class="failure"><details>
       <summary>${esc(failure.kind || "update failure")} · ${esc(ago(failure.at))}${failure.detail ? ` · ${esc(failure.detail)}` : ""}</summary>
       <pre>${esc(failure.log_tail || "the report carried no log lines")}</pre>
     </details></td></tr>`
@@ -108,7 +108,14 @@ function page(rows) {
           const dbgRow = dbgBits.length > 1 || (dbgBits.length === 1 && dbgBits[0] !== "docker")
             ? `<tr><td colspan="8" class="sub">${dbgBits.join(" · ")}</td></tr>`
             : "";
-          return `<tr class="${skewed ? "skew" : ""}">
+          // One tbody per install, so the debug line and the failure block sit
+          // inside the same container as the operator they describe. They used
+          // to be loose sibling rows separated only by a hairline, and with a
+          // few installs reporting it was guesswork which detail belonged to
+          // whom (Peter, 2026-08-03). A table group keeps the columns aligned
+          // while giving each install a real edge.
+          return `<tbody class="install${skewed ? " skew" : ""}">
+    <tr>
       <td><strong>${esc(r.operator_name || "unnamed")}</strong><div class="sub">${esc(r.email)}</div></td>
       <td>${esc(r.kit_name || "Kit")}</td>
       <td>${esc(r.app_version || "?")}</td>
@@ -117,10 +124,11 @@ function page(rows) {
       <td class="${stale ? "stale" : ""}">${esc(ago(r.last_seen))}</td>
       <td class="sub">${esc((r.first_seen || "").slice(0, 10))}</td>
       <td><a class="forget" href="?forget=${encodeURIComponent(r.id)}">forget</a></td>
-    </tr>${dbgRow}${failureRow}`;
+    </tr>${dbgRow}${failureRow}
+  </tbody>`;
         })
-        .join("\n")
-    : `<tr><td colspan="8" class="sub">No installs have reported yet.</td></tr>`;
+        .join('\n<tbody class="gap"><tr><td colspan="8"></td></tr></tbody>\n')
+    : `<tbody class="install"><tr><td colspan="8" class="sub">No installs have reported yet.</td></tr></tbody>`;
 
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
@@ -133,14 +141,36 @@ function page(rows) {
          font: 14px/1.5 ui-sans-serif, -apple-system, system-ui, sans-serif; }
   h1 { font-size: 18px; font-weight: 600; margin: 0 0 4px; }
   .lede { color: #64748b; font-size: 12.5px; margin: 0 0 24px; max-width: 60ch; }
-  table { border-collapse: collapse; width: 100%; max-width: 1100px; }
+  /* Separate borders so each cell keeps its own edge and radius (collapse
+     drops both), but zero spacing: border-spacing cannot tell a gap BETWEEN
+     installs from a gap between the rows OF one install, and spacing them
+     alike is what made the debug and failure lines look detached from the
+     operator they belong to. The gap is an explicit spacer group instead. */
+  table { border-collapse: separate; border-spacing: 0; width: 100%; max-width: 1100px; }
+  tbody.gap td { height: 10px; padding: 0; background: transparent; border: 0; }
   th { text-align: left; font-size: 11px; font-weight: 500; color: #64748b;
-       padding: 0 12px 8px 0; border-bottom: 1px solid rgba(148,163,184,0.18); }
-  td { padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(148,163,184,0.08);
-       vertical-align: top; }
+       padding: 0 12px 8px 12px; }
+  td { padding: 10px 12px; vertical-align: top; }
+  /* The container: one card per install, holding its own debug and failure
+     rows. Left accent plus a filled panel, so where one install ends and the
+     next begins is obvious at a glance. */
+  tbody.install td { background: rgba(148,163,184,0.05);
+                     border-top: 1px solid rgba(148,163,184,0.10);
+                     border-bottom: 1px solid rgba(148,163,184,0.10); }
+  tbody.install tr:not(:last-child) td { border-bottom-color: transparent; }
+  tbody.install tr:not(:first-child) td { border-top-color: transparent; }
+  tbody.install td:first-child { border-left: 2px solid rgba(148,163,184,0.22); }
+  tbody.install td:last-child { border-right: 1px solid rgba(148,163,184,0.10); }
+  tbody.install tr:first-child td:first-child { border-top-left-radius: 10px; }
+  tbody.install tr:first-child td:last-child { border-top-right-radius: 10px; }
+  tbody.install tr:last-child td:first-child { border-bottom-left-radius: 10px; }
+  tbody.install tr:last-child td:last-child { border-bottom-right-radius: 10px; }
   .sub { color: #64748b; font-size: 12px; }
   .stale { color: #f0b84d; }
-  tr.skew td { background: rgba(240,184,77,0.05); }
+  /* Skew tints the whole card, not one row of it: the point is that THIS
+     install is running older code than it claims. */
+  tbody.install.skew td { background: rgba(240,184,77,0.06); }
+  tbody.install.skew td:first-child { border-left-color: rgba(240,184,77,0.55); }
   .tag { display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 999px;
          font-size: 10.5px; background: rgba(240,184,77,0.14); color: #f0b84d; }
   .forget { color: #64748b; font-size: 12px; text-decoration: none; }
