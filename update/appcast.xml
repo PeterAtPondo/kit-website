@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.151</title>
-      <pubDate>Mon, 03 Aug 2026 19:34:26 -0000</pubDate>
-      <sparkle:version>0.2.151</sparkle:version>
-      <sparkle:shortVersionString>0.2.151</sparkle:shortVersionString>
+      <title>0.2.152</title>
+      <pubDate>Mon, 03 Aug 2026 20:10:41 -0000</pubDate>
+      <sparkle:version>0.2.152</sparkle:version>
+      <sparkle:shortVersionString>0.2.152</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Moving your Kit to the new runtime no longer quietly changes it. The settings that shape how it remembers, and whether it asks you to sign in, now travel with it instead of being left behind.</li><li>The menu bar is tidier: Health, Settings and Send us feedback moved into Advanced, so the top level is just the places you go inside your Kit. If something needs attention, Advanced still carries the count.</li><li>The fireflies view is for looking again. The ask box has been removed; Talk to your Kit is where a conversation belongs.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.151-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="vWnscPBnbXfmuXIXIsVOw3PrPa12NO9g32Vx/yBeM2JjpX8nbjgvX4KpSif2SWa9QggQl8lPt2Cvl3lPINY3Dg==" length="15629496"/>
+      <description><![CDATA[<ul><li>After moving your Kit to the new runtime, it now tells you to quit and reopen anything connected over MCP. Some apps do not reconnect on their own after the short pause, and a stale connection there looks like a broken Kit when nothing is actually wrong.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.152-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="yfFxNnhmeSMwhir8CJ1vCPXC/XTqthRezt16N7VwIrONOtvrCUQ4XolMg74l/IJ7lY5ISocuCS+0Jm2/2ssGDg==" length="15629486"/>
     </item>
   </channel>
 </rss>
