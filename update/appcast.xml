@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.149</title>
-      <pubDate>Mon, 03 Aug 2026 12:53:13 -0000</pubDate>
-      <sparkle:version>0.2.149</sparkle:version>
-      <sparkle:shortVersionString>0.2.149</sparkle:shortVersionString>
+      <title>0.2.150</title>
+      <pubDate>Mon, 03 Aug 2026 13:38:48 -0000</pubDate>
+      <sparkle:version>0.2.150</sparkle:version>
+      <sparkle:shortVersionString>0.2.150</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Connect Telegram now lives in Settings, and it tells you whether the channel is actually working rather than just that a token was saved.</li><li>The model shown in the menu bar is the same one Settings shows: picking a model in one place no longer disagrees with the other.</li><li>Changing your model actually takes effect everywhere, instead of looking saved while background work carried on with the old one.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.149-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="k0AFYVMKB1yJItstDjy/EuJXlWtkE/yNmlUPJGckSRf8r4G7uGfDzedgQcGQqYuezyABDV9RC/Fnf6sXajC/Dg==" length="15646416"/>
+      <description><![CDATA[<ul><li>Kit follows a conversation properly now: a short follow-up like &quot;yes&quot; no longer dead-ends with &quot;I don&#x27;t have that noted&quot; when the answer is right there in the thread.</li><li>When a search finds nothing, Kit looks again using what you were just talking about before it says it has nothing.</li><li>Telegram in Settings reports the real state of the connection, so a saved token is no longer mistaken for a working channel.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.150-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="yNlJjK4R09MW9vVS0tE3MP+7tBWM9HHw8QIeLjp0Fd6JvgRz4MQRLNNEwPJrFjRMry3YC/lScoYO/AOmfjsJCg==" length="15649159"/>
     </item>
   </channel>
 </rss>

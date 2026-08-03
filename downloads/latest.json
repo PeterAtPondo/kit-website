@@ -1,11 +1,11 @@
 {
-  "version": "0.2.149",
-  "url": "https://kit-project.com/downloads/Kit-0.2.149-macOS.dmg",
+  "version": "0.2.150",
+  "url": "https://kit-project.com/downloads/Kit-0.2.150-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Connect Telegram now lives in Settings, and it tells you whether the channel is actually working rather than just that a token was saved.",
-    "The model shown in the menu bar is the same one Settings shows: picking a model in one place no longer disagrees with the other.",
-    "Changing your model actually takes effect everywhere, instead of looking saved while background work carried on with the old one."
+    "Kit follows a conversation properly now: a short follow-up like \"yes\" no longer dead-ends with \"I don't have that noted\" when the answer is right there in the thread.",
+    "When a search finds nothing, Kit looks again using what you were just talking about before it says it has nothing.",
+    "Telegram in Settings reports the real state of the connection, so a saved token is no longer mistaken for a working channel."
   ]
 }
