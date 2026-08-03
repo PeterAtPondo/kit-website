@@ -174,6 +174,39 @@ export default async function handler(req, res) {
     }
 
     await upsertInstall(record);
+
+    // Control channel (2026-08-03, Peter: bugs must surface as found, and
+    // fixes must reach opted-in operators without waiting for tomorrow).
+    // The response body, ignored by every app up to 0.2.146, becomes the
+    // update nudge for 0.2.147+: {latest, check_now} and the app triggers an
+    // immediate Sparkle check when check_now is true. Only an authenticated
+    // ping gets a body, so the prober contract above is intact (they still
+    // see 204 and learn nothing). latest.json comes from our own edge-cached
+    // update channel rather than a bundled file, so a release cut updates
+    // this answer with no redeploy here. Any failure falls through to the
+    // silent 204: an app must never be delayed or broken by its own nudge.
+    try {
+      const ctl = new AbortController();
+      const timer = setTimeout(() => ctl.abort(), 2500);
+      const lr = await fetch("https://kit-project.com/update/latest.json", { signal: ctl.signal });
+      clearTimeout(timer);
+      if (lr.ok) {
+        const latest = await lr.json();
+        const lv = version(latest.version);
+        if (lv) {
+          res.statusCode = 200;
+          res.setHeader("Content-Type", "application/json; charset=utf-8");
+          res.setHeader("Cache-Control", "no-store");
+          return res.end(JSON.stringify({
+            ok: true,
+            latest: { version: lv, page: cap(latest.page, 300) },
+            check_now: Boolean(record.app_version && record.app_version !== lv),
+          }));
+        }
+      }
+    } catch {
+      // Fall through to the silent 204.
+    }
   } catch {
     // Fail silent by design.
   }
