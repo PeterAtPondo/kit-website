@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.146</title>
-      <pubDate>Sat, 01 Aug 2026 16:42:35 -0000</pubDate>
-      <sparkle:version>0.2.146</sparkle:version>
-      <sparkle:shortVersionString>0.2.146</sparkle:shortVersionString>
+      <title>0.2.148</title>
+      <pubDate>Mon, 03 Aug 2026 11:19:15 -0000</pubDate>
+      <sparkle:version>0.2.148</sparkle:version>
+      <sparkle:shortVersionString>0.2.148</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>A dream interrupted by a database hiccup now resumes where it left off instead of failing.</li><li>Kit stays responsive while it imports and generates memories.</li><li>Claude Desktop and Claude Code reconnect cleanly after a Kit rename.</li><li>Your model choice now applies to everything Kit does, not just chat.</li><li>Beta monitoring now reports which runtime Kit runs on and whether its services are healthy; the terms page spells out exactly what is sent.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.146-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="rfAOUQFtG+AZxPzhNaQMM+eFwbEk3QCXbNEQWFI+omRGHJK7/6o1rBzzL1N0clyCF6oWx82sqRJTYoY1MCB4BQ==" length="8731942"/>
+      <description><![CDATA[<ul><li>Updates now finish properly: Kit comes back on the new version instead of offering you the same update again.</li><li>The Kit panel loads reliably after an update.</li><li>Claude Desktop and Claude Code now connect on every new install: the connector ships ready to run.</li><li>An update that stalls partway now finishes itself on Kit&#x27;s next check-in.</li><li>When a dream or background task fails, Kit records what happened so it can be diagnosed for you, no screenshots needed.</li><li>Channel chat history loads from the right place again.</li><li>Opening a task from Studio brings up that task, not an empty dialog.</li><li>Tidying behind the scenes: retired unused machinery and a refreshed test suite.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.148-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="UN4ajC2mQYEaelM040BJ+pj/iFwE9SwRM0dMp9mks0vykSATU0Z4LaKSoE5Fx8c3Qm0559fJqRPzoiQWJX0JBA==" length="15638739"/>
     </item>
   </channel>
 </rss>
