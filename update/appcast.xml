@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.148</title>
-      <pubDate>Mon, 03 Aug 2026 11:19:15 -0000</pubDate>
-      <sparkle:version>0.2.148</sparkle:version>
-      <sparkle:shortVersionString>0.2.148</sparkle:shortVersionString>
+      <title>0.2.149</title>
+      <pubDate>Mon, 03 Aug 2026 12:53:13 -0000</pubDate>
+      <sparkle:version>0.2.149</sparkle:version>
+      <sparkle:shortVersionString>0.2.149</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Updates now finish properly: Kit comes back on the new version instead of offering you the same update again.</li><li>The Kit panel loads reliably after an update.</li><li>Claude Desktop and Claude Code now connect on every new install: the connector ships ready to run.</li><li>An update that stalls partway now finishes itself on Kit&#x27;s next check-in.</li><li>When a dream or background task fails, Kit records what happened so it can be diagnosed for you, no screenshots needed.</li><li>Channel chat history loads from the right place again.</li><li>Opening a task from Studio brings up that task, not an empty dialog.</li><li>Tidying behind the scenes: retired unused machinery and a refreshed test suite.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.148-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="UN4ajC2mQYEaelM040BJ+pj/iFwE9SwRM0dMp9mks0vykSATU0Z4LaKSoE5Fx8c3Qm0559fJqRPzoiQWJX0JBA==" length="15638739"/>
+      <description><![CDATA[<ul><li>Connect Telegram now lives in Settings, and it tells you whether the channel is actually working rather than just that a token was saved.</li><li>The model shown in the menu bar is the same one Settings shows: picking a model in one place no longer disagrees with the other.</li><li>Changing your model actually takes effect everywhere, instead of looking saved while background work carried on with the old one.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.149-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="k0AFYVMKB1yJItstDjy/EuJXlWtkE/yNmlUPJGckSRf8r4G7uGfDzedgQcGQqYuezyABDV9RC/Fnf6sXajC/Dg==" length="15646416"/>
     </item>
   </channel>
 </rss>

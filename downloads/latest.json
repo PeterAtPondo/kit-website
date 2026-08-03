@@ -1,16 +1,11 @@
 {
-  "version": "0.2.148",
-  "url": "https://kit-project.com/downloads/Kit-0.2.148-macOS.dmg",
+  "version": "0.2.149",
+  "url": "https://kit-project.com/downloads/Kit-0.2.149-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Updates now finish properly: Kit comes back on the new version instead of offering you the same update again.",
-    "The Kit panel loads reliably after an update.",
-    "Claude Desktop and Claude Code now connect on every new install: the connector ships ready to run.",
-    "An update that stalls partway now finishes itself on Kit's next check-in.",
-    "When a dream or background task fails, Kit records what happened so it can be diagnosed for you, no screenshots needed.",
-    "Channel chat history loads from the right place again.",
-    "Opening a task from Studio brings up that task, not an empty dialog.",
-    "Tidying behind the scenes: retired unused machinery and a refreshed test suite."
+    "Connect Telegram now lives in Settings, and it tells you whether the channel is actually working rather than just that a token was saved.",
+    "The model shown in the menu bar is the same one Settings shows: picking a model in one place no longer disagrees with the other.",
+    "Changing your model actually takes effect everywhere, instead of looking saved while background work carried on with the old one."
   ]
 }
