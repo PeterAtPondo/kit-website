@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.152</title>
-      <pubDate>Mon, 03 Aug 2026 20:10:41 -0000</pubDate>
-      <sparkle:version>0.2.152</sparkle:version>
-      <sparkle:shortVersionString>0.2.152</sparkle:shortVersionString>
+      <title>0.2.154</title>
+      <pubDate>Tue, 04 Aug 2026 10:41:47 -0000</pubDate>
+      <sparkle:version>0.2.154</sparkle:version>
+      <sparkle:shortVersionString>0.2.154</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>After moving your Kit to the new runtime, it now tells you to quit and reopen anything connected over MCP. Some apps do not reconnect on their own after the short pause, and a stale connection there looks like a broken Kit when nothing is actually wrong.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.152-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="yfFxNnhmeSMwhir8CJ1vCPXC/XTqthRezt16N7VwIrONOtvrCUQ4XolMg74l/IJ7lY5ISocuCS+0Jm2/2ssGDg==" length="15629486"/>
+      <description><![CDATA[<ul><li>Kit&#x27;s nightly consolidation no longer dies when the model thinks its way through a reply without writing one out. The night carries on instead of stopping there, and the health screen names the real cause rather than a generic error.</li><li>Searching your included folders now returns the full set of matches. On a Kit holding a lot of sources it could quietly hand back a fraction of what it had actually found, with nothing to say it had.</li><li>When part of Kit stops unexpectedly and is brought back, the health screen now tells you when it happened, not just that it did. A count on its own gave you nothing to line it up against.</li><li>Kit&#x27;s logs no longer report a working setup as a failure at startup, so a real problem stands out instead of hiding among false alarms.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.154-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="s4GLkXrw3GcGTD8lWAh6rEj5/KcRX18kPD0se6f7A4IjqIqGdUsBehrnPcukom7nIOxVGsiLMM2lPAH5lMKdAQ==" length="15663922"/>
     </item>
   </channel>
 </rss>
