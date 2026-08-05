@@ -1,13 +1,10 @@
 {
-  "version": "0.2.155",
-  "url": "https://kit-project.com/downloads/Kit-0.2.155-macOS.dmg",
+  "version": "0.2.156",
+  "url": "https://kit-project.com/downloads/Kit-0.2.156-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Kit's night cycle now picks up where it left off after your Mac sleeps. A bookkeeping bug meant an interrupted night silently started over from the top every time, so on a Mac that closes its lid mid-dream the cycle could never finish. Found in a beta tester's log, fixed for every Kit.",
-    "If the nightly cycle stops finishing, Kit says so the moment you open the menu: how many days since one completed, and how many attempts failed in a row. The same two numbers reach the beta roster so we can help before you have to ask, and the beta disclosure grew exactly that one sentence.",
-    "A fresh Kit is now born on its own runtime: Postgres, Python, and Node running as plain processes on your Mac, no Docker anywhere. Kits already running on Docker stay exactly where they are until they approve the move in the app.",
-    "The native runtime now ships for Intel Macs as well as Apple Silicon, and every install fetches the runtime built for its own machine.",
-    "When native setup stops, the screen shows the installer's own explanation instead of a generic snag page. And the false alarm that wrote a scary line into the database log every five seconds is gone, so a real problem stands out."
+    "Telegram could end up as two cards in Settings, each holding half the setup: your bot token and paired chat on one, every send quietly using the other, and no amount of renaming or re-saving could make them meet. The two cards now merge into one on their own, keeping your token, your paired chat, and the name you gave your bot. Found on a beta Kit, fixed for every Kit.",
+    "If a pairing was mid-handshake when the cards merged, the handshake stays open: your first message still lands as a pairing request instead of being dropped."
   ]
 }

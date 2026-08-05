@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.155</title>
-      <pubDate>Wed, 05 Aug 2026 08:41:09 -0000</pubDate>
-      <sparkle:version>0.2.155</sparkle:version>
-      <sparkle:shortVersionString>0.2.155</sparkle:shortVersionString>
+      <title>0.2.156</title>
+      <pubDate>Wed, 05 Aug 2026 09:21:02 -0000</pubDate>
+      <sparkle:version>0.2.156</sparkle:version>
+      <sparkle:shortVersionString>0.2.156</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Kit&#x27;s night cycle now picks up where it left off after your Mac sleeps. A bookkeeping bug meant an interrupted night silently started over from the top every time, so on a Mac that closes its lid mid-dream the cycle could never finish. Found in a beta tester&#x27;s log, fixed for every Kit.</li><li>If the nightly cycle stops finishing, Kit says so the moment you open the menu: how many days since one completed, and how many attempts failed in a row. The same two numbers reach the beta roster so we can help before you have to ask, and the beta disclosure grew exactly that one sentence.</li><li>A fresh Kit is now born on its own runtime: Postgres, Python, and Node running as plain processes on your Mac, no Docker anywhere. Kits already running on Docker stay exactly where they are until they approve the move in the app.</li><li>The native runtime now ships for Intel Macs as well as Apple Silicon, and every install fetches the runtime built for its own machine.</li><li>When native setup stops, the screen shows the installer&#x27;s own explanation instead of a generic snag page. And the false alarm that wrote a scary line into the database log every five seconds is gone, so a real problem stands out.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.155-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="fDGM1plVGVbBs84OfdIwsXpE/Rhbom+9cSv2xsVYxOWffAjVq+QbR/a8ubj4JR1tPRPopFguwyqpB3EqLyi2AQ==" length="15705983"/>
+      <description><![CDATA[<ul><li>Telegram could end up as two cards in Settings, each holding half the setup: your bot token and paired chat on one, every send quietly using the other, and no amount of renaming or re-saving could make them meet. The two cards now merge into one on their own, keeping your token, your paired chat, and the name you gave your bot. Found on a beta Kit, fixed for every Kit.</li><li>If a pairing was mid-handshake when the cards merged, the handshake stays open: your first message still lands as a pairing request instead of being dropped.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.156-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="o+5arLC4gixJ1USlxPTobvyWLnB+YBVkDFm9yTDHaChD8T4M8r0mWzZs6+yFAru6ZlYG/Q41Ig9M4SAjUqX+CA==" length="15651083"/>
     </item>
   </channel>
 </rss>

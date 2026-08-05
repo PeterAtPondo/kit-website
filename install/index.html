@@ -260,6 +260,21 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.156</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Telegram could end up as two cards in Settings, each holding half the setup: your bot token and paired chat on one, every send quietly using the other, and no amount of renaming or re-saving could make them meet. The two cards now merge into one on their own, keeping your token, your paired chat, and the name you gave your bot. Found on a beta Kit, fixed for every Kit.</li>
+            <li>If a pairing was mid-handshake when the cards merged, the handshake stays open: your first message still lands as a pairing request instead of being dropped.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.155</span>
           <span class="release__date">August 2026</span>
         </div>
