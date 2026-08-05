@@ -1,10 +1,14 @@
 {
-  "version": "0.2.156",
-  "url": "https://kit-project.com/downloads/Kit-0.2.156-macOS.dmg",
+  "version": "0.2.157",
+  "url": "https://kit-project.com/downloads/Kit-0.2.157-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Telegram could end up as two cards in Settings, each holding half the setup: your bot token and paired chat on one, every send quietly using the other, and no amount of renaming or re-saving could make them meet. The two cards now merge into one on their own, keeping your token, your paired chat, and the name you gave your bot. Found on a beta Kit, fixed for every Kit.",
-    "If a pairing was mid-handshake when the cards merged, the handshake stays open: your first message still lands as a pairing request instead of being dropped."
+    "The extra Telegram card came from a boot-time factory that re-minted a row for every merge to bury; the factory is gone, and the cards settle to one while keeping token, pairing, and history.",
+    "Sending to Telegram from the Ask panel works now: the server resolves your paired chat itself, so the tab no longer depends on a chat id the app never knew.",
+    "Updates stop asking macOS for permission to read other apps' data; those checks now run only on the screens that manage tool connections, where the question makes sense.",
+    "Overnight \"not running\" alerts wait for a real outage: three failed checks in a row and a settled wake, so a sleeping Mac no longer pages you at every stir.",
+    "The update screen now tells the truth about duration: Docker updates rebuild on your machine and can take ten minutes or more, with the database backup always running first.",
+    "The MCP log's preload notice now says plainly that it is normal while the API restarts during an update."
   ]
 }

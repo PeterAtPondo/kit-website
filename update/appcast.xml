@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.156</title>
-      <pubDate>Wed, 05 Aug 2026 09:21:02 -0000</pubDate>
-      <sparkle:version>0.2.156</sparkle:version>
-      <sparkle:shortVersionString>0.2.156</sparkle:shortVersionString>
+      <title>0.2.157</title>
+      <pubDate>Wed, 05 Aug 2026 11:59:38 -0000</pubDate>
+      <sparkle:version>0.2.157</sparkle:version>
+      <sparkle:shortVersionString>0.2.157</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Telegram could end up as two cards in Settings, each holding half the setup: your bot token and paired chat on one, every send quietly using the other, and no amount of renaming or re-saving could make them meet. The two cards now merge into one on their own, keeping your token, your paired chat, and the name you gave your bot. Found on a beta Kit, fixed for every Kit.</li><li>If a pairing was mid-handshake when the cards merged, the handshake stays open: your first message still lands as a pairing request instead of being dropped.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.156-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="o+5arLC4gixJ1USlxPTobvyWLnB+YBVkDFm9yTDHaChD8T4M8r0mWzZs6+yFAru6ZlYG/Q41Ig9M4SAjUqX+CA==" length="15651083"/>
+      <description><![CDATA[<ul><li>The extra Telegram card came from a boot-time factory that re-minted a row for every merge to bury; the factory is gone, and the cards settle to one while keeping token, pairing, and history.</li><li>Sending to Telegram from the Ask panel works now: the server resolves your paired chat itself, so the tab no longer depends on a chat id the app never knew.</li><li>Updates stop asking macOS for permission to read other apps&#x27; data; those checks now run only on the screens that manage tool connections, where the question makes sense.</li><li>Overnight &quot;not running&quot; alerts wait for a real outage: three failed checks in a row and a settled wake, so a sleeping Mac no longer pages you at every stir.</li><li>The update screen now tells the truth about duration: Docker updates rebuild on your machine and can take ten minutes or more, with the database backup always running first.</li><li>The MCP log&#x27;s preload notice now says plainly that it is normal while the API restarts during an update.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.157-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="PurFxQVwD+GUL6KqMi52piY2LiwISFzjLGsy6bEZnT2yJcxPcRKRUoynDQ7mdov1fsEYd05tIwUzyoQawYT/Cw==" length="15650780"/>
     </item>
   </channel>
 </rss>

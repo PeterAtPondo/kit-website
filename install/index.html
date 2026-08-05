@@ -260,6 +260,25 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.157</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>The extra Telegram card came from a boot-time factory that re-minted a row for every merge to bury; the factory is gone, and the cards settle to one while keeping token, pairing, and history.</li>
+            <li>Sending to Telegram from the Ask panel works now: the server resolves your paired chat itself, so the tab no longer depends on a chat id the app never knew.</li>
+            <li>Updates stop asking macOS for permission to read other apps&#x27; data; those checks now run only on the screens that manage tool connections, where the question makes sense.</li>
+            <li>Overnight &quot;not running&quot; alerts wait for a real outage: three failed checks in a row and a settled wake, so a sleeping Mac no longer pages you at every stir.</li>
+            <li>The update screen now tells the truth about duration: Docker updates rebuild on your machine and can take ten minutes or more, with the database backup always running first.</li>
+            <li>The MCP log&#x27;s preload notice now says plainly that it is normal while the API restarts during an update.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.156</span>
           <span class="release__date">August 2026</span>
         </div>
