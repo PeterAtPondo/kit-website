@@ -43,7 +43,7 @@
     <article class="post">
       <header class="post__header">
         <div class="post__meta">
-          <span>Version 2026-08-01</span>
+          <span>Version 2026-08-05</span>
           <span>&middot; beta</span>
         </div>
         <h1 class="post__title">Kit beta terms</h1>
@@ -92,10 +92,14 @@ and this list is intended to be complete:
   connected surfaces it manages, which runtime it is on, and whether its
   background services are up (states and restart counts). If an update fails,
   it also sends the error lines from that update run with sign-in details
-  stripped, so we can fix it without asking you to dig out logs. Never
-  memories, messages, files, or anything you or your Kit work on. Set
-  KIT_TELEMETRY=0 in your Kit's .env to turn all of it off, or ask us to
-  remove you and we delete the record.</li>
+  stripped, so we can fix it without asking you to dig out logs; if a dream
+  cycle or a background service crashes, it sends when that happened and the
+  crash's own error lines, filtered the same way. It also sends two numbers
+  about the nightly dream cycle: how many days since one last finished, and
+  how many attempts have failed in a row. Never memories, messages, files,
+  or anything you or your Kit work on. Set KIT_TELEMETRY=0 in your Kit's
+  .env to turn all of it off, or ask us to remove you and we delete the
+  record.</li>
 </ul>
 <p>
 There is no analytics or telemetry beyond the above. If that ever changes, these
