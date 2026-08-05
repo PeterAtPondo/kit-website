@@ -260,6 +260,24 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.155</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Kit&#x27;s night cycle now picks up where it left off after your Mac sleeps. A bookkeeping bug meant an interrupted night silently started over from the top every time, so on a Mac that closes its lid mid-dream the cycle could never finish. Found in a beta tester&#x27;s log, fixed for every Kit.</li>
+            <li>If the nightly cycle stops finishing, Kit says so the moment you open the menu: how many days since one completed, and how many attempts failed in a row. The same two numbers reach the beta roster so we can help before you have to ask, and the beta disclosure grew exactly that one sentence.</li>
+            <li>A fresh Kit is now born on its own runtime: Postgres, Python, and Node running as plain processes on your Mac, no Docker anywhere. Kits already running on Docker stay exactly where they are until they approve the move in the app.</li>
+            <li>The native runtime now ships for Intel Macs as well as Apple Silicon, and every install fetches the runtime built for its own machine.</li>
+            <li>When native setup stops, the screen shows the installer&#x27;s own explanation instead of a generic snag page. And the false alarm that wrote a scary line into the database log every five seconds is gone, so a real problem stands out.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.154</span>
           <span class="release__date">August 2026</span>
         </div>
