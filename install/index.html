@@ -260,6 +260,25 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.158</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Links in your memories work now. If you ever clicked one and nothing happened, that was not you: every link in a memory was being quietly dropped, because Kit asked macOS to open it in a new window and then never provided one. They open in your browser, where you expected them to.</li>
+            <li>Kit opens quicker and stays responsive while it looks around for your coding tools. Two reasons, both embarrassing: the app was being built without compiler optimisation, and the Settings screen re-scanned your entire projects folder every time you toggled anything on it.</li>
+            <li>Kit no longer freezes when one of your tools stops answering during a check. It waits twenty seconds, gives up, and says which one, instead of sitting there with the window locked and nothing to tell you.</li>
+            <li>Downloading your memory export works on a large Kit. It used to gather every memory in one go before sending anything, so the more Kit remembered, the likelier the download was to stall. It streams as it goes now.</li>
+            <li>Kit&#x27;s health says whether last night&#x27;s dreaming actually did something, not just that it finished. A night can complete cleanly having consolidated nothing at all, and until now that looked exactly like a good night.</li>
+            <li>Text that reaches Kit from outside, in a Telegram message or an imported conversation, can no longer run code inside the app. Nothing is known to have used this and no Kit showed any sign of it; it was found by reading the code rather than by anything going wrong. It is the reason this release exists.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.157</span>
           <span class="release__date">August 2026</span>
         </div>

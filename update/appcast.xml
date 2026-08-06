@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.157</title>
-      <pubDate>Wed, 05 Aug 2026 11:59:38 -0000</pubDate>
-      <sparkle:version>0.2.157</sparkle:version>
-      <sparkle:shortVersionString>0.2.157</sparkle:shortVersionString>
+      <title>0.2.158</title>
+      <pubDate>Thu, 06 Aug 2026 14:36:27 -0000</pubDate>
+      <sparkle:version>0.2.158</sparkle:version>
+      <sparkle:shortVersionString>0.2.158</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>The extra Telegram card came from a boot-time factory that re-minted a row for every merge to bury; the factory is gone, and the cards settle to one while keeping token, pairing, and history.</li><li>Sending to Telegram from the Ask panel works now: the server resolves your paired chat itself, so the tab no longer depends on a chat id the app never knew.</li><li>Updates stop asking macOS for permission to read other apps&#x27; data; those checks now run only on the screens that manage tool connections, where the question makes sense.</li><li>Overnight &quot;not running&quot; alerts wait for a real outage: three failed checks in a row and a settled wake, so a sleeping Mac no longer pages you at every stir.</li><li>The update screen now tells the truth about duration: Docker updates rebuild on your machine and can take ten minutes or more, with the database backup always running first.</li><li>The MCP log&#x27;s preload notice now says plainly that it is normal while the API restarts during an update.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.157-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="PurFxQVwD+GUL6KqMi52piY2LiwISFzjLGsy6bEZnT2yJcxPcRKRUoynDQ7mdov1fsEYd05tIwUzyoQawYT/Cw==" length="15650780"/>
+      <description><![CDATA[<ul><li>Links in your memories work now. If you ever clicked one and nothing happened, that was not you: every link in a memory was being quietly dropped, because Kit asked macOS to open it in a new window and then never provided one. They open in your browser, where you expected them to.</li><li>Kit opens quicker and stays responsive while it looks around for your coding tools. Two reasons, both embarrassing: the app was being built without compiler optimisation, and the Settings screen re-scanned your entire projects folder every time you toggled anything on it.</li><li>Kit no longer freezes when one of your tools stops answering during a check. It waits twenty seconds, gives up, and says which one, instead of sitting there with the window locked and nothing to tell you.</li><li>Downloading your memory export works on a large Kit. It used to gather every memory in one go before sending anything, so the more Kit remembered, the likelier the download was to stall. It streams as it goes now.</li><li>Kit&#x27;s health says whether last night&#x27;s dreaming actually did something, not just that it finished. A night can complete cleanly having consolidated nothing at all, and until now that looked exactly like a good night.</li><li>Text that reaches Kit from outside, in a Telegram message or an imported conversation, can no longer run code inside the app. Nothing is known to have used this and no Kit showed any sign of it; it was found by reading the code rather than by anything going wrong. It is the reason this release exists.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.158-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="1P0xFsA1chMxUrRe1AloG2+gEUTQ9IDBUYFe9Q56ckkyndc8OdC/GxK4XYGKws2ENmlWJsszpFdkuZEE9u/0Bg==" length="15348161"/>
     </item>
   </channel>
 </rss>
