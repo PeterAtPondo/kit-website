@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.161</title>
-      <pubDate>Fri, 07 Aug 2026 10:08:34 -0000</pubDate>
-      <sparkle:version>0.2.161</sparkle:version>
-      <sparkle:shortVersionString>0.2.161</sparkle:shortVersionString>
+      <title>0.2.162</title>
+      <pubDate>Fri, 07 Aug 2026 10:24:29 -0000</pubDate>
+      <sparkle:version>0.2.162</sparkle:version>
+      <sparkle:shortVersionString>0.2.162</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Kit can read your history on a reasoning model. Those models accept only their own default settings, and Kit was asking for a steadier one while extracting memories, so every attempt was refused. Conversations were imported and nothing was remembered from them. If that happened to you, run the import again; nothing was lost.</li><li>When something goes wrong, Kit tells you what happened and what to do about it. Errors from your model provider used to arrive word for word, cut off mid-sentence, written for whoever built the API rather than for you. Kit now recognises the common ones, out of credit, a refused key, a model that is not available, a conversation too long to read, and answers with a sentence and a next step. Anything it does not recognise is passed on honestly rather than dressed up in a guess.</li><li>If reading your history stops, Kit says so where you are looking. The progress strip used to disappear the moment a run failed, leaving the explanation on a health page you had no reason to open. It now stays, says why it stopped, says how many conversations are left, and offers to start again right there.</li><li>The health page stops hiding health checks. It only knew about four kinds and quietly dropped any others, so the menu bar could report two things needing a look while the page showed one. Every check now appears.</li><li>Health carries a dot when something needs your eye, so you can see it without opening the page.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.161-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="jOhg4Fr4Bj+6uHVmYNlYJkJpuIky3V8Ag5ZZ3stknDNu5KMKIv2+17u+EkoLcJa2IIaIVXz7S8QNG97MK9ZEBQ==" length="14408752"/>
+      <description><![CDATA[<ul><li>The Try again button on the welcome screen works, and looks like it. Asking Kit to pick up reading your history where it stopped did start it, every time, but the card reporting it vanished the moment you clicked, so there was no way to tell. It now turns into the live reading panel straight away.</li><li>And if that does not start, Kit says so. A refused or unreachable request used to look exactly like a working one: nothing happened either way, and you were left to guess whether the button had done anything.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.162-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="taLLkleRHvvPD+B266lphcQBBHQFSa4K5YpbS/yPWfsLFUbpQ9dHbeoK+9i6vOsANj87oo/yfUOFANYXwqqpDA==" length="14408152"/>
     </item>
   </channel>
 </rss>
