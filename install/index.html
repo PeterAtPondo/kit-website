@@ -260,6 +260,24 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.160</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Setup shows its screens again. Since 0.2.158 the window opened onto nothing at all, which is as bad as a first impression gets. A guard added to keep untrusted pages out of the app was refusing the app&#x27;s own screens, and every one of them is now opened by a test so it cannot happen quietly again.</li>
+            <li>Setup no longer shows you pieces of Kit&#x27;s own source code, and it accepts your email address. Those screens recently moved out of the code and into files, and the move mangled a few things on the way: some text arrived as raw code, and the rule that checks your email was left asking for an address with a backslash in it.</li>
+            <li>Setup no longer hangs. Two different steps could stop dead and sit there. Installing, if something else on your Mac already had the port Kit wanted for its database, in which case Kit was quietly talking to a stranger&#x27;s database. And connecting your tools, if a command Kit ran paused to ask a question on a terminal you cannot see. Kit now refuses any database it did not start itself, and never lets a background command wait on an invisible prompt.</li>
+            <li>Kit reflects again on personal Kits. The reflection cycle has been calling a port nothing listened on, so it has not run once since Kit stopped using Docker. It raised no error you could see; it simply produced nothing, every eight hours, which is the hardest kind of fault to notice.</li>
+            <li>Kit waits until you have finished setting up before it checks for updates. It used to check partway through, which at best interrupted you and at worst offered to replace the app underneath a setup still in progress.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.159</span>
           <span class="release__date">August 2026</span>
         </div>

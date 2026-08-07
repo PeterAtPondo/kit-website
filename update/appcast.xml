@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.159</title>
-      <pubDate>Thu, 06 Aug 2026 15:34:46 -0000</pubDate>
-      <sparkle:version>0.2.159</sparkle:version>
-      <sparkle:shortVersionString>0.2.159</sparkle:shortVersionString>
+      <title>0.2.160</title>
+      <pubDate>Fri, 07 Aug 2026 07:12:50 -0000</pubDate>
+      <sparkle:version>0.2.160</sparkle:version>
+      <sparkle:shortVersionString>0.2.160</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Kit&#x27;s health stops crying wolf about your dreaming. Yesterday&#x27;s release added a check for whether a night actually consolidated anything, and it was calibrated on a busy Kit. On a quieter one, a single active night made the next perfectly ordinary night look like a failure. It now asks whether your Kit is usually productive, over the last five nights, rather than comparing you to yesterday.</li><li>Kit no longer tells you the Deforest runner has not been set up. It never was and never will be: that is a piece of machinery on the developer&#x27;s own machine, and your Kit was being marked down for not having something it is never given. Reported by three people over three weeks, fixed properly this time and pinned with tests so it stays fixed.</li><li>The Playbooks and Studio switch under Settings is hidden for now. It offered an orchestration surface your Kit cannot actually run: it would happily accept work and then leave it sitting there, because the part that does the running is not shipped with a personal Kit. If you already turned it on, nothing changes for you. It comes back when it can keep its promise.</li><li>Health checks that belong to the developer&#x27;s setup no longer appear on your Kit at all, rather than sitting there permanently amber with advice you cannot act on.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.159-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="3H5Tfgg5CiHj3Q/8P+p4LBziY06XT53jgiltME6/77NTHM88svsa2F1gr4jGzSjC72G83zbSSWtMqUmmQGbyAg==" length="15337205"/>
+      <description><![CDATA[<ul><li>Setup shows its screens again. Since 0.2.158 the window opened onto nothing at all, which is as bad as a first impression gets. A guard added to keep untrusted pages out of the app was refusing the app&#x27;s own screens, and every one of them is now opened by a test so it cannot happen quietly again.</li><li>Setup no longer shows you pieces of Kit&#x27;s own source code, and it accepts your email address. Those screens recently moved out of the code and into files, and the move mangled a few things on the way: some text arrived as raw code, and the rule that checks your email was left asking for an address with a backslash in it.</li><li>Setup no longer hangs. Two different steps could stop dead and sit there. Installing, if something else on your Mac already had the port Kit wanted for its database, in which case Kit was quietly talking to a stranger&#x27;s database. And connecting your tools, if a command Kit ran paused to ask a question on a terminal you cannot see. Kit now refuses any database it did not start itself, and never lets a background command wait on an invisible prompt.</li><li>Kit reflects again on personal Kits. The reflection cycle has been calling a port nothing listened on, so it has not run once since Kit stopped using Docker. It raised no error you could see; it simply produced nothing, every eight hours, which is the hardest kind of fault to notice.</li><li>Kit waits until you have finished setting up before it checks for updates. It used to check partway through, which at best interrupted you and at worst offered to replace the app underneath a setup still in progress.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.160-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="0yShB6vtHVj2Ciby0Q604RiF+i5j6KbuhVqW2ggsnLvmmYa4czQVR5ZIch4NsWETkzanxqQls/dZAIRYA98IBg==" length="14371747"/>
     </item>
   </channel>
 </rss>
