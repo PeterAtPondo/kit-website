@@ -260,6 +260,22 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.164</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Talking to Kit works on every model Kit can read your history with. Some models want their token limit under a different name, and only the memory side of Kit had learned that, so the same Kit could read your conversations perfectly and fail on every chat message. What one part of Kit learns about your model is now known to all of it.</li>
+            <li>Telegram is back in setup, and in Settings. There is a screen for it during setup with Do this later right there, and a row under Settings to connect it or re-pair it whenever you want. Turning it on is still entirely yours: it needs a bot you create and a token you paste, and Kit does nothing with Telegram until you do.</li>
+            <li>Kit no longer loses a setting when you reinstall. Telegram had been switched on by a line typed into a config file by hand, so reinstalling wrote a fresh file without it and the feature quietly disappeared. Settings Kit reads are now written down where a reinstall and an update can both find them.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.163</span>
           <span class="release__date">August 2026</span>
         </div>

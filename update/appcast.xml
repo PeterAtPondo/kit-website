@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.163</title>
-      <pubDate>Fri, 07 Aug 2026 11:04:40 -0000</pubDate>
-      <sparkle:version>0.2.163</sparkle:version>
-      <sparkle:shortVersionString>0.2.163</sparkle:shortVersionString>
+      <title>0.2.164</title>
+      <pubDate>Fri, 07 Aug 2026 13:05:32 -0000</pubDate>
+      <sparkle:version>0.2.164</sparkle:version>
+      <sparkle:shortVersionString>0.2.164</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Kit tells you when macOS is blocking it, and shows you how to undo that. macOS asks once whether Kit may read data from your other apps, and your conversation history is exactly that data. If that prompt is answered with Don&#x27;t Allow, macOS never asks again and the folders quietly stop being readable, so Kit would find nothing to import and had no way to tell you why. It now notices, names which tools are affected, opens Privacy Settings for you, and checks again when you come back.</li><li>Setup warns you before macOS asks. The prompt arrives with no explanation of who wants what, so the scan screen now says it is coming, what it is for, and that everything stays on your Mac.</li><li>Having none of these tools installed is still perfectly fine. Setup only stops if a folder is there and Kit is refused; an empty Mac carries on as normal.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.163-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="2fXcAhatNYCIOggR4p2k68ERMdxBAzmuarGHafu9IuEmEmsjVr4t4dM720yvfHEqMgyRHG2EN1VsASwa2JjZCg==" length="14389344"/>
+      <description><![CDATA[<ul><li>Talking to Kit works on every model Kit can read your history with. Some models want their token limit under a different name, and only the memory side of Kit had learned that, so the same Kit could read your conversations perfectly and fail on every chat message. What one part of Kit learns about your model is now known to all of it.</li><li>Telegram is back in setup, and in Settings. There is a screen for it during setup with Do this later right there, and a row under Settings to connect it or re-pair it whenever you want. Turning it on is still entirely yours: it needs a bot you create and a token you paste, and Kit does nothing with Telegram until you do.</li><li>Kit no longer loses a setting when you reinstall. Telegram had been switched on by a line typed into a config file by hand, so reinstalling wrote a fresh file without it and the feature quietly disappeared. Settings Kit reads are now written down where a reinstall and an update can both find them.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.164-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="s0ZE4/8hZ0xOztsT2F7//tFXKjvjqBTdX1qgIrajggBgN+eMgM9Qf6yIiwT5CMtRM0kpwjAqLUukyjWSo+87Dg==" length="14456165"/>
     </item>
   </channel>
 </rss>
