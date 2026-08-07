@@ -260,6 +260,22 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.163</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Kit tells you when macOS is blocking it, and shows you how to undo that. macOS asks once whether Kit may read data from your other apps, and your conversation history is exactly that data. If that prompt is answered with Don&#x27;t Allow, macOS never asks again and the folders quietly stop being readable, so Kit would find nothing to import and had no way to tell you why. It now notices, names which tools are affected, opens Privacy Settings for you, and checks again when you come back.</li>
+            <li>Setup warns you before macOS asks. The prompt arrives with no explanation of who wants what, so the scan screen now says it is coming, what it is for, and that everything stays on your Mac.</li>
+            <li>Having none of these tools installed is still perfectly fine. Setup only stops if a folder is there and Kit is refused; an empty Mac carries on as normal.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.162</span>
           <span class="release__date">August 2026</span>
         </div>

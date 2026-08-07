@@ -1,10 +1,11 @@
 {
-  "version": "0.2.162",
-  "url": "https://kit-project.com/downloads/Kit-0.2.162-macOS.dmg",
+  "version": "0.2.163",
+  "url": "https://kit-project.com/downloads/Kit-0.2.163-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "The Try again button on the welcome screen works, and looks like it. Asking Kit to pick up reading your history where it stopped did start it, every time, but the card reporting it vanished the moment you clicked, so there was no way to tell. It now turns into the live reading panel straight away.",
-    "And if that does not start, Kit says so. A refused or unreachable request used to look exactly like a working one: nothing happened either way, and you were left to guess whether the button had done anything."
+    "Kit tells you when macOS is blocking it, and shows you how to undo that. macOS asks once whether Kit may read data from your other apps, and your conversation history is exactly that data. If that prompt is answered with Don't Allow, macOS never asks again and the folders quietly stop being readable, so Kit would find nothing to import and had no way to tell you why. It now notices, names which tools are affected, opens Privacy Settings for you, and checks again when you come back.",
+    "Setup warns you before macOS asks. The prompt arrives with no explanation of who wants what, so the scan screen now says it is coming, what it is for, and that everything stays on your Mac.",
+    "Having none of these tools installed is still perfectly fine. Setup only stops if a folder is there and Kit is refused; an empty Mac carries on as normal."
   ]
 }

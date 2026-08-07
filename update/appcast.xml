@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.162</title>
-      <pubDate>Fri, 07 Aug 2026 10:24:29 -0000</pubDate>
-      <sparkle:version>0.2.162</sparkle:version>
-      <sparkle:shortVersionString>0.2.162</sparkle:shortVersionString>
+      <title>0.2.163</title>
+      <pubDate>Fri, 07 Aug 2026 11:04:40 -0000</pubDate>
+      <sparkle:version>0.2.163</sparkle:version>
+      <sparkle:shortVersionString>0.2.163</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>The Try again button on the welcome screen works, and looks like it. Asking Kit to pick up reading your history where it stopped did start it, every time, but the card reporting it vanished the moment you clicked, so there was no way to tell. It now turns into the live reading panel straight away.</li><li>And if that does not start, Kit says so. A refused or unreachable request used to look exactly like a working one: nothing happened either way, and you were left to guess whether the button had done anything.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.162-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="taLLkleRHvvPD+B266lphcQBBHQFSa4K5YpbS/yPWfsLFUbpQ9dHbeoK+9i6vOsANj87oo/yfUOFANYXwqqpDA==" length="14408152"/>
+      <description><![CDATA[<ul><li>Kit tells you when macOS is blocking it, and shows you how to undo that. macOS asks once whether Kit may read data from your other apps, and your conversation history is exactly that data. If that prompt is answered with Don&#x27;t Allow, macOS never asks again and the folders quietly stop being readable, so Kit would find nothing to import and had no way to tell you why. It now notices, names which tools are affected, opens Privacy Settings for you, and checks again when you come back.</li><li>Setup warns you before macOS asks. The prompt arrives with no explanation of who wants what, so the scan screen now says it is coming, what it is for, and that everything stays on your Mac.</li><li>Having none of these tools installed is still perfectly fine. Setup only stops if a folder is there and Kit is refused; an empty Mac carries on as normal.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.163-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="2fXcAhatNYCIOggR4p2k68ERMdxBAzmuarGHafu9IuEmEmsjVr4t4dM720yvfHEqMgyRHG2EN1VsASwa2JjZCg==" length="14389344"/>
     </item>
   </channel>
 </rss>
