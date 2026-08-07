@@ -1,9 +1,11 @@
 {
-  "version": "0.2.165",
-  "url": "https://kit-project.com/downloads/Kit-0.2.165-macOS.dmg",
+  "version": "0.2.166",
+  "url": "https://kit-project.com/downloads/Kit-0.2.166-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Updating Kit while it is reading your history no longer leaves the job half done. The interrupted run was closed with a note saying the rest was safe to pick up later, which was true, but nothing picked it up: the remaining conversations sat there until you noticed and asked. Kit now carries on by itself as soon as it restarts, from where it stopped rather than from the beginning."
+    "Every memory now tells you where it came from, or tells you honestly why it cannot. Opening a memory used to say only \"not derived from an ingested document\", which read as though it had come from nowhere. There are three different answers and Kit now gives you the right one: a memory Kit was born holding, which has no source and never will; a memory distilled from your conversations as a whole rather than any single one; and a memory whose origin simply was not written down, which is a gap worth admitting rather than dressing up.",
+    "When Kit works something out across many of your conversations, it now keeps a record of which memories it drew on. That trail was never kept before, so nothing could show it to you. Memories written from here on carry it; the ones already in your Kit cannot be reconstructed and will say so.",
+    "A conversation listed as a memory's source no longer looks like a button that does nothing. It had been rendering as though you could open it, and clicking did nothing at all."
   ]
 }

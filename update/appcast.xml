@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.165</title>
-      <pubDate>Fri, 07 Aug 2026 13:44:30 -0000</pubDate>
-      <sparkle:version>0.2.165</sparkle:version>
-      <sparkle:shortVersionString>0.2.165</sparkle:shortVersionString>
+      <title>0.2.166</title>
+      <pubDate>Fri, 07 Aug 2026 14:15:58 -0000</pubDate>
+      <sparkle:version>0.2.166</sparkle:version>
+      <sparkle:shortVersionString>0.2.166</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Updating Kit while it is reading your history no longer leaves the job half done. The interrupted run was closed with a note saying the rest was safe to pick up later, which was true, but nothing picked it up: the remaining conversations sat there until you noticed and asked. Kit now carries on by itself as soon as it restarts, from where it stopped rather than from the beginning.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.165-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="tpQjV6bUYbRpwqrFUYej+wONXth15fyi+ANEDjuPcVmAm3GOFn/eX+1NC1Nb7fhHPgnYkaAhF6GdAdbKBmQpCg==" length="13414221"/>
+      <description><![CDATA[<ul><li>Every memory now tells you where it came from, or tells you honestly why it cannot. Opening a memory used to say only &quot;not derived from an ingested document&quot;, which read as though it had come from nowhere. There are three different answers and Kit now gives you the right one: a memory Kit was born holding, which has no source and never will; a memory distilled from your conversations as a whole rather than any single one; and a memory whose origin simply was not written down, which is a gap worth admitting rather than dressing up.</li><li>When Kit works something out across many of your conversations, it now keeps a record of which memories it drew on. That trail was never kept before, so nothing could show it to you. Memories written from here on carry it; the ones already in your Kit cannot be reconstructed and will say so.</li><li>A conversation listed as a memory&#x27;s source no longer looks like a button that does nothing. It had been rendering as though you could open it, and clicking did nothing at all.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.166-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="jTc0UfyMXmZDumf9zshv7LpgQdRIc96z2wOzMn2u/4F8giOqY2+1GRcxQrWtlvG8+YUTxQy9v78DC+tfAdrFAw==" length="14434354"/>
     </item>
   </channel>
 </rss>
