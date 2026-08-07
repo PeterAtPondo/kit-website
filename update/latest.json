@@ -1,13 +1,13 @@
 {
-  "version": "0.2.160",
-  "url": "https://kit-project.com/downloads/Kit-0.2.160-macOS.dmg",
+  "version": "0.2.161",
+  "url": "https://kit-project.com/downloads/Kit-0.2.161-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Setup shows its screens again. Since 0.2.158 the window opened onto nothing at all, which is as bad as a first impression gets. A guard added to keep untrusted pages out of the app was refusing the app's own screens, and every one of them is now opened by a test so it cannot happen quietly again.",
-    "Setup no longer shows you pieces of Kit's own source code, and it accepts your email address. Those screens recently moved out of the code and into files, and the move mangled a few things on the way: some text arrived as raw code, and the rule that checks your email was left asking for an address with a backslash in it.",
-    "Setup no longer hangs. Two different steps could stop dead and sit there. Installing, if something else on your Mac already had the port Kit wanted for its database, in which case Kit was quietly talking to a stranger's database. And connecting your tools, if a command Kit ran paused to ask a question on a terminal you cannot see. Kit now refuses any database it did not start itself, and never lets a background command wait on an invisible prompt.",
-    "Kit reflects again on personal Kits. The reflection cycle has been calling a port nothing listened on, so it has not run once since Kit stopped using Docker. It raised no error you could see; it simply produced nothing, every eight hours, which is the hardest kind of fault to notice.",
-    "Kit waits until you have finished setting up before it checks for updates. It used to check partway through, which at best interrupted you and at worst offered to replace the app underneath a setup still in progress."
+    "Kit can read your history on a reasoning model. Those models accept only their own default settings, and Kit was asking for a steadier one while extracting memories, so every attempt was refused. Conversations were imported and nothing was remembered from them. If that happened to you, run the import again; nothing was lost.",
+    "When something goes wrong, Kit tells you what happened and what to do about it. Errors from your model provider used to arrive word for word, cut off mid-sentence, written for whoever built the API rather than for you. Kit now recognises the common ones, out of credit, a refused key, a model that is not available, a conversation too long to read, and answers with a sentence and a next step. Anything it does not recognise is passed on honestly rather than dressed up in a guess.",
+    "If reading your history stops, Kit says so where you are looking. The progress strip used to disappear the moment a run failed, leaving the explanation on a health page you had no reason to open. It now stays, says why it stopped, says how many conversations are left, and offers to start again right there.",
+    "The health page stops hiding health checks. It only knew about four kinds and quietly dropped any others, so the menu bar could report two things needing a look while the page showed one. Every check now appears.",
+    "Health carries a dot when something needs your eye, so you can see it without opening the page."
   ]
 }
