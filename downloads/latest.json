@@ -1,11 +1,9 @@
 {
-  "version": "0.2.164",
-  "url": "https://kit-project.com/downloads/Kit-0.2.164-macOS.dmg",
+  "version": "0.2.165",
+  "url": "https://kit-project.com/downloads/Kit-0.2.165-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Talking to Kit works on every model Kit can read your history with. Some models want their token limit under a different name, and only the memory side of Kit had learned that, so the same Kit could read your conversations perfectly and fail on every chat message. What one part of Kit learns about your model is now known to all of it.",
-    "Telegram is back in setup, and in Settings. There is a screen for it during setup with Do this later right there, and a row under Settings to connect it or re-pair it whenever you want. Turning it on is still entirely yours: it needs a bot you create and a token you paste, and Kit does nothing with Telegram until you do.",
-    "Kit no longer loses a setting when you reinstall. Telegram had been switched on by a line typed into a config file by hand, so reinstalling wrote a fresh file without it and the feature quietly disappeared. Settings Kit reads are now written down where a reinstall and an update can both find them."
+    "Updating Kit while it is reading your history no longer leaves the job half done. The interrupted run was closed with a note saying the rest was safe to pick up later, which was true, but nothing picked it up: the remaining conversations sat there until you noticed and asked. Kit now carries on by itself as soon as it restarts, from where it stopped rather than from the beginning."
   ]
 }
