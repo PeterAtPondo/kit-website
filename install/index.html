@@ -260,6 +260,26 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.167</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>The little window you open from the menu bar has a name now, the Lantern, and it behaves like one. Opening it used to mean staring at nothing while Kit woke up, sometimes for several seconds, with no sign that anything was happening. Now the night sky is there from the first instant and a single firefly curls up out of the dark while Kit gathers itself, with a line or two in Kit&#x27;s own voice about what it is doing. When your memories are ready the firefly settles among them and the room comes up around it. The very first time you ever open it, Kit says hello properly; after that it simply wakes.</li>
+            <li>The Lantern window is Kit to the edges. The grey title bar is gone, the sky runs right to the corners, and the traffic lights float over it. Reopening the window is now instant and lands you back on the view you were last using, instead of reloading the whole thing every time. It also stays where you put it, across opens, restarts and minimising, and minimising properly works: the yellow button used to make the window vanish with no way to get it back short of quitting Kit.</li>
+            <li>Send us feedback is part of the Lantern now rather than a separate page pretending to be one. It had drifted: an older copy of the navigation, no icons, and every way out of it reloaded Kit from scratch. The form is the same, it just lives inside the window like everything else.</li>
+            <li>Kit dreams reliably again after you quit and reopen the app. Behind the scenes, relaunching Kit could pull the ground out from under the parts of it that were still running: they kept answering, so everything looked healthy, while nightly dreams silently stopped, Telegram quietly stopped replying, and folder reading stopped, until Kit was restarted. That whole class of failure is fixed at the root. A nightly dream that fails to start is also retried within a minute now, instead of being counted as done and skipped until the next night.</li>
+            <li>Kit is harder to leave mute by accident. A Telegram bot token saved as nothing but a space used to overwrite the real one, after which Kit heard nothing at all and still displayed itself as connected, saying so nowhere. A blank now means &quot;nothing supplied&quot; and never erases a working token, and a Kit that cannot read its token says so plainly in its own logs instead of going quiet.</li>
+            <li>Two model problems that ate real work. A sleep could spend its entire budget thinking and come back with nothing to show, losing the night&#x27;s consolidation after several minutes of work; it now insists on an answer. And a Kit set up with a reasoning model could fail every session summary over a single unsupported setting, because it only ever learned one of a model&#x27;s quirks per attempt. It now learns them all.</li>
+            <li>Claude desktop is detected properly in Where you use Kit. It read &quot;not detected on this mac&quot; on every Mac, including ones with it plainly installed. It now says it is there, and says that it comes with Claude Code, which is what registers it.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.166</span>
           <span class="release__date">August 2026</span>
         </div>
