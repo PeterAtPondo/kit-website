@@ -1,10 +1,10 @@
 {
-  "version": "0.2.171",
-  "url": "https://kit-project.com/downloads/Kit-0.2.171-macOS.dmg",
+  "version": "0.2.173",
+  "url": "https://kit-project.com/downloads/Kit-0.2.173-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Model outage alerts only page you when something you use is affected; a provider nothing runs on stays a quiet Settings pill.",
-    "When an alert does arrive it tells the truth about your fallback: which tasks are hit and where the calls will go meanwhile."
+    "A key that isn't set up yet no longer masquerades as your provider rejecting calls; setup gaps stay quiet Settings state.",
+    "Alerts now point at doors your Kit actually has: personal installs are directed to Settings, Models rather than an inbox."
   ]
 }

@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.171</title>
-      <pubDate>Wed, 12 Aug 2026 12:38:17 -0000</pubDate>
-      <sparkle:version>0.2.171</sparkle:version>
-      <sparkle:shortVersionString>0.2.171</sparkle:shortVersionString>
+      <title>0.2.173</title>
+      <pubDate>Wed, 12 Aug 2026 15:59:07 -0000</pubDate>
+      <sparkle:version>0.2.173</sparkle:version>
+      <sparkle:shortVersionString>0.2.173</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Model outage alerts only page you when something you use is affected; a provider nothing runs on stays a quiet Settings pill.</li><li>When an alert does arrive it tells the truth about your fallback: which tasks are hit and where the calls will go meanwhile.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.171-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="9/s88cvRubq57wUhwcu2hTc42eoYIKlBz8/Vi/NO6TRnAG4RS2mv6z20qdxsW1jOh50K+qDA7CsWFxbztQGEDQ==" length="14522228"/>
+      <description><![CDATA[<ul><li>A key that isn&#x27;t set up yet no longer masquerades as your provider rejecting calls; setup gaps stay quiet Settings state.</li><li>Alerts now point at doors your Kit actually has: personal installs are directed to Settings, Models rather than an inbox.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.173-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="una9H4kqvtqR3Gz0Dp3Al/h4MaaCn4u0VMN8pR3MonPoteqwTRZEJcEUaEiRiigxBOu7SbqHtTZwU2n8E8ABBA==" length="14527259"/>
     </item>
   </channel>
 </rss>
