@@ -1,13 +1,13 @@
 {
-  "version": "0.2.168",
-  "url": "https://kit-project.com/downloads/Kit-0.2.168-macOS.dmg",
+  "version": "0.2.169",
+  "url": "https://kit-project.com/downloads/Kit-0.2.169-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Kit starts quietly now: hundreds of harmless-but-alarming database errors are gone from every boot.",
-    "When a background helper cannot start, Kit tells you within seconds, with the real reason, instead of hours later.",
-    "The health page puts Models first, because a missing model key is what most often stops Kit thinking.",
-    "A flaky network writes a few log lines now, not hundreds.",
-    "Kit's private reflections stay out of the technical logs you might share when asking for help."
+    "Updates back up your Kit's memory before they touch anything; the dump lands in backups next to your data.",
+    "A hosted model key that stops working now says so in Settings > Models instead of failing quietly on the third reply.",
+    "Old suspicions on memories resolve themselves: cleared, or kept as a visible note, never pending forever.",
+    "Restore works across the Docker-to-native move: docker-era backups read fine on the native runtime.",
+    "The import backlog tells the truth about its direction: draining, growing, or stuck, with the cause named."
   ]
 }

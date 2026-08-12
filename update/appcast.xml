@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.168</title>
-      <pubDate>Tue, 11 Aug 2026 09:30:22 -0000</pubDate>
-      <sparkle:version>0.2.168</sparkle:version>
-      <sparkle:shortVersionString>0.2.168</sparkle:shortVersionString>
+      <title>0.2.169</title>
+      <pubDate>Wed, 12 Aug 2026 10:25:57 -0000</pubDate>
+      <sparkle:version>0.2.169</sparkle:version>
+      <sparkle:shortVersionString>0.2.169</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Kit starts quietly now: hundreds of harmless-but-alarming database errors are gone from every boot.</li><li>When a background helper cannot start, Kit tells you within seconds, with the real reason, instead of hours later.</li><li>The health page puts Models first, because a missing model key is what most often stops Kit thinking.</li><li>A flaky network writes a few log lines now, not hundreds.</li><li>Kit&#x27;s private reflections stay out of the technical logs you might share when asking for help.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.168-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="vDt2lg6pkk9Y6KJa0ng0ss3AvCgNDhvYcbQGg08i7w+Sw6jRw+x5805INYo+7Kqk/gqGS2jfemd2NdDWe9wKBw==" length="14486159"/>
+      <description><![CDATA[<ul><li>Updates back up your Kit&#x27;s memory before they touch anything; the dump lands in backups next to your data.</li><li>A hosted model key that stops working now says so in Settings &gt; Models instead of failing quietly on the third reply.</li><li>Old suspicions on memories resolve themselves: cleared, or kept as a visible note, never pending forever.</li><li>Restore works across the Docker-to-native move: docker-era backups read fine on the native runtime.</li><li>The import backlog tells the truth about its direction: draining, growing, or stuck, with the cause named.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.169-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="5CZbhv2qD+rRKr4I5iWh14fKvMn3Ok2hWDffTZJSRVUGd0hJlUTHZbzpAn//Cu4CNH9V8Csch3qK2uwFnThFCw==" length="14514807"/>
     </item>
   </channel>
 </rss>
