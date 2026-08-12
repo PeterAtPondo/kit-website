@@ -1,10 +1,11 @@
 {
-  "version": "0.2.173",
-  "url": "https://kit-project.com/downloads/Kit-0.2.173-macOS.dmg",
+  "version": "0.2.174",
+  "url": "https://kit-project.com/downloads/Kit-0.2.174-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "A key that isn't set up yet no longer masquerades as your provider rejecting calls; setup gaps stay quiet Settings state.",
-    "Alerts now point at doors your Kit actually has: personal installs are directed to Settings, Models rather than an inbox."
+    "Setup now asks what you do. Pick the hat that fits best, wear as many extras as you like with + also, and change your mind later in Settings. It is a hint for your Kit, never a cage: nothing is locked away behind the answer.",
+    "The setup order listens to that answer. If you ship code, your coding tools connect right after you name your areas, before any history import; everyone else brings their history in first. Same steps either way, arranged around how you actually work.",
+    "Your Kit wakes already knowing who it works with. The answer becomes one of its founding memories, so from the very first session it speaks your language instead of starting from zero. Existing Kits can say it any time in Settings, under Identity."
   ]
 }

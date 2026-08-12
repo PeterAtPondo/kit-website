@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.173</title>
-      <pubDate>Wed, 12 Aug 2026 15:59:07 -0000</pubDate>
-      <sparkle:version>0.2.173</sparkle:version>
-      <sparkle:shortVersionString>0.2.173</sparkle:shortVersionString>
+      <title>0.2.174</title>
+      <pubDate>Wed, 12 Aug 2026 20:57:47 -0000</pubDate>
+      <sparkle:version>0.2.174</sparkle:version>
+      <sparkle:shortVersionString>0.2.174</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>A key that isn&#x27;t set up yet no longer masquerades as your provider rejecting calls; setup gaps stay quiet Settings state.</li><li>Alerts now point at doors your Kit actually has: personal installs are directed to Settings, Models rather than an inbox.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.173-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="una9H4kqvtqR3Gz0Dp3Al/h4MaaCn4u0VMN8pR3MonPoteqwTRZEJcEUaEiRiigxBOu7SbqHtTZwU2n8E8ABBA==" length="14527259"/>
+      <description><![CDATA[<ul><li>Setup now asks what you do. Pick the hat that fits best, wear as many extras as you like with + also, and change your mind later in Settings. It is a hint for your Kit, never a cage: nothing is locked away behind the answer.</li><li>The setup order listens to that answer. If you ship code, your coding tools connect right after you name your areas, before any history import; everyone else brings their history in first. Same steps either way, arranged around how you actually work.</li><li>Your Kit wakes already knowing who it works with. The answer becomes one of its founding memories, so from the very first session it speaks your language instead of starting from zero. Existing Kits can say it any time in Settings, under Identity.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.174-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="Or9Po6yLzBYweBeEzaTVEVfwG9uxmJte5B9QTp4FNCArtfXeRoq5hmSxZD4w85uldRUe4GwHosRPIpvvqiapDg==" length="14603031"/>
     </item>
   </channel>
 </rss>
