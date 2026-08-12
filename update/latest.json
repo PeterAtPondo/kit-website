@@ -1,13 +1,10 @@
 {
-  "version": "0.2.169",
-  "url": "https://kit-project.com/downloads/Kit-0.2.169-macOS.dmg",
+  "version": "0.2.170",
+  "url": "https://kit-project.com/downloads/Kit-0.2.170-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Updates back up your Kit's memory before they touch anything; the dump lands in backups next to your data.",
-    "A hosted model key that stops working now says so in Settings > Models instead of failing quietly on the third reply.",
-    "Old suspicions on memories resolve themselves: cleared, or kept as a visible note, never pending forever.",
-    "Restore works across the Docker-to-native move: docker-era backups read fine on the native runtime.",
-    "The import backlog tells the truth about its direction: draining, growing, or stuck, with the cause named."
+    "A quiet night is no longer an alarm: if nothing new arrived worth linking, the dream reports a calm ok instead of degraded.",
+    "Health alerts about the dream now say how much new material there was, so a warning carries its evidence."
   ]
 }

@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.169</title>
-      <pubDate>Wed, 12 Aug 2026 10:25:57 -0000</pubDate>
-      <sparkle:version>0.2.169</sparkle:version>
-      <sparkle:shortVersionString>0.2.169</sparkle:shortVersionString>
+      <title>0.2.170</title>
+      <pubDate>Wed, 12 Aug 2026 11:46:01 -0000</pubDate>
+      <sparkle:version>0.2.170</sparkle:version>
+      <sparkle:shortVersionString>0.2.170</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Updates back up your Kit&#x27;s memory before they touch anything; the dump lands in backups next to your data.</li><li>A hosted model key that stops working now says so in Settings &gt; Models instead of failing quietly on the third reply.</li><li>Old suspicions on memories resolve themselves: cleared, or kept as a visible note, never pending forever.</li><li>Restore works across the Docker-to-native move: docker-era backups read fine on the native runtime.</li><li>The import backlog tells the truth about its direction: draining, growing, or stuck, with the cause named.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.169-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="5CZbhv2qD+rRKr4I5iWh14fKvMn3Ok2hWDffTZJSRVUGd0hJlUTHZbzpAn//Cu4CNH9V8Csch3qK2uwFnThFCw==" length="14514807"/>
+      <description><![CDATA[<ul><li>A quiet night is no longer an alarm: if nothing new arrived worth linking, the dream reports a calm ok instead of degraded.</li><li>Health alerts about the dream now say how much new material there was, so a warning carries its evidence.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.170-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="JevgTbjC5/OUEWbmk3XiudraSpNd5d/cS/f+vPOrLhIBJpfuEwP9uOe0/bGTEWa4rr7NgIEQxnSF50Z9TZkYCA==" length="14528551"/>
     </item>
   </channel>
 </rss>
