@@ -1,11 +1,11 @@
 {
-  "version": "0.2.178",
-  "url": "https://kit-project.com/downloads/Kit-0.2.178-macOS.dmg",
+  "version": "0.2.179",
+  "url": "https://kit-project.com/downloads/Kit-0.2.179-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "OpenCode now works as one of the places your Kit lives. It was already offered under Your surfaces, but turning it on came back with an error instead of a key. That switch works now.",
-    "Your Kit can think with OpenCode Zen. It joins the provider list in Settings, then Models: one key, a choice of models from several makers. Give it the nightly work and keep your conversations on something else if you like.",
-    "Fewer nights end early. When a model got lost in its own reasoning and left no room for an answer, your Kit's last attempt to rescue the night was quietly repeating the one that had just failed. It now asks properly for a plain answer, so nights that used to give up finish instead."
+    "OpenCode is recognised properly now. Your Kit could already connect to it, but the card kept saying it was not installed and offered you a download link for something you already had. It now sees what is on your Mac.",
+    "AnythingLLM is recognised the same way, for the same reason.",
+    "The rest of the OpenCode work from earlier today comes with it: OpenCode as a place your Kit lives, and OpenCode Zen as a provider your Kit can think with, under Settings then Models."
   ]
 }
