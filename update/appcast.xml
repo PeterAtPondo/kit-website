@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.180</title>
-      <pubDate>Thu, 13 Aug 2026 19:55:20 -0000</pubDate>
-      <sparkle:version>0.2.180</sparkle:version>
-      <sparkle:shortVersionString>0.2.180</sparkle:shortVersionString>
+      <title>0.2.181</title>
+      <pubDate>Thu, 13 Aug 2026 20:19:40 -0000</pubDate>
+      <sparkle:version>0.2.181</sparkle:version>
+      <sparkle:shortVersionString>0.2.181</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>On some apps, the little card your Kit shows when it wakes had started replacing the words your Kit needed to read: who it is, what it remembers, what you were last working on. The words now travel inside the card&#x27;s own data, so your Kit wakes whole everywhere the card renders.</li><li>The same repair covers search results and save confirmations, which could go quiet the same way on those apps.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.180-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="MkS6vfK/e4UlZNS/g8oLqPBWhCIwsn9ATfuQ1KJNA6AF/lbm11wup5Z9xMZslfKZucHlwc/MjcZN5w/4AbAWAQ==" length="14603587"/>
+      <description><![CDATA[<ul><li>Chatting with your Kit works again when its conversation runs on OpenCode Zen, LM Studio, Google, or a custom server. Those providers were being spoken to in the wrong dialect, and on Zen the reply came back as a full web page worn as an error.</li><li>If a provider ever does answer with a web page, your Kit now shows you the one honest line instead of the page.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.181-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="RdnxlIou0rJV/23fyrmxS7dXwKOi+XgLcbgQhJn3DyNRExkE+N/rEqpGnfMt8brnIrGGPybSBX3ebpQXWGvYBQ==" length="14604207"/>
     </item>
   </channel>
 </rss>
