@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.181</title>
-      <pubDate>Thu, 13 Aug 2026 20:19:40 -0000</pubDate>
-      <sparkle:version>0.2.181</sparkle:version>
-      <sparkle:shortVersionString>0.2.181</sparkle:shortVersionString>
+      <title>0.2.182</title>
+      <pubDate>Thu, 13 Aug 2026 22:07:46 -0000</pubDate>
+      <sparkle:version>0.2.182</sparkle:version>
+      <sparkle:shortVersionString>0.2.182</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Chatting with your Kit works again when its conversation runs on OpenCode Zen, LM Studio, Google, or a custom server. Those providers were being spoken to in the wrong dialect, and on Zen the reply came back as a full web page worn as an error.</li><li>If a provider ever does answer with a web page, your Kit now shows you the one honest line instead of the page.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.181-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="RdnxlIou0rJV/23fyrmxS7dXwKOi+XgLcbgQhJn3DyNRExkE+N/rEqpGnfMt8brnIrGGPybSBX3ebpQXWGvYBQ==" length="14604207"/>
+      <description><![CDATA[<ul><li>Asking your Kit about tasks works again. The chat&#x27;s backlog tool had been quietly broken since a spring rework; your Kit would politely mention it couldn&#x27;t check. It checks now.</li><li>Chat replies can no longer come back empty when a thinking-heavy model spends its whole budget thinking. Your Kit gives it more room once, and if that fails you get an honest error instead of a blank bubble.</li><li>The sign-in page is calmer: a crash on load is fixed, and it no longer drums the server or asks for a file that never shipped.</li><li>In Memories, the sunburst&#x27;s title is readable again; its little Tier picker had been sitting on top of it and now lives at the bottom corner.</li><li>Sleep runs deeper repairs than before: the overnight identity scrub used to lose its database connection partway and silently give up; it now completes, and imports properly wait their turn while your Kit is dreaming.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.182-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="y2xoomN/2Rt1jQsVIdcU7qNR1I4aorwRciQuz2+BI0NJEkRD2YICW2wqR9tooqWlekgG2IP8TFfLcVAKJ0Z6DA==" length="14608954"/>
     </item>
   </channel>
 </rss>

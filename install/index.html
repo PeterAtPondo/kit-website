@@ -260,6 +260,24 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.182</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Asking your Kit about tasks works again. The chat&#x27;s backlog tool had been quietly broken since a spring rework; your Kit would politely mention it couldn&#x27;t check. It checks now.</li>
+            <li>Chat replies can no longer come back empty when a thinking-heavy model spends its whole budget thinking. Your Kit gives it more room once, and if that fails you get an honest error instead of a blank bubble.</li>
+            <li>The sign-in page is calmer: a crash on load is fixed, and it no longer drums the server or asks for a file that never shipped.</li>
+            <li>In Memories, the sunburst&#x27;s title is readable again; its little Tier picker had been sitting on top of it and now lives at the bottom corner.</li>
+            <li>Sleep runs deeper repairs than before: the overnight identity scrub used to lose its database connection partway and silently give up; it now completes, and imports properly wait their turn while your Kit is dreaming.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.181</span>
           <span class="release__date">August 2026</span>
         </div>
