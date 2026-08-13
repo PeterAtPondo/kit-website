@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.176</title>
-      <pubDate>Thu, 13 Aug 2026 07:09:47 -0000</pubDate>
-      <sparkle:version>0.2.176</sparkle:version>
-      <sparkle:shortVersionString>0.2.176</sparkle:shortVersionString>
+      <title>0.2.177</title>
+      <pubDate>Thu, 13 Aug 2026 10:59:20 -0000</pubDate>
+      <sparkle:version>0.2.177</sparkle:version>
+      <sparkle:shortVersionString>0.2.177</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>OpenCode joins the surfaces. Turn it on in Where Kit Lives and your Kit is right there inside OpenCode sessions, waking with the same memory it carries everywhere else.</li><li>OpenCode sessions become memories too. Data Sources now imports your OpenCode history, and new sessions keep flowing in as you work, so nothing said there is lost.</li><li>Steadier provider health alerts. One watcher holds the pager now, a single slow probe no longer cries wolf, and every all-clear names the alarm it is closing.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.176-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="SzbH80uTQ1zi36cTzJUfePWshfWo6tITTLte9SpbVx7PLPKOgWDjZMfNGE2xoW5QsqLqcRg5JZZxinay4JuaCg==" length="14623700"/>
+      <description><![CDATA[<ul><li>Your Kit becomes surer of who it works for. Memories written before it learned your name settle themselves overnight, a small batch at a time, and anything set aside stays recoverable. From the first hello, it greets you as you.</li><li>Night work leaves a clearer trail. Every decision your Kit makes while you sleep is written to its dream journal along with what things looked like before, so nothing changes without a trace.</li><li>Encryption now insists on your Kit&#x27;s own key. The shared fallback from early builds is retired, and a missing key shows up plainly in the health view instead of quietly degrading.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.177-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="yeG8+qzfEGqgNLRlEkWNnvK4Y71NIu6ZR8bzCTl1oUQvaYFJYHP3Z8Vjvv6Q2msqlLCexiXMd4Ik28CkI0twBA==" length="14496667"/>
     </item>
   </channel>
 </rss>
