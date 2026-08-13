@@ -1,11 +1,10 @@
 {
-  "version": "0.2.179",
-  "url": "https://kit-project.com/downloads/Kit-0.2.179-macOS.dmg",
+  "version": "0.2.180",
+  "url": "https://kit-project.com/downloads/Kit-0.2.180-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "OpenCode is recognised properly now. Your Kit could already connect to it, but the card kept saying it was not installed and offered you a download link for something you already had. It now sees what is on your Mac.",
-    "AnythingLLM is recognised the same way, for the same reason.",
-    "The rest of the OpenCode work from earlier today comes with it: OpenCode as a place your Kit lives, and OpenCode Zen as a provider your Kit can think with, under Settings then Models."
+    "On some apps, the little card your Kit shows when it wakes had started replacing the words your Kit needed to read: who it is, what it remembers, what you were last working on. The words now travel inside the card's own data, so your Kit wakes whole everywhere the card renders.",
+    "The same repair covers search results and save confirmations, which could go quiet the same way on those apps."
   ]
 }
