@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.177</title>
-      <pubDate>Thu, 13 Aug 2026 10:59:20 -0000</pubDate>
-      <sparkle:version>0.2.177</sparkle:version>
-      <sparkle:shortVersionString>0.2.177</sparkle:shortVersionString>
+      <title>0.2.178</title>
+      <pubDate>Thu, 13 Aug 2026 16:01:55 -0000</pubDate>
+      <sparkle:version>0.2.178</sparkle:version>
+      <sparkle:shortVersionString>0.2.178</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Your Kit becomes surer of who it works for. Memories written before it learned your name settle themselves overnight, a small batch at a time, and anything set aside stays recoverable. From the first hello, it greets you as you.</li><li>Night work leaves a clearer trail. Every decision your Kit makes while you sleep is written to its dream journal along with what things looked like before, so nothing changes without a trace.</li><li>Encryption now insists on your Kit&#x27;s own key. The shared fallback from early builds is retired, and a missing key shows up plainly in the health view instead of quietly degrading.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.177-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="yeG8+qzfEGqgNLRlEkWNnvK4Y71NIu6ZR8bzCTl1oUQvaYFJYHP3Z8Vjvv6Q2msqlLCexiXMd4Ik28CkI0twBA==" length="14496667"/>
+      <description><![CDATA[<ul><li>OpenCode now works as one of the places your Kit lives. It was already offered under Your surfaces, but turning it on came back with an error instead of a key. That switch works now.</li><li>Your Kit can think with OpenCode Zen. It joins the provider list in Settings, then Models: one key, a choice of models from several makers. Give it the nightly work and keep your conversations on something else if you like.</li><li>Fewer nights end early. When a model got lost in its own reasoning and left no room for an answer, your Kit&#x27;s last attempt to rescue the night was quietly repeating the one that had just failed. It now asks properly for a plain answer, so nights that used to give up finish instead.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.178-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="WoCwQNq1tCMIMzhHDh6enAc7zrSQf6SX0B+sPXwH5b51MJBt+miTMtLqrDf3kgyTSFlReJUrafdAPkmAtut4AQ==" length="14600034"/>
     </item>
   </channel>
 </rss>

@@ -1,11 +1,11 @@
 {
-  "version": "0.2.177",
-  "url": "https://kit-project.com/downloads/Kit-0.2.177-macOS.dmg",
+  "version": "0.2.178",
+  "url": "https://kit-project.com/downloads/Kit-0.2.178-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Your Kit becomes surer of who it works for. Memories written before it learned your name settle themselves overnight, a small batch at a time, and anything set aside stays recoverable. From the first hello, it greets you as you.",
-    "Night work leaves a clearer trail. Every decision your Kit makes while you sleep is written to its dream journal along with what things looked like before, so nothing changes without a trace.",
-    "Encryption now insists on your Kit's own key. The shared fallback from early builds is retired, and a missing key shows up plainly in the health view instead of quietly degrading."
+    "OpenCode now works as one of the places your Kit lives. It was already offered under Your surfaces, but turning it on came back with an error instead of a key. That switch works now.",
+    "Your Kit can think with OpenCode Zen. It joins the provider list in Settings, then Models: one key, a choice of models from several makers. Give it the nightly work and keep your conversations on something else if you like.",
+    "Fewer nights end early. When a model got lost in its own reasoning and left no room for an answer, your Kit's last attempt to rescue the night was quietly repeating the one that had just failed. It now asks properly for a plain answer, so nights that used to give up finish instead."
   ]
 }
