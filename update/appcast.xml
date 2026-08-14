@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.183</title>
-      <pubDate>Fri, 14 Aug 2026 08:56:19 -0000</pubDate>
-      <sparkle:version>0.2.183</sparkle:version>
-      <sparkle:shortVersionString>0.2.183</sparkle:shortVersionString>
+      <title>0.2.184</title>
+      <pubDate>Fri, 14 Aug 2026 10:05:00 -0000</pubDate>
+      <sparkle:version>0.2.184</sparkle:version>
+      <sparkle:shortVersionString>0.2.184</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Your Kit now wakes the same way on every surface. The chat panel and Telegram carry its full self (its soul, its recent handoffs, its live notebook), so asking &quot;what did you do last night?&quot; gets the actual night, not a shrug.</li><li>The drafts queue stops waiting for you. Your Kit now decides each captured draft itself, reversibly, and any standing backlog drains away over the coming nights. You never need to triage drafts by hand again.</li><li>Schedules run on your clock. If you set the dream cycle for 1am, it happens at your 1am, wherever you live. Thanks to Ian for catching this one.</li><li>Playbooks open up for personal Kits: a new Features switch in Settings turns on the surface, playbooks your Kit can genuinely run just work (most run on your own AI key), and anything needing machinery you don&#x27;t have yet is honestly badged rather than silently broken.</li><li>Assorted honesty fixes: reflections can no longer echo a canned &quot;I don&#x27;t have that noted&quot; line, and starting a playbook your Kit can&#x27;t run tells you which step blocks it instead of stalling forever.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.183-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="H+uyxtVBBqtZYNJQbwFYBlmK3IcgrBQz+fuKCEfsbY81RzTKab6GG8X3UiK5o2D1AiJU3DwHwKtEk6PWSVCbBw==" length="14623509"/>
+      <description><![CDATA[<ul><li>Questions that need your call now actually reach you: mail that parks for your decision pings you on Telegram and lands a Studio card, instead of waiting silently.</li><li>You can tell your kit whose address is whose: link allowlisted emails to people it knows, and mark your own addresses as yours.</li><li>Mail from you is met as you: your kit grounds it in your shared history instead of treating you like a stranger.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.184-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="T3ojOGqkkXsi6JTl2fL/Gj3f3sLwnOENx0BJqrFRLuQPpNj3pe3SrOKH33Y2LmsUPuzvkqtlpR/9oABzd/G/BQ==" length="14604176"/>
     </item>
   </channel>
 </rss>

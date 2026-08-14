@@ -1,13 +1,11 @@
 {
-  "version": "0.2.183",
-  "url": "https://kit-project.com/downloads/Kit-0.2.183-macOS.dmg",
+  "version": "0.2.184",
+  "url": "https://kit-project.com/downloads/Kit-0.2.184-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Your Kit now wakes the same way on every surface. The chat panel and Telegram carry its full self (its soul, its recent handoffs, its live notebook), so asking \"what did you do last night?\" gets the actual night, not a shrug.",
-    "The drafts queue stops waiting for you. Your Kit now decides each captured draft itself, reversibly, and any standing backlog drains away over the coming nights. You never need to triage drafts by hand again.",
-    "Schedules run on your clock. If you set the dream cycle for 1am, it happens at your 1am, wherever you live. Thanks to Ian for catching this one.",
-    "Playbooks open up for personal Kits: a new Features switch in Settings turns on the surface, playbooks your Kit can genuinely run just work (most run on your own AI key), and anything needing machinery you don't have yet is honestly badged rather than silently broken.",
-    "Assorted honesty fixes: reflections can no longer echo a canned \"I don't have that noted\" line, and starting a playbook your Kit can't run tells you which step blocks it instead of stalling forever."
+    "Questions that need your call now actually reach you: mail that parks for your decision pings you on Telegram and lands a Studio card, instead of waiting silently.",
+    "You can tell your kit whose address is whose: link allowlisted emails to people it knows, and mark your own addresses as yours.",
+    "Mail from you is met as you: your kit grounds it in your shared history instead of treating you like a stranger."
   ]
 }
