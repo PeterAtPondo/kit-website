@@ -1,6 +1,6 @@
 {
-  "version": "0.2.185",
-  "url": "https://kit-project.com/downloads/Kit-0.2.185-macOS.dmg",
+  "version": "0.2.186",
+  "url": "https://kit-project.com/downloads/Kit-0.2.186-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
@@ -9,6 +9,7 @@
     "Replies that fail to send are retried, and if Telegram itself goes quiet or your kit stops hearing you, it tells you off Telegram within minutes instead of leaving you to find out.",
     "On the phone your kit now has the same hands as on the desktop: it can read your mailbox, Garmin and calendar, fetch a public page, and leave notes and memories.",
     "Questions waiting on your call show on every surface, an answer given in Studio shows on the Telegram card and back, and a thread you start on the desktop continues on your phone.",
-    "Every install now reports the exact build it runs and shows the clock its dream cycles use, so a 1am dream that fires at 3am can be traced with evidence."
+    "Every install now reports the exact build it runs and shows the clock its dream cycles use, so a 1am dream that fires at 3am can be traced with evidence.",
+    "Fixes the 0.2.185 update on some Macs where the Telegram listener was reported as already running and never started; if your kit went quiet on Telegram after updating, this release brings it back."
   ]
 }
