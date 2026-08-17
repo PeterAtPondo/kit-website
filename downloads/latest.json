@@ -1,11 +1,14 @@
 {
-  "version": "0.2.184",
-  "url": "https://kit-project.com/downloads/Kit-0.2.184-macOS.dmg",
+  "version": "0.2.185",
+  "url": "https://kit-project.com/downloads/Kit-0.2.185-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Questions that need your call now actually reach you: mail that parks for your decision pings you on Telegram and lands a Studio card, instead of waiting silently.",
-    "You can tell your kit whose address is whose: link allowlisted emails to people it knows, and mark your own addresses as yours.",
-    "Mail from you is met as you: your kit grounds it in your shared history instead of treating you like a stranger."
+    "Telegram feels like your kit again: ordinary messages get real replies instead of \"I don't have that noted\", and a \"Kit?\" while it is busy gets a status, not a fresh answer to \"Kit?\".",
+    "Your kit keeps listening while it thinks: a slow answer no longer holds up your next message, it says when something will take a few minutes, and bigger jobs finish in the background and post back to you.",
+    "Replies that fail to send are retried, and if Telegram itself goes quiet or your kit stops hearing you, it tells you off Telegram within minutes instead of leaving you to find out.",
+    "On the phone your kit now has the same hands as on the desktop: it can read your mailbox, Garmin and calendar, fetch a public page, and leave notes and memories.",
+    "Questions waiting on your call show on every surface, an answer given in Studio shows on the Telegram card and back, and a thread you start on the desktop continues on your phone.",
+    "Every install now reports the exact build it runs and shows the clock its dream cycles use, so a 1am dream that fires at 3am can be traced with evidence."
   ]
 }

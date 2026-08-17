@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.184</title>
-      <pubDate>Fri, 14 Aug 2026 10:05:00 -0000</pubDate>
-      <sparkle:version>0.2.184</sparkle:version>
-      <sparkle:shortVersionString>0.2.184</sparkle:shortVersionString>
+      <title>0.2.185</title>
+      <pubDate>Mon, 17 Aug 2026 06:49:02 -0000</pubDate>
+      <sparkle:version>0.2.185</sparkle:version>
+      <sparkle:shortVersionString>0.2.185</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Questions that need your call now actually reach you: mail that parks for your decision pings you on Telegram and lands a Studio card, instead of waiting silently.</li><li>You can tell your kit whose address is whose: link allowlisted emails to people it knows, and mark your own addresses as yours.</li><li>Mail from you is met as you: your kit grounds it in your shared history instead of treating you like a stranger.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.184-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="T3ojOGqkkXsi6JTl2fL/Gj3f3sLwnOENx0BJqrFRLuQPpNj3pe3SrOKH33Y2LmsUPuzvkqtlpR/9oABzd/G/BQ==" length="14604176"/>
+      <description><![CDATA[<ul><li>Telegram feels like your kit again: ordinary messages get real replies instead of &quot;I don&#x27;t have that noted&quot;, and a &quot;Kit?&quot; while it is busy gets a status, not a fresh answer to &quot;Kit?&quot;.</li><li>Your kit keeps listening while it thinks: a slow answer no longer holds up your next message, it says when something will take a few minutes, and bigger jobs finish in the background and post back to you.</li><li>Replies that fail to send are retried, and if Telegram itself goes quiet or your kit stops hearing you, it tells you off Telegram within minutes instead of leaving you to find out.</li><li>On the phone your kit now has the same hands as on the desktop: it can read your mailbox, Garmin and calendar, fetch a public page, and leave notes and memories.</li><li>Questions waiting on your call show on every surface, an answer given in Studio shows on the Telegram card and back, and a thread you start on the desktop continues on your phone.</li><li>Every install now reports the exact build it runs and shows the clock its dream cycles use, so a 1am dream that fires at 3am can be traced with evidence.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.185-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="0J4z+GrGoLRYI2RP459/+w5pcEXAY3ROEQw3aqBiLjx/f7Ohz04PmWQKcJajf2mTsvgoXJQP+6FQWZkqOFg1Cw==" length="14667141"/>
     </item>
   </channel>
 </rss>
