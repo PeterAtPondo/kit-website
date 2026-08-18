@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.187</title>
-      <pubDate>Tue, 18 Aug 2026 08:56:51 -0000</pubDate>
-      <sparkle:version>0.2.187</sparkle:version>
-      <sparkle:shortVersionString>0.2.187</sparkle:shortVersionString>
+      <title>0.2.188</title>
+      <pubDate>Tue, 18 Aug 2026 10:34:56 -0000</pubDate>
+      <sparkle:version>0.2.188</sparkle:version>
+      <sparkle:shortVersionString>0.2.188</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Connect Strava: your kit reads your activities through Strava&#x27;s own MCP, the route Strava&#x27;s policy allows for your own AI, so runs, rides and swims from any watch that syncs to Strava flow in. Strava subscribers only, one sign-in, nothing else read, and only you see it.</li><li>Garmin is no longer offered on personal kits: Strava covers activities for every watch, and Garmin has no official personal route. Nothing you had is removed.</li><li>Every wake now carries how you slept and how charged you are, when a feed provides it: last night, a seven-night trend, today&#x27;s body battery and your last activity.</li><li>Telegram: a &quot;Kit?&quot; while your kit is busy no longer errors out, a message sent while it is updating itself is retried instead of dropped, and it will not send you an em dash.</li><li>Under the hood, work your kit does for you now runs on its own branch and merges only after it was verified, and a run that has stopped moving says so instead of pretending to work.</li><li>Telegram again: a plain message sent while your kit is waiting on your approval is answered as a message. Until now it was quietly read as changes to whatever was waiting, so the question went unanswered and the work got sent back for no reason.</li><li>A decision your kit has already sent back to be reworked comes back to you in Studio when it is ready again, instead of only over Telegram.</li><li>The health page reads as a status again: each area is one line with its own dot and count, and only the areas with something to look at open themselves. Nothing is hidden by closing one, the line still says how many need a look.</li><li>The Continuity card fills in on every kit, not just the one it was built on. It had been drawing its nightly questions from a pool that only ever held imported calendar and mail entries, so on most kits it was empty from the first day and on this one it quietly ran dry in August. It now draws on what you and your kit have actually talked about.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.187-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="I/HZpBb1b9Ih99FjkdyXgj6mT5BQpEwY6GY4lz0K42t5C9bsIhFkaErZyin3PmF7YsTTyLWheZjcBzdx2oeYAQ==" length="15707515"/>
+      <description><![CDATA[<ul><li>Work your kit does for you ships when you approve it. A run that passed its tests and got your go-ahead was still being turned back with &quot;tester did not record a sha&quot;, because the sha reached one part of the record and not the other. It reaches both now.</li><li>Turning the continuity audit on no longer trips the deep dream on kits that do not carry the pinned probe set. Those probes were only ever about one kit&#x27;s memories, so they stay off elsewhere, and a kit without the file treats it as an empty pool rather than an error.</li><li>Your conversations show your name above your own words. The timeline had a hardcoded name in that spot; it now uses the operator name your kit already knows.</li><li>The health page tells the difference between something wrong now and something that happened days ago: a process that flapped and has been quiet since reads green with the history kept, and a row waiting on you is amber and opens itself.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.188-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="YSkwNeLdYNmZCiM+0VPeh087Lb0v2CoEgqwtxmNJPinGHbNr960Bak/VgTGZuyj9SZMsrX6uhlenGzUPeSeDCQ==" length="15752104"/>
     </item>
   </channel>
 </rss>

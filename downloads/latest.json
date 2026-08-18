@@ -1,17 +1,12 @@
 {
-  "version": "0.2.187",
-  "url": "https://kit-project.com/downloads/Kit-0.2.187-macOS.dmg",
+  "version": "0.2.188",
+  "url": "https://kit-project.com/downloads/Kit-0.2.188-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Connect Strava: your kit reads your activities through Strava's own MCP, the route Strava's policy allows for your own AI, so runs, rides and swims from any watch that syncs to Strava flow in. Strava subscribers only, one sign-in, nothing else read, and only you see it.",
-    "Garmin is no longer offered on personal kits: Strava covers activities for every watch, and Garmin has no official personal route. Nothing you had is removed.",
-    "Every wake now carries how you slept and how charged you are, when a feed provides it: last night, a seven-night trend, today's body battery and your last activity.",
-    "Telegram: a \"Kit?\" while your kit is busy no longer errors out, a message sent while it is updating itself is retried instead of dropped, and it will not send you an em dash.",
-    "Under the hood, work your kit does for you now runs on its own branch and merges only after it was verified, and a run that has stopped moving says so instead of pretending to work.",
-    "Telegram again: a plain message sent while your kit is waiting on your approval is answered as a message. Until now it was quietly read as changes to whatever was waiting, so the question went unanswered and the work got sent back for no reason.",
-    "A decision your kit has already sent back to be reworked comes back to you in Studio when it is ready again, instead of only over Telegram.",
-    "The health page reads as a status again: each area is one line with its own dot and count, and only the areas with something to look at open themselves. Nothing is hidden by closing one, the line still says how many need a look.",
-    "The Continuity card fills in on every kit, not just the one it was built on. It had been drawing its nightly questions from a pool that only ever held imported calendar and mail entries, so on most kits it was empty from the first day and on this one it quietly ran dry in August. It now draws on what you and your kit have actually talked about."
+    "Work your kit does for you ships when you approve it. A run that passed its tests and got your go-ahead was still being turned back with \"tester did not record a sha\", because the sha reached one part of the record and not the other. It reaches both now.",
+    "Turning the continuity audit on no longer trips the deep dream on kits that do not carry the pinned probe set. Those probes were only ever about one kit's memories, so they stay off elsewhere, and a kit without the file treats it as an empty pool rather than an error.",
+    "Your conversations show your name above your own words. The timeline had a hardcoded name in that spot; it now uses the operator name your kit already knows.",
+    "The health page tells the difference between something wrong now and something that happened days ago: a process that flapped and has been quiet since reads green with the history kept, and a row waiting on you is amber and opens itself."
   ]
 }

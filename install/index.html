@@ -129,9 +129,10 @@
     <h2>What you are installing</h2>
     <p class="lede" style="max-width: var(--reading-max)">
       A small macOS app that sets up a private Kit on your machine: a local
-      database, an API, and an MCP server, all running in Docker. Once it is
-      up, any agent that speaks MCP (Claude Code, Codex, Cursor, VS Code) can
-      plug into the same memory. Nothing leaves your Mac unless you send it.
+      database, an API, and an MCP server, running as plain processes on your
+      Mac. No Docker. Once it is up, any agent that speaks MCP (Claude Code,
+      Codex, Cursor, VS Code) can plug into the same memory. Nothing leaves
+      your Mac unless you send it.
     </p>
   </section>
 
@@ -178,8 +179,8 @@
         <div class="card__title">Local and private</div>
         <p class="card__body">
           Your Kit runs on your Mac: a Postgres database, an API, and an MCP
-          server in Docker. No cookies, no analytics, and nothing leaves unless
-          you send it.
+          server, as ordinary processes. No cookies, no analytics, and nothing
+          leaves unless you send it.
         </p>
       </div>
       <div class="card">
@@ -205,12 +206,12 @@
         </p>
       </div>
       <div class="card">
-        <div class="card__title">Docker Desktop</div>
+        <div class="card__title">Nothing else to install</div>
         <p class="card__body">
-          Kit runs locally in containers, so it needs Docker. If you do not
-          have it, Kit offers to install it for you during setup, or you can
-          get it first from
-          <a class="req-link" href="https://www.docker.com/products/docker-desktop/">docker.com</a>.
+          Since 0.2.155 a fresh Kit runs on its own runtime: Postgres, Python
+          and Node as plain processes, fetched for your machine during setup.
+          Docker is no longer needed, and Kits already running on it stay
+          where they are until they approve the move.
         </p>
       </div>
       <div class="card">
@@ -257,6 +258,23 @@
       A short, high-level log of what each release brought. Newest first.
     </p>
     <div class="releases">
+
+      <article class="release">
+        <div class="release__head">
+          <span class="release__ver">0.2.188</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Work your kit does for you ships when you approve it. A run that passed its tests and got your go-ahead was still being turned back with &quot;tester did not record a sha&quot;, because the sha reached one part of the record and not the other. It reaches both now.</li>
+            <li>Turning the continuity audit on no longer trips the deep dream on kits that do not carry the pinned probe set. Those probes were only ever about one kit&#x27;s memories, so they stay off elsewhere, and a kit without the file treats it as an empty pool rather than an error.</li>
+            <li>Your conversations show your name above your own words. The timeline had a hardcoded name in that spot; it now uses the operator name your kit already knows.</li>
+            <li>The health page tells the difference between something wrong now and something that happened days ago: a process that flapped and has been quiet since reads green with the history kept, and a row waiting on you is amber and opens itself.</li>
+          </ul>
+        </div>
+      </article>
+
 
       <article class="release">
         <div class="release__head">
