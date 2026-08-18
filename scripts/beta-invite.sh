@@ -20,12 +20,15 @@ case "${1:-}" in
   --list)   api "$ORIGIN/api/beta-invite${2:+?email=$2}" | python3 -c '
 import sys,json
 for r in json.load(sys.stdin):
-    print(f"{r[\"id\"]:>4}  {r[\"email\"]:<32} {r.get(\"label\") or \"\":<24} uses {r[\"uses\"]}/{r[\"max_uses\"]}  expires {r[\"expires_at\"][:10]}  {\"REVOKED\" if r[\"revoked\"] else \"\"}")' ;;
+    flag = "REVOKED" if r["revoked"] else ""
+    print("%4s  %-32s %-24s uses %s/%s  expires %s  %s" % (r["id"], r["email"], r.get("label") or "", r["uses"], r["max_uses"], r["expires_at"][:10], flag))' ;;
   --revoke) [ -n "${2:-}" ] || { echo "email required"; exit 1; }
             api -X DELETE "$ORIGIN/api/beta-invite" -d "{\"email\":\"$2\"}"; echo ;;
   ""|-h|--help) sed -n '2,12p' "$0" ;;
   *)        api -X POST "$ORIGIN/api/beta-invite" -d "{\"email\":\"$1\",\"label\":\"${2:-}\",\"created_by\":\"$(whoami)\"}" | python3 -c '
 import sys,json; r=json.load(sys.stdin)
-if "url" in r: print(r["url"]); print(f"for {r[\"email\"]}, {r[\"max_uses\"]} uses, expires {r[\"expires_at\"][:10]}")
-else: print(r); sys.exit(1)' ;;
+if "url" in r:
+    print(r["url"]); print("for %s, %s uses, expires %s" % (r["email"], r["max_uses"], r["expires_at"][:10]))
+else:
+    print(r); sys.exit(1)' ;;
 esac
