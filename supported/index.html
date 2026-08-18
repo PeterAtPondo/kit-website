@@ -147,6 +147,20 @@
       </li>
       <li class="tool">
         <div class="tool__main">
+          <div class="tool__name">OpenCode</div>
+          <div class="tool__desc">Open-source coding agent. Sessions captured by polling; its history imports too. OpenCode Zen is also a model provider your Kit can think with.</div>
+        </div>
+        <a class="tool__link" href="https://opencode.ai" target="_blank" rel="noopener">opencode.ai &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Claude desktop<span class="pill">with Claude Code</span></div>
+          <div class="tool__desc">Kit's tools reach the desktop app through Claude Code's registration; the app detects it and says so. Capturing its chats is in development.</div>
+        </div>
+        <a class="tool__link" href="https://claude.com/download" target="_blank" rel="noopener">claude.com/download &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
           <div class="tool__name">AnythingLLM<span class="pill">talk only</span></div>
           <div class="tool__desc">Talk to Kit over MCP. Capturing its chats is in development.</div>
         </div>
@@ -159,13 +173,44 @@
   <section class="section group">
     <h2>Data sources, what Kit remembers</h2>
     <p class="group__lead">
-      A data source is anything that feeds Kit's memory. Today Kit captures your
-      connected coding tools live as you work. Bringing in your other existing
-      history is in development. Nothing leaves your Mac unless you send it.
+      A data source is anything that feeds Kit's memory. Kit captures your
+      connected coding tools live as you work, imports the history those tools
+      already hold, and brings in a ChatGPT export and a connected mailbox from
+      the app. The rest below is on the way. Nothing leaves your Mac unless you
+      send it.
     </p>
 
     <h3 style="margin-top: var(--space-8)">Captured live</h3>
-    <p class="group__lead">Your connected coding and agent tools, captured as you work: Claude Code, Codex, Cursor, VS Code, Gemini CLI, Qwen Code, Ollama Code, CodeWhale, and Antigravity (the surfaces above).</p>
+    <p class="group__lead">Your connected coding and agent tools, captured as you work: Claude Code, Codex, Cursor, VS Code, Gemini CLI, Qwen Code, Ollama Code, CodeWhale, Antigravity, and OpenCode (the surfaces above).</p>
+
+    <h3 style="margin-top: var(--space-8)">Imported from the app<span class="pill">live</span></h3>
+    <p class="group__lead">
+      The app finds these on your Mac, asks before it reads them, and folds
+      them into memory with the date each thing actually happened.
+    </p>
+    <ul class="tool-list">
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Coding tool history</div>
+          <div class="tool__desc">Claude Code, Codex, Cursor, VS Code, CodeWhale, Antigravity and OpenCode transcripts already on your machine, imported at setup or later from Data Sources.</div>
+        </div>
+        <span class="tool__link" style="color: var(--ink-quiet)">local files</span>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">ChatGPT export</div>
+          <div class="tool__desc">Your exported ChatGPT conversations. Put the export's <code>conversations.json</code> in Desktop, Downloads or Documents and the app offers it.</div>
+        </div>
+        <a class="tool__link" href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Mailbox</div>
+          <div class="tool__desc">Connect a mailbox in Settings and your Kit reads it: mail from you is met as you, mail that needs your call parks for your decision, and you can tell it whose address is whose.</div>
+        </div>
+        <span class="tool__link" style="color: var(--ink-quiet)">IMAP</span>
+      </li>
+    </ul>
 
     <h3 style="margin-top: var(--space-8)">Imported history<span class="pill">in development</span></h3>
     <p class="group__lead">
@@ -175,13 +220,6 @@
       building next. Listed here so you can see where Kit is heading.
     </p>
     <ul class="tool-list">
-      <li class="tool">
-        <div class="tool__main">
-          <div class="tool__name">ChatGPT export</div>
-          <div class="tool__desc">Your exported ChatGPT conversations.</div>
-        </div>
-        <a class="tool__link" href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com &#8599;</a>
-      </li>
       <li class="tool">
         <div class="tool__main">
           <div class="tool__name">Claude export</div>
@@ -205,17 +243,10 @@
       </li>
       <li class="tool">
         <div class="tool__main">
-          <div class="tool__name">Garmin</div>
-          <div class="tool__desc">Activities and health data from Garmin Connect.</div>
+          <div class="tool__name">Mail history</div>
+          <div class="tool__desc">Bulk import of the threads already in your mailbox, so past decisions surface as dated clusters. The live mailbox above reads what arrives from now on.</div>
         </div>
-        <a class="tool__link" href="https://connect.garmin.com" target="_blank" rel="noopener">connect.garmin.com &#8599;</a>
-      </li>
-      <li class="tool">
-        <div class="tool__main">
-          <div class="tool__name">Gmail</div>
-          <div class="tool__desc">Email you choose to bring into Kit.</div>
-        </div>
-        <a class="tool__link" href="https://mail.google.com" target="_blank" rel="noopener">mail.google.com &#8599;</a>
+        <span class="tool__link" style="color: var(--ink-quiet)">IMAP</span>
       </li>
       <li class="tool">
         <div class="tool__main">

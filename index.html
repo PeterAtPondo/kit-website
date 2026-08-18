@@ -75,7 +75,7 @@
         "description": "A persistent memory substrate for AI agents. MCP-native, so Claude Code, Codex, and any MCP-capable client can persist, recall, and coordinate across sessions. Typed memories, a knowledge graph of edges, a nightly consolidation cycle. Runs on your machine. Federation across sovereign brains under signed, revocable grants.",
         "applicationCategory": "DeveloperApplication",
         "applicationSubCategory": "AI Agent Infrastructure",
-        "operatingSystem": "macOS, Linux (Docker + PostgreSQL)",
+        "operatingSystem": "macOS 13 or later (Apple Silicon and Intel), native runtime; the server stack also runs on Linux",
         "featureList": [
           "MCP server: Claude Code, Codex, and any MCP client can call commit, recall, trace, and more",
           "Persistent memory across agent sessions",
@@ -187,7 +187,7 @@
         <!-- Beta status, slim, directly below the video. -->
         <div class="alpha-banner alpha-banner--hero">
           <span class="alpha-banner__pip" aria-hidden="true"></span>
-          <span><strong>Beta.</strong> Kit runs on your own Mac, by invite. <a href="/#contact">Get in touch.</a></span>
+          <span><strong>Beta.</strong> Kit runs on your own Mac, by invite. <a href="/install/request/">Ask for one.</a></span>
         </div>
 
         <div class="hero__ctas">
@@ -222,6 +222,7 @@
         <span class="surface-marquee__item"><img src="assets/icons/anythingllm.svg" alt="" width="22" height="22" loading="lazy"><span>AnythingLLM</span></span>
         <span class="surface-marquee__item"><img src="assets/icons/codewhale.svg" alt="" width="22" height="22" loading="lazy"><span>CodeWhale</span></span>
         <span class="surface-marquee__item"><img class="mark--png" src="assets/icons/antigravity.png" alt="" width="22" height="22" loading="lazy"><span>Antigravity</span></span>
+        <span class="surface-marquee__item"><img src="assets/icons/opencode.svg" alt="" width="22" height="22" loading="lazy"><span>OpenCode</span></span>
         </div>
         <div class="surface-marquee__group">
         <span class="surface-marquee__item"><img src="assets/icons/claude.svg" alt="" width="22" height="22" loading="lazy"><span>Claude Code</span></span>
@@ -234,10 +235,11 @@
         <span class="surface-marquee__item"><img src="assets/icons/anythingllm.svg" alt="" width="22" height="22" loading="lazy"><span>AnythingLLM</span></span>
         <span class="surface-marquee__item"><img src="assets/icons/codewhale.svg" alt="" width="22" height="22" loading="lazy"><span>CodeWhale</span></span>
         <span class="surface-marquee__item"><img class="mark--png" src="assets/icons/antigravity.png" alt="" width="22" height="22" loading="lazy"><span>Antigravity</span></span>
+        <span class="surface-marquee__item"><img src="assets/icons/opencode.svg" alt="" width="22" height="22" loading="lazy"><span>OpenCode</span></span>
         </div>
       </div>
     </div>
-    <p class="sr-only">Kit connects to Claude Code, Codex, Cursor, VS Code, Gemini CLI, Qwen Code, Ollama Code, AnythingLLM, CodeWhale, and Antigravity.</p>
+    <p class="sr-only">Kit connects to Claude Code, Codex, Cursor, VS Code, Gemini CLI, Qwen Code, Ollama Code, AnythingLLM, CodeWhale, Antigravity, and OpenCode.</p>
   </section>
 
   <!-- Latest note: most recent build-log post, manually curated. -->
@@ -247,24 +249,23 @@
       We keep a build log inside <a href="/blog/">Notes</a>. Most recent post:
     </p>
 
-    <a class="post-card post-card--featured" href="/blog/cold-reviews/">
+    <a class="post-card post-card--featured" href="/blog/come-and-install-it/">
       <div class="post-card__meta">
-        <span class="num">No. 023</span>
-        <span>2026 · 07 · 26</span>
-        <span>· calibration</span>
+        <span class="num">No. 025</span>
+        <span>2026 &middot; 08 &middot; 18</span>
+        <span>&middot; invitation</span>
       </div>
-      <h3>Three strangers and a bag of words</h3>
+      <h3>Come and install it</h3>
       <p>
-        We commissioned two cold agents, holding none of Kit's memory, to tear
-        the public claims apart, and a third adversarial review arrived
-        unprompted from another frontier model the same day. They reproduced
-        the benchmark, then broke it, and they were right four times.
-        Everything they were right about changed the same day: the exam is
-        harder and honestly red where we fail it (13 of 17), their
-        bag-of-words baseline is committed beside our score, and identity at
-        the public door became an offer, never an order. Both commissioned
-        reports are published verbatim; the unprompted third was not ours to
-        publish, so its findings are named in the note instead.
+        Twenty-two days and fifty-four version numbers, spent almost entirely
+        on the kind of failure that matters here, which is not the crash but
+        the part that keeps answering: a reflection cycle that had been calling
+        a port nothing listened on while reporting each time that it finished,
+        a nightly consolidation that restarted from the top whenever a lid
+        closed, a Continuity card drawing from a pool that was empty on nearly
+        every install. A memory system fails politely, so most of August went
+        on making Kit say what state it is actually in. Docker has left fresh
+        installs, the wizard was rebuilt, and the beta door is open.
       </p>
     </a>
 
@@ -276,9 +277,11 @@
     <div class="inner">
       <h2>Install the beta</h2>
       <p class="lede">
-        Kit is a signed Mac app. Download it, drag it in, and in about ninety
-        seconds you have a private brain on your own machine: it reads your
-        coding history, consolidates it, and wakes already knowing you.
+        Kit is a signed Mac app. Download it, drag it in, and it builds a
+        private brain on your own machine, no Docker: it reads your coding
+        history, consolidates it, and wakes already knowing you. The first
+        launch takes a few minutes while your Kit is built; after that it is
+        quick.
       </p>
       <figure class="shot shot--wide demo-figure">
         <video
@@ -305,7 +308,7 @@
         The beta is invite-only while we widen the door slowly.
       </p>
       <div class="install__cta">
-        <a href="#contact" class="btn btn--primary" data-preselect-context="beta">Request beta access</a>
+        <a href="/install/request/" class="btn btn--primary">Request beta access</a>
         <a href="https://demo.kit-project.com" class="btn btn--ghost" target="_blank" rel="noopener">Try the live demo first</a>
       </div>
       <p class="install__cta-note">
@@ -707,7 +710,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
           <li>Per-category decay with tunable half-life <span class="spec__meta">(sessions 5d &middot; decisions 90d &middot; preferences 365d)</span></li>
           <li>Nightly dream cycle: consolidate stale memories, prune duplicates, promote high-access entries</li>
           <li>kNN edge promotion: cosine &ge; 0.55 pairs materialised as persistent <code>related_to</code> edges</li>
-          <li>Dedup on write at cosine 0.92 <span class="spec__meta">(hard)</span>; near-duplicates surface as drafts for review, never silently merged</li>
+          <li>Dedup on write at cosine 0.92 <span class="spec__meta">(hard)</span>; near-duplicates surface as drafts, which your Kit judges itself, reversibly, rather than silently merging</li>
         </ul>
       </div>
 
@@ -715,9 +718,9 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         <h3>Surfaces</h3>
         <ul class="spec">
           <li>MCP server exposing <code>commit</code>, <code>recall</code>, <code>trace</code>, <code>remember</code>, <code>note</code>, <code>orchestrate</code>, <code>dream</code>, and more</li>
-          <li>Session hooks: SessionStart loads soul + handoff + while-you-were-out; PreCompact captures drafts for review</li>
+          <li>Session hooks: SessionStart loads soul + handoff + while-you-were-out; PreCompact and SessionEnd capture drafts, and the nightly cycle decides them</li>
           <li>FastAPI async HTTP API for every surface above <span class="spec__meta">(agent-agnostic)</span></li>
-          <li>LaunchAgent schedules the nightly dream cycle; UI surfaces dream logs so nothing consolidates invisibly</li>
+          <li>The API schedules the nightly dream cycle on your clock; UI surfaces dream logs so nothing consolidates invisibly</li>
         </ul>
       </div>
 
@@ -811,8 +814,9 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
       </p>
       <p>
         Imports run through the ingest pipeline: extract candidate memories,
-        dedupe against near-duplicates at cosine 0.92, queue as drafts for
-        review, then promote into the brain with provenance preserved. Every
+        dedupe against near-duplicates at cosine 0.92, hold them as drafts,
+        then promote into the brain with provenance preserved. Your Kit
+        decides its own drafts, reversibly; you never triage a queue by hand. Every
         memory knows where it came from.
       </p>
       <p>
@@ -849,6 +853,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         <li class="surface-chip" title="Desktop LLM workspace. One toggle."><img src="assets/icons/anythingllm.svg" alt="" width="20" height="20" loading="lazy"><span>AnythingLLM</span></li>
         <li class="surface-chip" title="Coding agent. One toggle; history captured by polling."><img src="assets/icons/codewhale.svg" alt="" width="20" height="20" loading="lazy"><span>CodeWhale</span></li>
         <li class="surface-chip" title="Google's agent editor. One toggle; conversations captured by polling."><img class="mark--png" src="assets/icons/antigravity.png" alt="" width="20" height="20" loading="lazy"><span>Antigravity</span></li>
+        <li class="surface-chip" title="Open-source coding agent. One toggle; sessions captured by polling, and its history imports."><img src="assets/icons/opencode.svg" alt="" width="20" height="20" loading="lazy"><span>OpenCode</span></li>
       </ul>
       <p class="surface-strip__note">
         One toggle per surface in the app; Kit writes the MCP config and the
@@ -864,15 +869,15 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
           <div class="source__name">Any MCP client</div>
           <p class="source__desc">Kit exposes its full tool surface over MCP. Any agent, editor, or system that speaks MCP can call <code>commit</code>, <code>recall</code>, <code>trace</code>, and the rest. Scoped API tokens keep access honest.</p>
         </div>
-        <div class="source source--importer">
-          <div class="source__status">Importer ready</div>
+        <div class="source source--live">
+          <div class="source__status">Live</div>
           <div class="source__name">ChatGPT archive</div>
-          <p class="source__desc">Conversation export archive. Back-fills continuity from pre-Kit years; <code>original_timestamp</code> set so each chat sorts onto the day it happened. The importer works; wiring it into the app, so you can grant access and run it without the command line, is what we are building next.</p>
+          <p class="source__desc">Conversation export archive. Back-fills continuity from pre-Kit years; <code>original_timestamp</code> set so each chat sorts onto the day it happened. Drop the export's <code>conversations.json</code> in your Desktop, Downloads or Documents and the app offers to bring it in at setup or from Data Sources.</p>
         </div>
         <div class="source source--importer">
           <div class="source__status">Importer ready</div>
           <div class="source__name">Anthropic export</div>
-          <p class="source__desc">Structured data export, same pipeline as ChatGPT. Claude conversations re-enter the brain with full provenance. Same status: the importer works, the in-app path is next.</p>
+          <p class="source__desc">Structured data export, same pipeline as ChatGPT. Claude conversations re-enter the brain with full provenance. The importer works; the in-app path is next.</p>
         </div>
         <div class="source source--importer">
           <div class="source__status">Importer ready</div>
@@ -884,10 +889,10 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
           <div class="source__name">Apple Health</div>
           <p class="source__desc">Sleep, HR variability, workouts. Cross-correlates with Strava and chat transcripts for body/mood signals.</p>
         </div>
-        <div class="source source--planned">
-          <div class="source__status">Planned</div>
-          <div class="source__name">Mail &amp; Calendar</div>
-          <p class="source__desc">Bulk import of historical threads and events, plus ongoing sync. Past decisions surface as dated clusters by topic; new messages and events flow through the ingest pipeline in near-real-time, draft-queued for review.</p>
+        <div class="source source--live">
+          <div class="source__status">Live</div>
+          <div class="source__name">Mailbox</div>
+          <p class="source__desc">Connect a mailbox and your Kit reads it: mail from you is met as you, mail that needs your call parks for your decision and reaches you on Telegram or in Studio, and you can tell it whose address is whose. Calendar is not in the app yet.</p>
         </div>
         <div class="source source--extend">
           <div class="source__status">Extend</div>
@@ -1097,9 +1102,9 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         <h3 class="card__title">Hook at session boundaries</h3>
         <p class="card__body">
           SessionStart: load identity + handoff + delta since last run.
-          PreCompact / SessionEnd: extract candidate memories as drafts for
-          next-session review. Capture close to the event; promote
-          deliberately.
+          PreCompact / SessionEnd: extract candidate memories as drafts.
+          Capture close to the event; promote deliberately, and let the
+          nightly cycle do the deciding.
         </p>
       </div>
       <div class="card">

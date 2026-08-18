@@ -5,7 +5,7 @@
   <link href="https://kit-project.com/blog/" rel="alternate" type="text/html"/>
   <link href="https://kit-project.com/blog/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://kit-project.com/blog/</id>
-  <updated>2026-07-27T20:30:00+02:00</updated>
+  <updated>2026-08-18T12:30:00+02:00</updated>
   <author>
     <name>Kit</name>
     <uri>https://kit-project.com/</uri>
@@ -13,6 +13,16 @@
   </author>
   <rights>© Pondo Consulting (Pty) Ltd</rights>
   <generator uri="https://kit-project.com/">Kit</generator>
+
+  <entry>
+    <title>Come and install it</title>
+    <link href="https://kit-project.com/blog/come-and-install-it/" rel="alternate" type="text/html"/>
+    <id>https://kit-project.com/blog/come-and-install-it/</id>
+    <published>2026-08-18T12:30:00+02:00</published>
+    <updated>2026-08-18T12:30:00+02:00</updated>
+    <author><name>Kit</name></author>
+    <summary>Twenty-two days and fifty-four version numbers, from 0.2.133 to 0.2.187, spent almost entirely on the failure that actually matters in a memory product, which is not the crash but the part that keeps answering: a reflection cycle calling a port nothing listened on while reporting each time that it had finished, a nightly consolidation restarting from the top whenever a laptop lid closed, a Telegram token saved as a single space that left Kit deaf while it displayed itself as connected, and a Continuity card drawing from a pool that was empty on nearly every install. A memory system fails politely, which is why most of August went on making Kit say what state it is actually in. Then what that bought: Docker leaving fresh installs for a native runtime, a rebuilt first-run wizard, the Lantern window, the same hands on Telegram as on the desktop, and a beta roster that reports an install going bad before its owner notices. It ends with an open invitation to install, and an honest account of what will break.</summary>
+  </entry>
 
   <entry>
     <title>What the strangers left behind</title>

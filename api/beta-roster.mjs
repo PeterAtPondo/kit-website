@@ -15,6 +15,8 @@
 // Usage:
 //   https://kit-project.com/beta            sign in with the admin password
 //   https://kit-project.com/beta?forget=ID  delete a row, once signed in
+//   https://kit-project.com/beta?revoke=ID  kill an invite link, once signed in
+//   the Invites section on the page mints new personal install links
 // Also answers on /api/beta-roster; /beta is a rewrite in vercel.json. A
 // ?token= query still works for a bookmark, but the form sets an HttpOnly
 // cookie so the secret stays out of history and out of a screen share.
@@ -48,6 +50,16 @@ async function db(path, init = {}) {
   return resp.json().catch(() => null);
 }
 
+async function sha256Hex(str) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+function randomToken() {
+  const bytes = crypto.getRandomValues(new Uint8Array(24));
+  return Buffer.from(bytes).toString("base64url");
+}
+
 function esc(s) {
   return String(s ?? "")
     .replace(/&/g, "&amp;")
@@ -68,7 +80,7 @@ function ago(iso) {
   return `${Math.round(hours / 24)}d ago`;
 }
 
-function page(rows) {
+function page(rows, invites = [], minted = null) {
   const body = rows.length
     ? rows
         .map((r) => {
@@ -175,6 +187,19 @@ function page(rows) {
          font-size: 10.5px; background: rgba(240,184,77,0.14); color: #f0b84d; }
   .forget { color: #64748b; font-size: 12px; text-decoration: none; }
   .forget:hover { color: #f87171; text-decoration: underline; }
+  .mint { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 16px; max-width: 1100px; }
+  .mint input { padding: 8px 10px; border-radius: 8px; font: inherit; color: inherit;
+                background: rgba(255,255,255,0.03); border: 1px solid rgba(148,163,184,0.22); }
+  .mint input[type=email] { flex: 1 1 240px; }
+  .mint input[type=text] { flex: 1 1 200px; }
+  .mint input[type=number] { width: 72px; }
+  .mint button { padding: 8px 14px; border-radius: 8px; font: inherit; cursor: pointer; border: 0;
+                 background: rgba(52,211,153,0.16); color: #d9fff0; }
+  .minted { margin: 0 0 16px; padding: 12px 14px; border-radius: 10px; max-width: 1100px;
+            background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.35); }
+  .minted code { display: block; margin-top: 6px; user-select: all; word-break: break-all;
+                 color: #d9fff0; font-size: 12.5px; }
+  tbody.install.dead td { opacity: 0.55; }
   .failure { padding-top: 0; }
   .failure summary { cursor: pointer; color: #f0b84d; font-size: 12px; }
   .failure pre { margin: 8px 0 4px; padding: 10px 12px; border-radius: 10px;
@@ -192,6 +217,36 @@ function page(rows) {
     <thead><tr><th>Operator</th><th>Kit</th><th>App</th><th>Stack</th>
     <th>Surfaces</th><th>Last seen</th><th>Since</th><th></th></tr></thead>
     <tbody>${body}</tbody>
+  </table>
+
+  <h1 style="margin-top:40px">Invites</h1>
+  <p class="lede">Each invite is a personal link to the install page: one owner, an expiry, a small
+  use budget so a forwarded link dies after a few clicks, and revoke, which kills it at once.
+  Mint one here and send the link yourself, or ask Kit to.</p>
+  ${minted ? `<div class="minted"><div class="sub">Invite for ${esc(minted.email)}, ${minted.max_uses} uses, expires ${esc(minted.expires_at.slice(0, 10))}. Shown once; copy it now.</div>
+    <code>${esc(minted.url)}</code></div>` : ""}
+  <form method="POST" class="mint">
+    <input type="email" name="mint_email" placeholder="email" required>
+    <input type="text" name="mint_label" placeholder="label (optional)">
+    <input type="number" name="mint_days" value="30" min="1" max="365" title="days">
+    <input type="number" name="mint_uses" value="5" min="1" max="50" title="uses">
+    <button type="submit">Mint invite</button>
+  </form>
+  <table>
+    <thead><tr><th>Email</th><th>Label</th><th>Uses</th><th>Expires</th><th>Last used</th><th>Made</th><th></th></tr></thead>
+    <tbody>${invites.length ? invites.map((i) => {
+      const dead = i.revoked || Date.parse(i.expires_at) < Date.now() || i.uses >= i.max_uses;
+      const why = i.revoked ? "revoked" : Date.parse(i.expires_at) < Date.now() ? "expired" : i.uses >= i.max_uses ? "spent" : "";
+      return `<tbody class="install${dead ? " dead" : ""}"><tr>
+      <td><strong>${esc(i.email)}</strong></td>
+      <td class="sub">${esc(i.label || "")}</td>
+      <td>${i.uses} / ${i.max_uses}</td>
+      <td class="sub">${esc(String(i.expires_at).slice(0, 10))}${why ? ` <span class="tag">${why}</span>` : ""}</td>
+      <td class="sub">${esc(ago(i.last_used_at))}</td>
+      <td class="sub">${esc(String(i.created_at).slice(0, 10))}${i.created_by ? ` · ${esc(i.created_by)}` : ""}</td>
+      <td>${i.revoked ? "" : `<a class="forget" href="?revoke=${i.id}">revoke</a>`}</td>
+    </tr></tbody>`;
+    }).join("") : `<tbody class="install"><tr><td colspan="7" class="sub">No invites yet.</td></tr></tbody>`}</tbody>
   </table>
 </body></html>`;
 }
@@ -259,6 +314,33 @@ export default async function handler(req, res) {
 
   if (req.method === "POST") {
     const form = await readForm(req);
+    // Signed-in operator minting an invite: insert the hash, render the page
+    // once with the raw link (it is never stored and never shown again).
+    if (cookieOk && form.get("mint_email")) {
+      const email = String(form.get("mint_email") || "").trim().toLowerCase();
+      const days = Math.min(Math.max(parseInt(form.get("mint_days") || "30", 10) || 30, 1), 365);
+      const maxUses = Math.min(Math.max(parseInt(form.get("mint_uses") || "5", 10) || 5, 1), 50);
+      let minted = null;
+      if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        const token = randomToken();
+        const row = {
+          email,
+          label: (form.get("mint_label") || "").trim().slice(0, 120) || null,
+          token_hash: await sha256Hex(token),
+          expires_at: new Date(Date.now() + days * 86400e3).toISOString(),
+          max_uses: maxUses,
+          created_by: "roster",
+        };
+        const saved = await db("beta_invites", { method: "POST", body: JSON.stringify(row), headers: { Prefer: "return=representation" } });
+        if (saved && saved[0]) minted = { email, max_uses: maxUses, expires_at: row.expires_at, url: `https://kit-project.com/install/?invite=${token}` };
+      }
+      const rows = (await db("beta_installs?select=*&order=last_seen.desc")) || [];
+      const invites = (await db("beta_invites?select=id,email,label,created_at,expires_at,max_uses,uses,last_used_at,revoked,created_by&order=created_at.desc&limit=200")) || [];
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      res.setHeader("Cache-Control", "no-store");
+      return res.end(page(rows, invites, minted));
+    }
     if (sameSecret((form.get("password") || "").trim(), ADMIN_TOKEN)) {
       res.statusCode = 302;
       res.setHeader("Set-Cookie",
@@ -292,12 +374,28 @@ export default async function handler(req, res) {
     return res.end();
   }
 
+  // Revoke an invite: the link stops working on the next request, and any
+  // browser it already let in keeps its cookie until that expires (90 days);
+  // forgetting the install below is the harder cut if that ever matters.
+  const revoke = (url.searchParams.get("revoke") || "").trim();
+  if (/^\d{1,12}$/.test(revoke)) {
+    await db(`beta_invites?id=eq.${revoke}`, {
+      method: "PATCH",
+      body: JSON.stringify({ revoked: true }),
+      headers: { Prefer: "return=minimal" },
+    });
+    res.statusCode = 302;
+    res.setHeader("Location", url.pathname);
+    return res.end();
+  }
+
   // Newest first, straight from the database rather than sorted here.
   const rows = (await db("beta_installs?select=*&order=last_seen.desc")) || [];
+  const invites = (await db("beta_invites?select=id,email,label,created_at,expires_at,max_uses,uses,last_used_at,revoked,created_by&order=created_at.desc&limit=200")) || [];
 
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.setHeader("Cache-Control", "no-store");
   res.setHeader("X-Robots-Tag", "noindex, nofollow");
-  return res.end(page(rows));
+  return res.end(page(rows, invites));
 }

@@ -21,3 +21,4 @@ blog/*/narration.txt
 # the raw .mov screen-recordings (hundreds of MB) stay local only.
 assets/video/*.mov
 .feed-token
+.env.diagnostic

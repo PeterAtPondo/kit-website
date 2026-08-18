@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Request beta access - Kit</title>
+  <meta name="description" content="Kit is in private beta, by personal invitation. Ask for one here: a person reads every request, and the invite is a link made for you.">
+  <link rel="canonical" href="https://kit-project.com/install/request/">
+  <meta name="theme-color" content="#0a0e1a">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/blog.css">
+  <meta name="robots" content="noindex">
+</head>
+<body>
+  <a href="#top" class="skip-link">Skip to content</a>
+
+  <nav class="nav">
+    <a class="nav__brand" href="/">
+      <svg class="nav__mark" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <line x1="12" y1="12" x2="5"  y2="5"  stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="19" y2="6"  stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="5"  y2="19" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="19" y2="17" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <circle cx="5"  cy="5"  r="1.8" fill="currentColor" fill-opacity="0.85"/>
+        <circle cx="19" cy="6"  r="1.5" fill="currentColor" fill-opacity="0.75"/>
+        <circle cx="5"  cy="19" r="1.5" fill="currentColor" fill-opacity="0.75"/>
+        <circle cx="19" cy="17" r="1.8" fill="currentColor" fill-opacity="0.85"/>
+        <circle cx="12" cy="12" r="3" fill="currentColor"/>
+      </svg>
+      <span data-name></span>
+    </a>
+    <div class="nav__links">
+      <a href="/#install">Install</a>
+      <a href="https://demo.kit-project.com">Live demo</a>
+      <a href="/#arch">Architecture</a>
+      <a href="/blog/">Notes</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+
+  <main id="top">
+    <article class="post">
+      <header class="post__header">
+        <div class="post__meta">
+          <span>Private beta</span>
+          <span>&middot; by invitation</span>
+        </div>
+        <h1 class="post__title">Ask for an invite</h1>
+        <p class="post__byline">
+          Kit installs on your own Mac and holds your memory there, so we open
+          the door one person at a time. Tell us who you are and what you would
+          use it for; a person reads every request, and if it is a fit you get
+          a link made for you.
+        </p>
+      </header>
+
+      <div class="post__body">
+
+<p class="request-note request-note--invalid" hidden style="padding: 14px 18px; border: 1px solid rgba(232,165,92,0.45); border-radius: 12px; background: var(--bg-card, #1b2133); color: var(--ink-secondary)">
+That invite link has expired, been used up, or been withdrawn. Ask again below
+and we will send a fresh one.
+</p>
+
+<p>
+Two things worth knowing first. Kit is beta software on a fifty-releases-a-month
+cadence, so it will occasionally break and ask for patience. And you do not
+have to take any of it on trust before you ask: three public kits stand open
+for your agent to audit, and the honest account of the last three weeks is in
+<a href="/blog/come-and-install-it/">note No. 025</a>.
+</p>
+
+      <div class="contact-form__status contact-form__status--success" hidden>
+        <h3>Request sent.</h3>
+        <p>It goes straight to Peter. If it is a fit you will get a personal invite link by email; no list, no auto-reply.</p>
+      </div>
+      <div class="contact-form__status contact-form__status--error" hidden>
+        <p>Something went wrong sending that. Try again, or email
+        <a href="mailto:kit@kit-project.com">kit@kit-project.com</a> directly.</p>
+      </div>
+
+      <form class="contact-form"
+            action="https://formspree.io/f/xzdwawzg"
+            method="POST"
+            data-ajax-endpoint="https://formspree.io/f/xzdwawzg">
+        <input type="hidden" name="_subject" value="Kit, beta access request">
+        <input type="hidden" name="context" value="beta">
+        <input type="hidden" name="source" value="install/request">
+        <input type="text" name="_gotcha" class="contact-form__honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="contact-form__row">
+          <label for="rq-name">Name</label>
+          <input id="rq-name" name="name" type="text" required autocomplete="name">
+        </div>
+
+        <div class="contact-form__row">
+          <label for="rq-email">Email</label>
+          <input id="rq-email" name="email" type="email" required autocomplete="email">
+        </div>
+
+        <div class="contact-form__row">
+          <label for="rq-mac">Your Mac</label>
+          <select id="rq-mac" name="mac">
+            <option value="apple-silicon">Apple Silicon (M1 or later)</option>
+            <option value="intel">Intel</option>
+            <option value="unsure">Not sure</option>
+          </select>
+        </div>
+
+        <div class="contact-form__row">
+          <label for="rq-tools">Which of these do you use?</label>
+          <input id="rq-tools" name="tools" type="text" placeholder="Claude Code, Codex, Cursor, VS Code, OpenCode, none yet…">
+        </div>
+
+        <div class="contact-form__row">
+          <label for="rq-message">What would you use Kit for?</label>
+          <textarea id="rq-message" name="message" rows="5" required></textarea>
+        </div>
+
+        <div class="contact-form__actions">
+          <button type="submit" class="btn btn--primary">Ask for an invite</button>
+          <span class="contact-form__note">
+            Read by a person. The invite comes as a link made for you.
+          </span>
+        </div>
+      </form>
+
+<p style="margin-top: var(--space-8); color: var(--ink-quiet); font-size: 0.92rem">
+Already have an invite? Open the link you were sent; it lets this browser
+through and takes you straight to the install page.
+</p>
+
+      </div>
+    </article>
+  </main>
+
+  <script>
+    (() => {
+      if (new URLSearchParams(location.search).get('invite') === 'invalid') {
+        const n = document.querySelector('.request-note--invalid'); if (n) n.hidden = false;
+      }
+      const form = document.querySelector('.contact-form');
+      if (!form || typeof fetch !== 'function') return;
+      const endpoint = form.dataset.ajaxEndpoint;
+      const successEl = document.querySelector('.contact-form__status--success');
+      const errorEl = document.querySelector('.contact-form__status--error');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (errorEl) errorEl.hidden = true;
+        const btn = form.querySelector('button[type=submit]');
+        const label = btn ? btn.textContent : null;
+        if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+        try {
+          const payload = {}; new FormData(form).forEach((v, k) => { payload[k] = v; });
+          const r = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload) });
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          const j = await r.json().catch(() => ({}));
+          if (j.ok !== true) throw new Error('rejected');
+          form.hidden = true; if (successEl) successEl.hidden = false;
+        } catch (err) {
+          if (errorEl) errorEl.hidden = false;
+          if (btn) { btn.disabled = false; btn.textContent = label || 'Ask for an invite'; }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

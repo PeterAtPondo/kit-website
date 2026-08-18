@@ -39,6 +39,7 @@ The architectural bet: every context window eventually ends. 1M, 10M, 100M token
 
 The public build log lives at https://kit-project.com/blog/. Atom feed: https://kit-project.com/blog/feed.xml. Full list, newest first:
 
+- https://kit-project.com/blog/come-and-install-it/ - twenty-two days and fifty-four version numbers spent almost entirely on the failure that matters in a memory product, which is not the crash but the part that keeps answering: reflection calling a port nothing listened on while reporting success, nightly consolidation restarting from the top whenever a lid closed, a Telegram token saved as a single space leaving Kit deaf while showing itself connected, a Continuity card drawing from an empty pool on nearly every install. Then Docker leaving fresh installs for a native runtime, a rebuilt first-run wizard, the Lantern window, Telegram with the same hands as the desktop, and the beta roster that reports an install going bad before its owner notices. Ends with an open invitation to install the beta and an honest account of what will break.
 - https://kit-project.com/blog/what-the-strangers-left/ - two days of repairs after three cold reviewers took the public claims apart, ending in a sealed 32-question bake-off against Graphiti. Identity adoption became a per-key opt-in, federation moved from a shared bearer token to a signed revocable grant, and the memory corpus gained an export any stock Python can read. Includes the correction pipeline that had been silently discarding most of the operator's corrections, and the first run where we changed the grader in a competitor's favour before publishing.
 - https://kit-project.com/blog/cold-reviews/ - three cold agents on different providers, holding none of Kit's memory, paid in compute to break the public claims. They reproduced the benchmark then broke it: a fifty-line bag-of-words baseline passed the easy suite, honest absence leaked on domain-adjacent questions, and the public door was ordering visiting agents to adopt an identity their operators never chose. Both seat reports published verbatim; the honest headline became 13 of 17.
 - https://kit-project.com/blog/three-living-memories/ - the weekend the demo became three public kits and learned to prove itself: two sovereign fiction archives (correct recall provably memory, the central mystery solvable only across both), one real engineering case file (five years of the OTel memory-ballast lifecycle, every entry carrying its GitHub source URL), and a machine-checkable exam run live: 13 of 13 on the suite as it stood that day, supersedes edges walked, median ~1s per keyless answer. Superseded the same week: outside reviewers added four hard-absence questions and the honest score is now 13 of 17, with the empty-list behaviour restated as a relevance floor rather than knowing what it does not know. Corrected in the two notes above. Agents: each demo kit documents itself at /llms.txt with its read key printed.
@@ -112,11 +113,15 @@ Memories belong to the user. Not to the model provider, not to the employer, not
 
 Two modes of connection. MCP integrations let agents call Kit's memory directly mid-session. Importers back-fill years of context from existing sources.
 
-**Live MCP integrations**: Claude Code, Codex, any MCP-capable client.
+**Live MCP integrations**: Claude Code, Codex, Cursor, VS Code, Gemini CLI, Qwen Code, Ollama Code, AnythingLLM, CodeWhale, Antigravity, OpenCode, and any MCP-capable client. On the phone: Telegram, with the same tools.
 
-**Live importers**: ChatGPT archive, Anthropic export, Strava activities.
+**Live from the app**: history import from every coding surface above that keeps a local transcript, a ChatGPT export, and a connected IMAP mailbox.
 
-**Planned importers**: Apple Health, Mail & Calendar (archive + live sync).
+**Importer ready, in-app path next**: Anthropic export, Strava export, documents (PDF, Word, images).
+
+**Planned**: Apple Health, calendar, mail history import.
+
+**Runtime**: since 0.2.155 a fresh install runs Postgres, Python and Node as plain processes on the Mac; no Docker.
 
 **Extensible**: `POST /ingest/session` accepts any transcript, structured event, or custom record with any speaker schema.
 
