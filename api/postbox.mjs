@@ -38,21 +38,7 @@
 //   reply (admin) {action, install_id, kit_name, title?, body}
 //                                      -> stores direction=out for fetch.
 //
-// Table (run once in Supabase):
-//   create table kit_letters (
-//     id uuid primary key default gen_random_uuid(),
-//     install_id text not null,
-//     kit_name text not null,
-//     direction text not null check (direction in ('home', 'out')),
-//     status text not null default 'new',
-//     title text,
-//     body text not null,
-//     blessed boolean not null default false,
-//     app_version text,
-//     created_at timestamptz not null default now(),
-//     fetched_at timestamptz
-//   );
-//   create index kit_letters_direction_status on kit_letters (direction, status);
+// Table: api/kit_letters.sql (RLS on, no anon grant). Run once in Supabase.
 //
 // Env (kit-website Vercel project): KIT_WELCOME_TOKEN, KIT_BETA_ADMIN_TOKEN,
 // SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY (all already present for the roster).

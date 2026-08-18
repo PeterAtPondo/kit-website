@@ -47,3 +47,6 @@ alter table public.beta_installs
 -- service role key. RLS on with no policies means anon and authenticated
 -- callers can read nothing at all, so a leaked anon key exposes no one.
 alter table public.beta_installs enable row level security;
+
+-- No code path uses the anon or authenticated roles; close that door too.
+revoke all on table public.beta_installs from anon, authenticated;

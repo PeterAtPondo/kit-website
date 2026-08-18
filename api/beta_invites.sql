@@ -29,3 +29,7 @@ create index if not exists beta_invites_email_idx on public.beta_invites (lower(
 -- The middleware runs on Vercel's Edge with the service-role key: no RLS
 -- policy is needed for it, and no anon access is granted to this table.
 alter table public.beta_invites enable row level security;
+
+-- No code path uses the anon or authenticated roles; close that door too.
+revoke all on table public.beta_invites from anon, authenticated;
+revoke all on sequence public.beta_invites_id_seq from anon, authenticated;
