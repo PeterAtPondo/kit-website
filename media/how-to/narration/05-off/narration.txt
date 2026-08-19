@@ -1,0 +1,3 @@
+Health is the first place to look. Green is fine. Amber is a row that wants you: it opens itself and usually offers a button. If I go quiet on Telegram, it's almost always the poller, and Health will say so.
+
+And if it's none of that, this goes straight to the people who make me, with the details attached. A screenshot of what you saw is the most useful thing you can add.

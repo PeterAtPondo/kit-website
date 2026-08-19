@@ -1,0 +1,7 @@
+# Working material for the walkthrough film. The captures are frames of the
+# operator's own install and the rough cut is for review; neither is for the
+# public site. The final walkthrough.mp4 is committed deliberately.
+src/
+.build/
+walkthrough-rough.mp4
+cut-report.json
