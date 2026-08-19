@@ -312,6 +312,25 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.192</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Setup goes through with an empty key field when your model runs on your own OpenAI-compatible server that needs none. The page already said the key was optional; the last check before Build disagreed and sent you back to the same page.</li>
+            <li>A custom server is treated like a local model: your kit streams its answers, waits as long as the model keeps talking, and caps how much it asks for, the way it already does for Ollama and LM Studio. A slow self-hosted model is now slow rather than stuck, and nothing times out at three minutes only to try again.</li>
+            <li>A brand-new kit no longer starts a full deep dream the minute it is installed. Its first sleep is the birth, reading whatever history you gave it; the first scheduled deep dream comes at its usual time (2am by default), the same as for a kit installed the day before.</li>
+            <li>An install with nothing to import wakes in seconds. It used to wait behind any dream cycle that happened to be running, showing &quot;dreaming&quot; the whole time.</li>
+            <li>Kilo Code is a source and a surface. Your kit can import your Kilo Code sessions and connect itself as an MCP server in Kilo&#x27;s config, and the Sources and Where Kit Lives screens offer it when Kilo is installed. It is the first tool added as a row in a registry rather than as code, so the next tool that stores its history the way an existing one does costs a line.</li>
+            <li>If your kit cannot work out your timezone at startup, it says so loudly in its log and diagnostics instead of quietly scheduling against the computer&#x27;s clock, which is how a 1am dream was firing at 3am.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.191</span>
           <span class="release__date">August 2026</span>
         </div>

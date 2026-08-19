@@ -1,10 +1,14 @@
 {
-  "version": "0.2.191",
-  "url": "https://kit-project.com/downloads/Kit-0.2.191-macOS.dmg",
+  "version": "0.2.192",
+  "url": "https://kit-project.com/downloads/Kit-0.2.192-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "The nightly continuity check no longer fails when the AI model spends its whole answer budget thinking. A probe that gets no answer is marked unjudged and the rest of the check carries on, so the scorecard and the Continuity card still fill in. If Health is showing last night's continuity error, Check again runs a cycle and clears it.",
-    "When a reasoning model returns nothing because it ran out of room while thinking, your kit asks once more with room to answer before calling it a failure. This applies to every job your kit runs through a hosted OpenAI-compatible provider, OpenCode Zen, OpenAI and Google alike."
+    "Setup goes through with an empty key field when your model runs on your own OpenAI-compatible server that needs none. The page already said the key was optional; the last check before Build disagreed and sent you back to the same page.",
+    "A custom server is treated like a local model: your kit streams its answers, waits as long as the model keeps talking, and caps how much it asks for, the way it already does for Ollama and LM Studio. A slow self-hosted model is now slow rather than stuck, and nothing times out at three minutes only to try again.",
+    "A brand-new kit no longer starts a full deep dream the minute it is installed. Its first sleep is the birth, reading whatever history you gave it; the first scheduled deep dream comes at its usual time (2am by default), the same as for a kit installed the day before.",
+    "An install with nothing to import wakes in seconds. It used to wait behind any dream cycle that happened to be running, showing \"dreaming\" the whole time.",
+    "Kilo Code is a source and a surface. Your kit can import your Kilo Code sessions and connect itself as an MCP server in Kilo's config, and the Sources and Where Kit Lives screens offer it when Kilo is installed. It is the first tool added as a row in a registry rather than as code, so the next tool that stores its history the way an existing one does costs a line.",
+    "If your kit cannot work out your timezone at startup, it says so loudly in its log and diagnostics instead of quietly scheduling against the computer's clock, which is how a 1am dream was firing at 3am."
   ]
 }
