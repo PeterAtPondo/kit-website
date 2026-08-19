@@ -1,14 +1,10 @@
 {
-  "version": "0.2.190",
-  "url": "https://kit-project.com/downloads/Kit-0.2.190-macOS.dmg",
+  "version": "0.2.191",
+  "url": "https://kit-project.com/downloads/Kit-0.2.191-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "The Continuity card fills in on every kit. Its nightly self-check now runs at the default sleep quality (it was tucked behind a higher setting almost nobody had), it draws its questions from what you and your kit have actually talked about, and it adds a few facts every kit knows about itself from day one: your name, its own, when it was born.",
-    "The AI key card in the menu bar says what is true. It read \"not set\" on kits that had a key and every task assigned but no fallback model chosen; that slot now fills itself from your conversation model, and the card names the model in use either way.",
-    "A How-to view in the lantern: what your kit can do, how to ask so it does its best work, where things live, and where to look when something is off. Between \"Where you use\" and \"Send us feedback\", and first in the ? menu. A walkthrough video will sit at the bottom once it is recorded.",
-    "Every conversation is one conversation. A Claude Code session captured as it happened and imported again later from your history folder used to become two cards on the timeline; they are one now, and the pairs already there are merged on the next start.",
-    "Playbooks and Studio step out of the way on a personal kit. The switch is no longer in Settings by default; hold Option and F while opening the menu bar menu and it is there beside Full Web UI, for an operator who wants it.",
-    "Your name above your own words in the timeline, and a run your kit finished and you approved now ships without being turned back for a bookkeeping gap."
+    "The nightly continuity check no longer fails when the AI model spends its whole answer budget thinking. A probe that gets no answer is marked unjudged and the rest of the check carries on, so the scorecard and the Continuity card still fill in. If Health is showing last night's continuity error, Check again runs a cycle and clears it.",
+    "When a reasoning model returns nothing because it ran out of room while thinking, your kit asks once more with room to answer before calling it a failure. This applies to every job your kit runs through a hosted OpenAI-compatible provider, OpenCode Zen, OpenAI and Google alike."
   ]
 }

@@ -312,6 +312,21 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.191</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>The nightly continuity check no longer fails when the AI model spends its whole answer budget thinking. A probe that gets no answer is marked unjudged and the rest of the check carries on, so the scorecard and the Continuity card still fill in. If Health is showing last night&#x27;s continuity error, Check again runs a cycle and clears it.</li>
+            <li>When a reasoning model returns nothing because it ran out of room while thinking, your kit asks once more with room to answer before calling it a failure. This applies to every job your kit runs through a hosted OpenAI-compatible provider, OpenCode Zen, OpenAI and Google alike.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.190</span>
           <span class="release__date">August 2026</span>
         </div>
