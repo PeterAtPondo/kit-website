@@ -63,20 +63,33 @@ MANROPE = FONT_DIR / "Manrope-VariableFont_wght.ttf"
 # capture.
 SECTIONS = [
     ("00-open", [
+        # The fireflies in Topics mode first ("this is me"), then the Timeline.
+        ("clip", "V2b-fireflies-topics.mov", 8),
         ("clip", "V1-timeline.mov", 10),
         ("still", "S1-timeline.png", None),
     ]),
+    # V3 (take 2, 19 Aug): the prompt is typed at 5s, "Called Kit" at 8s, the
+    # answer is complete by 20s; hold on it while the viewer reads.
     ("01-remember", [
-        ("clip", "V2a-memories.mov", 5),
-        ("clip", "V2-memory-open.mov", 8),
-        ("clip", "V3-wake.mov", None),
+        ("clip", "V2a-memories.mov", 4),
+        ("clip", "V2-memory-open.mov", 12),
+        ("clip", "V3-wake.mov", 26, 3),
     ]),
+    # The phone take (V4, take 5 of 19 Aug): the question is sent at 4s, the
+    # typing indicator runs to 20s, the cited answer lands at 20s. Jump-cut the
+    # wait. V5: the follow-up is typed at 7s and answered at 15s.
     ("02-doors", [
-        ("clip", "V4-phone.mov", 9),
-        ("clip", "V5-followup.mov", None),
+        ("clip", "V4-phone.mov", 5, 3),
+        ("clip", "V4-phone.mov", 8, 18),
+        ("clip", "V5-followup.mov", 12, 7),
     ]),
+    # Section 3 runs longer than its narration on purpose: the voice names each
+    # habit and the screen does the talking while the answer lands. The two
+    # takes are the raw typing session (ask 1 in the first, the rest in the
+    # second); a trim is (kind, file, seconds, start_offset).
     ("03-ask", [
-        ("clip", "V6-asks.mov", None),
+        ("clip", "V6-asks.mov", 58, 0),
+        ("clip", "V6b-asks.mov", 141, 0),
     ]),
     ("04-night", [
         ("clip", "V1-timeline.mov", 7),
@@ -162,7 +175,7 @@ def fit_filter() -> str:
             f"pad={W}:{H}:(ow-iw)/2:(oh-ih)/2:color={BG},fps={FPS},format=yuv420p")
 
 
-def render_visual(kind: str, ref: str, secs: float, idx: str) -> Path:
+def render_visual(kind: str, ref: str, secs: float, idx: str, start: float = 0.0) -> Path:
     out = BUILD / f"seg-{idx}.mp4"
     if kind == "card":
         label, sub = ref, ""
@@ -181,10 +194,10 @@ def render_visual(kind: str, ref: str, secs: float, idx: str) -> Path:
         run(["ffmpeg", "-y", "-loop", "1", "-i", str(src), "-t", f"{secs:.3f}",
              "-vf", fit_filter(), "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-an", str(out)])
         return out
-    # clip: loop if shorter than needed, then trim to secs
-    clip_len = duration(src)
-    loops = 0 if clip_len >= secs else int(secs // max(clip_len, 0.1))
-    run(["ffmpeg", "-y", "-stream_loop", str(loops), "-i", str(src), "-t", f"{secs:.3f}",
+    # clip: start at `start`, loop if shorter than needed, then trim to secs
+    clip_len = max(duration(src) - start, 0.1)
+    loops = 0 if clip_len >= secs else int(secs // clip_len)
+    run(["ffmpeg", "-y", "-stream_loop", str(loops), "-ss", f"{start:.3f}", "-i", str(src), "-t", f"{secs:.3f}",
          "-vf", fit_filter(), "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-an", str(out)])
     return out
 
@@ -197,21 +210,23 @@ def build(final: bool) -> Path:
         mp3 = NARR / section / "narration.mp3"
         if not mp3.exists():
             raise SystemExit(f"no narration for {section}: {mp3}")
-        total = duration(mp3) + 0.6   # a breath after the last word
+        voice = duration(mp3) + 0.6   # a breath after the last word
         fixed = sum(v[2] for v in visuals if v[2] is not None)
         open_slots = [v for v in visuals if v[2] is None]
-        remainder = max(total - fixed, 2.0)
+        # The picture is at least as long as the voice. Fixed visuals may run
+        # longer (section 3: the screen talks after the voice stops); open slots
+        # absorb whatever the voice still needs.
+        remainder = max(voice - fixed, 2.0) if open_slots else 0.0
         per_open = remainder / len(open_slots) if open_slots else 0.0
-        # If the fixed visuals already exceed the narration, scale them down so
-        # the section never outruns its voice.
-        scale = min(1.0, total / fixed) if fixed > total and not open_slots else 1.0
+        total = max(voice, fixed + remainder)
         segs: list[Path] = []
         for vi, v in enumerate(visuals):
             kind, ref = v[0], v[1]
-            secs = (v[2] * scale) if v[2] is not None else per_open
+            secs = v[2] if v[2] is not None else per_open
+            start = float(v[3]) if len(v) > 3 and v[3] else 0.0
             if kind != "card" and not (SRC / ref).exists():
                 missing.append(ref)
-            segs.append(render_visual(kind, ref, secs, f"{si:02d}-{vi:02d}"))
+            segs.append(render_visual(kind, ref, secs, f"{si:02d}-{vi:02d}", start))
         # concat the section's visuals, then mux the narration (video may be
         # a hair longer than the audio; -shortest trims to the audio + pad)
         lst = BUILD / f"list-{si:02d}.txt"
@@ -220,7 +235,8 @@ def build(final: bool) -> Path:
         run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(lst), "-c", "copy", str(vid)])
         sec_out = BUILD / f"section-{si:02d}.mp4"
         run(["ffmpeg", "-y", "-i", str(vid), "-i", str(mp3),
-             "-af", "apad=pad_dur=0.6", "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-shortest", str(sec_out)])
+             "-af", "apad", "-t", f"{total:.3f}",
+             "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", str(sec_out)])
         section_files.append(sec_out)
     lst = BUILD / "list-all.txt"
     lst.write_text("".join(f"file '{p}'\n" for p in section_files))
