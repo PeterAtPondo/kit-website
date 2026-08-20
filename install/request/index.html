@@ -81,9 +81,9 @@ for your agent to audit, and the honest account of the last three weeks is in
       </div>
 
       <form class="contact-form"
-            action="https://formspree.io/f/xzdwawzg"
+            action="/api/beta-request"
             method="POST"
-            data-ajax-endpoint="https://formspree.io/f/xzdwawzg">
+            data-ajax-endpoint="/api/beta-request">
         <input type="hidden" name="_subject" value="Kit, beta access request">
         <input type="hidden" name="context" value="beta">
         <input type="hidden" name="source" value="install/request">
@@ -141,6 +141,13 @@ through and takes you straight to the install page.
         const n = document.querySelector('.request-note--invalid'); if (n) n.hidden = false;
       }
       const form = document.querySelector('.contact-form');
+      // The no-JS path posts the form itself and comes back here with ?sent=1.
+      // Show the same thank-you the ajax path shows, so both land the same.
+      if (new URLSearchParams(location.search).get('sent') === '1') {
+        const ok = document.querySelector('.contact-form__status--success');
+        if (ok) ok.hidden = false;
+        if (form) form.hidden = true;
+      }
       if (!form || typeof fetch !== 'function') return;
       const endpoint = form.dataset.ajaxEndpoint;
       const successEl = document.querySelector('.contact-form__status--success');
