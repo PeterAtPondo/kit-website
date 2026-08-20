@@ -1,13 +1,18 @@
 {
-  "version": "0.2.193",
-  "url": "https://kit-project.com/downloads/Kit-0.2.193-macOS.dmg",
+  "version": "0.2.195",
+  "url": "https://kit-project.com/downloads/Kit-0.2.195-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Your kit answers on Telegram again. Since early August, every personal install replied to every message with \"the part of me that answers is not reachable right now\": the listener that carries your message inward never introduced itself to an API that now requires it, and a health read the wake does tripped installs that have no fitness data. Both fixed; the poller now carries its own key and re-mints it if it is ever refused.",
-    "There is a film now. Four and a half minutes, narrated by your kit's own voice: the shape of the thing (many doors, one brain, the night), what waking looks like in a real terminal and in OpenCode, the phone, and the seven asks that make the difference. It plays from the How-to card, and the birth screen offers it while your kit reads your history, which is exactly when you have the time.",
-    "How-to moved out of the row of destinations into the little circled question mark beside Settings, where help lives in most things you use. Same page, same deep link.",
-    "Send us feedback takes a screenshot now. The film says a screenshot is the most useful thing you can add, and as of this version that is literally true: attach one and it arrives with your note, already sized down so it sends fast.",
-    "Memories written by some chat sessions were landing with a scope no search fenced onto, so your kit could hold an answer and still not find it. They are written into the right scope now, and existing ones were moved."
+    "Your first conversation with your kit looks like it was meant to. On an install with no history to read, the first thing that happens is a short conversation, and it had been rendering with none of its styling: a bare text box, a tiny button, and the line introducing your kit sitting below the exits. It reads properly now, and it no longer shows you two headings when it wakes.",
+    "That first conversation also waits for your model. On a local model the first answer can take a minute while several gigabytes load, and the Send button used to give up after twenty seconds and quietly skip the rest of the questions. It now waits, and says it is still thinking.",
+    "The menu bar comes back to life after that first conversation. On an install with nothing to import, every item stayed greyed out (no Talk, no Memories, no Timeline) because your kit still believed it was importing something. It knows it has woken now.",
+    "Codex conversations are found again. Codex moved where it keeps them a while ago, and your kit was still looking in the old place, so it reported nothing to import even on a Mac with hundreds of sessions.",
+    "Health tells the truth about tools you have not connected. A tool whose history you imported used to appear as though it were wired up; it now says plainly that it is not connected here and that its conversations were imported from its history.",
+    "If you watched your first dream from the menu bar, the window could stay on the dreaming screen forever while your kit had long since woken. The dream screen now says so when the night's work is done, and the app brings up the ready screen on its own.",
+    "The memories view opens on Topics: the first thing a new kit shows you is what you think about, clustered and glowing. Whatever lens you pick sticks, as before.",
+    "The walkthrough film has a home at kit-project.com/walkthrough, with chapters. The birth screen links there, and so do the install page and the site's front page.",
+    "Send us feedback takes a screenshot. Attach one and it arrives with your note, already sized down so it sends fast.",
+    "Opening a conversation that had never been summarised quietly did nothing at all. It writes the summary now."
   ]
 }
