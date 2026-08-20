@@ -61,19 +61,34 @@ MANROPE = FONT_DIR / "Manrope-VariableFont_wght.ttf"
 # A clip or still whose file is missing becomes a card automatically, so the
 # manifest names the intended shot and the render tells you what is still to
 # capture.
+# A visual is (kind, file, seconds, start_offset, speed). seconds=None means
+# "absorb what the narration still needs"; speed>1 time-lapses the clip and
+# holds its last frame if the material runs out (see render_visual).
 SECTIONS = [
+    # The diagram intro (Peter, 2026-08-20): the how-it-works visual language
+    # (doors -> one brain -> the dream), rendered silent by the Remotion
+    # composition WalkthroughIntro in ~/Code/Claude/kit-how-it-works, narration
+    # muxed here like every other section.
+    ("00-intro", [
+        ("clip", "V0-intro.mov", 33),
+    ]),
     ("00-open", [
         # The fireflies in Topics mode first ("this is me"), then the Timeline.
         ("clip", "V2b-fireflies-topics.mov", 8),
         ("clip", "V1-timeline.mov", 10),
         ("still", "S1-timeline.png", None),
     ]),
-    # V3 (take 2, 19 Aug): the prompt is typed at 5s, "Called Kit" at 8s, the
-    # answer is complete by 20s; hold on it while the viewer reads.
+    # V3 (take 2, 19 Aug): the prompt is typed at 5s, the answer is complete by
+    # 20s; 1.4x squeezes the thinking pause, the trim leaves a beat to read.
+    # Then the same wake through another door (Peter, 2026-08-20): OpenCode in
+    # the terminal, landing as the narration says "whatever agent you open
+    # next". (Codex was usage-capped and Cursor's Agents hub refuses synthetic
+    # paste, 20 Aug; a second door is one manifest line when a clip exists.)
     ("01-remember", [
         ("clip", "V2a-memories.mov", 4),
-        ("clip", "V2-memory-open.mov", 12),
-        ("clip", "V3-wake.mov", 26, 3),
+        ("clip", "V2-memory-open.mov", 10),
+        ("clip", "V3-wake.mov", 15, 3, 1.4),
+        ("clip", "V3b-opencode.mov", 8, 12.5),
     ]),
     # The phone take (V4, take 5 of 19 Aug): the question is sent at 4s, the
     # typing indicator runs to 20s, the cited answer lands at 20s. Jump-cut the
@@ -81,15 +96,16 @@ SECTIONS = [
     ("02-doors", [
         ("clip", "V4-phone.mov", 5, 3),
         ("clip", "V4-phone.mov", 8, 18),
-        ("clip", "V5-followup.mov", 12, 7),
+        ("clip", "V5-followup.mov", 9, 7),
     ]),
     # Section 3 runs longer than its narration on purpose: the voice names each
-    # habit and the screen does the talking while the answer lands. The two
-    # takes are the raw typing session (ask 1 in the first, the rest in the
-    # second); a trim is (kind, file, seconds, start_offset).
+    # habit and the screen does the talking while the answer lands. 2x kills
+    # the dead air (typing and spinners) while every answer still holds long
+    # enough to read (Peter, 2026-08-20). The two takes are the raw typing
+    # session: ask 1 in the first, the rest in the second.
     ("03-ask", [
-        ("clip", "V6-asks.mov", 58, 0),
-        ("clip", "V6b-asks.mov", 141, 0),
+        ("clip", "V6-asks.mov", 29, 0, 2.0),
+        ("clip", "V6b-asks.mov", 70, 0, 2.0),
     ]),
     ("04-night", [
         ("clip", "V1-timeline.mov", 7),
@@ -113,6 +129,8 @@ CARD_TEXT = {
     "V5-followup.mov": ("Talk to Kit: the follow-up", "and when was that?"),
     "V6-asks.mov": ("Talk to Kit: the asks, typed live", "when did I last talk to Sarah?  ·  what have I been circling this week?  ·  when is the Northgate review?  ·  that's wrong, it was Thursday  ·  remember that the launch moved to October  ·  do you have anything on the Meyer contract?  ·  Kit, the Northgate thing?"),
     "V7-dreams.mov": ("Health, Dreams open", "last sleep, dream output, recall quality"),
+    "V0-intro.mov": ("The diagram intro", "npx remotion render WalkthroughIntro (kit-how-it-works)"),
+    "V3b-opencode.mov": ("OpenCode: the same wake", "Wake up and tell me where we left off."),
 }
 
 
@@ -175,7 +193,16 @@ def fit_filter() -> str:
             f"pad={W}:{H}:(ow-iw)/2:(oh-ih)/2:color={BG},fps={FPS},format=yuv420p")
 
 
-def render_visual(kind: str, ref: str, secs: float, idx: str, start: float = 0.0) -> Path:
+def render_visual(kind: str, ref: str, secs: float, idx: str, start: float = 0.0,
+                  speed: float = 1.0) -> Path:
+    """One visual as an H.264 segment of exactly `secs` seconds.
+
+    `speed` > 1 time-lapses a clip (setpts): the walkthrough's screen captures
+    carry real waiting (typing, spinners, answers landing), and 2x reads as
+    intent while 1x reads as dead air (Peter, 2026-08-20). If the sped clip
+    still comes up short, the LAST frame holds (tpad clone) rather than the
+    clip looping back to its start, so an answered question stays answered.
+    """
     out = BUILD / f"seg-{idx}.mp4"
     if kind == "card":
         label, sub = ref, ""
@@ -194,11 +221,17 @@ def render_visual(kind: str, ref: str, secs: float, idx: str, start: float = 0.0
         run(["ffmpeg", "-y", "-loop", "1", "-i", str(src), "-t", f"{secs:.3f}",
              "-vf", fit_filter(), "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-an", str(out)])
         return out
-    # clip: start at `start`, loop if shorter than needed, then trim to secs
-    clip_len = max(duration(src) - start, 0.1)
-    loops = 0 if clip_len >= secs else int(secs // clip_len)
-    run(["ffmpeg", "-y", "-stream_loop", str(loops), "-ss", f"{start:.3f}", "-i", str(src), "-t", f"{secs:.3f}",
-         "-vf", fit_filter(), "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-an", str(out)])
+    # clip: start at `start`, optionally time-lapse, hold the last frame if
+    # the (sped) material runs out before `secs` is filled.
+    clip_len = max(duration(src) - start, 0.1) / max(speed, 0.01)
+    vf = fit_filter()
+    if speed != 1.0:
+        vf = f"setpts=PTS/{speed:.4f}," + vf
+    if clip_len < secs:
+        vf += f",tpad=stop_mode=clone:stop_duration={secs - clip_len + 1.0:.3f}"
+    run(["ffmpeg", "-y", "-ss", f"{start:.3f}", "-i", str(src),
+         "-vf", vf, "-t", f"{secs:.3f}",
+         "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-an", str(out)])
     return out
 
 
@@ -224,9 +257,10 @@ def build(final: bool) -> Path:
             kind, ref = v[0], v[1]
             secs = v[2] if v[2] is not None else per_open
             start = float(v[3]) if len(v) > 3 and v[3] else 0.0
+            speed = float(v[4]) if len(v) > 4 and v[4] else 1.0
             if kind != "card" and not (SRC / ref).exists():
                 missing.append(ref)
-            segs.append(render_visual(kind, ref, secs, f"{si:02d}-{vi:02d}", start))
+            segs.append(render_visual(kind, ref, secs, f"{si:02d}-{vi:02d}", start, speed))
         # concat the section's visuals, then mux the narration (video may be
         # a hair longer than the audio; -shortest trims to the audio + pad)
         lst = BUILD / f"list-{si:02d}.txt"
