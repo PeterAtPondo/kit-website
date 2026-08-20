@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.196</title>
-      <pubDate>Thu, 20 Aug 2026 15:30:46 -0000</pubDate>
-      <sparkle:version>0.2.196</sparkle:version>
-      <sparkle:shortVersionString>0.2.196</sparkle:shortVersionString>
+      <title>0.2.197</title>
+      <pubDate>Thu, 20 Aug 2026 15:56:53 -0000</pubDate>
+      <sparkle:version>0.2.197</sparkle:version>
+      <sparkle:shortVersionString>0.2.197</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>If you told your kit you ship code, it now keeps what you chose. The setup reorders itself for developers, and in that order the Areas and Sources steps quietly discarded your choices when you pressed Continue: your knowledge areas were never created, and the histories you picked were never imported, so your kit woke knowing nothing you had just handed it. Pressing Back on the sources step moved you forwards instead. All three are fixed.</li><li>The first conversation no longer strands if your session has expired. Its opening question could arrive unauthorised (after quitting and reopening mid-setup, say), and then the screen sat on &quot;one moment while I get ready&quot; with no way out, because the skip was refused too. It quietly signs back in and carries on.</li><li>The How-to page leads with the film, and no longer has a Close button under it: the row of destinations at the top is the way out, as it is everywhere else.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.196-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="h6HoxBmfb7pQSTj3kdAqeitLYmt/ZgKJtvE1ze1zo02KKZKdEB5CVp4936RXabqKfKL2uXRTA+GyAyiuidscAA==" length="15938200"/>
+      <description><![CDATA[<ul><li>The end of your kit&#x27;s first dream now has a way in. When it wakes for the first time it offers the launch buttons and the walkthrough film, and now a View Memories button in the corner, the same one every later visit has. Before this, a brand-new kit finished waking with no route into the thing you had just built, unless you thought to quit and reopen the app.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.197-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="0gb+z9alqIuiqBoxwxtlsMCIVwhGyhJgPyp3Tq9hT+zol4Y9Ey5duZccBJ9g0hcDgkMtOQyYmThGBQNbMKKbBQ==" length="15939193"/>
     </item>
   </channel>
 </rss>

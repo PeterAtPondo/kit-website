@@ -1,11 +1,9 @@
 {
-  "version": "0.2.196",
-  "url": "https://kit-project.com/downloads/Kit-0.2.196-macOS.dmg",
+  "version": "0.2.197",
+  "url": "https://kit-project.com/downloads/Kit-0.2.197-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "If you told your kit you ship code, it now keeps what you chose. The setup reorders itself for developers, and in that order the Areas and Sources steps quietly discarded your choices when you pressed Continue: your knowledge areas were never created, and the histories you picked were never imported, so your kit woke knowing nothing you had just handed it. Pressing Back on the sources step moved you forwards instead. All three are fixed.",
-    "The first conversation no longer strands if your session has expired. Its opening question could arrive unauthorised (after quitting and reopening mid-setup, say), and then the screen sat on \"one moment while I get ready\" with no way out, because the skip was refused too. It quietly signs back in and carries on.",
-    "The How-to page leads with the film, and no longer has a Close button under it: the row of destinations at the top is the way out, as it is everywhere else."
+    "The end of your kit's first dream now has a way in. When it wakes for the first time it offers the launch buttons and the walkthrough film, and now a View Memories button in the corner, the same one every later visit has. Before this, a brand-new kit finished waking with no route into the thing you had just built, unless you thought to quit and reopen the app."
   ]
 }
