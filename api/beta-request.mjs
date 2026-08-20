@@ -8,7 +8,8 @@
 // Three verbs, three audiences, three keys -- the same tiering as beta-feed:
 //   POST   (no auth)                  the form. Records a request.
 //   GET    KIT_BETA_FEED_TOKEN        canonical Kit. Reads what is waiting.
-//   PATCH  KIT_BETA_ADMIN_TOKEN       the decision writeback (Peter's key).
+//   PATCH  KIT_BETA_AGENT_TOKEN       the decision writeback (Kit's own key;
+//                                     Peter's admin token also works).
 // A leaked feed token exposes who has asked for an invite and nothing else; it
 // cannot decide anything and it cannot mint.
 //
@@ -21,11 +22,13 @@
 // Env (Vercel project):
 //   - SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY   as for beta-invite
 //   - KIT_BETA_FEED_TOKEN     read-only, held by canonical Kit
-//   - KIT_BETA_ADMIN_TOKEN    Peter's, also required by beta-invite
+//   - KIT_BETA_AGENT_TOKEN    Kit's own; may mint, mail and write decisions
+//   - KIT_BETA_ADMIN_TOKEN    Peter's; everything the agent key can do, plus revoke
 //   - KIT_FORMSPREE_ENDPOINT  optional; the parallel notification
 
 const FEED_TOKEN = (process.env.KIT_BETA_FEED_TOKEN || "").trim();
 const ADMIN = (process.env.KIT_BETA_ADMIN_TOKEN || "").trim();
+const AGENT = (process.env.KIT_BETA_AGENT_TOKEN || "").trim();
 const DB_URL = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "").trim().replace(/\/$/, "");
 const DB_KEY = (process.env.SUPABASE_SERVICE_ROLE_KEY || "").trim();
 const FORMSPREE = (process.env.KIT_FORMSPREE_ENDPOINT || "https://formspree.io/f/xzdwawzg").trim();
@@ -224,7 +227,7 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     if (!FEED_TOKEN || !sameSecret(bearer(req), FEED_TOKEN)) {
       // The admin key reads too: one fewer secret for Peter to carry.
-      if (!ADMIN || !sameSecret(bearer(req), ADMIN)) {
+      if (!sameSecret(bearer(req), ADMIN) && !sameSecret(bearer(req), AGENT)) {
         return res.status(401).json({ error: "feed token required" });
       }
     }
@@ -232,7 +235,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "PATCH") {
-    if (!ADMIN || !sameSecret(bearer(req), ADMIN)) {
+    if (!sameSecret(bearer(req), ADMIN) && !sameSecret(bearer(req), AGENT)) {
       return res.status(401).json({ error: "operator token required" });
     }
     return decide(req, res);

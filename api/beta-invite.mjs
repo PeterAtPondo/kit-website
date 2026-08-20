@@ -15,6 +15,10 @@
 //   - KIT_SITE_ORIGIN             optional, default https://kit-project.com
 
 const ADMIN = (process.env.KIT_BETA_ADMIN_TOKEN || "").trim();
+// Kit's own key. It may mint and list; it may NOT revoke or purge. Handing the
+// beta-request playbook the master key would mean a compromised stack could
+// wipe every invite, which is a much larger blast radius than it needs to run.
+const AGENT = (process.env.KIT_BETA_AGENT_TOKEN || "").trim();
 const DB_URL = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "").trim().replace(/\/$/, "");
 const DB_KEY = (process.env.SUPABASE_SERVICE_ROLE_KEY || "").trim();
 const ORIGIN = (process.env.KIT_SITE_ORIGIN || "https://kit-project.com").trim().replace(/\/$/, "");
@@ -41,10 +45,11 @@ function randomToken() {
   return btoa(String.fromCharCode(...bytes)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
-function authed(req) {
-  if (!ADMIN) return false;
+function authed(req, { allowAgent = false } = {}) {
   const h = req.headers["authorization"] || "";
-  return h === `Bearer ${ADMIN}`;
+  if (ADMIN && h === `Bearer ${ADMIN}`) return true;
+  if (allowAgent && AGENT && h === `Bearer ${AGENT}`) return true;
+  return false;
 }
 
 async function readJson(req) {
@@ -56,7 +61,11 @@ async function readJson(req) {
 
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
-  if (!authed(req)) return res.status(401).json({ error: "operator token required" });
+  // Mint and list are open to Kit's key; DELETE (revoke) is not.
+  const mayAgent = req.method === "POST" || req.method === "GET";
+  if (!authed(req, { allowAgent: mayAgent })) {
+    return res.status(401).json({ error: "operator token required" });
+  }
   if (!DB_URL || !DB_KEY) return res.status(503).json({ error: "invite store is not configured" });
 
   try {

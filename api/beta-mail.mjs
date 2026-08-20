@@ -7,20 +7,23 @@
 // Same posture as welcome.mjs, and for the same reason: the Resend key lives
 // only in this project's environment, the body is structured, and the HTML is
 // built here. This is never an open relay -- a caller names fields, not markup.
-// Canonical Kit calls it with the operator token it already holds for minting,
-// so the beta-request playbook needs no second secret.
+// Canonical Kit calls it with KIT_BETA_AGENT_TOKEN, the scoped key it also
+// mints with. That key can invite and write; it cannot revoke or purge, so a
+// compromised stack cannot wipe the invite table.
 //
 // Fail-soft on a missing Resend key (log, return ok), so the playbook runs end
 // to end before keys are wired, exactly as the welcome path does.
 //
 // Env (Vercel project):
 //   - RESEND_API_KEY        kit-project.com must be a verified sending domain
-//   - KIT_BETA_ADMIN_TOKEN  the caller's bearer, shared with beta-invite
+//   - KIT_BETA_AGENT_TOKEN  Kit's bearer, shared with beta-invite
+//   - KIT_BETA_ADMIN_TOKEN  Peter's; accepted here too
 //   - KIT_BETA_MAIL_FROM    optional, defaults to "Kit <kit@kit-project.com>"
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 const MAIL_FROM = (process.env.KIT_BETA_MAIL_FROM || "Kit <kit@kit-project.com>").trim();
 const ADMIN = (process.env.KIT_BETA_ADMIN_TOKEN || "").trim();
+const AGENT = (process.env.KIT_BETA_AGENT_TOKEN || "").trim();
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 const ACCENT = "#c4b5fd";
@@ -243,7 +246,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "method not allowed" });
   }
   const h = req.headers["authorization"] || "";
-  if (!ADMIN || !sameSecret(h.startsWith("Bearer ") ? h.slice(7) : "", ADMIN)) {
+  const given = h.startsWith("Bearer ") ? h.slice(7) : "";
+  if (!sameSecret(given, ADMIN) && !sameSecret(given, AGENT)) {
     return res.status(401).json({ error: "operator token required" });
   }
 
