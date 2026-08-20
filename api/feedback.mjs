@@ -36,7 +36,7 @@ function escapeHtml(s) {
 
 // Build the feedback email. Returns { subject, html, text }. All content is
 // built here from structured fields; the caller never supplies HTML.
-function buildFeedbackEmail(message, contact, version) {
+function buildFeedbackEmail(message, contact, version, hasShot) {
   const safeMsg = escapeHtml(message);
   const safeContact = escapeHtml(contact || "(none given)");
   const safeVersion = escapeHtml(version || "?");
@@ -47,7 +47,8 @@ function buildFeedbackEmail(message, contact, version) {
     `${message}\n\n` +
     `---\n` +
     `contact: ${contact || "(none given)"}\n` +
-    `app version: ${version || "?"}\n`;
+    `app version: ${version || "?"}\n` +
+    (hasShot ? `screenshot: attached\n` : "");
 
   const amber = "#e8a55c";
   const body = "#cbd5e1";
@@ -79,7 +80,7 @@ function buildFeedbackEmail(message, contact, version) {
           </tr>
           <tr>
             <td style="padding:16px 30px 26px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;border-top:1px solid rgba(148,163,184,0.1)">
-              <p style="margin:14px 0 0;font-size:13px;color:#94a3b8">contact: <span style="color:${body}">${safeContact}</span><br>app version: <span style="color:${body}">${safeVersion}</span></p>
+              <p style="margin:14px 0 0;font-size:13px;color:#94a3b8">contact: <span style="color:${body}">${safeContact}</span><br>app version: <span style="color:${body}">${safeVersion}</span>${hasShot ? `<br>screenshot: <span style="color:${body}">attached</span>` : ""}</p>
             </td>
           </tr>
         </table>
@@ -103,7 +104,20 @@ function tokenOk(provided) {
   return diff === 0;
 }
 
-async function sendViaResend({ to, replyTo, subject, html, text }) {
+// A screenshot arrives as a data URL (the app compresses client-side).
+// Decode + validate here; cap the decoded size well under Vercel's 4.5MB
+// request limit so a giant paste degrades to "message only", never a 500.
+const SHOT_RE = /^data:image\/(png|jpeg);base64,([A-Za-z0-9+/=]+)$/;
+const SHOT_MAX_B64 = 4_200_000; // ~3MB decoded
+
+function parseScreenshot(raw) {
+  if (typeof raw !== "string" || !raw || raw.length > SHOT_MAX_B64) return null;
+  const m = SHOT_RE.exec(raw);
+  if (!m) return null;
+  return { filename: m[1] === "png" ? "screenshot.png" : "screenshot.jpg", content: m[2] };
+}
+
+async function sendViaResend({ to, replyTo, subject, html, text, attachment }) {
   const apiKey = (process.env.RESEND_API_KEY || "").trim();
   if (!apiKey) {
     // Fail-soft, mirroring welcome.mjs: no key means we log and report ok.
@@ -113,6 +127,7 @@ async function sendViaResend({ to, replyTo, subject, html, text }) {
   try {
     const payload = { from: FEEDBACK_FROM, to: [to], subject, html, text };
     if (replyTo) payload.reply_to = replyTo; // so the team can reply straight to the user
+    if (attachment) payload.attachments = [attachment];
     const resp = await fetch(RESEND_ENDPOINT, {
       method: "POST",
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
@@ -162,10 +177,11 @@ export default async function handler(req, res) {
   const contact = String(bodyObj.contact || "").trim().slice(0, 200);
   const version = String(bodyObj.app_version || "").trim().slice(0, 40);
   const replyTo = contact && EMAIL_RE.test(contact) ? contact : undefined;
+  const attachment = parseScreenshot(bodyObj.screenshot);
 
-  const { subject, html, text } = buildFeedbackEmail(message, contact, version);
-  const result = await sendViaResend({ to: FEEDBACK_TO, replyTo, subject, html, text });
-  console.log(`[feedback] provider=${result.provider} ok=${result.ok} ver=${version || "?"}`);
+  const { subject, html, text } = buildFeedbackEmail(message, contact, version, !!attachment);
+  const result = await sendViaResend({ to: FEEDBACK_TO, replyTo, subject, html, text, attachment });
+  console.log(`[feedback] provider=${result.provider} ok=${result.ok} shot=${attachment ? 1 : 0} ver=${version || "?"}`);
   if (!result.ok) {
     return res.status(502).json({ ok: false, error: "Feedback could not be sent." });
   }

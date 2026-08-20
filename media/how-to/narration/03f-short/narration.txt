@@ -1,0 +1,1 @@
+Short is fine, too. You're not writing a prompt. <break time="0.5s" /> That works.

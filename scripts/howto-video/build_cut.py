@@ -98,14 +98,34 @@ SECTIONS = [
         ("clip", "V4-phone.mov", 8, 18),
         ("clip", "V5-followup.mov", 9, 7),
     ]),
-    # Section 3 runs longer than its narration on purpose: the voice names each
-    # habit and the screen does the talking while the answer lands. 2x kills
-    # the dead air (typing and spinners) while every answer still holds long
-    # enough to read (Peter, 2026-08-20). The two takes are the raw typing
-    # session: ask 1 in the first, the rest in the second.
-    ("03-ask", [
+    # Section 3, one sub-section per habit (Peter, 2026-08-20: a solid minute
+    # of narration silence read as odd): each ask carries its own narration
+    # line, the screen runs at 2x, and the spinners between asks are jump-cut,
+    # so no quiet stretch outlives the answer it is holding for. Raw timings:
+    # V6 = ask 1 (0-58), ask 2 first try fails ~55-85, the good retry 90-126.
+    # V6b = review typed 8 answered 18; correction typed 38 answered 68;
+    # October typed 80 answered 89; Meyer typed 108 answered 118; "the
+    # Northgate thing?" typed 138 answered 148 (v1/v2 trimmed out that last
+    # answer entirely, which is why the tail felt dead).
+    ("03a-name", [
         ("clip", "V6-asks.mov", 29, 0, 2.0),
-        ("clip", "V6b-asks.mov", 70, 0, 2.0),
+    ]),
+    ("03b-noticed", [
+        ("clip", "V6-asks.mov", 16, 90, 2.0),
+    ]),
+    ("03c-correct", [
+        ("clip", "V6b-asks.mov", 8, 8, 2.0),
+        ("clip", "V6b-asks.mov", 4, 38, 2.0),
+        ("clip", "V6b-asks.mov", 6, 66, 2.0),
+    ]),
+    ("03d-hold", [
+        ("clip", "V6b-asks.mov", 9, 78, 2.0),
+    ]),
+    ("03e-no", [
+        ("clip", "V6b-asks.mov", 10, 104, 2.0),
+    ]),
+    ("03f-short", [
+        ("clip", "V6b-asks.mov", 12, 134, 2.0),
     ]),
     ("04-night", [
         ("clip", "V1-timeline.mov", 7),
