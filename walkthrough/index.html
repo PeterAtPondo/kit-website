@@ -17,6 +17,8 @@
       max-width: 1040px;
       margin: var(--space-8) auto 0;
     }
+    /* Leading the page: no top margin to fight the section's own padding. */
+    .film-wrap--lead { margin-top: 0; }
     .film-wrap video {
       display: block;
       width: 100%;
@@ -125,20 +127,23 @@
   </div>
 
   <section class="section">
-    <h1 style="text-align:center">Watch <strong>Kit</strong> work.</h1>
+    <!-- The film leads (Peter, 2026-08-20). Anyone arriving here came to
+         watch, so the first thing on the page is the thing they came for;
+         the title and the description sit under it. -->
+    <div class="film-wrap film-wrap--lead">
+      <video id="film" controls preload="metadata" playsinline
+             poster="/media/how-to/walkthrough-poster.jpg"
+             src="/media/how-to/walkthrough.mp4"></video>
+      <p class="film-meta">4:27 &middot; narrated by Kit &middot; nothing on screen is faked, all of it is arranged</p>
+    </div>
+
+    <h1 style="text-align:center; margin-top: var(--space-10);">Watch <strong>Kit</strong> work.</h1>
     <p class="lede" style="max-width: var(--reading-max); margin-left:auto; margin-right:auto; text-align:center;">
       Four and a half minutes, narrated by Kit in its own voice. A real install,
       a few weeks old: what it remembers, how a new session wakes already
       knowing the thread, the same memory answering on the phone and in the
       editor, and what it does with the night.
     </p>
-
-    <div class="film-wrap">
-      <video id="film" controls preload="metadata" playsinline
-             poster="/media/how-to/walkthrough-poster.jpg"
-             src="/media/how-to/walkthrough.mp4"></video>
-      <p class="film-meta">4:27 &middot; narrated by Kit &middot; nothing on screen is faked, all of it is arranged</p>
-    </div>
 
     <ul class="chapters" id="chapters">
       <li><button data-t="0"><span class="t">0:00</span> The shape of the thing <span class="what">many doors, one brain, the night</span></button></li>
