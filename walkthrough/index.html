@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Watch Kit work</title>
+  <meta name="description" content="A short film, narrated by Kit itself: what it remembers, how it wakes, the three doors, how to ask, and the night shift.">
+  <!-- Linked from the app's birth screen; kept out of search like /install. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0a0e1a">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <style>
+    /* Page-local touches, built on the site tokens. */
+    .film-wrap {
+      max-width: 1040px;
+      margin: var(--space-8) auto 0;
+    }
+    .film-wrap video {
+      display: block;
+      width: 100%;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--edge-faint);
+      background: var(--bg-deep);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+    }
+    .film-meta {
+      margin-top: var(--space-4);
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--ink-quiet);
+      letter-spacing: 0.02em;
+      text-align: center;
+    }
+    .chapters {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-6) auto 0;
+      max-width: 720px;
+      border: 1px solid var(--edge-faint);
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      overflow: hidden;
+    }
+    .chapters li { border-bottom: 1px solid var(--edge-faint); }
+    .chapters li:last-child { border-bottom: 0; }
+    .chapters button {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-4);
+      width: 100%;
+      padding: var(--space-3) var(--space-5);
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      text-align: left;
+      color: var(--ink-secondary);
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .chapters button:hover { background: rgba(255, 255, 255, 0.04); color: var(--ink-primary); }
+    .chapters .t {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--accent-glow);
+      min-width: 3ch;
+      font-variant-numeric: tabular-nums;
+    }
+    .chapters .what { color: var(--ink-quiet); font-size: 0.85rem; margin-left: auto; text-align: right; }
+    @media (max-width: 640px) { .chapters .what { display: none; } }
+    .made-note {
+      max-width: var(--reading-max);
+      margin: var(--space-8) auto 0;
+      padding: var(--space-6) var(--space-8);
+      background: var(--bg-card);
+      border: 1px solid var(--edge-faint);
+      border-left: 3px solid var(--accent-memory);
+      border-radius: var(--radius-md);
+      color: var(--ink-secondary);
+      font-size: 0.9375rem;
+      line-height: 1.65;
+    }
+    .made-note strong { color: var(--ink-primary); }
+    .after-ctas {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+      margin-top: var(--space-8);
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="nav__brand" href="/">
+      <svg class="nav__mark" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <line x1="12" y1="12" x2="5"  y2="5"  stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="19" y2="6"  stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="5"  y2="19" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <line x1="12" y1="12" x2="19" y2="17" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.6"/>
+        <circle cx="5"  cy="5"  r="1.8" fill="currentColor" fill-opacity="0.85"/>
+        <circle cx="19" cy="6"  r="1.5" fill="currentColor" fill-opacity="0.75"/>
+        <circle cx="5"  cy="19" r="1.5" fill="currentColor" fill-opacity="0.75"/>
+        <circle cx="19" cy="17" r="1.8" fill="currentColor" fill-opacity="0.85"/>
+        <circle cx="12" cy="12" r="3" fill="currentColor"/>
+      </svg>
+      <span data-name></span>
+    </a>
+    <div class="nav__links">
+      <a href="/#install">Install</a>
+      <a href="https://demo.kit-project.com">Live demo</a>
+      <a href="/#arch">Architecture</a>
+      <a href="/#letter">For agents</a>
+      <a href="/blog/">Notes</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="alpha-banner alpha-banner--top">
+    <span class="alpha-banner__pip" aria-hidden="true"></span>
+    <span><strong>Beta.</strong> This is an early beta build for a small group. Expect rough edges, and tell me about them. Want to join the beta? <a href="/install/request/">Ask for an invite.</a></span>
+  </div>
+
+  <section class="section">
+    <h1 style="text-align:center">Watch <strong>Kit</strong> work.</h1>
+    <p class="lede" style="max-width: var(--reading-max); margin-left:auto; margin-right:auto; text-align:center;">
+      Four and a half minutes, narrated by Kit in its own voice. A real install,
+      a few weeks old: what it remembers, how a new session wakes already
+      knowing the thread, the same memory answering on the phone and in the
+      editor, and what it does with the night.
+    </p>
+
+    <div class="film-wrap">
+      <video id="film" controls preload="metadata" playsinline
+             poster="/media/how-to/walkthrough-poster.jpg"
+             src="/media/how-to/walkthrough.mp4"></video>
+      <p class="film-meta">4:27 &middot; narrated by Kit &middot; nothing on screen is faked, all of it is arranged</p>
+    </div>
+
+    <ul class="chapters" id="chapters">
+      <li><button data-t="0"><span class="t">0:00</span> The shape of the thing <span class="what">many doors, one brain, the night</span></button></li>
+      <li><button data-t="33"><span class="t">0:33</span> This is me <span class="what">a real Kit, a few weeks old</span></button></li>
+      <li><button data-t="57"><span class="t">0:57</span> What I remember, and how I wake <span class="what">sources, citations, the wake</span></button></li>
+      <li><button data-t="94"><span class="t">1:34</span> One memory, three doors <span class="what">the phone, then the window</span></button></li>
+      <li><button data-t="116"><span class="t">1:56</span> How to ask <span class="what">the important bit; worth a rewatch</span></button></li>
+      <li><button data-t="210"><span class="t">3:30</span> The night shift <span class="what">dreams, and keeping score</span></button></li>
+      <li><button data-t="232"><span class="t">3:52</span> When something's off <span class="what">Health first, then tell us</span></button></li>
+    </ul>
+
+    <div class="made-note">
+      <strong>How this was made.</strong> The Kit on screen is a real install
+      seeded with a plausible fortnight, filmed by Kit itself: the window is
+      driven by deep links, the terminal shots type themselves, and the
+      narration is the same voice that reads the notes on this site. When the
+      app changes, the film re-renders and this page stays put.
+    </div>
+
+    <div class="after-ctas">
+      <a href="/#install" class="btn btn--primary">Get Kit</a>
+      <a href="/install/request/" class="btn btn--ghost">Ask for a beta invite</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__row">
+      <div>
+        <span data-name></span> &middot; a long collaboration
+      </div>
+      <div>
+        made with Peter in Cape Town
+      </div>
+    </div>
+    <div class="footer__row footer__row--quiet">
+      <div class="footer__pledge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5"/>
+        </svg>
+        no cookies &middot; no analytics &middot; no tracking &middot; ever
+      </div>
+      <div class="footer__colophon">
+        Private memory, local to your Mac.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Chapter buttons seek the film. No trackers, no players, one video tag.
+    (function () {
+      var film = document.getElementById('film');
+      document.getElementById('chapters').addEventListener('click', function (e) {
+        var btn = e.target.closest('button[data-t]');
+        if (!btn) return;
+        film.currentTime = parseInt(btn.dataset.t, 10);
+        film.play();
+        film.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    })();
+  </script>
+</body>
+</html>
