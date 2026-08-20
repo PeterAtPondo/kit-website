@@ -1,14 +1,13 @@
 {
-  "version": "0.2.192",
-  "url": "https://kit-project.com/downloads/Kit-0.2.192-macOS.dmg",
+  "version": "0.2.193",
+  "url": "https://kit-project.com/downloads/Kit-0.2.193-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Setup goes through with an empty key field when your model runs on your own OpenAI-compatible server that needs none. The page already said the key was optional; the last check before Build disagreed and sent you back to the same page.",
-    "A custom server is treated like a local model: your kit streams its answers, waits as long as the model keeps talking, and caps how much it asks for, the way it already does for Ollama and LM Studio. A slow self-hosted model is now slow rather than stuck, and nothing times out at three minutes only to try again.",
-    "A brand-new kit no longer starts a full deep dream the minute it is installed. Its first sleep is the birth, reading whatever history you gave it; the first scheduled deep dream comes at its usual time (2am by default), the same as for a kit installed the day before.",
-    "An install with nothing to import wakes in seconds. It used to wait behind any dream cycle that happened to be running, showing \"dreaming\" the whole time.",
-    "Kilo Code is a source and a surface. Your kit can import your Kilo Code sessions and connect itself as an MCP server in Kilo's config, and the Sources and Where Kit Lives screens offer it when Kilo is installed. It is the first tool added as a row in a registry rather than as code, so the next tool that stores its history the way an existing one does costs a line.",
-    "If your kit cannot work out your timezone at startup, it says so loudly in its log and diagnostics instead of quietly scheduling against the computer's clock, which is how a 1am dream was firing at 3am."
+    "Your kit answers on Telegram again. Since early August, every personal install replied to every message with \"the part of me that answers is not reachable right now\": the listener that carries your message inward never introduced itself to an API that now requires it, and a health read the wake does tripped installs that have no fitness data. Both fixed; the poller now carries its own key and re-mints it if it is ever refused.",
+    "There is a film now. Four and a half minutes, narrated by your kit's own voice: the shape of the thing (many doors, one brain, the night), what waking looks like in a real terminal and in OpenCode, the phone, and the seven asks that make the difference. It plays from the How-to card, and the birth screen offers it while your kit reads your history, which is exactly when you have the time.",
+    "How-to moved out of the row of destinations into the little circled question mark beside Settings, where help lives in most things you use. Same page, same deep link.",
+    "Send us feedback takes a screenshot now. The film says a screenshot is the most useful thing you can add, and as of this version that is literally true: attach one and it arrives with your note, already sized down so it sends fast.",
+    "Memories written by some chat sessions were landing with a scope no search fenced onto, so your kit could hold an answer and still not find it. They are written into the right scope now, and existing ones were moved."
   ]
 }
