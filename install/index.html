@@ -313,6 +313,24 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.198</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Forgetting your password is no longer a dead end. The sign-in screen has a &quot;forgot your password&quot; link, and it sends a link that only opens on the computer your kit runs on. That last part is the point rather than an inconvenience: it is what makes the link useless to anyone who is not sitting at your machine. Before this, changing a password needed the current one and only an admin could set somebody else&#x27;s, which on a personal kit is the same person, so there was no door at all.</li>
+            <li>Your password manager will now be offered your kit password when you sign in. The sign-in fields were not wrapped in a form, and Safari and iCloud Keychain only offer to save a password when a form is actually submitted, so your kit never once asked to keep it. If you have wondered why the Apple prompt never appeared, that was why, and it was ours not yours.</li>
+            <li>Updating no longer deletes backups your kit did not write. The pre-update sweep kept the seven most recent files matching a pattern far wider than the ones it makes, so nightly dumps and your own manual backups sitting in the same folder were counted and quietly removed. Only the update backups your kit creates are swept now, and everything else is left alone.</li>
+            <li>DeepSeek Harness can now reach your kit. Turn it on in Sources and your kit is added as an MCP server in its config, the same one-switch shape the other tools use. Importing your dsh history is not in yet, and the surface says so rather than pretending otherwise.</li>
+            <li>The account editor tells the truth about your allowlist. It read zero allowed and zero pending over a list that actually had people in it, while the same numbers were right everywhere else.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.197</span>
           <span class="release__date">August 2026</span>
         </div>
