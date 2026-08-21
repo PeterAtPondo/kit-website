@@ -14,6 +14,15 @@
 //     never grants raw Resend access.
 //   - The body is structured; the email HTML is built here from those fields,
 //     so this is never an open HTML relay.
+//   - kind:"password-reset" is the second mode, added 2026-08-21 for the local
+//     Kit's forgot-password flow. A personal install ships no Resend key on
+//     purpose, so without a relay it can send nothing, and a reset that cannot
+//     reach the registered mailbox proves nothing about who is asking.
+//     The reset link MUST be a loopback URL and is rejected otherwise. That is
+//     what stops this becoming a phishing relay: with the token, the worst an
+//     attacker can do is mail somebody a Kit-branded link to their OWN machine,
+//     which is useless to the attacker. Without that check the same token would
+//     buy a Kit-branded email carrying any URL they liked.
 //   - Fail-soft like the install gate: a missing Resend key logs and returns ok
 //     rather than erroring, so the flow works end to end before keys are wired.
 //
@@ -246,6 +255,74 @@ function tokenOk(provided) {
   return diff === 0;
 }
 
+// Loopback only. localhost / 127.0.0.1 / [::1], http or https, any port, and
+// the path must be the UI's reset entry. Anything else is refused.
+const LOOPBACK_HOSTS = new Set(["localhost", "127.0.0.1", "[::1]", "::1"]);
+function resetUrlOk(raw) {
+  let u;
+  try {
+    u = new URL(String(raw || ""));
+  } catch {
+    return false;
+  }
+  if (u.protocol !== "http:" && u.protocol !== "https:") return false;
+  if (!LOOPBACK_HOSTS.has(u.hostname)) return false;
+  if (!u.pathname.startsWith("/ui/")) return false;
+  return Boolean(u.searchParams.get("reset"));
+}
+
+function buildPasswordResetEmail(resetUrl, kitName, ttlMinutes) {
+  const kit = escapeHtml(String(kitName || "Kit").trim() || "Kit");
+  const ttl = Number.isFinite(+ttlMinutes) && +ttlMinutes > 0 ? Math.round(+ttlMinutes) : 15;
+  const url = escapeHtml(resetUrl);
+  const subject = `Reset your ${kit} password`;
+  const machineLine =
+    "This link only opens on the computer " +
+    String(kitName || "Kit").trim() +
+    " runs on. On your phone or another machine it will not work, which is " +
+    "deliberate: it is what keeps the link useless to anyone else.";
+  const text =
+    `Hi,\n\nSomeone asked to reset the password for your ${kitName || "Kit"} account.\n\n` +
+    `${machineLine}\n\nChoose a new password here:\n${resetUrl}\n\n` +
+    `The link is single use and expires in ${ttl} minutes.\n` +
+    "If you did not ask for this you can ignore this email. Nothing has changed on your account.\n";
+  const html = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;padding:0;background:#060b16">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#060b16">
+    <tr><td align="center" style="padding:32px 16px">
+      <table role="presentation" width="480" cellpadding="0" cellspacing="0"
+             style="width:480px;max-width:480px;background:#0f1729;border:1px solid rgba(232,165,92,0.24);border-radius:18px">
+        <tr><td style="padding:26px 30px 22px;border-bottom:1px solid rgba(148,163,184,0.12)">
+          <div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:600;color:#f8fafc">${kit}</div>
+        </td></tr>
+        <tr><td style="padding:28px 30px 6px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#e2e8f0;line-height:1.6">
+          <p style="margin:0 0 14px;font-size:15px;color:#f1f5f9">Hi,</p>
+          <p style="margin:0 0 14px;font-size:15px;color:#cbd5e1">Someone asked to reset the password for your <strong style="color:#f1f5f9">${kit}</strong> account.</p>
+          <p style="margin:0 0 4px;font-size:14px;color:#94a3b8">${escapeHtml(machineLine)}</p>
+        </td></tr>
+        <tr><td style="padding:22px 30px 4px">
+          <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+            <td align="center" bgcolor="#e8a55c" style="border-radius:10px">
+              <a href="${url}" style="display:inline-block;padding:13px 30px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;color:#1a1207;text-decoration:none;border-radius:10px">Choose a new password</a>
+            </td></tr></table>
+        </td></tr>
+        <tr><td style="padding:18px 30px 4px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+          <p style="margin:0;font-size:12px;color:#64748b">Or paste this into a browser on that computer:</p>
+          <p style="margin:6px 0 0;font-size:12px"><a href="${url}" style="color:#e8a55c;word-break:break-all">${url}</a></p>
+        </td></tr>
+        <tr><td style="padding:22px 30px 26px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;border-top:1px solid rgba(148,163,184,0.1)">
+          <p style="margin:18px 0 0;font-size:11.5px;color:#64748b">Single use, expires in ${ttl} minutes. If you did not ask for this you can ignore this email.</p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+  return { subject, html, text };
+}
+
 async function sendViaResend(to, subject, html, text) {
   const apiKey = (process.env.RESEND_API_KEY || "").trim();
   if (!apiKey) {
@@ -300,6 +377,25 @@ export default async function handler(req, res) {
   const to = String(bodyObj.to || "").trim().toLowerCase();
   if (!EMAIL_RE.test(to) || to.length > 200) {
     return res.status(422).json({ ok: false, error: "A valid recipient email is required." });
+  }
+
+  // Second mode: the local Kit's forgot-password flow.
+  if (String(bodyObj.kind || "") === "password-reset") {
+    const resetUrl = String(bodyObj.reset_url || "").trim();
+    if (!resetUrlOk(resetUrl)) {
+      console.warn(`[welcome:reset] refused non-loopback reset_url for ${to}`);
+      return res
+        .status(422)
+        .json({ ok: false, error: "reset_url must be a loopback /ui/ link carrying a reset token." });
+    }
+    const mail = buildPasswordResetEmail(resetUrl, bodyObj.kit_name, bodyObj.ttl_minutes);
+    const sent = await sendViaResend(to, mail.subject, mail.html, mail.text);
+    // Never echo the URL: it carries a live single-use credential.
+    console.log(`[welcome:reset] to=${to} provider=${sent.provider} ok=${sent.ok}`);
+    if (!sent.ok) {
+      return res.status(502).json({ ok: false, error: "Reset email could not be sent." });
+    }
+    return res.status(200).json({ ok: true, sent: sent.provider === "resend", id: sent.id });
   }
 
   const surfaces = Array.isArray(bodyObj.surfaces)
