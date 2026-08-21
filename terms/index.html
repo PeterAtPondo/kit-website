@@ -43,7 +43,7 @@
     <article class="post">
       <header class="post__header">
         <div class="post__meta">
-          <span>Version 2026-08-05</span>
+          <span>Version 2026-08-21</span>
           <span>&middot; beta</span>
         </div>
         <h1 class="post__title">Kit beta terms</h1>
@@ -96,8 +96,12 @@ and this list is intended to be complete:
   cycle or a background service crashes, it sends when that happened and the
   crash's own error lines, filtered the same way. It also sends two numbers
   about the nightly dream cycle: how many days since one last finished, and
-  how many attempts have failed in a row. Never memories, messages, files,
-  or anything you or your Kit work on. Set KIT_TELEMETRY=0 in your Kit's
+  how many attempts have failed in a row. When one of your Kit's own health
+  checks is unhappy, it sends which check, the one line it says about itself,
+  and the fix it suggests, so we can act on the actual fault instead of a
+  number; those lines are your Kit describing its own machinery, counts,
+  timings, states and the names of its own parts. Never memories, messages,
+  files, or anything you or your Kit work on. Set KIT_TELEMETRY=0 in your Kit's
   .env to turn all of it off, or ask us to remove you and we delete the
   record.</li>
 </ul>
