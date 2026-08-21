@@ -1,13 +1,11 @@
 {
-  "version": "0.2.198",
-  "url": "https://kit-project.com/downloads/Kit-0.2.198-macOS.dmg",
+  "version": "0.2.200",
+  "url": "https://kit-project.com/downloads/Kit-0.2.200-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Forgetting your password is no longer a dead end. The sign-in screen has a \"forgot your password\" link, and it sends a link that only opens on the computer your kit runs on. That last part is the point rather than an inconvenience: it is what makes the link useless to anyone who is not sitting at your machine. Before this, changing a password needed the current one and only an admin could set somebody else's, which on a personal kit is the same person, so there was no door at all.",
-    "Your password manager will now be offered your kit password when you sign in. The sign-in fields were not wrapped in a form, and Safari and iCloud Keychain only offer to save a password when a form is actually submitted, so your kit never once asked to keep it. If you have wondered why the Apple prompt never appeared, that was why, and it was ours not yours.",
-    "Updating no longer deletes backups your kit did not write. The pre-update sweep kept the seven most recent files matching a pattern far wider than the ones it makes, so nightly dumps and your own manual backups sitting in the same folder were counted and quietly removed. Only the update backups your kit creates are swept now, and everything else is left alone.",
-    "DeepSeek Harness can now reach your kit. Turn it on in Sources and your kit is added as an MCP server in its config, the same one-switch shape the other tools use. Importing your dsh history is not in yet, and the surface says so rather than pretending otherwise.",
-    "The account editor tells the truth about your allowlist. It read zero allowed and zero pending over a list that actually had people in it, while the same numbers were right everywhere else."
+    "Forgot your password? Your kit now emails you a reset link, to the address the account signs in with. There is nothing to type: press the link on the sign-in screen and it goes to your registered address. Getting into the mailbox is the point, because that is what proves the account is yours. The link then only opens on the computer your kit runs on, so it takes both.",
+    "0.2.199 got this wrong and showed the link on screen instead. That made the password decorative: anyone who reached your machine could have taken the account without ever proving who they were. It was up for a few minutes and was never published to anyone.",
+    "The email now actually sends. A personal kit carries no email credentials of its own, by design, so 0.2.198 quietly sent nothing on most machines and then pointed at a Docker container that does not exist to go and find the link. Your kit now sends through kit-project.com's mail service, the same one that sends your welcome email, and if a send fails it says so plainly instead of claiming the link is on its way."
   ]
 }

@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.198</title>
-      <pubDate>Fri, 21 Aug 2026 12:16:58 -0000</pubDate>
-      <sparkle:version>0.2.198</sparkle:version>
-      <sparkle:shortVersionString>0.2.198</sparkle:shortVersionString>
+      <title>0.2.200</title>
+      <pubDate>Fri, 21 Aug 2026 13:34:04 -0000</pubDate>
+      <sparkle:version>0.2.200</sparkle:version>
+      <sparkle:shortVersionString>0.2.200</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Forgetting your password is no longer a dead end. The sign-in screen has a &quot;forgot your password&quot; link, and it sends a link that only opens on the computer your kit runs on. That last part is the point rather than an inconvenience: it is what makes the link useless to anyone who is not sitting at your machine. Before this, changing a password needed the current one and only an admin could set somebody else&#x27;s, which on a personal kit is the same person, so there was no door at all.</li><li>Your password manager will now be offered your kit password when you sign in. The sign-in fields were not wrapped in a form, and Safari and iCloud Keychain only offer to save a password when a form is actually submitted, so your kit never once asked to keep it. If you have wondered why the Apple prompt never appeared, that was why, and it was ours not yours.</li><li>Updating no longer deletes backups your kit did not write. The pre-update sweep kept the seven most recent files matching a pattern far wider than the ones it makes, so nightly dumps and your own manual backups sitting in the same folder were counted and quietly removed. Only the update backups your kit creates are swept now, and everything else is left alone.</li><li>DeepSeek Harness can now reach your kit. Turn it on in Sources and your kit is added as an MCP server in its config, the same one-switch shape the other tools use. Importing your dsh history is not in yet, and the surface says so rather than pretending otherwise.</li><li>The account editor tells the truth about your allowlist. It read zero allowed and zero pending over a list that actually had people in it, while the same numbers were right everywhere else.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.198-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="tWyeE0APsfqUtY314wz//D98ukDJEQ3Hzszw1QwVGv8XzHLzL/AVwV13Y9NsACW8xHIzjDtMU4zzSWnIK2M9BQ==" length="15984996"/>
+      <description><![CDATA[<ul><li>Forgot your password? Your kit now emails you a reset link, to the address the account signs in with. There is nothing to type: press the link on the sign-in screen and it goes to your registered address. Getting into the mailbox is the point, because that is what proves the account is yours. The link then only opens on the computer your kit runs on, so it takes both.</li><li>0.2.199 got this wrong and showed the link on screen instead. That made the password decorative: anyone who reached your machine could have taken the account without ever proving who they were. It was up for a few minutes and was never published to anyone.</li><li>The email now actually sends. A personal kit carries no email credentials of its own, by design, so 0.2.198 quietly sent nothing on most machines and then pointed at a Docker container that does not exist to go and find the link. Your kit now sends through kit-project.com&#x27;s mail service, the same one that sends your welcome email, and if a send fails it says so plainly instead of claiming the link is on its way.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.200-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="6XrOq6DVPTA/WWp3+p/MyoGWkYQFJmHz+xcngEcDW2X4tRkU1fiCmKAFR9qgGPpOYE5g8b0aFvIj1gR70iFdCw==" length="16013472"/>
     </item>
   </channel>
 </rss>

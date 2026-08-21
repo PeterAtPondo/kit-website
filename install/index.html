@@ -313,6 +313,22 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.200</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Forgot your password? Your kit now emails you a reset link, to the address the account signs in with. There is nothing to type: press the link on the sign-in screen and it goes to your registered address. Getting into the mailbox is the point, because that is what proves the account is yours. The link then only opens on the computer your kit runs on, so it takes both.</li>
+            <li>0.2.199 got this wrong and showed the link on screen instead. That made the password decorative: anyone who reached your machine could have taken the account without ever proving who they were. It was up for a few minutes and was never published to anyone.</li>
+            <li>The email now actually sends. A personal kit carries no email credentials of its own, by design, so 0.2.198 quietly sent nothing on most machines and then pointed at a Docker container that does not exist to go and find the link. Your kit now sends through kit-project.com&#x27;s mail service, the same one that sends your welcome email, and if a send fails it says so plainly instead of claiming the link is on its way.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.198</span>
           <span class="release__date">August 2026</span>
         </div>
