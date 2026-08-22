@@ -3,8 +3,15 @@ assets/video/*.mov
 .env.diagnostic
 node_modules
 
-# Dev harness for the roster page: runs against a stubbed Supabase, so it is
-# only ever useful from a checkout. Everything else under scripts/ IS served
-# (kit-project.com/scripts/beta-invite.sh answers 200 today); this keeps the
-# new one off the public site rather than changing that for the existing ones.
+# Operator and build tooling. All of it was being served: beta-invite.sh
+# answered 200 and published the shape of the admin invite API, and the
+# narration config carries a paid ElevenLabs voice id. No credentials in any
+# of them (those come from env or the keychain), but none of it is for
+# visitors, and a script that only makes sense from a checkout should not be
+# a URL. Listed file by file rather than as a bare scripts/ line on purpose:
+# four pages already ask for /scripts/site.js, so that path has to stay open
+# for a real front-end asset.
+scripts/beta-invite.sh
 scripts/roster-preview.mjs
+scripts/narration/
+scripts/howto-video/
