@@ -1,13 +1,11 @@
 {
-  "version": "0.2.202",
-  "url": "https://kit-project.com/downloads/Kit-0.2.202-macOS.dmg",
+  "version": "0.2.203",
+  "url": "https://kit-project.com/downloads/Kit-0.2.203-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Your ChatGPT and Claude conversations can come in now. They live on someone else's servers, so there is nothing on your machine for kit to read: ask ChatGPT or Claude for your data, and when the file arrives, hand it over. Settings, Connections, Imports. Setup offers it too, on the step that asks which histories to bring in.",
-    "Handing over a newer export later is safe. Each conversation is matched by the id the provider gave it, so a second export adds what is new and changes nothing else. Nothing is duplicated and nothing is overwritten.",
-    "What comes in is a real read of the conversation, not a rough one. A ChatGPT conversation is a tree rather than a list, because every time you regenerate an answer it branches: kit follows the version you kept and leaves the abandoned ones out. Voice chats come in as the words that were spoken. A picture you sent is noted as one, so the reply to it still makes sense.",
-    "Imported conversations show up under Knowledge, Sources, Imports, in the same place as histories brought in any other way. Where a conversation came from stops mattering once it is in.",
-    "A conversation can no longer end up with two different summaries of itself, which was possible when two of your kit's background passes picked up the same one at the same moment."
+    "The button for uploading a chat archive now works. In 0.2.202 it did nothing at all inside the app: a file chooser needs the app to answer a request the window never answered, so the click was accepted and no panel ever opened. It worked in a browser, which is where it was tested, and that is why it went out broken. Every file chooser in the app is wired now, not just this one.",
+    "The web chats section says the true thing about itself. Your kit has no direct access to ChatGPT or Claude, so the export has to be requested from them: each row now links to that provider's own instructions, and the link opens in your browser rather than inside your kit.",
+    "One number for how many memories you have. The wake card was counting Kit's own plumbing (handoffs, plans, run exhaust) and Fireflies was not, so the same kit reported 41,823 in one place and 30,630 in another. The headline is now the memories that have value to you, and the plumbing stays Kit's business. Nothing was deleted and nothing changed about what your kit can recall."
   ]
 }
