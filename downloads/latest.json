@@ -1,11 +1,15 @@
 {
-  "version": "0.2.200",
-  "url": "https://kit-project.com/downloads/Kit-0.2.200-macOS.dmg",
+  "version": "0.2.201",
+  "url": "https://kit-project.com/downloads/Kit-0.2.201-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Forgot your password? Your kit now emails you a reset link, to the address the account signs in with. There is nothing to type: press the link on the sign-in screen and it goes to your registered address. Getting into the mailbox is the point, because that is what proves the account is yours. The link then only opens on the computer your kit runs on, so it takes both.",
-    "0.2.199 got this wrong and showed the link on screen instead. That made the password decorative: anyone who reached your machine could have taken the account without ever proving who they were. It was up for a few minutes and was never published to anyone.",
-    "The email now actually sends. A personal kit carries no email credentials of its own, by design, so 0.2.198 quietly sent nothing on most machines and then pointed at a Docker container that does not exist to go and find the link. Your kit now sends through kit-project.com's mail service, the same one that sends your welcome email, and if a send fails it says so plainly instead of claiming the link is on its way."
+    "Your kit now asks before the way it reports on itself changes. The terms have always promised that a material change asks you to agree again, and until now nothing enforced it: the version you accepted at setup was written down and never read back. It is read now, on both launch paths, and declining costs you nothing. Your kit keeps updating and keeps every fix, and carries on reporting exactly what it does today.",
+    "What it is asking about: when one of your kit's own health checks is unhappy, it can now say which one. Three beta kits sat unwell for weeks because the only thing that ever left the machine was a number, and a number cannot be acted on from the outside. It sends the names of its own checks and nothing else, never the line of detail underneath, because that one can quote your own work.",
+    "The nightly cycle stops reporting a fault that was never a fault. If your kit does not run playbooks, several of its background jobs were asking for that machinery anyway and being turned down, and the refusal reached you as \"a dream producer errored\". Nothing was ever broken. Those jobs now check first and stay quiet, which is what they should have done all along.",
+    "A conversation can no longer end up with two different summaries of itself. When two of your kit's background passes picked up the same conversation at the same moment, both wrote a story-so-far for it, seconds apart and worded differently. The second pass now finds out the work is already taken before it starts, rather than after it has finished.",
+    "Installing on ordinary broadband is no longer a coin toss. Every install builds on your own machine, and pip gives each download fifteen seconds to answer before giving up, which is not long enough for the big machine-learning wheels. Two builds here died on that exact line. It now waits two minutes and retries ten times.",
+    "A run that gets stuck no longer messages you about it every ten minutes. When a step's work item was cancelled out from under it, the engine kept re-dispatching it into nothing and telling you each time it did. It now reads why the item was cancelled, keeps the history of what it already tried, and caps how often it nudges you about the same thing.",
+    "More than one of your kit can be awake at once, and now each one knows it. When you have kit running in two places, each reply carries who else is working and what they are holding, so they can coordinate before touching the same thing rather than find out afterwards."
   ]
 }
