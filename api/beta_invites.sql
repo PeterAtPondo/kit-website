@@ -33,3 +33,20 @@ alter table public.beta_invites enable row level security;
 -- No code path uses the anon or authenticated roles; close that door too.
 revoke all on table public.beta_invites from anon, authenticated;
 revoke all on sequence public.beta_invites_id_seq from anon, authenticated;
+
+-- Archive (added 2026-08-22): an invite that is revoked, expired or spent is
+-- still a record of who was invited and whether they ever used it, so the
+-- roster should be able to put it out of sight without throwing it away.
+-- Null means live in the list; a timestamp means archived. The roster's
+-- "sweep the dead ones" sets this on every dead invite at once, and archiving
+-- always sets revoked alongside it, so nothing hidden from the list is still
+-- a working door. Deleting a row outright stays available for the invite that
+-- should never have existed; beta_requests.invite_id is deliberately not a
+-- foreign key, so a delete here never takes the record of the request with it.
+alter table public.beta_invites
+  add column if not exists archived_at timestamptz;
+
+-- The list reads "what is live, newest first", so index the way it asks.
+create index if not exists beta_invites_live_idx
+  on public.beta_invites (created_at desc)
+  where archived_at is null;

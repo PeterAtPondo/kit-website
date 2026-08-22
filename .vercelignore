@@ -2,3 +2,9 @@
 assets/video/*.mov
 .env.diagnostic
 node_modules
+
+# Dev harness for the roster page: runs against a stubbed Supabase, so it is
+# only ever useful from a checkout. Everything else under scripts/ IS served
+# (kit-project.com/scripts/beta-invite.sh answers 200 today); this keeps the
+# new one off the public site rather than changing that for the existing ones.
+scripts/roster-preview.mjs

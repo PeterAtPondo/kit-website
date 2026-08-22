@@ -26,9 +26,20 @@
 //   email, operator name, Kit name, connected surface ids, app version,
 //   stack version, first seen, last seen, and a structural debug block
 //   (runtime docker|native, the installed-version marker, skew flag,
-//   background process alive/restart counts, health rollup id, an
-//   operator-stopped flag). States and counts, never content.
+//   background process alive/restart counts, health rollup, an
+//   operator-stopped flag, the two dream-cycle numbers, the ids and
+//   one-line summaries of unhappy health checks, and the newest runtime
+//   failure). States, counts and Kit's own words about its own machinery,
+//   never content.
 // Never: memories, message content, file paths, project names, IP addresses.
+//
+// The health-check names and summaries, the dream numbers and the runtime
+// failure are all disclosed in the 2026-08-21 terms; that clause and this
+// file move together. The app has been sending them since 0.2.19x and this
+// receiver dropped every one of them on the floor, because it rebuilds the
+// debug block field by field and an unknown key simply never survives. That
+// is the right default, and this is the other half of it: a field the terms
+// promise we collect has to be named here or it does not exist.
 //
 // Env (kit-website Vercel project):
 //   - KIT_WELCOME_TOKEN   the app token the macOS app already carries
@@ -58,6 +69,27 @@ const VERSION_RE = /^\d{1,3}(\.\d{1,5}){0,3}$/;
 // a bounded field is one less thing that page has to defend against.
 const cap = (v, n) => String(v ?? "").trim().slice(0, n);
 const version = (v) => (VERSION_RE.test(String(v ?? "").trim()) ? String(v).trim() : null);
+// Numbers are bounded the same way strings are: a count that arrives as a
+// string, a NaN, or six digits of nonsense must not reach the roster page.
+const count = (v, max) =>
+  Number.isFinite(Number(v)) ? Math.min(Math.max(0, Math.round(Number(v))), max) : null;
+const days = (v) =>
+  Number.isFinite(Number(v)) ? Math.min(Math.max(0, Math.round(Number(v) * 10) / 10), 3650) : null;
+
+// Update failures and runtime failures are the same shape by design (the app
+// builds both from one recorder), so they get one set of caps here rather than
+// two that can drift apart. The app strips credentials from log_tail before
+// sending; these caps are the second fence, not the first.
+const failure = (v) =>
+  v && typeof v === "object"
+    ? {
+        kind: cap(v.kind, 40),
+        detail: cap(v.detail, 300),
+        app_version: version(v.app_version),
+        at: cap(v.at, 40),
+        log_tail: cap(v.log_tail, 3000),
+      }
+    : null;
 
 // Upsert one install. first_seen is deliberately NOT sent: the column defaults
 // to now() on insert, and PostgREST leaves columns absent from the body alone
@@ -131,16 +163,7 @@ export default async function handler(req, res) {
       // log_tail before sending; the caps here are the second fence. Always
       // written, null when the ping carries none: PostgREST leaves absent
       // columns alone on merge, so a cleared failure must clear explicitly.
-      update_failure:
-        body.update_failure && typeof body.update_failure === "object"
-          ? {
-              kind: cap(body.update_failure.kind, 40),
-              detail: cap(body.update_failure.detail, 300),
-              app_version: version(body.update_failure.app_version),
-              at: cap(body.update_failure.at, 40),
-              log_tail: cap(body.update_failure.log_tail, 3000),
-            }
-          : null,
+      update_failure: failure(body.update_failure),
       last_seen: now,
     };
 
@@ -164,11 +187,52 @@ export default async function handler(req, res) {
         }));
       }
       if (d.health && typeof d.health === "object") {
-        debug.health = {
+        const health = {
           overall: cap(d.health.overall, 20),
-          attention: Number.isFinite(Number(d.health.attention)) ? Math.min(Math.max(0, Number(d.health.attention)), 999) : 0,
+          attention: count(d.health.attention, 999) ?? 0,
         };
+        // WHICH checks are unhappy, not just how many. Three installs sat
+        // degraded for weeks (2026-08-21) and nobody could say what was wrong
+        // without asking their owner to run something, because the names never
+        // left the machine. Ids and the check's own one-line summary and
+        // remedy: Kit describing its own machinery. Never `detail`, which can
+        // quote the operator's own content, and never anything not on this list.
+        if (Array.isArray(d.health.attention_ids)) {
+          health.attention_ids = d.health.attention_ids
+            .slice(0, 12)
+            .map((id) => cap(id, 60))
+            .filter(Boolean);
+        }
+        if (Array.isArray(d.health.attention_summaries)) {
+          health.attention_summaries = d.health.attention_summaries
+            .slice(0, 12)
+            .map((c) => ({
+              id: cap(c?.id, 60),
+              status: cap(c?.status, 20),
+              summary: cap(c?.summary, 300),
+              remedy: cap(c?.remedy, 300),
+            }))
+            .filter((c) => c.id);
+        }
+        debug.health = health;
       }
+      // Dream-cycle health: how long since one finished, and how many have
+      // failed in a row. A cycle that silently never completes shows up here
+      // as rising age even when no crash was ever recorded, which is the only
+      // way that failure mode is visible from outside the operator's Mac.
+      if (d.dream && typeof d.dream === "object") {
+        const dream = {};
+        const age = days(d.dream.last_completed_age_days);
+        if (age !== null) dream.last_completed_age_days = age;
+        const failures = count(d.dream.consecutive_failures, 9999);
+        if (failures !== null) dream.consecutive_failures = failures;
+        if (Object.keys(dream).length) debug.dream = dream;
+      }
+      // The newest dream or background-process crash this app has seen. Same
+      // shape as update_failure, its own key because an update failure and a
+      // dream crash can both be live and neither may hide the other.
+      const runtimeFailure = failure(d.last_failure);
+      if (runtimeFailure) debug.last_failure = runtimeFailure;
       if (d.operator_stopped === true) debug.operator_stopped = true;
       record.debug = debug;
     }
