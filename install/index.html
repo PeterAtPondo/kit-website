@@ -313,6 +313,24 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.202</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Your ChatGPT and Claude conversations can come in now. They live on someone else&#x27;s servers, so there is nothing on your machine for kit to read: ask ChatGPT or Claude for your data, and when the file arrives, hand it over. Settings, Connections, Imports. Setup offers it too, on the step that asks which histories to bring in.</li>
+            <li>Handing over a newer export later is safe. Each conversation is matched by the id the provider gave it, so a second export adds what is new and changes nothing else. Nothing is duplicated and nothing is overwritten.</li>
+            <li>What comes in is a real read of the conversation, not a rough one. A ChatGPT conversation is a tree rather than a list, because every time you regenerate an answer it branches: kit follows the version you kept and leaves the abandoned ones out. Voice chats come in as the words that were spoken. A picture you sent is noted as one, so the reply to it still makes sense.</li>
+            <li>Imported conversations show up under Knowledge, Sources, Imports, in the same place as histories brought in any other way. Where a conversation came from stops mattering once it is in.</li>
+            <li>A conversation can no longer end up with two different summaries of itself, which was possible when two of your kit&#x27;s background passes picked up the same one at the same moment.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.201</span>
           <span class="release__date">August 2026</span>
         </div>
