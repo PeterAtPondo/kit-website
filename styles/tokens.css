@@ -1,32 +1,37 @@
-/* Design tokens — matches the brain UI aesthetic.
-   Dark navy base, soft accent glows (Fireflies palette),
-   warm sunrise on panels, purple for dream/memory markers. */
+/* Design tokens, from Kit's brand guide of 22 August 2026.
+   The values here are the ones the product ships (api/ui/src/kit-tokens.css,
+   generated from docs/design/visual-identity-2026-08); the names are this
+   site's own, so every stylesheet that reads them keeps working. Where the two
+   ever disagree, the guide wins and this file is what changes. */
 
 :root {
   /* Surfaces */
-  --bg-deep:     #0a0e1a;
-  --bg-soft:     #141926;
-  --bg-card:     #1b2133;
-  --bg-elev:     #232a40;
+  --bg-deep:     #020617;   /* the one floor */
+  --bg-soft:     #0a0f1a;
+  --bg-card:     #0f172a;
+  --bg-elev:     #1e293b;
 
   /* Ink */
-  --ink-primary:   #e8ebf2;
-  --ink-secondary: #b6bdd0;
-  --ink-quiet:     #8b95af;
+  --ink-primary:   #f1f5f9;
+  --ink-secondary: #cbd5e1;
+  --ink-quiet:     #94a3b8;
 
   /* Accents — the Fireflies palette */
-  --accent-glow:   #6bbfff;   /* soft blue — like a node */
-  --accent-warm:   #e8a55c;   /* sunrise — warmth */
-  --accent-memory: #9d7fe8;   /* purple — dream marker */
-  --accent-green:  #7fe89d;   /* edge-alive */
+  /* Amber leads: it is Kit's colour. Blue is demoted to what it means in the
+     guide, information, rather than being the site's signature. */
+  --accent-warm:   #e8a55c;   /* the primary */
+  --accent-memory: #a78bfa;   /* secondary: sleep, dream, consolidation */
+  --accent-green:  #34d399;   /* tertiary: health, fresh, alive */
+  --accent-glow:   #60a5fa;   /* information, and the cool end of a field */
+  --accent-firefly: #ffc46b;  /* light-emitting things */
 
   /* Connections */
-  --edge-faint:   rgba(107, 191, 255, 0.15);
-  --edge-soft:    rgba(107, 191, 255, 0.35);
-  --edge-strong:  rgba(107, 191, 255, 0.7);
+  --edge-faint:   rgba(232, 165, 92, 0.15);
+  --edge-soft:    rgba(232, 165, 92, 0.35);
+  --edge-strong:  rgba(232, 165, 92, 0.7);
 
   /* Glows */
-  --glow-blue:    0 0 24px rgba(107, 191, 255, 0.3);
+  --glow-blue:    0 0 24px rgba(96, 165, 250, 0.3);
   --glow-warm:    0 0 32px rgba(232, 165, 92, 0.25);
 
   /* Typography — system stack for now; can refine to a Google Font later */
@@ -48,19 +53,23 @@
   --space-32: 8rem;
 
   /* Radii */
+  /* The four steps the guide sets out: 6 for small details, 10 for controls,
+     14 for cards, 20 for panels and sheets. */
   --radius-sm:  6px;
-  --radius-md:  12px;
-  --radius-lg:  20px;
-  --radius-xl:  32px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
 
   /* Content width */
   --content-max:  68rem;
   --reading-max:  38rem;
 
   /* Transitions */
-  --t-fast:   120ms ease;
-  --t-medium: 280ms ease;
-  --t-slow:   600ms ease;
+  /* 120, 200, 320, 600, and one curve. */
+  --t-fast:   120ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --t-medium: 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --t-slow:   600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --t-hover:  200ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 /* Product name — rendered everywhere the [data-name] attribute appears.

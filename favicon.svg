@@ -1,11 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" role="img" aria-label="Kit">
-  <line x1="12" y1="12" x2="5"  y2="5"  stroke="#fbbf24" stroke-width="1.5" stroke-opacity="0.6"/>
-  <line x1="12" y1="12" x2="19" y2="6"  stroke="#fbbf24" stroke-width="1.5" stroke-opacity="0.6"/>
-  <line x1="12" y1="12" x2="5"  y2="19" stroke="#fbbf24" stroke-width="1.5" stroke-opacity="0.6"/>
-  <line x1="12" y1="12" x2="19" y2="17" stroke="#fbbf24" stroke-width="1.5" stroke-opacity="0.6"/>
-  <circle cx="5"  cy="5"  r="2"   fill="#fbbf24" fill-opacity="0.85"/>
-  <circle cx="19" cy="6"  r="1.7" fill="#fbbf24" fill-opacity="0.75"/>
-  <circle cx="5"  cy="19" r="1.7" fill="#fbbf24" fill-opacity="0.75"/>
-  <circle cx="19" cy="17" r="2"   fill="#fbbf24" fill-opacity="0.85"/>
-  <circle cx="12" cy="12" r="3.2" fill="#fbbf24"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" role="img" aria-label="Kit"><g stroke="#e8a55c" stroke-linecap="round" stroke-width="3.44"><line x1="49" y1="52" x2="77" y2="31"/><line x1="49" y1="52" x2="22" y2="62"/><line x1="49" y1="52" x2="62" y2="80"/></g><circle cx="49" cy="52" r="12" fill="#e8a55c"/><circle cx="77" cy="31" r="7.43" fill="#e8a55c"/><circle cx="22" cy="62" r="6.08" fill="#e8a55c"/><circle cx="62" cy="80" r="5.4" fill="#e8a55c"/></svg>

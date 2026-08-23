@@ -9,7 +9,7 @@ html, body { margin: 0; padding: 0; }
   top: 0.5rem;
   left: 0.5rem;
   padding: 0.5rem 1rem;
-  background: var(--accent-glow);
+  background: var(--accent-warm);
   color: var(--bg-deep);
   font-weight: 600;
   border-radius: var(--radius-sm);
@@ -30,7 +30,7 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--accent-glow);
+  outline: 2px solid var(--accent-warm);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -76,39 +76,37 @@ body {
   pointer-events: none;
   overflow: hidden;
 }
+/* Static, and not blurred: F4.3 rules out animated or blurred full-screen
+   layers, and four 140px-blur circles drifting on 30-second loops was the
+   most expensive thing on the page. The same washes, painted as gradients
+   that cost one composite. */
 .aurora__blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(140px);
-  opacity: 0.45;
+  opacity: 0.3;
   mix-blend-mode: screen;
-  will-change: transform;
 }
 .aurora__blob--a {
   top: -18%; left: -12%;
   width: 46rem; height: 46rem;
-  background: var(--accent-glow);
-  animation: aurora-drift-a 32s ease-in-out infinite alternate;
+  background: radial-gradient(circle at 50% 50%, var(--accent-glow), transparent 72%);
 }
 .aurora__blob--b {
   top: 10%; right: -18%;
   width: 40rem; height: 40rem;
-  background: var(--accent-memory);
-  animation: aurora-drift-b 38s ease-in-out infinite alternate;
+  background: radial-gradient(circle at 50% 50%, var(--accent-memory), transparent 72%);
   opacity: 0.38;
 }
 .aurora__blob--c {
   bottom: -25%; left: 18%;
   width: 54rem; height: 54rem;
-  background: var(--accent-warm);
-  animation: aurora-drift-c 44s ease-in-out infinite alternate;
+  background: radial-gradient(circle at 50% 50%, var(--accent-warm), transparent 72%);
   opacity: 0.28;
 }
 .aurora__blob--d {
   top: 48%; left: 48%;
   width: 32rem; height: 32rem;
-  background: var(--accent-green);
-  animation: aurora-drift-d 50s ease-in-out infinite alternate;
+  background: radial-gradient(circle at 50% 50%, var(--accent-green), transparent 72%);
   opacity: 0.22;
 }
 @keyframes aurora-drift-a {
@@ -272,30 +270,14 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 }
 .nav__brand .dot {
   width: 10px; height: 10px; border-radius: 50%;
-  background: var(--accent-glow);
+  background: var(--accent-warm);
   box-shadow: var(--glow-blue);
 }
+/* The mark in the nav is still: chrome does not breathe (F5.3). It was
+   scaling and pulsing its glow on a 6s loop, in #fbbf24, which is Tailwind's
+   amber rather than Kit's. */
 .nav__mark {
-  color: #fbbf24;
-  filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.45));
-  animation: kit-breath 6s ease-in-out infinite;
-}
-/* Breathing — the sign should feel LIVING. Core pulses slightly in
-   scale and glow; the whole mark inhales and exhales. Slower than a
-   heartbeat, just enough that returning to the tab feels like the
-   brain is on. Respects prefers-reduced-motion. */
-@keyframes kit-breath {
-  0%, 100% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.45));
-  }
-  50% {
-    transform: scale(1.06);
-    filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.65));
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .nav__mark { animation: none; }
+  color: var(--accent-warm);
 }
 .nav__links {
   display: flex; gap: var(--space-6);
@@ -317,7 +299,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   right: 0;
   bottom: -2px;
   height: 1px;
-  background: linear-gradient(90deg, var(--accent-glow), var(--accent-memory));
+  background: var(--accent-warm);
   border-radius: 1px;
 }
 
@@ -363,12 +345,11 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   -webkit-backdrop-filter: blur(14px) saturate(120%);
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
+/* The name in the headline is amber, flat: it was a blue-to-violet gradient,
+   which made the first word of the site a colour Kit does not lead with. */
 .hero__copy h1 strong {
   font-weight: 600;
-  background: linear-gradient(135deg, var(--accent-glow) 0%, var(--accent-memory) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent-warm);
 }
 .lede__outcome {
   display: block;
@@ -508,7 +489,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   position: absolute;
   left: 0; bottom: 0;
   width: 3rem; height: 2px;
-  background: linear-gradient(90deg, var(--accent-glow), var(--accent-memory));
+  background: var(--accent-warm);
   border-radius: 1px;
 }
 
@@ -529,7 +510,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   display: inline-block;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--accent-glow);
+  color: var(--accent-warm);
   letter-spacing: 0.06em;
   margin-bottom: var(--space-2);
 }
@@ -579,7 +560,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   font-family: var(--font-display);
   font-size: 1.125rem;
   font-weight: 500;
-  color: var(--accent-glow);
+  color: var(--accent-warm);
   letter-spacing: -0.01em;
   padding-bottom: var(--space-3);
   border-bottom: 1px solid var(--edge-faint);
@@ -602,7 +583,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   position: absolute;
   left: 0; top: 0.55em;
   width: 6px; height: 1px;
-  background: var(--accent-glow);
+  background: var(--accent-warm);
 }
 .spec li:last-child { margin-bottom: 0; }
 .spec em {
@@ -633,7 +614,6 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--ink-secondary);
   margin: 0 0 var(--space-4);
   font-weight: 500;
@@ -733,7 +713,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 }
 .letter p em {
   font-style: italic;
-  color: var(--accent-glow);
+  color: var(--accent-warm);
 }
 .letter__sign {
   margin-top: var(--space-8);
@@ -775,7 +755,6 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--ink-quiet);
   margin: 0 0 var(--space-4);
   font-weight: 500;
@@ -1055,7 +1034,6 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--ink-quiet);
 }
 .contact-form input,
@@ -1093,23 +1071,23 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   font-size: 0.9375rem;
   font-weight: 500;
   padding: var(--space-3) var(--space-6);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);   /* 10: the control radius */
   border: none;
   cursor: pointer;
   transition: transform var(--t-fast), box-shadow var(--t-fast), filter var(--t-fast);
   letter-spacing: 0.01em;
 }
 .btn--primary {
-  color: var(--bg-deep);
-  background: linear-gradient(135deg, var(--accent-glow) 0%, var(--accent-memory) 100%);
-  box-shadow: var(--glow-blue);
+  color: #1a1207;
+  background: linear-gradient(to bottom, #f0bd82 0%, var(--accent-warm) 58%);
+  box-shadow: var(--glow-warm);
   text-decoration: none;
   display: inline-block;
 }
 .btn--primary:hover {
   transform: translateY(-1px);
-  filter: brightness(1.08);
-  box-shadow: 0 0 32px rgba(107, 191, 255, 0.45);
+  background: linear-gradient(to bottom, #f5d0a3 0%, #f0bd82 62%);
+  box-shadow: 0 0 32px rgba(232, 165, 92, 0.45);
 }
 /* Ghost button for secondary hero CTA. Same shape, quieter fill. */
 .btn--ghost {
@@ -1121,8 +1099,8 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 }
 .btn--ghost:hover {
   transform: translateY(-1px);
-  border-color: var(--accent-glow);
-  color: var(--accent-glow);
+  border-color: var(--accent-warm);
+  color: var(--accent-warm);
 }
 .contact-form__actions {
   display: flex;
