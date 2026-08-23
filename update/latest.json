@@ -1,11 +1,14 @@
 {
-  "version": "0.2.203",
-  "url": "https://kit-project.com/downloads/Kit-0.2.203-macOS.dmg",
+  "version": "0.2.204",
+  "url": "https://kit-project.com/downloads/Kit-0.2.204-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "The button for uploading a chat archive now works. In 0.2.202 it did nothing at all inside the app: a file chooser needs the app to answer a request the window never answered, so the click was accepted and no panel ever opened. It worked in a browser, which is where it was tested, and that is why it went out broken. Every file chooser in the app is wired now, not just this one.",
-    "The web chats section says the true thing about itself. Your kit has no direct access to ChatGPT or Claude, so the export has to be requested from them: each row now links to that provider's own instructions, and the link opens in your browser rather than inside your kit.",
-    "One number for how many memories you have. The wake card was counting Kit's own plumbing (handoffs, plans, run exhaust) and Fireflies was not, so the same kit reported 41,823 in one place and 30,630 in another. The headline is now the memories that have value to you, and the plumbing stays Kit's business. Nothing was deleted and nothing changed about what your kit can recall."
+    "If your kit uses a local model, it has probably never been able to reach it. The connection was saved with a name that only means something inside Docker, and kits have run natively since the move, so the address led nowhere at all. Ollama was up the whole time, holding the very model your kit had named. Everything that needs the model was quietly affected: imports that looked like they worked, a dream that stopped early, and no memories forming from your own history. Your kit now finds the address by looking rather than assuming, repairs the setting if it is already wrong, and the conversations it had already read are still waiting to be turned into memories.",
+    "Uninstalling no longer deletes the copy of the app you started it from.",
+    "The first dream lets you go. It used to hold the screen until it had finished, with headings that drifted while you waited, and the install screens and the dream screen disagreed about what working even looked like.",
+    "Obsidian joins the sources step, so a vault comes in alongside everything else rather than needing its own route.",
+    "Buttons that did nothing now do something. Try again was drawn on a screen that never wired it up, the connect step for a vault was posting without its token so the vault could never connect, and the access key is shown where you are actually looking when it is shown to you the one time.",
+    "Text is one scale again. Bigger Text could make some text smaller, small text existed in two sizes half a pixel apart, and the onboarding could not be resized without burying itself."
   ]
 }

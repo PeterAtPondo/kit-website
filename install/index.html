@@ -313,6 +313,25 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.204</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>If your kit uses a local model, it has probably never been able to reach it. The connection was saved with a name that only means something inside Docker, and kits have run natively since the move, so the address led nowhere at all. Ollama was up the whole time, holding the very model your kit had named. Everything that needs the model was quietly affected: imports that looked like they worked, a dream that stopped early, and no memories forming from your own history. Your kit now finds the address by looking rather than assuming, repairs the setting if it is already wrong, and the conversations it had already read are still waiting to be turned into memories.</li>
+            <li>Uninstalling no longer deletes the copy of the app you started it from.</li>
+            <li>The first dream lets you go. It used to hold the screen until it had finished, with headings that drifted while you waited, and the install screens and the dream screen disagreed about what working even looked like.</li>
+            <li>Obsidian joins the sources step, so a vault comes in alongside everything else rather than needing its own route.</li>
+            <li>Buttons that did nothing now do something. Try again was drawn on a screen that never wired it up, the connect step for a vault was posting without its token so the vault could never connect, and the access key is shown where you are actually looking when it is shown to you the one time.</li>
+            <li>Text is one scale again. Bigger Text could make some text smaller, small text existed in two sizes half a pixel apart, and the onboarding could not be resized without burying itself.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.203</span>
           <span class="release__date">August 2026</span>
         </div>
