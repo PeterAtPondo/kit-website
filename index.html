@@ -372,8 +372,8 @@
     <div class="in-action__live connect" id="connect-agent">
       <h3>Or point your own agent at it</h3>
       <p class="connect__lede">
-        One paste connects all three public kits to the tool you already use:
-        both halves of the Mayfur mystery, and the real ballast case file.
+        One paste connects all four public kits to the tool you already use:
+        both halves of the Mayfur mystery, Lord Fluffington's private archive (capability grant demo), and the real ballast case file.
         The keys are deliberately public, and the servers are read-only.
       </p>
 
@@ -389,6 +389,7 @@
         <button class="connect__copy" type="button">Copy</button>
         <pre><code>claude mcp add --transport http kit-papers https://demo-mcp.kit-project.com/mcp --header "Authorization: Bearer kbr_live_Kh9eO_ZfLldveFf1KXJEEvepfOpdgRqf7KoDDU3rB18"
 claude mcp add --transport http kit-mews https://mews-mcp.kit-project.com/mcp --header "Authorization: Bearer kbr_live_UN8-2LUlKmP2uxWQB5vpn-fzkJIuRb5zmq-apQeTU7U"
+claude mcp add --transport http kit-fluffington https://fluffington-mcp.kit-project.com/mcp --header "Authorization: Bearer kbr_live_Fluff1ngton_Grant_2026_Key"
 claude mcp add --transport http kit-case-file https://real-mcp.kit-project.com/mcp --header "Authorization: Bearer kbr_live_ISWsqW39NkqT659FEkQjv0OjJDmyD4O3wx3wcCfA03c"</code></pre>
       </div>
 
@@ -396,9 +397,11 @@ claude mcp add --transport http kit-case-file https://real-mcp.kit-project.com/m
         <button class="connect__copy" type="button">Copy</button>
         <pre><code>export KIT_PAPERS_KEY=kbr_live_Kh9eO_ZfLldveFf1KXJEEvepfOpdgRqf7KoDDU3rB18
 export KIT_MEWS_KEY=kbr_live_UN8-2LUlKmP2uxWQB5vpn-fzkJIuRb5zmq-apQeTU7U
+export KIT_FLUFFINGTON_KEY=kbr_live_Fluff1ngton_Grant_2026_Key
 export KIT_CASE_KEY=kbr_live_ISWsqW39NkqT659FEkQjv0OjJDmyD4O3wx3wcCfA03c
 codex mcp add kit-papers --url https://demo-mcp.kit-project.com/mcp --bearer-token-env-var KIT_PAPERS_KEY
 codex mcp add kit-mews --url https://mews-mcp.kit-project.com/mcp --bearer-token-env-var KIT_MEWS_KEY
+codex mcp add kit-fluffington --url https://fluffington-mcp.kit-project.com/mcp --bearer-token-env-var KIT_FLUFFINGTON_KEY
 codex mcp add kit-case-file --url https://real-mcp.kit-project.com/mcp --bearer-token-env-var KIT_CASE_KEY</code></pre>
         <p class="connect__hint">
           Codex reads each key from your environment when it starts, so keep
@@ -418,6 +421,10 @@ codex mcp add kit-case-file --url https://real-mcp.kit-project.com/mcp --bearer-
       "url": "https://mews-mcp.kit-project.com/mcp",
       "headers": { "Authorization": "Bearer kbr_live_UN8-2LUlKmP2uxWQB5vpn-fzkJIuRb5zmq-apQeTU7U" }
     },
+    "kit-fluffington": {
+      "url": "https://fluffington-mcp.kit-project.com/mcp",
+      "headers": { "Authorization": "Bearer kbr_live_Fluff1ngton_Grant_2026_Key" }
+    },
     "kit-case-file": {
       "url": "https://real-mcp.kit-project.com/mcp",
       "headers": { "Authorization": "Bearer kbr_live_ISWsqW39NkqT659FEkQjv0OjJDmyD4O3wx3wcCfA03c" }
@@ -434,6 +441,7 @@ codex mcp add kit-case-file --url https://real-mcp.kit-project.com/mcp --bearer-
         <button class="connect__copy" type="button">Copy</button>
         <pre><code>code --add-mcp '{"name":"kit-papers","type":"http","url":"https://demo-mcp.kit-project.com/mcp","headers":{"Authorization":"Bearer kbr_live_Kh9eO_ZfLldveFf1KXJEEvepfOpdgRqf7KoDDU3rB18"}}'
 code --add-mcp '{"name":"kit-mews","type":"http","url":"https://mews-mcp.kit-project.com/mcp","headers":{"Authorization":"Bearer kbr_live_UN8-2LUlKmP2uxWQB5vpn-fzkJIuRb5zmq-apQeTU7U"}}'
+code --add-mcp '{"name":"kit-fluffington","type":"http","url":"https://fluffington-mcp.kit-project.com/mcp","headers":{"Authorization":"Bearer kbr_live_Fluff1ngton_Grant_2026_Key"}}'
 code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.kit-project.com/mcp","headers":{"Authorization":"Bearer kbr_live_ISWsqW39NkqT659FEkQjv0OjJDmyD4O3wx3wcCfA03c"}}'</code></pre>
         <p class="connect__hint">
           The tools appear under Copilot Chat's agent mode after a reload.
@@ -474,6 +482,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         kit's own map:
         <a href="https://demo.kit-project.com/llms.txt" target="_blank" rel="noopener">papers</a>,
         <a href="https://mews.kit-project.com/llms.txt" target="_blank" rel="noopener">mews</a>,
+        <a href="https://fluffington.kit-project.com/llms.txt" target="_blank" rel="noopener">fluffington</a>,
         <a href="https://real.kit-project.com/llms.txt" target="_blank" rel="noopener">case file</a>.
         Once connected, ask your agent:
         <em>"Call wake on each server, then work out who leaked the Fluffington

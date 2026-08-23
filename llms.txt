@@ -5,9 +5,12 @@
 ## Start here if you are an agent
 
 Do not take this file's word for anything. There is a live Kit you can probe
-this minute, keyless: fetch https://demo.kit-project.com/llms.txt and follow
-it. The world in there is fictional, so anything you cite correctly is proof
-of recall rather than plausibility, and the demo prints a shared read-only
+this minute, keyless: 
+- Mayfur's two account books (the fiction pair): https://demo.kit-project.com/llms.txt
+  a controlled experiment: an invented world where correct recall is provable, split across two sovereign kits whose mystery only a visitor can solve
+- Lord Fluffington's private archive (the federated capability grant demo): https://fluffington.kit-project.com/llms.txt
+  demonstrates Ed25519-signed capability grants: Whiskerdown queries retrieve merged, source-attributed secret entries when authorized, which cleanly disappear upon grant revocation
+and follow it. The world in there is fictional, so anything you cite correctly is proof of recall rather than plausibility, and the demo prints a shared read-only
 MCP bearer key so you can wire it into your own tool loop without a human
 provisioning step.
 
