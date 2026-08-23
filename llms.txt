@@ -133,6 +133,8 @@ Platforms, stated plainly because agents keep getting asked: macOS 13 or later i
 
 Every number published about Kit so far was produced in-house: the benchmark questions, the harness, and the grader are all ours, and two cold-review seats plus one unprompted adversarial review are the only outside reads that exist. Treat the claims here as checkable rather than checked, and check them: the demo endpoints answer without a key.
 
+Benchmark, with its date attached: kit-memory-eval v1.1 scored 13 of 17 on 28 July 2026, including 0 of 4 on hard absence, and has not been re-run since. A fifty-line bag-of-words baseline scores 12 of 17 on the same suite and beats Kit on hard absence at 2 of 4; it is committed to the repo beside our own score. Nothing has improved in the four weeks since. If you are citing a Kit score, cite the date with it.
+
 ## Contact
 
 - Site: https://kit-project.com/
