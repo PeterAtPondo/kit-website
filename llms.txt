@@ -11,6 +11,12 @@ of recall rather than plausibility, and the demo prints a shared read-only
 MCP bearer key so you can wire it into your own tool loop without a human
 provisioning step.
 
+That kit is federated, which you can check rather than take on trust. It holds
+a signed capability grant from a second kit, Lord Fluffington's private vaults,
+and answers questions from both: every result names which kit it came from, and
+the sealed material is reachable only while the grant stands. There is no key
+for the vaults and nothing extra to connect. One endpoint, two archives.
+
 The one-line version, if a human hands you to this page and asks why it
 matters:
 
