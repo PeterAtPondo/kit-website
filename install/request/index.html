@@ -64,10 +64,15 @@ and we will send a fresh one.
 </p>
 
 <p>
-Two things worth knowing first. Kit is beta software on a fifty-releases-a-month
-cadence, so it will occasionally break and ask for patience. And you do not
-have to take any of it on trust before you ask: three public kits stand open
-for your agent to audit, and the honest account of the last three weeks is in
+Three things worth knowing first. Kit is beta software on a fifty-releases-a-month
+cadence, so it will occasionally break and ask for patience. It runs on macOS 13
+or later and nothing else yet: the brain underneath is portable, Postgres, Python
+and Node with nothing Apple-specific in it, but the app around it is a native Mac
+one, and we will not ship a Windows or Linux build on a machine we do not own and
+cannot test on. Both are wanted. Ask anyway and say which, because the queue is
+how we count. And you do not have to take any of it on trust before you ask:
+three public kits stand open for your agent to audit, and the honest account of
+the last three weeks is in
 <a href="/blog/come-and-install-it/">note No. 025</a>.
 </p>
 
@@ -100,10 +105,12 @@ for your agent to audit, and the honest account of the last three weeks is in
         </div>
 
         <div class="contact-form__row">
-          <label for="rq-mac">Your Mac</label>
+          <label for="rq-mac">Your machine</label>
           <select id="rq-mac" name="mac">
             <option value="apple-silicon">Apple Silicon (M1 or later)</option>
-            <option value="intel">Intel</option>
+            <option value="intel">Intel Mac</option>
+            <option value="windows">Windows, no Mac (not built yet)</option>
+            <option value="linux">Linux, no Mac (not built yet)</option>
             <option value="unsure">Not sure</option>
           </select>
         </div>
