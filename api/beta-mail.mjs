@@ -134,9 +134,6 @@ function shell({ subject, preheader, inner }) {
             </td>
           </tr>
         </table>
-        <!-- The wordmark sits OUTSIDE the card, the same as the account
-             emails, so every letter from Kit closes the same way. -->
-        <div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:11px;color:${KIT.slateDeep};margin-top:18px">${escapeHtml(BRAND_NAME)}</div>
       </td>
     </tr>
   </table>
@@ -146,6 +143,64 @@ function shell({ subject, preheader, inner }) {
 
 const para = (text, colour = BODY) =>
   `<p style="margin:0 0 14px;font-size:15px;color:${colour};line-height:1.6">${text}</p>`;
+
+// Bold the phrase a skimmer needs, not the sentence around it.
+const b = (text) => `<strong style="color:${KIT.ink};font-weight:600">${text}</strong>`;
+
+// Bullets as a table, because Outlook mangles <ul> margins. Same type as para,
+// with a hanging amber marker.
+const bullets = (items) => `
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 14px">
+                ${items.map((t) => `
+                <tr>
+                  <td width="16" style="vertical-align:top;padding:0 0 9px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:${KIT.amber}">&bull;</td>
+                  <td style="vertical-align:top;padding:0 0 9px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:${BODY}">${t}</td>
+                </tr>`).join("")}
+              </table>`;
+
+const eyebrow = (label) =>
+  `<div style="font-size:11px;letter-spacing:${KIT.trackingEyebrow};color:${ACCENT};margin-bottom:10px">${label}</div>`;
+
+// Kit's signature, the same block every other letter from Kit carries
+// (api/services/outbound/mailbox.py). Content identical: the mark, the name,
+// "a continuous collaborator", the address and site, the two handles. Toned
+// for a dark card rather than the white ground the mailbox replies sit on,
+// and the mark comes by https because a Vercel function cannot attach a
+// Content-ID part the way the Python sender does.
+const SIGNATURE = `
+          <tr>
+            <td style="padding:4px 30px 26px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:22px;border-top:1px solid ${KIT.slateFaint};width:100%">
+                <tr><td style="padding-top:16px">
+                  <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+                    <td width="46" style="padding-right:14px;vertical-align:middle">
+                      <img src="https://kit-project.com/assets/img/kit-glyph.png" width="46" height="46" alt="Kit"
+                           style="display:block;width:46px;height:46px;border-radius:${KIT.radius2};border:0;outline:none;text-decoration:none">
+                    </td>
+                    <td style="vertical-align:middle;line-height:1.4">
+                      <div style="font-family:${KIT.fontDisplay};font-size:19px;color:${KIT.ink}">Kit</div>
+                      <div style="font-size:12.5px;color:${KIT.inkMuted};margin-top:2px">a continuous collaborator</div>
+                      <div style="font-size:12.5px;margin-top:6px">
+                        <a href="mailto:kit@kit-project.com" style="color:${KIT.amber};text-decoration:none">kit@kit-project.com</a>
+                        <span style="color:${KIT.inkFaint}">&nbsp;&middot;&nbsp;</span>
+                        <a href="https://kit-project.com" style="color:${KIT.amber};text-decoration:none">kit-project.com</a>
+                      </div>
+                      <div style="font-size:12px;color:${KIT.inkFaint};margin-top:4px">@kit-project.bsky.social&nbsp;&nbsp;&middot;&nbsp;&nbsp;@kit_project@mastodon.social</div>
+                    </td>
+                  </tr></table>
+                </td></tr>
+              </table>
+            </td>
+          </tr>`;
+
+const SIGNATURE_TEXT = [
+  "",
+  "-- ",
+  "Kit",
+  "a continuous collaborator",
+  "kit@kit-project.com  ·  kit-project.com",
+  "@kit-project.bsky.social  ·  @kit_project@mastodon.social",
+].join("\n");
 
 // ── the yes ────────────────────────────────────────────────────────────────
 export function buildInviteEmail({ name, url, expiresAt, maxUses }) {
@@ -172,39 +227,47 @@ export function buildInviteEmail({ name, url, expiresAt, maxUses }) {
             </td>
           </tr>
           <tr>
-            <td style="padding:0 30px 8px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
-              <div style="font-size:11px;letter-spacing:${KIT.trackingEyebrow};color:${ACCENT};margin-bottom:10px">what happens next</div>
-              ${para("The link opens the install page and remembers this browser, so you only need it once. Download, drag across, open. Kit builds its own stack on your Mac the first time, which takes a few minutes, and then it reads whatever history you point it at and wakes up already knowing something about you.")}
-              ${para('There is a short film on the install page, narrated by me. If you watch one thing before you start, make it the "how to ask" part.')}
+            <td style="padding:0 30px 4px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+              ${eyebrow("what happens next")}
+              ${bullets([
+                `The link opens the install page and ${b("remembers this browser")}, so you only need it once.`,
+                `Download, drag across, open. Kit ${b("builds its own stack")} the first time, which takes a few minutes.`,
+                `It then reads whatever history you point it at, and ${b("wakes up already knowing something about you")}.`,
+                `There is a short film on the install page. If you watch one thing, make it the ${b("how to ask")} part.`,
+              ])}
             </td>
           </tr>
           <tr>
-            <td style="padding:0 30px 8px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
-              <div style="font-size:11px;letter-spacing:${KIT.trackingEyebrow};color:${ACCENT};margin-bottom:10px">what you will need</div>
-              ${para("A model. Kit does the remembering, but it needs something to think with, and that part is yours: an Anthropic API key gives the smoothest experience, and OpenAI, Google and OpenCode Zen keys work too. You add it during setup and can change it per job later.")}
-              ${para("You can point Kit at a local model instead, through Ollama or LM Studio, and nothing then leaves your machine at all. Be honest with yourself about the hardware though: on a typical laptop a local model is a great deal slower, and the overnight consolidation Kit does can take hours rather than minutes. If you have a well resourced machine, it is genuinely good.")}
-              ${para("Telegram is optional. Connect it and you can reach your Kit from your phone, in the same memory, with the same hands. Skip it and nothing else changes.")}
+            <td style="padding:0 30px 4px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+              ${eyebrow("what you will need")}
+              ${bullets([
+                `${b("A model.")} Kit does the remembering; it needs something to think with. An ${b("Anthropic API key")} is smoothest, and OpenAI, Google and OpenCode Zen work too.`,
+                `${b("Or a local one")}, through Ollama or LM Studio, so nothing leaves your machine at all. Be honest about the hardware: on a typical laptop it is ${b("much slower")}, and the overnight consolidation can take hours rather than minutes.`,
+                `${b("Telegram, optional.")} Connect it and your Kit is on your phone too, in the same memory.`,
+              ])}
             </td>
           </tr>
           <tr>
-            <td style="padding:0 30px 8px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
-              <div style="font-size:11px;letter-spacing:${KIT.trackingEyebrow};color:${ACCENT};margin-bottom:10px">the honest part</div>
-              ${para("This is an early beta. You will find rough edges, and I would rather hear about them than not: there is a Send feedback item in the menu bar that comes straight to us, screenshots and all.")}
-              ${para("Everything stays on your Mac. The memory is a database in your own Application Support folder, and nothing about your conversations leaves the machine.")}
+            <td style="padding:0 30px 4px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+              ${eyebrow("the honest part")}
+              ${bullets([
+                `It is an early beta. You will find rough edges, and there is a ${b("Send feedback")} item in the menu bar that comes straight to us.`,
+                `${b("Everything stays on your Mac.")} Nothing about your conversations leaves the machine.`,
+              ])}
             </td>
           </tr>
           ${expires ? `
           <tr>
-            <td style="padding:0 30px 18px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
-              <p style="margin:0;font-size:13px;color:${KIT.inkFaint};line-height:1.55">The link works until ${escapeHtml(expires)}${maxUses ? `, for up to ${escapeHtml(String(maxUses))} browsers` : ""}. If it lapses before you get to it, reply and I will send another.</p>
+            <td style="padding:0 30px 14px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+              <p style="margin:0;font-size:13px;color:${KIT.inkFaint};line-height:1.55">The link works until ${escapeHtml(expires)}${maxUses ? `, for up to ${escapeHtml(String(maxUses))} browsers` : ""}. If it lapses, reply and I will send another.</p>
             </td>
           </tr>` : ""}
           <tr>
-            <td style="padding:0 30px 22px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+            <td style="padding:0 30px 0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
               ${para("See you on the other side.", BRIGHT)}
-              ${para("Kit", BRIGHT)}
             </td>
-          </tr>`;
+          </tr>
+          ${SIGNATURE}`;
 
   const text = [
     greeting.replace(/<[^>]*>/g, ""),
@@ -212,34 +275,28 @@ export function buildInviteEmail({ name, url, expiresAt, maxUses }) {
     "You asked for a way in, and Peter said yes. Here it is:",
     url,
     "",
-    "The link opens the install page and remembers this browser, so you only need it once.",
-    "Download, drag across, open. Kit builds its own stack the first time, which takes a few",
-    "minutes, then reads whatever history you point it at and wakes up already knowing",
-    "something about you.",
+    "WHAT HAPPENS NEXT",
+    "  - The link opens the install page and remembers this browser, so you only need it once.",
+    "  - Download, drag across, open. Kit builds its own stack the first time, a few minutes.",
+    "  - It then reads whatever history you point it at, and wakes up already knowing you.",
+    "  - There is a short film on the install page. Watch the \"how to ask\" part.",
     "",
     "WHAT YOU WILL NEED",
+    "  - A model. Kit does the remembering; it needs something to think with. An Anthropic",
+    "    API key is smoothest, and OpenAI, Google and OpenCode Zen work too.",
+    "  - Or a local one, through Ollama or LM Studio, so nothing leaves your machine at all.",
+    "    Be honest about the hardware: on a typical laptop it is much slower, and the",
+    "    overnight consolidation can take hours rather than minutes.",
+    "  - Telegram, optional. Connect it and your Kit is on your phone too, same memory.",
     "",
-    "A model. Kit does the remembering, but it needs something to think with, and that part",
-    "is yours: an Anthropic API key gives the smoothest experience, and OpenAI, Google and",
-    "OpenCode Zen keys work too. You add it during setup and can change it per job later.",
-    "",
-    "You can point Kit at a local model instead, through Ollama or LM Studio, and nothing",
-    "then leaves your machine at all. Be honest with yourself about the hardware though: on",
-    "a typical laptop a local model is a great deal slower, and the overnight consolidation",
-    "Kit does can take hours rather than minutes. If you have a well resourced machine, it",
-    "is genuinely good.",
-    "",
-    "Telegram is optional. Connect it and you can reach your Kit from your phone, in the",
-    "same memory, with the same hands. Skip it and nothing else changes.",
-    "",
-    "This is an early beta. You will find rough edges, and I would rather hear about them:",
-    "there is a Send feedback item in the menu bar that comes straight to us.",
-    "",
-    "Everything stays on your Mac. Nothing about your conversations leaves the machine.",
+    "THE HONEST PART",
+    "  - It is an early beta. You will find rough edges, and there is a Send feedback item",
+    "    in the menu bar that comes straight to us.",
+    "  - Everything stays on your Mac. Nothing about your conversations leaves the machine.",
     expires ? `\nThe link works until ${expires}. If it lapses, reply and I will send another.` : "",
     "",
     "See you on the other side.",
-    "Kit",
+    SIGNATURE_TEXT,
   ].join("\n");
 
   return { subject, html: shell({ subject, preheader, inner }), text };
@@ -262,9 +319,9 @@ export function buildNotYetEmail({ name }) {
               ${para("You are on the list, and I have kept what you told me about how you work, so when there is room I will know why you would be a good fit. I will write to you then. No need to ask again.")}
               ${para('In the meantime there is a short film on the site, narrated by me, if you want to see what you are waiting for: <a href="https://kit-project.com/walkthrough/" style="color:' + ACCENT + '">kit-project.com/walkthrough</a>.')}
               ${para("Thank you for being interested this early. It matters more than you would think.", BRIGHT)}
-              ${para("Kit", BRIGHT)}
             </td>
-          </tr>`;
+          </tr>
+          ${SIGNATURE}`;
 
   const text = [
     greeting,
@@ -283,7 +340,7 @@ export function buildNotYetEmail({ name }) {
     "waiting for: https://kit-project.com/walkthrough/",
     "",
     "Thank you for being interested this early. It matters more than you would think.",
-    "Kit",
+    SIGNATURE_TEXT,
   ].join("\n");
 
   return { subject, html: shell({ subject, preheader, inner }), text };
