@@ -313,6 +313,33 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.211</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Setting up a model now checks it can actually do the work, not just that it answers quickly. A model that thinks until it runs out of room is caught in about a minute, with a clear suggestion, instead of an hour into your first night.</li>
+            <li>Kit no longer wakes up over an empty first sleep. If nothing has been read yet, it offers you a faster model instead of introducing itself with nothing behind it.</li>
+            <li>The first-night progress now counts towards meeting Kit, not to the end of your whole history. The rest is read in the background once Kit is awake.</li>
+            <li>There is a way out of the dreaming screen once Kit is awake, and it lands on your settings.</li>
+            <li>Settings shows the local model you actually chose, instead of reporting no model at all.</li>
+            <li>Local model addresses default to this Mac. Fresh installs no longer suggest a Docker-only address that nothing can reach.</li>
+            <li>The fireflies stay alive through the whole of setup.</li>
+            <li>Smaller things: the Telegram step no longer overflows while it pairs, the slow-model offer can be reached, and the sign-in mark stands on its own.</li>
+            <li>Asking Kit to dream while it is already dreaming now joins the cycle in progress instead of starting a second one alongside it.</li>
+            <li>The fireflies keep flying. Five animations could be ended for good by a single bad frame, including the Fireflies view itself, which left a sky full of memories rendering as black.</li>
+            <li>Setup now tells you, while you are choosing, which local models think before they answer and will struggle on your machine. It asks your model server directly rather than guessing from the name.</li>
+            <li>Kit no longer suggests a model that cannot do the job. It prefers one that answers immediately over one that reasons its way past its own budget.</li>
+            <li>You cannot walk past the model check any more. The button waits for a pass, and a failure offers you other models you already have, one click each.</li>
+            <li>The first-night progress bar counts towards meeting Kit again, instead of quoting the hours of background reading that happen after you already have it.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.205</span>
           <span class="release__date">August 2026</span>
         </div>
