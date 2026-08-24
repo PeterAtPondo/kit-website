@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.204</title>
-      <pubDate>Sun, 23 Aug 2026 22:42:08 -0000</pubDate>
-      <sparkle:version>0.2.204</sparkle:version>
-      <sparkle:shortVersionString>0.2.204</sparkle:shortVersionString>
+      <title>0.2.205</title>
+      <pubDate>Mon, 24 Aug 2026 08:23:21 -0000</pubDate>
+      <sparkle:version>0.2.205</sparkle:version>
+      <sparkle:shortVersionString>0.2.205</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>If your kit uses a local model, it has probably never been able to reach it. The connection was saved with a name that only means something inside Docker, and kits have run natively since the move, so the address led nowhere at all. Ollama was up the whole time, holding the very model your kit had named. Everything that needs the model was quietly affected: imports that looked like they worked, a dream that stopped early, and no memories forming from your own history. Your kit now finds the address by looking rather than assuming, repairs the setting if it is already wrong, and the conversations it had already read are still waiting to be turned into memories.</li><li>Uninstalling no longer deletes the copy of the app you started it from.</li><li>The first dream lets you go. It used to hold the screen until it had finished, with headings that drifted while you waited, and the install screens and the dream screen disagreed about what working even looked like.</li><li>Obsidian joins the sources step, so a vault comes in alongside everything else rather than needing its own route.</li><li>Buttons that did nothing now do something. Try again was drawn on a screen that never wired it up, the connect step for a vault was posting without its token so the vault could never connect, and the access key is shown where you are actually looking when it is shown to you the one time.</li><li>Text is one scale again. Bigger Text could make some text smaller, small text existed in two sizes half a pixel apart, and the onboarding could not be resized without burying itself.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.204-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="LpU87otjAiDZ/kF76sz9dnOAItVpypLxKOqTc6avu0tLefN7/XaTnLiOcHW1oGAtWGkB+miDmjLT5mVgDzmqBg==" length="16517666"/>
+      <description><![CDATA[<ul><li>Connected folders and Obsidian vaults actually take something in now. The walker that reads them was born without a credential, so everything it walked arrived at a locked door and nothing it saw became a memory; its manifests could also collide on a fresh install, and it wrote a pidfile nothing ever read. It now gets its own key at install, the manifests agree with themselves, and what it walks lands.</li><li>Documents you exclude stay excluded. Before this, an excluded document could still reach a model, the spool, and the database on some paths; the gate now stands in front of all three.</li><li>An expired login stops eating the night. When the machine&#x27;s Claude login dies at 3am, your kit used to launch worker after worker into the same locked door, each one failing and paging separately. It now notices the first death, holds new work, retries one probe every fifteen minutes, and tells you once, then once more when it recovers. And there is a durable fix: adding a claude-code agent now walks you through minting a long-lived token, verifies it with Anthropic before storing it, and releases the held work the moment it saves.</li><li>The extraction backlog says the true thing when it is behind but catching up, instead of dressing a draining queue as a growing problem.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.205-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="PWx1XRsKPAYgr/zYlD06gEi81K0GvFyao9iTZskcfZPVV0FcSc/VVtLGwxvID+IbmUWaJvJAdGNQiq9Re2VLCA==" length="16610922"/>
     </item>
   </channel>
 </rss>

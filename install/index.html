@@ -313,6 +313,23 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.205</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Connected folders and Obsidian vaults actually take something in now. The walker that reads them was born without a credential, so everything it walked arrived at a locked door and nothing it saw became a memory; its manifests could also collide on a fresh install, and it wrote a pidfile nothing ever read. It now gets its own key at install, the manifests agree with themselves, and what it walks lands.</li>
+            <li>Documents you exclude stay excluded. Before this, an excluded document could still reach a model, the spool, and the database on some paths; the gate now stands in front of all three.</li>
+            <li>An expired login stops eating the night. When the machine&#x27;s Claude login dies at 3am, your kit used to launch worker after worker into the same locked door, each one failing and paging separately. It now notices the first death, holds new work, retries one probe every fifteen minutes, and tells you once, then once more when it recovers. And there is a durable fix: adding a claude-code agent now walks you through minting a long-lived token, verifies it with Anthropic before storing it, and releases the held work the moment it saves.</li>
+            <li>The extraction backlog says the true thing when it is behind but catching up, instead of dressing a draining queue as a growing problem.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.204</span>
           <span class="release__date">August 2026</span>
         </div>
