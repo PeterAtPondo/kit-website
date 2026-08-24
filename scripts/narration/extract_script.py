@@ -11,8 +11,8 @@ headings. Everything visual or duplicative is dropped:
   - <svg> anywhere                                              -> dropped
   - .post__pullquote  (verbatim repeats of nearby prose)        -> dropped
   - .post__table / table-wrap                                   -> dropped
-  - <code> blocks                                               -> dropped
-  - inline strong / em / a  -> flattened to their text
+  - <pre> code blocks                                           -> dropped
+  - inline strong / em / a / code  -> flattened to spoken text
   - <h2>  -> kept as a spoken section break (short pause)
   - <p>, <li>  -> kept as prose
 
@@ -68,6 +68,17 @@ def _clean_inline(s: str) -> str:
     return s
 
 
+def _speak_inline_code(match: re.Match[str]) -> str:
+    """Turn short inline identifiers into words without reading punctuation."""
+    value = html.unescape(re.sub(r"<[^>]+>", "", match.group(1))).strip()
+    value = re.sub(r"([a-z0-9])([A-Z])", r"\1 \2", value)
+    value = value.replace("/", " and ")
+    value = value.replace("_", " ").replace("-", " ")
+    value = value.replace(":", " colon ")
+    value = re.sub(r"[<>]", " ", value)
+    return re.sub(r"\s+", " ", value).strip()
+
+
 def extract(doc: str) -> dict:
     """Pull title, meta, byline, and the narration blocks from a post doc."""
     title = ""
@@ -89,7 +100,8 @@ def extract(doc: str) -> dict:
     body = _drop(r'<p class="post__pullquote">.*?</p>', body)
     body = _drop(r"<div class=\"post__table[^\"]*\".*?</div>", body)
     body = _drop(r"<table\b.*?</table>", body)
-    body = _drop(r"<code\b.*?</code>", body)
+    body = _drop(r"<pre\b.*?</pre>", body)
+    body = re.sub(r"<code\b[^>]*>(.*?)</code>", _speak_inline_code, body, flags=re.S)
 
     # Collect spoken blocks in document order: headings, paragraphs, list items.
     blocks: list[str] = []

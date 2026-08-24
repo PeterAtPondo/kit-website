@@ -4,9 +4,10 @@ Two steps turn a blog post into an audio version, using ElevenLabs.
 
 ## 1. Extract the script (no audio, no key)
 
-Strips diagrams, inline SVG, pull-quotes, tables, and code, keeping only the
-spoken prose plus a short title/byline intro. Writes `narration.txt` next to
-the post's `index.html`.
+Strips diagrams, inline SVG, pull-quotes, tables, and code blocks, keeping only
+the spoken prose plus a short title/byline intro. Short inline identifiers are
+turned into speakable words rather than silently removed. Writes
+`narration.txt` next to the post's `index.html`.
 
 ```bash
 cd scripts/narration
@@ -51,14 +52,14 @@ ELEVENLABS_API_KEY=sk_... python3 generate_audio.py --all
 
 Output: `narration.mp3` next to the post.
 
-## Notes / open items
+## Performance pass
 
-- Posts run 950 to 2850 words (~6 to 19 minutes spoken). ElevenLabs has a
-  per-request character cap; the longest posts may need chunking by paragraph
-  and concatenation. Not built yet, flag if a long post errors on length.
-- Audio players are not yet wired into the post pages. Next step after a voice
-  is chosen: a small `<audio>` element near the post header, matching the
-  house style.
-- ElevenLabs credit cost scales with characters; generating all 11 at once is
-  a meaningful spend. Audition on one short post (notes-from-the-fork, ~950
-  words) before doing the full set.
+`narration.txt` is a performance script, not a published transcript. Review it
+before synthesis. In particular, disambiguate every standalone `read` as
+`reed` or `red`; River can choose the wrong tense from context. Those phonetic
+spellings belong only in the ignored narration input, never in article prose.
+
+Posts run roughly 6 to 20 minutes. Long posts are split on paragraph boundaries
+under ElevenLabs' request cap and concatenated losslessly with ffmpeg. Credit
+cost scales with characters, so render only missing or deliberately revised
+posts rather than using `--all` by habit.
