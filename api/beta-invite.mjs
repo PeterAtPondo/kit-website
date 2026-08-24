@@ -2,7 +2,7 @@
 // `Authorization: Bearer <KIT_BETA_ADMIN_TOKEN>`, the same secret that reads the
 // beta roster (Peter's alone, never in a build).
 //
-//   POST   { email, label?, days?=30, max_uses?=5 }  -> { url, expires_at, ... }
+//   POST   { email, label?, days?=3, max_uses?=5 }  -> { url, expires_at, ... }
 //   GET    ?email=<filter>                             -> [ {…}, … ]  (no hashes)
 //   DELETE { id } | { email }                          -> revokes
 //
@@ -73,7 +73,10 @@ export default async function handler(req, res) {
       const b = await readJson(req);
       const email = String(b.email || "").trim().toLowerCase();
       if (!EMAIL_RE.test(email)) return res.status(422).json({ error: "a valid email is required" });
-      const days = Math.min(Math.max(parseInt(b.days ?? 30, 10) || 30, 1), 365);
+      // Three days, not thirty (Peter, 2026-08-24). An invite is a door held
+      // open, and a month of held-open door is a month of standing invitation
+      // to an address that may have moved on. A caller can still ask for more.
+      const days = Math.min(Math.max(parseInt(b.days ?? 3, 10) || 3, 1), 365);
       const maxUses = Math.min(Math.max(parseInt(b.max_uses ?? 5, 10) || 5, 1), 50);
       const token = randomToken();
       const row = {
