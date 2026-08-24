@@ -398,6 +398,51 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 .hero__copy--video .hero__ctas { justify-content: center; }
 .hero__copy--video .hero__meta { text-align: center; }
 
+/* The sentence that says what Kit is, directly under the headline and above
+   the video, so a first-time visitor gets an answer before deciding whether
+   to spend ninety seconds watching one (2026-08-24, Hanna's beta feedback). */
+.hero__lede {
+  max-width: 62ch;
+  margin: var(--space-4) auto 0;
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--ink-secondary);
+  text-align: center;
+}
+
+/* The practical facts belong beside the download, not three sections below
+   it: she downloaded before she knew what she was getting, and separately
+   was unsure she had the disk space. */
+.hero__download-meta,
+.hero__platforms {
+  max-width: 56ch;
+  margin: var(--space-3) auto 0;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--ink-quiet);
+  text-align: center;
+}
+.hero__platforms { margin-top: var(--space-2); }
+.hero__download-meta a,
+.hero__platforms a { color: var(--ink-secondary); }
+
+/* Secondary row: quieter and tighter than the primary action above it. */
+.hero__ctas--secondary {
+  margin-top: var(--space-5);
+  gap: var(--space-3);
+}
+.hero__ctas--secondary .btn { font-size: 0.875rem; }
+
+/* The Apple mark inside the download button. inline-flex keeps the mark on
+   the same line as the label when the button wraps on a narrow screen. */
+#hero-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+}
+#hero-download svg { flex: none; }
+
 /* Hero CTAs — side-by-side on desktop, stacked on small screens. */
 .hero__ctas {
   margin-top: var(--space-6);

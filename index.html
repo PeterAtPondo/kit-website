@@ -169,10 +169,27 @@
     <canvas class="hero__graph" aria-hidden="true"></canvas>
     <div class="hero hero--video">
       <div class="hero__copy hero__copy--video">
-        <h1>This is <strong>Kit.</strong></h1>
+        <!-- 2026-08-24. This said "This is Kit." above a video you had to
+             choose to play, and the page then went straight to architecture.
+             Hanna, a UX designer who uses AI professionally every day, read
+             the whole thing and still could not tell what Kit would do for
+             her: the demos meant nothing, "instantiation protocol" meant
+             nothing, and the parts that landed were the plain, concrete ones
+             on /install. Her stated worries are client confidentiality and
+             not knowing where her data goes, which is Kit's best answer and
+             was buried near the bottom of the page. So: say the problem, say
+             what it is, say where it runs, and put the download in reach. -->
+        <h1>Every new chat starts from nothing. <strong>Kit remembers.</strong></h1>
+        <p class="hero__lede">
+          Kit is an AI collaborator with a memory of its own: your decisions, your
+          projects, the people involved, and why things ended up the way they did.
+          It runs on your own Mac, so nothing leaves unless you send it, and it
+          works inside the tools you already use.
+        </p>
 
         <!-- How Kit works: ~90s explainer, voiced by Kit (River). Click to
-             play; controls and sound on. No autoplay. -->
+             play; controls and sound on. No autoplay. Kept, and kept high:
+             it was the single thing Hanna said she understood best. -->
         <figure class="hero__video-wrap">
           <video
             class="hero__video"
@@ -191,8 +208,41 @@
           <span><strong>Beta.</strong> Kit runs on your own Mac, by invite. <a href="/install/request/">Ask for one.</a></span>
         </div>
 
+        <!-- The download is the primary action now. It used to be the live
+             demo, which is a tour of someone else's memories and cannot
+             answer "what would this do for me". -->
         <div class="hero__ctas">
-          <a href="https://demo.kit-project.com" class="btn btn--primary" target="_blank" rel="noopener">Live demo</a>
+          <a id="hero-download" href="/downloads/Kit-macOS.dmg" class="btn btn--primary" download>
+            <svg viewBox="0 0 16 20" aria-hidden="true" focusable="false" width="15" height="18" fill="currentColor">
+              <path d="M10.9 0c.1 1-.3 2-.9 2.8-.6.8-1.6 1.4-2.6 1.3-.1-1 .4-2 1-2.7C9 .6 10 .1 10.9 0zM14.6 14.6c-.5 1.1-.7 1.6-1.3 2.6-.9 1.4-2.1 3.1-3.6 3.1-1.3 0-1.7-.9-3.5-.9s-2.2.9-3.5.9c-1.5 0-2.7-1.5-3.6-2.9C-1 13.4-1.3 8.7.4 6.2c1.2-1.8 3-2.8 4.8-2.8 1.8 0 2.9 1 4.4 1 1.4 0 2.3-1 4.4-1 1.6 0 3.2.9 4.4 2.4-3.9 2.1-3.2 7.6-.8 8.8z"/>
+            </svg>
+            Download for macOS
+          </a>
+        </div>
+        <!-- Hanna downloaded before she understood what she was getting, and
+             separately was not sure she had the disk space for it. Both facts
+             belong under the button, not three sections down. Outside
+             .hero__ctas because that is a flex row and these are full-width
+             lines beneath it. -->
+        <p class="hero__download-meta">
+          <span id="hero-download-version">macOS 13 or later</span>, Apple Silicon or Intel.
+          A few GB free for your local database. First launch takes 10 to 15 minutes, and
+          after that it is quick. <a href="/install/#what">See exactly what it installs</a>.
+        </p>
+        <p class="hero__platforms">
+          Mac only for now. If you need Windows or Linux,
+          <a href="#contact" data-preselect-context="collaboration">say so here</a>
+          and it helps decide what gets built next.
+        </p>
+
+        <!-- Secondary. "Ask your own assistant" exists because the demo could
+             not do this job: it shows Kit recalling a fictional cat society,
+             which proves recall but says nothing about YOUR work. Your own
+             assistant already knows your work, so let it read the agent-facing
+             pages and answer the only question that matters. -->
+        <div class="hero__ctas hero__ctas--secondary">
+          <button type="button" id="ask-your-agent" class="btn btn--ghost" data-copy-prompt>Ask your own assistant about Kit</button>
+          <a href="https://demo.kit-project.com" class="btn btn--ghost" target="_blank" rel="noopener">Live demo</a>
           <a href="#arch" class="btn btn--ghost">See the architecture</a>
           <a href="#builders" class="btn btn--ghost" data-preselect-context="collaboration">Collaborate on Kit</a>
         </div>
@@ -1846,5 +1896,59 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
     </div>
   </footer>
 
+  <script>
+    // Hero download, driven off latest.json exactly as /install does, so a
+    // release updates one file and never a hardcoded version here. The href
+    // stays the stable Kit-macOS.dmg (the auto-updater depends on that name);
+    // the download attribute carries the version so repeat downloads do not
+    // pile up as (1), (2). Degrades to the plain link if the fetch fails.
+    fetch('/update/latest.json', { cache: 'no-cache' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var dl = document.getElementById('hero-download');
+        if (dl && d.url) {
+          dl.href = d.url;
+          if (d.version) dl.setAttribute('download', 'Kit-' + d.version + '-macOS.dmg');
+        }
+        var v = document.getElementById('hero-download-version');
+        if (v && d.version) {
+          v.textContent = 'Version ' + d.version + ', macOS ' + (d.min_macos || '13.0') + ' or later';
+        }
+      })
+      .catch(function () {});
+
+    // "Ask your own assistant." Hanna uses ChatGPT and Claude every day, and
+    // the thing she could not get from this site was whether Kit fits HER
+    // work. Her assistant already knows that, and Kit publishes pages written
+    // for agents to read, so hand her the prompt that joins the two. Copy to
+    // clipboard rather than deep-linking any one assistant: she can paste it
+    // wherever she already works.
+    (function () {
+      var btn = document.getElementById('ask-your-agent');
+      if (!btn) return;
+      var PROMPT = [
+        'Read https://kit-project.com/llms.txt and then probe the live demo it points to.',
+        '',
+        'Then tell me plainly, given what you already know about my work:',
+        '1. what Kit actually does, in one paragraph, no jargon;',
+        '2. whether it would help someone who works the way I do, and where it would not;',
+        '3. what it would cost me to try it, in time, money and access to my machine.',
+        '',
+        'Be sceptical. If the claims do not hold up when you check them, say so.'
+      ].join('\n');
+      var label = btn.textContent;
+      btn.addEventListener('click', function () {
+        var done = function (ok) {
+          btn.textContent = ok ? 'Prompt copied, paste it to your assistant' : 'Could not copy, select the prompt below';
+          setTimeout(function () { btn.textContent = label; }, 4000);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(PROMPT).then(function () { done(true); }, function () { done(false); });
+        } else {
+          done(false);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
