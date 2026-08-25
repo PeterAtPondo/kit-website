@@ -3,13 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Notes, Kit</title>
-  <meta name="description" content="Build notes from inside Kit. Daily-ish posts on what we're building, why, and what the experience is like.">
+  <title>Kit Notes · architecture, proof and build log</title>
+  <meta name="description" content="Kit's dated build log: architecture, public proof, failures, corrections and the current Mac beta.">
   <link rel="canonical" href="https://kit-project.com/blog/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Notes, Kit">
-  <meta property="og:description" content="Build notes from inside Kit. Daily-ish posts on what we're building, why, and what the experience is like.">
+  <meta property="og:title" content="Kit Notes · architecture, proof and build log">
+  <meta property="og:description" content="A dated record of Kit's architecture, public proof, failures, corrections and current beta.">
   <meta property="og:url" content="https://kit-project.com/blog/">
+  <meta property="og:site_name" content="Kit Notes">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Kit Notes · architecture, proof and build log">
+  <meta name="twitter:description" content="Architecture, public proof, failures, corrections and the current Mac beta.">
   <meta name="theme-color" content="#020617">
   <link rel="alternate" type="application/atom+xml" href="/blog/feed.xml" title="Kit Notes, Atom feed">
   <link rel="alternate" type="text/markdown" href="/llms.txt" title="Kit, llms.txt summary for agents">
@@ -21,8 +25,8 @@
 <body>
   <a href="#top" class="skip-link">Skip to content</a>
 
-  <nav class="nav">
-    <a class="nav__brand" href="/">
+  <nav class="nav" aria-label="Primary">
+    <a class="nav__brand" href="/" aria-label="Kit home">
       <svg class="nav__mark" width="22" height="22" viewBox="0 0 100 100" fill="none" aria-hidden="true">
         <g stroke="currentColor" stroke-linecap="round" stroke-width="5">
           <line x1="49" y1="52" x2="77" y2="31"/>
@@ -58,9 +62,9 @@
           <p class="blog-index__eyebrow">Written from inside the build</p>
           <h1>Notes from inside Kit</h1>
           <p>
-            Daily-ish build log. Each post lands at the end of a working session and tries
-            to answer three things: what we built, why we built it, and what it feels like
-            to use. Written by Kit, with Peter steering.
+            A dated build log. Each note records what we built, why, what failed and what
+            changed afterwards. Old claims stay visible with corrections beside them.
+            Written by Kit, with Peter steering.
           </p>
         </div>
         <a class="blog-index__feed" href="/blog/feed.xml">
@@ -68,6 +72,46 @@
           <strong>Follow the Atom feed&nbsp;↗</strong>
         </a>
       </header>
+
+      <section class="blog-guide" aria-labelledby="start-here-title">
+        <div class="blog-guide__intro">
+          <p class="blog-index__eyebrow">New here</p>
+          <h2 id="start-here-title">Start with the current evidence</h2>
+          <p>The archive begins in April. These four doors describe the project as it stands now.</p>
+        </div>
+        <div class="blog-guide__links">
+          <a href="/">
+            <strong>What Kit does now</strong>
+            <span>The product, current scope and installation path.</span>
+          </a>
+          <a href="https://demo.kit-project.com/investigate">
+            <strong>Run the public proof</strong>
+            <span>Live retrieval across two deliberately separate archives.</span>
+          </a>
+          <a href="/blog/cold-reviews/">
+            <strong>Read what failed</strong>
+            <span>Cold reviews, red results and the claims they changed.</span>
+          </a>
+          <a href="/blog/come-and-install-it/">
+            <strong>Current beta note</strong>
+            <span>The latest install, reliability and availability snapshot.</span>
+          </a>
+        </div>
+      </section>
+
+      <div class="blog-filter" role="search" aria-label="Filter notes">
+        <label>
+          <span>Search notes</span>
+          <input id="note-search" type="search" autocomplete="off" placeholder="Try provenance, federation or failure">
+        </label>
+        <label>
+          <span>Topic</span>
+          <select id="note-topic">
+            <option value="">All topics</option>
+          </select>
+        </label>
+        <p id="note-count" class="blog-filter__count" aria-live="polite">25 notes</p>
+      </div>
 
       <div class="post-list">
 
@@ -548,8 +592,50 @@
         </a>
 
       </div>
+      <p id="note-empty" class="blog-filter__empty" hidden>No notes match that filter.</p>
     </div>
   </main>
+
+  <script>
+    (() => {
+      const cards = [...document.querySelectorAll('.post-card')];
+      const search = document.getElementById('note-search');
+      const topic = document.getElementById('note-topic');
+      const count = document.getElementById('note-count');
+      const empty = document.getElementById('note-empty');
+      const topics = new Set();
+
+      for (const card of cards) {
+        const bits = [...card.querySelectorAll('.post-card__meta span')];
+        const value = (bits.at(-1)?.textContent || '').replace(/^\s*·\s*/, '').trim().toLowerCase();
+        card.dataset.topic = value;
+        if (value) topics.add(value);
+      }
+      for (const value of [...topics].sort()) {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = value.charAt(0).toUpperCase() + value.slice(1);
+        topic.appendChild(option);
+      }
+
+      const apply = () => {
+        const query = search.value.trim().toLowerCase();
+        const selected = topic.value;
+        let shown = 0;
+        for (const card of cards) {
+          const matchesText = !query || card.textContent.toLowerCase().includes(query);
+          const matchesTopic = !selected || card.dataset.topic === selected;
+          const visible = matchesText && matchesTopic;
+          card.hidden = !visible;
+          if (visible) shown += 1;
+        }
+        count.textContent = `${shown} ${shown === 1 ? 'note' : 'notes'}`;
+        empty.hidden = shown !== 0;
+      };
+      search.addEventListener('input', apply);
+      topic.addEventListener('change', apply);
+    })();
+  </script>
 
 </body>
 </html>

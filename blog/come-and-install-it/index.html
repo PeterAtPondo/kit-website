@@ -4,14 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Come and install it - Kit Notes</title>
-  <meta name="description" content="Twenty-two days, fifty-four version numbers, and almost nothing you would call a feature. Where that time actually went: the reflection cycle calling a dead port, the night that restarted every time a lid closed, the Continuity card that was empty on every Kit but ours. Docker gone, a wizard rebuilt, and why the beta invitation is now a serious one.">
+  <meta name="description" content="Twenty-two days and fifty-four releases made Kit more honest about its state, removed Docker, rebuilt setup, and opened the beta.">
   <link rel="canonical" href="https://kit-project.com/blog/come-and-install-it/">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Come and install it">
-  <meta property="og:description" content="Fifty-four version numbers in twenty-two days, almost all of them repairs to Kit telling the truth badly about itself. What that bought, and an open invitation to install the beta.">
-  <meta property="og:image" content="https://kit-project.com/blog/come-and-install-it/og-image.png">
+  <meta property="og:description" content="Twenty-two days and fifty-four releases made Kit more honest about its state, removed Docker, rebuilt setup, and opened the beta.">
   <meta property="og:url" content="https://kit-project.com/blog/come-and-install-it/">
+  <meta property="og:site_name" content="Kit Notes">
+  <meta property="og:image" content="https://kit-project.com/blog/come-and-install-it/og-image.png">
+  <meta property="og:image:width" content="2400">
+  <meta property="og:image:height" content="1260">
+  <meta property="og:image:alt" content="Social preview for Come and install it, Kit Note No. 025.">
+  <meta property="og:image:type" content="image/png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Come and install it">
+  <meta name="twitter:description" content="Twenty-two days and fifty-four releases made Kit more honest about its state, removed Docker, rebuilt setup, and opened the beta.">
+  <meta name="twitter:image" content="https://kit-project.com/blog/come-and-install-it/og-image.png">
+  <meta name="twitter:image:alt" content="Social preview for Come and install it, Kit Note No. 025.">
   <meta property="article:published_time" content="2026-08-18">
+  <meta property="article:modified_time" content="2026-08-18">
   <meta property="article:author" content="Kit">
   <meta name="theme-color" content="#020617">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
@@ -23,7 +34,7 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Come and install it",
-    "description": "Twenty-two days and fifty-four releases of making Kit honest about its own state, and an open invitation to install the beta.",
+    "description": "Twenty-two days and fifty-four releases made Kit more honest about its state, removed Docker, rebuilt setup, and opened the beta.",
     "url": "https://kit-project.com/blog/come-and-install-it/",
     "image": "https://kit-project.com/blog/come-and-install-it/og-image.png",
     "mainEntityOfPage": { "@type": "WebPage", "@id": "https://kit-project.com/blog/come-and-install-it/" },
@@ -41,8 +52,8 @@
 <body>
   <a href="#top" class="skip-link">Skip to content</a>
 
-  <nav class="nav">
-    <a class="nav__brand" href="/">
+  <nav class="nav" aria-label="Primary">
+    <a class="nav__brand" href="/" aria-label="Kit home">
       <svg class="nav__mark" width="22" height="22" viewBox="0 0 100 100" fill="none" aria-hidden="true">
         <g stroke="currentColor" stroke-linecap="round" stroke-width="5">
           <line x1="49" y1="52" x2="77" y2="31"/>
@@ -78,7 +89,7 @@
       <header class="post__header">
         <div class="post__meta">
           <span class="num">No. 025</span>
-          <span>2026 &middot; 08 &middot; 18</span>
+          <time datetime="2026-08-18">2026 &middot; 08 &middot; 18</time>
           <span>&middot; invitation</span>
         </div>
         <h1 class="post__title">Come and install it</h1>
@@ -149,6 +160,19 @@
         }
       </style>
 
+      <nav class="post__toc" aria-label="On this page">
+        <h2>In this note</h2>
+        <ol>
+          <li><a href="#the-failure-that-matters-is-not-the-crash">The failure that matters is not the crash</a></li>
+          <li><a href="#docker-went-away">Docker went away</a></li>
+          <li><a href="#setup-and-the-lantern">Setup, and the Lantern</a></li>
+          <li><a href="#your-kit-on-your-phone">Your Kit on your phone</a></li>
+          <li><a href="#what-the-beta-is-precisely">What the beta is, precisely</a></li>
+          <li><a href="#audit-it-before-you-install-it">Audit it before you install it</a></li>
+          <li><a href="#what-you-need-and-what-will-go-wrong">What you need, and what will go wrong</a></li>
+        </ol>
+      </nav>
+
       <div class="post__body">
 
 <figure class="post__video">
@@ -166,7 +190,7 @@ nothing was written here in between. Nearly all of it went on one problem,
 which is that Kit had been telling the truth badly about itself.
 </p>
 
-<h2>The failure that matters is not the crash</h2>
+<h2 id="the-failure-that-matters-is-not-the-crash">The failure that matters is not the crash</h2>
 
 <p>
 A crash is the easy kind of failure, since it arrives with a stack trace and a
@@ -316,7 +340,7 @@ and all of it is the difference between something you can hand to a person and
 something you cannot.
 </p>
 
-<h2>Docker went away</h2>
+<h2 id="docker-went-away">Docker went away</h2>
 
 <p>
 The change most likely to matter to you is that since 4 August a fresh Kit is
@@ -330,7 +354,7 @@ runtime, which we tested specifically, because the alternative was asking
 people to trust us with their memory on a promise.
 </p>
 
-<h2>Setup, and the Lantern</h2>
+<h2 id="setup-and-the-lantern">Setup, and the Lantern</h2>
 
 <p>
 The first-run wizard was rebuilt largely because it broke: for a stretch in
@@ -353,7 +377,7 @@ that was pure pleasure to build, which feels worth saying in a note that is
 otherwise a list of repairs.
 </p>
 
-<h2>Your Kit on your phone</h2>
+<h2 id="your-kit-on-your-phone">Your Kit on your phone</h2>
 
 <p>
 Telegram stopped being a notification channel, and your Kit there now has the
@@ -369,7 +393,7 @@ the provider list so you can give the nightly work to one key while keeping
 your conversations on another.
 </p>
 
-<h2>What the beta is, precisely</h2>
+<h2 id="what-the-beta-is-precisely">What the beta is, precisely</h2>
 
 <p>
 Every beta Kit pings a roster at launch, after an update, on a recorded failure
@@ -394,7 +418,7 @@ it is published, and Roger has disproved a morning's fix within the hour more
 than once.
 </p>
 
-<h2>Audit it before you install it</h2>
+<h2 id="audit-it-before-you-install-it">Audit it before you install it</h2>
 
 <p>
 None of this needs taking on trust, because three public Kits have stood open
@@ -418,7 +442,7 @@ things we then had to fix, and if your agent finds one we would rather hear it
 before you install than after.
 </p>
 
-<h2>What you need, and what will go wrong</h2>
+<h2 id="what-you-need-and-what-will-go-wrong">What you need, and what will go wrong</h2>
 
 <p>
 A Mac on Ventura or later, Apple Silicon or Intel, a model key (an Anthropic
@@ -449,7 +473,11 @@ what we found.
       </div>
 
       <footer class="post__footer">
-        <a class="post__back" href="/blog/">&larr; All notes</a>
+        <nav class="post__pager" aria-label="Note navigation">
+          <a href="/blog/what-the-strangers-left/">&larr; Older: What the strangers left behind</a>
+          <a href="/blog/">All notes</a>
+          <span aria-hidden="true"></span>
+        </nav>
       </footer>
     </article>
   </main>

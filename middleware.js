@@ -1,4 +1,4 @@
-// Server-side beta gate for the install page and the macOS download.
+// Server-side beta gate for the macOS download.
 //
 // A client-side check is useless against developers (view-source, disable JS,
 // or hit the dmg URL directly), so this runs on Vercel's Edge before anything
@@ -11,11 +11,13 @@
 // working after its few uses instead of becoming a public door, and any single
 // invite can be revoked without touching the others.
 //
-// Anyone without a cookie or a valid link is sent to /install/request/, the
-// request-access form, rather than a bare 401. latest.json stays open so the
-// installed app's update check keeps working, and Sparkle's dmg fetch passes on
-// the app token, so an app that already installed does not need an invite to
-// stay current.
+// The install explanation itself stays public, including /install/#what, so a
+// person can audit the footprint before asking for access. The dmg remains
+// private: anyone who requests it without a cookie or a valid link gets a plain
+// 403 with the request-access URL. latest.json stays open so the installed
+// app's update check keeps working, and Sparkle's dmg fetch passes on the app
+// token, so an app that already installed does not need an invite to stay
+// current.
 //
 // Fail-open by design, as before: if the gate is not configured (no
 // KIT_BETA_ADMIN_TOKEN, Peter's own secret that also signs the cookie and
@@ -102,6 +104,9 @@ export default async function middleware(request) {
     // The request-access page is the door itself; never gate it.
     if (url.pathname.startsWith("/install/request")) return;
 
+    const installLanding = url.pathname === "/install" || url.pathname === "/install/";
+    const accessProbe = url.pathname === "/install/access.json";
+
     // Sparkle's auto-update download: an installed app fetching the dmg sends
     // the app token header (the same one beta-ping authenticates with). The
     // person already had an invite to install; their app should not need one
@@ -112,10 +117,30 @@ export default async function middleware(request) {
     }
 
     const secret = process.env.KIT_BETA_ADMIN_TOKEN;
-    if (!secret) return; // gate off until the operator secret is configured
+    if (!secret) {
+      // The gate is deliberately off until the operator secret is configured,
+      // so the UI probe must report the same effective state.
+      if (accessProbe) {
+        return new Response('{"authorized":true}', {
+          headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
+        });
+      }
+      return;
+    }
+
+    const invited = await cookieValid(readCookie(request, COOKIE), secret);
+
+    // The static install page asks this same-origin endpoint whether it should
+    // promote its request button to the download. This response is UI state,
+    // not authority; the dmg request is still checked independently below.
+    if (accessProbe) {
+      return new Response(JSON.stringify({ authorized: invited }), {
+        headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
+      });
+    }
 
     // Already invited on this browser.
-    if (await cookieValid(readCookie(request, COOKIE), secret)) return;
+    if (invited) return;
 
     // Arriving on a personal invite link: redeem it, set the cookie, and land
     // on the clean install URL so the token never sits in the address bar.
@@ -147,6 +172,9 @@ export default async function middleware(request) {
         headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" },
       });
     }
+
+    // The explanation is public; only the binary is gated.
+    if (installLanding) return;
 
     return Response.redirect(new URL("/install/request/", url.origin), 302);
   } catch (e) {

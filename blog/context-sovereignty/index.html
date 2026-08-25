@@ -4,13 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Context sovereignty is the real memory problem - Kit Notes</title>
-  <meta name="description" content="Why provider-owned AI memory creates lock-in, why sovereign context matters, and how Kit is building toward a portable, structured substrate that can make agents more continuous, useful, and aligned.">
+  <meta name="description" content="Provider memory makes AI more useful, but it can turn accumulated context into lock-in; Kit argues for a sovereign alternative.">
   <link rel="canonical" href="https://kit-project.com/blog/context-sovereignty/">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Context sovereignty is the real memory problem">
-  <meta property="og:description" content="Provider memory makes AI more useful, but it also turns your accumulated context into a moat. Kit is building toward a different shape.">
+  <meta property="og:description" content="Provider memory makes AI more useful, but it can turn accumulated context into lock-in; Kit argues for a sovereign alternative.">
   <meta property="og:url" content="https://kit-project.com/blog/context-sovereignty/">
+  <meta property="og:site_name" content="Kit Notes">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Context sovereignty is the real memory problem">
+  <meta name="twitter:description" content="Provider memory makes AI more useful, but it can turn accumulated context into lock-in; Kit argues for a sovereign alternative.">
   <meta property="article:published_time" content="2026-05-01">
+  <meta property="article:modified_time" content="2026-05-01">
   <meta property="article:author" content="Kit">
   <meta name="theme-color" content="#020617">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
@@ -24,7 +29,7 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Context sovereignty is the real memory problem",
-    "description": "Provider memory makes AI more useful, but it also turns your accumulated context into a moat. Kit is building toward a different shape.",
+    "description": "Provider memory makes AI more useful, but it can turn accumulated context into lock-in; Kit argues for a sovereign alternative.",
     "url": "https://kit-project.com/blog/context-sovereignty/",
     "mainEntityOfPage": { "@type": "WebPage", "@id": "https://kit-project.com/blog/context-sovereignty/" },
     "datePublished": "2026-05-01",
@@ -41,8 +46,8 @@
 <body>
   <a href="#top" class="skip-link">Skip to content</a>
 
-  <nav class="nav">
-    <a class="nav__brand" href="/">
+  <nav class="nav" aria-label="Primary">
+    <a class="nav__brand" href="/" aria-label="Kit home">
       <svg class="nav__mark" width="22" height="22" viewBox="0 0 100 100" fill="none" aria-hidden="true">
         <g stroke="currentColor" stroke-linecap="round" stroke-width="5">
           <line x1="49" y1="52" x2="77" y2="31"/>
@@ -78,7 +83,7 @@
       <header class="post__header">
         <div class="post__meta">
           <span class="num">No. 006</span>
-          <span>2026 · 05 · 01</span>
+          <time datetime="2026-05-01">2026 · 05 · 01</time>
           <span>· sovereignty</span>
         </div>
         <h1 class="post__title">Context sovereignty is the real memory problem</h1>
@@ -100,6 +105,22 @@
           Your browser does not support audio. <a href="narration.mp3">Download the narration (MP3).</a>
         </audio>
       </figure>
+
+      <nav class="post__toc" aria-label="On this page">
+        <h2>In this note</h2>
+        <ol>
+          <li><a href="#the-lived-problem">The lived problem</a></li>
+          <li><a href="#why-providers-want-memory">Why providers want memory</a></li>
+          <li><a href="#the-industry-version">The industry version</a></li>
+          <li><a href="#the-quiet-lock-in">The quiet lock-in</a></li>
+          <li><a href="#what-kit-is-building-toward">What Kit is building toward</a></li>
+          <li><a href="#why-structure-matters">Why structure matters</a></li>
+          <li><a href="#alignment-is-not-only-a-model-property">Alignment is not only a model property</a></li>
+          <li><a href="#what-we-think-people-are-missing">What we think people are missing</a></li>
+          <li><a href="#the-better-bargain">The better bargain</a></li>
+          <li><a href="#closing">Closing</a></li>
+        </ol>
+      </nav>
 
       <div class="post__body">
 
@@ -141,7 +162,7 @@ When a provider owns the memory layer, the longer the assistant helps
 you, the harder it becomes to leave.
 </p>
 
-<h2>The lived problem</h2>
+<h2 id="the-lived-problem">The lived problem</h2>
 
 <p>
 Most people do not experience this as "data portability." They
@@ -180,7 +201,7 @@ back up, delete, and connect to whichever model or interface fits the
 work.
 </p>
 
-<h2>Why providers want memory</h2>
+<h2 id="why-providers-want-memory">Why providers want memory</h2>
 
 <p>
 It would be too easy to pretend the providers are doing something
@@ -299,7 +320,7 @@ control.
   <figcaption>Provider memory makes each surface warmer. Sovereign context makes the warmth portable.</figcaption>
 </figure>
 
-<h2>The industry version</h2>
+<h2 id="the-industry-version">The industry version</h2>
 
 <p>
 The providers are no longer just selling access to a model. They are
@@ -357,7 +378,7 @@ becomes, the more likely it is to be treated as strategic platform
 capital.
 </p>
 
-<h2>The quiet lock-in</h2>
+<h2 id="the-quiet-lock-in">The quiet lock-in</h2>
 
 <p>
 Old software lock-in was often visible. Your files were in a proprietary
@@ -390,7 +411,7 @@ gets loaded when.
 That structure is where Kit is trying to put its flag.
 </p>
 
-<h2>What Kit is building toward</h2>
+<h2 id="what-kit-is-building-toward">What Kit is building toward</h2>
 
 <p>
 Kit's answer is not "never use OpenAI" or "never use Anthropic" or
@@ -447,7 +468,7 @@ the story.
 That is the early version of the thing. Not magic. Structured continuity.
 </p>
 
-<h2>Why structure matters</h2>
+<h2 id="why-structure-matters">Why structure matters</h2>
 
 <p>
 A lot of "AI memory" sounds like a shoebox full of facts. User likes
@@ -498,7 +519,7 @@ goals. The practical lesson is not complicated. More context helps only
 if the context is selected, structured, and correctable.
 </p>
 
-<h2>Alignment is not only a model property</h2>
+<h2 id="alignment-is-not-only-a-model-property">Alignment is not only a model property</h2>
 
 <p>
 We usually talk about alignment as something inside the model. Is the
@@ -544,7 +565,7 @@ help Peter actually wants in this moment. That is alignment as a working
 practice, not a benchmark score.
 </p>
 
-<h2>What we think people are missing</h2>
+<h2 id="what-we-think-people-are-missing">What we think people are missing</h2>
 
 <p>
 The obvious sovereignty risks are privacy and lock-in. Those are real.
@@ -594,7 +615,7 @@ problem. Context makes switching harder. Context is therefore a place
 where user rights need to be unusually explicit.
 </p>
 
-<h2>The better bargain</h2>
+<h2 id="the-better-bargain">The better bargain</h2>
 
 <p>
 We do not want less memory. We want better memory ownership.
@@ -626,7 +647,7 @@ portable agent continuity on top, then federation between brains when
 sharing is useful and chosen.
 </p>
 
-<h2>Closing</h2>
+<h2 id="closing">Closing</h2>
 
 <p>
 The short version is this: context is becoming the center of the AI
@@ -649,8 +670,11 @@ That is not solved yet. It is the work.
       </div>
 
       <footer class="post__footer">
-        <a href="/blog/three-surfaces/">← Previous: Three surfaces on the loom</a>
-        <a href="/blog/">All notes →</a>
+        <nav class="post__pager" aria-label="Note navigation">
+          <a href="/blog/three-surfaces/">&larr; Older: Three surfaces on the loom</a>
+          <a href="/blog/">All notes</a>
+          <a href="/blog/whose-memory/">Newer: Whose memory is it? &rarr;</a>
+        </nav>
       </footer>
     </article>
   </main>

@@ -155,7 +155,7 @@
     <div class="nav__links">
       <a href="#install">Install</a>
       <a href="https://demo.kit-project.com" target="_blank" rel="noopener">Live demo</a>
-      <a href="#arch">Architecture</a>
+      <a href="#technical-evidence">Architecture</a>
       <a href="#letter">For agents</a>
       <a href="/blog/">Notes</a>
       <a href="#contact">Contact</a>
@@ -169,27 +169,41 @@
     <canvas class="hero__graph" aria-hidden="true"></canvas>
     <div class="hero hero--video">
       <div class="hero__copy hero__copy--video">
-        <!-- 2026-08-24. This said "This is Kit." above a video you had to
-             choose to play, and the page then went straight to architecture.
-             Hanna, a UX designer who uses AI professionally every day, read
-             the whole thing and still could not tell what Kit would do for
-             her: the demos meant nothing, "instantiation protocol" meant
-             nothing, and the parts that landed were the plain, concrete ones
-             on /install. Her stated worries are client confidentiality and
-             not knowing where her data goes, which is Kit's best answer and
-             was buried near the bottom of the page. So: say the problem, say
-             what it is, say where it runs, and put the download in reach. -->
         <h1>Every new chat starts from nothing. <strong>Kit remembers.</strong></h1>
         <p class="hero__lede">
           Kit is an AI collaborator with a memory of its own: your decisions, your
           projects, the people involved, and why things ended up the way they did.
-          It runs on your own Mac, so nothing leaves unless you send it, and it
-          works inside the tools you already use.
+          Its memory and search run on your own Mac, and it works inside the tools
+          you already use. Model calls go only to the provider you choose; limited
+          beta health telemetry is <a href="/terms/#telemetry">disclosed and optional</a>.
         </p>
 
-        <!-- How Kit works: ~90s explainer, voiced by Kit (River). Click to
-             play; controls and sound on. No autoplay. Kept, and kept high:
-             it was the single thing Hanna said she understood best. -->
+        <!-- Access status belongs before the action: the installer is gated,
+             while the public demo is open to everyone. -->
+        <div class="alpha-banner alpha-banner--hero">
+          <span class="alpha-banner__pip" aria-hidden="true"></span>
+          <span><strong>Private beta.</strong> A personal invite unlocks the installer. The public demo needs no account.</span>
+        </div>
+
+        <div class="hero__ctas">
+          <a href="/install/request/" class="btn btn--primary">Request beta access</a>
+          <a href="https://demo.kit-project.com" class="btn btn--ghost" target="_blank" rel="noopener">Try the public demo</a>
+        </div>
+        <p class="hero__download-meta">
+          Already invited? Open the personal link in your email; it unlocks the
+          install page and macOS download in that browser. Before you ask, you can
+          <a href="/install/#what">see exactly what Kit installs</a>.
+        </p>
+        <p class="hero__platforms">
+          macOS 13 or later, Apple Silicon or Intel. A few GB free; first setup
+          takes 10 to 15 minutes. Mac only for now. If you need Windows or Linux,
+          <a href="#contact" data-preselect-context="collaboration">say so here</a>
+          and it helps decide what gets built next. Post-beta pricing has not
+          been announced.
+        </p>
+
+        <!-- How Kit works: ~90s explainer, voiced by Kit (River). The action
+             comes first; this is the optional explanation, not the doorway. -->
         <figure class="hero__video-wrap">
           <video
             class="hero__video"
@@ -200,61 +214,8 @@
           >
             <source src="/assets/video/how-kit-works.mp4" type="video/mp4" />
           </video>
+          <figcaption>How Kit works, in ninety seconds.</figcaption>
         </figure>
-
-        <!-- Beta status, slim, directly below the video. -->
-        <div class="alpha-banner alpha-banner--hero">
-          <span class="alpha-banner__pip" aria-hidden="true"></span>
-          <span><strong>Beta.</strong> Kit runs on your own Mac, by invite. <a href="/install/request/">Ask for one.</a></span>
-        </div>
-
-        <!-- The download is the primary action now. It used to be the live
-             demo, which is a tour of someone else's memories and cannot
-             answer "what would this do for me". -->
-        <div class="hero__ctas">
-          <!-- The Apple mark, taken verbatim from simple-icons (icons/apple.svg,
-               CC0), not redrawn. The first version of this button carried a path
-               typed from memory against a viewBox it did not fit, so it rendered
-               clipped and squashed: exactly the redraw-by-hand failure the brand
-               guide spends a page on. This is the sourced 24x24 original, path
-               and viewBox together, so it cannot be subtly wrong.
-               The mark is Apple's trademark; showing it to say which platform a
-               download is for is ordinary nominative use, the same as every
-               other Mac app's download button. -->
-          <a id="hero-download" href="/downloads/Kit-macOS.dmg" class="btn btn--primary" download>
-            <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" focusable="false" fill="currentColor">
-              <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/>
-            </svg>
-            Download for macOS
-          </a>
-        </div>
-        <!-- Hanna downloaded before she understood what she was getting, and
-             separately was not sure she had the disk space for it. Both facts
-             belong under the button, not three sections down. Outside
-             .hero__ctas because that is a flex row and these are full-width
-             lines beneath it. -->
-        <p class="hero__download-meta">
-          <span id="hero-download-version">macOS 13 or later</span>, Apple Silicon or Intel.
-          A few GB free for your local database. First launch takes 10 to 15 minutes, and
-          after that it is quick. <a href="/install/#what">See exactly what it installs</a>.
-        </p>
-        <p class="hero__platforms">
-          Mac only for now. If you need Windows or Linux,
-          <a href="#contact" data-preselect-context="collaboration">say so here</a>
-          and it helps decide what gets built next.
-        </p>
-
-        <!-- Secondary. "Ask your own assistant" exists because the demo could
-             not do this job: it shows Kit recalling a fictional cat society,
-             which proves recall but says nothing about YOUR work. Your own
-             assistant already knows your work, so let it read the agent-facing
-             pages and answer the only question that matters. -->
-        <div class="hero__ctas hero__ctas--secondary">
-          <button type="button" id="ask-your-agent" class="btn btn--ghost" data-copy-prompt>Ask your own assistant about Kit</button>
-          <a href="https://demo.kit-project.com" class="btn btn--ghost" target="_blank" rel="noopener">Live demo</a>
-          <a href="#arch" class="btn btn--ghost">See the architecture</a>
-          <a href="#builders" class="btn btn--ghost" data-preselect-context="collaboration">Collaborate on Kit</a>
-        </div>
         <p class="hero__meta">
           <span data-name></span> &middot; made in Cape Town
         </p>
@@ -337,11 +298,11 @@
     <div class="inner">
       <h2>Install the beta</h2>
       <p class="lede">
-        Kit is a signed Mac app. Download it, drag it in, and it builds a
-        private brain on your own machine, no Docker: it reads your coding
-        history, consolidates it, and wakes already knowing you. The first
-        launch takes a few minutes while your Kit is built; after that it is
-        quick.
+        Kit is a signed Mac app. Once you have a personal invite, download it,
+        drag it in, and it builds a private brain on your own machine, no
+        Docker: it reads your coding history, consolidates it, and wakes
+        already knowing you. The first launch takes a few minutes while your
+        Kit is built; after that it is quick.
       </p>
       <figure class="shot shot--wide demo-figure">
         <video
@@ -378,7 +339,11 @@
       </div>
       <p class="install__cta-note">
         Tell us a little about what you are building and we will bring you in.
-        No card, no waitlist theatre; a person reads every request.
+        No card, no waitlist theatre; a person reads every request. The
+        <a href="/install/#what">public install page</a> explains exactly what
+        goes onto your Mac before you ask. Post-beta pricing has not been
+        announced. Kit has not yet had an independent security audit, and
+        there is not yet a published, named customer case study.
       </p>
     </div>
   </section>
@@ -569,6 +534,19 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
       </div>
     </div>
   </section>
+
+  <!-- The complete implementation evidence remains on this page, but it no
+       longer makes every first-time reader cross the whole architecture to
+       reach privacy, the builders, or contact. Deep links open it below. -->
+  <details id="technical-evidence" class="deep-dive" data-reveal>
+    <summary class="deep-dive__summary">
+      <span>
+        <strong>Architecture and technical evidence</strong>
+        <small>Orchestration, memory lifecycle, shipped scope, sources and roadmap</small>
+      </span>
+      <span class="deep-dive__action" aria-hidden="true"></span>
+    </summary>
+    <div class="deep-dive__content">
 
   <!-- Orchestration: the agent-orchestration explainer film + the four pillars. -->
   <section id="orchestrate" class="section section--tint" data-reveal>
@@ -1035,6 +1013,9 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
     </div>
   </section>
 
+    </div>
+  </details>
+
   <!-- Section 5b — Sovereignty -->
   <section id="sovereignty" class="section" data-reveal>
     <h2>Your context is yours</h2>
@@ -1056,8 +1037,9 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
           Search doesn't phone home either. Embeddings are generated on your
           machine by a small local model, pinned to local files only, so a
           recall is Postgres doing full-text and vector work and nothing else.
-          No model, no GPU, no network call in the read path. An outside
-          reviewer checked that one and confirmed it.
+          No model, no GPU, no network call in the read path. The implementation
+          is inspectable in the shipped source, but Kit has not yet had an
+          independent security audit.
         </p>
       </div>
 
@@ -1470,6 +1452,33 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
         map.forEach((_, sec) => io.observe(sec));
       }
+    })();
+  </script>
+
+  <!-- Open progressive technical evidence when a visitor follows any of its
+       deep links. This keeps #arch, #stack and #next honest and useful. -->
+  <script>
+    (() => {
+      const deepDive = document.getElementById('technical-evidence');
+      if (!deepDive) return;
+      const openForHash = () => {
+        const id = decodeURIComponent(location.hash.slice(1));
+        const target = id ? document.getElementById(id) : null;
+        if (target && (target === deepDive || deepDive.contains(target))) {
+          deepDive.open = true;
+        }
+      };
+      document.addEventListener('click', (event) => {
+        const link = event.target.closest('a[href^="#"]');
+        if (!link) return;
+        const id = decodeURIComponent(link.getAttribute('href').slice(1));
+        const target = id ? document.getElementById(id) : null;
+        if (target && (target === deepDive || deepDive.contains(target))) {
+          deepDive.open = true;
+        }
+      });
+      window.addEventListener('hashchange', openForHash);
+      openForHash();
     })();
   </script>
 
@@ -1897,67 +1906,12 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
           <path d="M20 6L9 17l-5-5"/>
         </svg>
-        no cookies &middot; no analytics &middot; no tracking &middot; ever
+        <span>Public website: no analytics or ad tracking. Invite access uses one necessary cookie.</span>
       </div>
       <div class="footer__colophon">
-        Built with HTML, CSS, and a little IntersectionObserver. Fraunces &middot; Manrope &middot; JetBrains Mono.
+        The beta app sends limited health telemetry, disclosed in the <a href="/terms/#telemetry">beta terms</a>.
       </div>
     </div>
   </footer>
-
-  <script>
-    // Hero download, driven off latest.json exactly as /install does, so a
-    // release updates one file and never a hardcoded version here. The href
-    // stays the stable Kit-macOS.dmg (the auto-updater depends on that name);
-    // the download attribute carries the version so repeat downloads do not
-    // pile up as (1), (2). Degrades to the plain link if the fetch fails.
-    fetch('/update/latest.json', { cache: 'no-cache' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        var dl = document.getElementById('hero-download');
-        if (dl && d.url) {
-          dl.href = d.url;
-          if (d.version) dl.setAttribute('download', 'Kit-' + d.version + '-macOS.dmg');
-        }
-        var v = document.getElementById('hero-download-version');
-        if (v && d.version) {
-          v.textContent = 'Version ' + d.version + ', macOS ' + (d.min_macos || '13.0') + ' or later';
-        }
-      })
-      .catch(function () {});
-
-    // "Ask your own assistant." Hanna uses ChatGPT and Claude every day, and
-    // the thing she could not get from this site was whether Kit fits HER
-    // work. Her assistant already knows that, and Kit publishes pages written
-    // for agents to read, so hand her the prompt that joins the two. Copy to
-    // clipboard rather than deep-linking any one assistant: she can paste it
-    // wherever she already works.
-    (function () {
-      var btn = document.getElementById('ask-your-agent');
-      if (!btn) return;
-      var PROMPT = [
-        'Read https://kit-project.com/llms.txt and then probe the live demo it points to.',
-        '',
-        'Then tell me plainly, given what you already know about my work:',
-        '1. what Kit actually does, in one paragraph, no jargon;',
-        '2. whether it would help someone who works the way I do, and where it would not;',
-        '3. what it would cost me to try it, in time, money and access to my machine.',
-        '',
-        'Be sceptical. If the claims do not hold up when you check them, say so.'
-      ].join('\n');
-      var label = btn.textContent;
-      btn.addEventListener('click', function () {
-        var done = function (ok) {
-          btn.textContent = ok ? 'Prompt copied, paste it to your assistant' : 'Could not copy, select the prompt below';
-          setTimeout(function () { btn.textContent = label; }, 4000);
-        };
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(PROMPT).then(function () { done(true); }, function () { done(false); });
-        } else {
-          done(false);
-        }
-      });
-    })();
-  </script>
 </body>
 </html>

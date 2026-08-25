@@ -426,23 +426,6 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 .hero__download-meta a,
 .hero__platforms a { color: var(--ink-secondary); }
 
-/* Secondary row: quieter and tighter than the primary action above it. */
-.hero__ctas--secondary {
-  margin-top: var(--space-5);
-  gap: var(--space-3);
-}
-.hero__ctas--secondary .btn { font-size: 0.875rem; }
-
-/* The Apple mark inside the download button. inline-flex keeps the mark on
-   the same line as the label when the button wraps on a narrow screen. */
-#hero-download {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-}
-#hero-download svg { flex: none; }
-
 /* Hero CTAs — side-by-side on desktop, stacked on small screens. */
 .hero__ctas {
   margin-top: var(--space-6);
@@ -1666,6 +1649,66 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   color: var(--ink-quiet);
   max-width: 56ch;
   margin: 0;
+}
+.install__cta-note a { color: var(--ink-secondary); }
+
+/* The homepage keeps the complete implementation record, but first-time
+   readers opt into it instead of scrolling through six dense sections. */
+.deep-dive {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--edge-faint);
+  border-bottom: 1px solid var(--edge-faint);
+  background: var(--bg-soft);
+}
+.deep-dive__summary {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  cursor: pointer;
+  color: var(--ink-primary);
+  list-style: none;
+}
+.deep-dive__summary::-webkit-details-marker { display: none; }
+.deep-dive__summary strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 500;
+}
+.deep-dive__summary small {
+  display: block;
+  margin-top: var(--space-2);
+  color: var(--ink-quiet);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.deep-dive__action {
+  flex: none;
+  color: var(--accent-warm);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+.deep-dive__action::before { content: 'Open the deep dive +'; }
+.deep-dive[open] .deep-dive__action::before { content: 'Close the deep dive −'; }
+.deep-dive__summary:hover .deep-dive__action,
+.deep-dive__summary:focus-visible .deep-dive__action { color: var(--ink-primary); }
+.deep-dive__summary:focus-visible {
+  outline: 2px solid var(--accent-glow);
+  outline-offset: -2px;
+}
+.deep-dive__content { border-top: 1px dashed var(--edge-faint); }
+@media (max-width: 640px) {
+  .deep-dive__summary {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: var(--space-8) var(--space-5);
+  }
 }
 
 /* Antigravity ships press assets as PNG only, and its one-colour mark is

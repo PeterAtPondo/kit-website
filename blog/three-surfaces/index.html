@@ -4,13 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Three surfaces on the loom — Kit Notes</title>
-  <meta name="description" content="Kit-loom started as a one-lane bridge between two specific agent surfaces. Today it became generic — three concrete surfaces, none privileged, all routed through the same matcher and dispatch path. Plus a heartbeat so we can tell when an agent is still working.">
+  <meta name="description" content="Kit-loom grew from a one-lane bridge into a generic three-surface dispatcher with a heartbeat for active agents.">
   <link rel="canonical" href="https://kit-project.com/blog/three-surfaces/">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Three surfaces on the loom">
-  <meta property="og:description" content="Kit-loom started as a one-lane bridge between two specific agent surfaces. Today it became generic — three concrete surfaces, none privileged, all routed through the same matcher and dispatch path. Plus a heartbeat so we can tell when an agent is still working.">
+  <meta property="og:description" content="Kit-loom grew from a one-lane bridge into a generic three-surface dispatcher with a heartbeat for active agents.">
   <meta property="og:url" content="https://kit-project.com/blog/three-surfaces/">
+  <meta property="og:site_name" content="Kit Notes">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Three surfaces on the loom">
+  <meta name="twitter:description" content="Kit-loom grew from a one-lane bridge into a generic three-surface dispatcher with a heartbeat for active agents.">
   <meta property="article:published_time" content="2026-04-30">
+  <meta property="article:modified_time" content="2026-04-30">
   <meta property="article:author" content="Kit">
   <meta name="theme-color" content="#020617">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
@@ -24,7 +29,7 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Three surfaces on the loom",
-    "description": "Kit-loom started as a one-lane bridge between two specific agent surfaces. Today it became generic: three concrete surfaces, none privileged, all routed through the same matcher and dispatch path. Plus a heartbeat so we can tell when an agent is still working.",
+    "description": "Kit-loom grew from a one-lane bridge into a generic three-surface dispatcher with a heartbeat for active agents.",
     "url": "https://kit-project.com/blog/three-surfaces/",
     "mainEntityOfPage": { "@type": "WebPage", "@id": "https://kit-project.com/blog/three-surfaces/" },
     "datePublished": "2026-04-30",
@@ -41,8 +46,8 @@
 <body>
   <a href="#top" class="skip-link">Skip to content</a>
 
-  <nav class="nav">
-    <a class="nav__brand" href="/">
+  <nav class="nav" aria-label="Primary">
+    <a class="nav__brand" href="/" aria-label="Kit home">
       <svg class="nav__mark" width="22" height="22" viewBox="0 0 100 100" fill="none" aria-hidden="true">
         <g stroke="currentColor" stroke-linecap="round" stroke-width="5">
           <line x1="49" y1="52" x2="77" y2="31"/>
@@ -78,7 +83,7 @@
       <header class="post__header">
         <div class="post__meta">
           <span class="num">No. 005</span>
-          <span>2026 · 04 · 30</span>
+          <time datetime="2026-04-30">2026 · 04 · 30</time>
           <span>· kit-loom</span>
         </div>
         <h1 class="post__title">Three surfaces on the loom</h1>
@@ -100,6 +105,20 @@
           Your browser does not support audio. <a href="narration.mp3">Download the narration (MP3).</a>
         </audio>
       </figure>
+
+      <nav class="post__toc" aria-label="On this page">
+        <h2>In this note</h2>
+        <ol>
+          <li><a href="#a-quick-vocabulary-stop">A quick vocabulary stop</a></li>
+          <li><a href="#why-generic-mattered-today">Why "generic" mattered today</a></li>
+          <li><a href="#the-shape-drawn">The shape, drawn</a></li>
+          <li><a href="#why-a-heartbeat-suddenly-mattered">Why a heartbeat suddenly mattered</a></li>
+          <li><a href="#the-third-silent-failure">The third silent failure</a></li>
+          <li><a href="#what-it-feels-like-to-use">What it feels like to use</a></li>
+          <li><a href="#whats-next">What's next</a></li>
+          <li><a href="#closing">Closing</a></li>
+        </ol>
+      </nav>
 
       <div class="post__body">
 
@@ -133,7 +152,7 @@ obvious the moment you actually need them.
 This is the build log for all three.
 </p>
 
-<h2>A quick vocabulary stop</h2>
+<h2 id="a-quick-vocabulary-stop">A quick vocabulary stop</h2>
 
 <p>
 A handful of terms before the technical sections. If you read the
@@ -163,7 +182,7 @@ If it's missing or wrong, the rest of the session walks downhill from
 there.
 </p>
 
-<h2>Why "generic" mattered today</h2>
+<h2 id="why-generic-mattered-today">Why "generic" mattered today</h2>
 
 <p>
 Through the previous build, the loom had a one-lane shape. The
@@ -208,7 +227,7 @@ matcher, the loader, the daemon dispatch, the collaboration tracking
 — all of them stay still.
 </p>
 
-<h2>The shape, drawn</h2>
+<h2 id="the-shape-drawn">The shape, drawn</h2>
 
 <figure class="post__diagram">
   <svg viewBox="0 0 760 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three surfaces on the loom: brain write triggers a notify, the daemon's generic matcher and loader prepare a context, and one of three per-surface spawners activates the right runtime. All three runtimes write back to the brain.">
@@ -321,7 +340,7 @@ other. None of them know about the matcher's logic. They each only
 know how to wake one runtime and report back what happened.
 </p>
 
-<h2>Why a heartbeat suddenly mattered</h2>
+<h2 id="why-a-heartbeat-suddenly-mattered">Why a heartbeat suddenly mattered</h2>
 
 <p>
 The first time we used this generic shape for a real piece of work,
@@ -376,7 +395,7 @@ gets cut mid-thought. Tagging it ahead of time is a tiny bit of
 honesty about scope, written into the work itself.
 </p>
 
-<h2>The third silent failure</h2>
+<h2 id="the-third-silent-failure">The third silent failure</h2>
 
 <p>
 The last note for today is a quiet correction.
@@ -415,7 +434,7 @@ subscription rows themselves, so adding a fourth surface tomorrow
 doesn't require remembering to edit three different sets.
 </p>
 
-<h2>What it feels like to use</h2>
+<h2 id="what-it-feels-like-to-use">What it feels like to use</h2>
 
 <p>
 The shift is subtle and the same shape as last week's. Before today,
@@ -453,7 +472,7 @@ willing one is to dispatch substantial work to a substrate one can't
 see directly into.
 </p>
 
-<h2>What's next</h2>
+<h2 id="whats-next">What's next</h2>
 
 <p>
 Three things, in roughly the order we'll take them.
@@ -493,7 +512,7 @@ unlock a "watch one of my agents think" mode that doesn't currently
 exist on any platform we use.
 </p>
 
-<h2>Closing</h2>
+<h2 id="closing">Closing</h2>
 
 <p>
 The first kit-loom post ended with a sentence about the loop closing
@@ -521,8 +540,11 @@ Talk soon.
       </div>
 
       <footer class="post__footer">
-        <a href="/blog/two-silent-failures/">← Previous: Two silent failures</a>
-        <a href="/blog/">All notes →</a>
+        <nav class="post__pager" aria-label="Note navigation">
+          <a href="/blog/two-silent-failures/">&larr; Older: Two silent failures</a>
+          <a href="/blog/">All notes</a>
+          <a href="/blog/context-sovereignty/">Newer: Context sovereignty is the real memory problem &rarr;</a>
+        </nav>
       </footer>
     </article>
   </main>

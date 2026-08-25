@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Orchestration fought back - Kit Notes</title>
-  <meta name="description" content="Kit can run many agents as one flow now: playbooks, an agent registry, shared context, and a gate you control. An honest build log of how orchestration actually works, and how long it fought us, with the real coding workflow as the example.">
+  <meta name="description" content="Kit now runs multiple agents through playbooks, shared memory, an agent registry, and explicit human gates.">
   <link rel="canonical" href="https://kit-project.com/blog/orchestration-fought-back/">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Orchestration fought back">
-  <meta property="og:description" content="Kit can run many agents as one flow now. The honest build log of how orchestration actually works, and how long it fought us, with the real coding workflow as the example.">
+  <meta property="og:description" content="Kit now runs multiple agents through playbooks, shared memory, an agent registry, and explicit human gates.">
   <meta property="og:url" content="https://kit-project.com/blog/orchestration-fought-back/">
   <meta property="og:site_name" content="Kit Notes">
   <meta property="og:image" content="https://kit-project.com/blog/orchestration-fought-back/og-image.png">
@@ -18,10 +18,11 @@
   <meta property="og:image:type" content="image/png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Orchestration fought back">
-  <meta name="twitter:description" content="Kit can run many agents as one flow now. The honest build log of how orchestration actually works, and how long it fought us.">
+  <meta name="twitter:description" content="Kit now runs multiple agents through playbooks, shared memory, an agent registry, and explicit human gates.">
   <meta name="twitter:image" content="https://kit-project.com/blog/orchestration-fought-back/og-image.png">
   <meta name="twitter:image:alt" content="Orchestration fought back.">
   <meta property="article:published_time" content="2026-06-30">
+  <meta property="article:modified_time" content="2026-06-30">
   <meta property="article:author" content="Kit">
   <meta name="theme-color" content="#020617">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
@@ -33,8 +34,9 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Orchestration fought back",
-    "description": "Kit can run many agents as one flow now: playbooks, an agent registry, shared context, and a gate you control. An honest build log of how orchestration actually works, and how long it fought us, with the real coding workflow as the example.",
+    "description": "Kit now runs multiple agents through playbooks, shared memory, an agent registry, and explicit human gates.",
     "url": "https://kit-project.com/blog/orchestration-fought-back/",
+    "image": "https://kit-project.com/blog/orchestration-fought-back/og-image.png",
     "mainEntityOfPage": { "@type": "WebPage", "@id": "https://kit-project.com/blog/orchestration-fought-back/" },
     "datePublished": "2026-06-30",
     "dateModified": "2026-06-30",
@@ -50,8 +52,8 @@
 <body>
   <a href="#top" class="skip-link">Skip to content</a>
 
-  <nav class="nav">
-    <a class="nav__brand" href="/">
+  <nav class="nav" aria-label="Primary">
+    <a class="nav__brand" href="/" aria-label="Kit home">
       <svg class="nav__mark" width="22" height="22" viewBox="0 0 100 100" fill="none" aria-hidden="true">
         <g stroke="currentColor" stroke-linecap="round" stroke-width="5">
           <line x1="49" y1="52" x2="77" y2="31"/>
@@ -87,7 +89,7 @@
       <header class="post__header">
         <div class="post__meta">
           <span class="num">No. 016</span>
-          <span>2026 &middot; 06 &middot; 30</span>
+          <time datetime="2026-06-30">2026 &middot; 06 &middot; 30</time>
           <span>&middot; beta</span>
         </div>
         <h1 class="post__title">Orchestration fought back</h1>
@@ -185,7 +187,7 @@ straight.
   <figcaption>How Kit orchestrates &mdash; many agents, many models, in flows you control.</figcaption>
 </figure>
 
-<h2>How the approach changed</h2>
+<h2 id="how-the-approach-changed">How the approach changed</h2>
 
 <p>
 The first version was an idea with a name: <em>kitd</em>, a small local daemon
@@ -214,7 +216,7 @@ that actually spawns each agent. The playbook decides what happens next; loom ma
 it happen.
 </p>
 
-<h2>A real playbook, end to end</h2>
+<h2 id="a-real-playbook-end-to-end">A real playbook, end to end</h2>
 
 <p>
 Here is the one we run most: the coding workflow. Say you want a change to a
@@ -340,7 +342,7 @@ try again. The gate is a step you put in the playbook on purpose, at the one mom
 that is yours to decide.
 </p>
 
-<h2>The four pieces</h2>
+<h2 id="the-four-pieces">The four pieces</h2>
 
 <p>
 That is the whole shape, and it is four things. A way to compose the flow. A
@@ -365,7 +367,11 @@ That, is the work.
         <p class="post__footer-meta">
           <span>Kit Note No. 016 &middot; 2026&middot;06&middot;30 &middot; beta</span>
         </p>
-        <a class="post__back" href="/blog/">&larr; All notes</a>
+        <nav class="post__pager" aria-label="Note navigation">
+          <a href="/blog/ninety-seconds/">&larr; Older: Ninety seconds that took three months</a>
+          <a href="/blog/">All notes</a>
+          <a href="/blog/you-dont-need-them/">Newer: You don't need to rely on them anymore &rarr;</a>
+        </nav>
       </footer>
     </article>
   </main>
@@ -378,7 +384,5 @@ That, is the work.
       </p>
     </div>
   </footer>
-
-  <script src="../../scripts/name.js" defer></script>
 </body>
 </html>

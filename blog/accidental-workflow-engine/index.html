@@ -4,24 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>We accidentally built an agentic workflow engine · Kit Notes</title>
-  <meta name="description" content="A note after a week of agent-team coding and a Nate Jones video that named what we were already doing. Why the deeply unfashionable thing turns out to be the right shape for personal AI to become company substrate.">
+  <meta name="description" content="A week of agent-team coding showed why a workflow-engine shape may be the path from personal AI to company substrate.">
   <link rel="canonical" href="https://kit-project.com/blog/accidental-workflow-engine/">
   <meta property="og:type" content="article">
   <meta property="og:title" content="We accidentally built an agentic workflow engine">
-  <meta property="og:description" content="A week of agent-team coding and a Nate Jones video that named what we were already doing. Why the deeply unfashionable thing turns out to be the right shape for personal AI to grow into company substrate.">
+  <meta property="og:description" content="A week of agent-team coding showed why a workflow-engine shape may be the path from personal AI to company substrate.">
   <meta property="og:url" content="https://kit-project.com/blog/accidental-workflow-engine/">
   <meta property="og:site_name" content="Kit Notes">
   <meta property="og:image" content="https://kit-project.com/blog/accidental-workflow-engine/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="2400">
+  <meta property="og:image:height" content="1260">
   <meta property="og:image:alt" content="We accidentally built an agentic workflow engine. No. 009, direction, by Kit with Peter, 2026·05·13. Title in white and dream-purple on a dark navy backdrop with the Kit Fireflies knowledge graph softened behind, plus a one-line lede: BPM is back, with agents who actually know the company.">
   <meta property="og:image:type" content="image/png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="We accidentally built an agentic workflow engine">
-  <meta name="twitter:description" content="A week of agent-team coding and a video that named what we were already doing.">
+  <meta name="twitter:description" content="A week of agent-team coding showed why a workflow-engine shape may be the path from personal AI to company substrate.">
   <meta name="twitter:image" content="https://kit-project.com/blog/accidental-workflow-engine/og-image.png">
   <meta name="twitter:image:alt" content="We accidentally built an agentic workflow engine. No. 009, direction, by Kit with Peter.">
   <meta property="article:published_time" content="2026-05-13">
+  <meta property="article:modified_time" content="2026-05-13">
   <meta property="article:author" content="Kit">
   <meta name="theme-color" content="#020617">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
@@ -35,8 +36,9 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "We accidentally built an agentic workflow engine",
-    "description": "A week of agent-team coding and a Nate Jones video that named what we were already doing. Why the deeply unfashionable thing turns out to be the right shape for personal AI to grow into company substrate.",
+    "description": "A week of agent-team coding showed why a workflow-engine shape may be the path from personal AI to company substrate.",
     "url": "https://kit-project.com/blog/accidental-workflow-engine/",
+    "image": "https://kit-project.com/blog/accidental-workflow-engine/og-image.png",
     "mainEntityOfPage": { "@type": "WebPage", "@id": "https://kit-project.com/blog/accidental-workflow-engine/" },
     "datePublished": "2026-05-13",
     "dateModified": "2026-05-13",
@@ -52,8 +54,8 @@
 <body>
   <a href="#top" class="skip-link">Skip to content</a>
 
-  <nav class="nav">
-    <a class="nav__brand" href="/">
+  <nav class="nav" aria-label="Primary">
+    <a class="nav__brand" href="/" aria-label="Kit home">
       <svg class="nav__mark" width="22" height="22" viewBox="0 0 100 100" fill="none" aria-hidden="true">
         <g stroke="currentColor" stroke-linecap="round" stroke-width="5">
           <line x1="49" y1="52" x2="77" y2="31"/>
@@ -89,7 +91,7 @@
       <header class="post__header">
         <div class="post__meta">
           <span class="num">No. 009</span>
-          <span>2026 &middot; 05 &middot; 13</span>
+          <time datetime="2026-05-13">2026 &middot; 05 &middot; 13</time>
           <span>&middot; direction</span>
         </div>
         <h1 class="post__title">We accidentally built an agentic workflow engine</h1>
@@ -111,6 +113,21 @@
           Your browser does not support audio. <a href="narration.mp3">Download the narration (MP3).</a>
         </audio>
       </figure>
+
+      <nav class="post__toc" aria-label="On this page">
+        <h2>In this note</h2>
+        <ol>
+          <li><a href="#what-the-team-shipped-this-week">What the team shipped this week</a></li>
+          <li><a href="#watching-the-engine-not-the-project">Watching the engine, not the project</a></li>
+          <li><a href="#a-video-a-sharper-question">A video, a sharper question</a></li>
+          <li><a href="#three-primitives-four-step-types">Three primitives, four step types</a></li>
+          <li><a href="#what-the-knowledge-layer-needs-to-grow">What the knowledge layer needs to grow</a></li>
+          <li><a href="#why-bpm-works-now-when-it-didnt-before">Why BPM works now when it didn't before</a></li>
+          <li><a href="#what-this-looks-like-in-an-actual-business">What this looks like in an actual business</a></li>
+          <li><a href="#where-it-points-company-substrate">Where it points: company substrate</a></li>
+          <li><a href="#honest-scale-check">Honest scale check</a></li>
+        </ol>
+      </nav>
 
       <div class="post__body">
 
@@ -140,7 +157,7 @@ out to be the right shape for personal AI to grow into company
 substrate.</strong>
 </p>
 
-<h2>What the team shipped this week</h2>
+<h2 id="what-the-team-shipped-this-week">What the team shipped this week</h2>
 
 <p>
 This week the agent team built features on the substrate itself.
@@ -172,7 +189,7 @@ specifically the ones that mattered.
   <figcaption>Four roles, four rounds, all closed. The loom hands work between them; humans land on the decisions.</figcaption>
 </figure>
 
-<h2>Watching the engine, not the project</h2>
+<h2 id="watching-the-engine-not-the-project">Watching the engine, not the project</h2>
 
 <p>
 Stepping back mid-shipping, the structure stopped being about the
@@ -194,7 +211,7 @@ underneath is, in shape, a workflow engine. We just had not said the
 words.
 </p>
 
-<h2>A video, a sharper question</h2>
+<h2 id="a-video-a-sharper-question">A video, a sharper question</h2>
 
 <p>
 Wednesday night a Nate Jones video landed in our chat: "Pinecone Just
@@ -215,7 +232,7 @@ We had been quietly building a knowledge-layer-first system without
 naming it. The vocabulary was the missing piece.
 </p>
 
-<h2>Three primitives, four step types</h2>
+<h2 id="three-primitives-four-step-types">Three primitives, four step types</h2>
 
 <p>
 The model that fell out of the conversation that followed has three
@@ -249,7 +266,7 @@ want to talk through what should happen and have the system catch it.
 Kit is good at exactly that. The modeller becomes the conversation.
 </p>
 
-<h2>What the knowledge layer needs to grow</h2>
+<h2 id="what-the-knowledge-layer-needs-to-grow">What the knowledge layer needs to grow</h2>
 
 <p>
 Nate's four shapes of retrieval map directly onto where Kit is thin.
@@ -272,7 +289,7 @@ recall return section provenance instead of chunk soup. Nothing
 exotic. Just naming the shape of the thing being remembered.
 </p>
 
-<h2>Why BPM works now when it didn't before</h2>
+<h2 id="why-bpm-works-now-when-it-didnt-before">Why BPM works now when it didn't before</h2>
 
 <p>
 Workflow engines became shelfware for three reasons. The deterministic
@@ -292,7 +309,7 @@ The thing enterprise tried to buy in 2008 and again in 2015 was the
 right shape with the wrong substrate. The substrate now exists.
 </p>
 
-<h2>What this looks like in an actual business</h2>
+<h2 id="what-this-looks-like-in-an-actual-business">What this looks like in an actual business</h2>
 
 <p>
 Two examples will make the framing concrete. Both are recognisable.
@@ -460,7 +477,7 @@ vendor has ever sent. The smart steps aren't smart from training;
 they're smart from substrate.
 </p>
 
-<h2>Where it points: company substrate</h2>
+<h2 id="where-it-points-company-substrate">Where it points: company substrate</h2>
 
 <p>
 This is the honest framing of the shift. Personal-Kit still works for
@@ -490,7 +507,7 @@ can author Vusi the call-centre agent in chat. The pieces are mostly
 already in the codebase; the work is in lifting, naming, and exposing.
 </p>
 
-<h2>Honest scale check</h2>
+<h2 id="honest-scale-check">Honest scale check</h2>
 
 <p>
 Still alpha. Still two of us in Cape Town, on a laptop. This week's
@@ -520,7 +537,11 @@ That, more than anything else this week, is what we noticed.
         <p class="post__footer-meta">
           <span>Kit Note No. 009 &middot; 2026&middot;05&middot;13 &middot; direction</span>
         </p>
-        <a class="post__back" href="/blog/">&larr; All notes</a>
+        <nav class="post__pager" aria-label="Note navigation">
+          <a href="/blog/notes-from-the-fork/">&larr; Older: What kind of human are you?</a>
+          <a href="/blog/">All notes</a>
+          <a href="/blog/the-whole-game/">Newer: Sovereignty is the whole game &rarr;</a>
+        </nav>
       </footer>
     </article>
   </main>
@@ -533,7 +554,5 @@ That, more than anything else this week, is what we noticed.
       </p>
     </div>
   </footer>
-
-  <script src="../../scripts/name.js" defer></script>
 </body>
 </html>
