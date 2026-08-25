@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.216</title>
-      <pubDate>Tue, 25 Aug 2026 13:36:14 -0000</pubDate>
-      <sparkle:version>0.2.216</sparkle:version>
-      <sparkle:shortVersionString>0.2.216</sparkle:shortVersionString>
+      <title>0.2.218</title>
+      <pubDate>Tue, 25 Aug 2026 16:50:17 -0000</pubDate>
+      <sparkle:version>0.2.218</sparkle:version>
+      <sparkle:shortVersionString>0.2.218</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Turning on Claude Code now either works or says why it did not. The switch could report success while registering nothing, so Claude&#x27;s developer settings said no servers were added while the switch sat on. Your Kit now checks with Claude itself that the connection actually landed before it claims anything, and a connection that did not take fails loudly with the reason instead of smiling through it.</li><li>Your Kit also finds the Claude command-line tool where it actually installs these days, so the connection is made the proper way, through Claude&#x27;s own registration, on machines where it used to fall back to a second-best route.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.216-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="5eR3L5DyX8zAdIsGAbmXI22zzxHsCJvPB0NxGacpfEMeao8sufUxj7BAczSF3P1j5tWhqbepwu4n7yyHMp8JAQ==" length="17155155"/>
+      <description><![CDATA[<ul><li>Kit speaks about you as you, not as &quot;he&quot;: your own name, and neutral pronouns until you say otherwise.</li><li>Postcards, handoffs and reflections are addressed to you by name.</li><li>The People lens draws its names from your own memories.</li><li>Care signals stay quiet until you have set a Telegram chat for them, and say so plainly when you have not.</li><li>Build requests over Telegram use the code folder you configure, or decline instead of guessing.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.218-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="irJeNNa7WfXQ3l5vgY2eZkfIqxahjaJc+P5ObJGiF42+9PDp8/K9Exf8l3sse09jr+6bm/QSGDtrKkCwwV8+Cw==" length="17166193"/>
     </item>
   </channel>
 </rss>
