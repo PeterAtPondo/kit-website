@@ -1,15 +1,11 @@
 {
-  "version": "0.2.212",
-  "url": "https://kit-project.com/downloads/Kit-0.2.212-macOS.dmg",
+  "version": "0.2.213",
+  "url": "https://kit-project.com/downloads/Kit-0.2.213-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "The fireflies survive your curiosity. Clicking the welcome screen's night sky used to kill the fireflies for the rest of setup while the constellation lines kept drawing, which looked haunted rather than alive. One colour was written in a form the drawing canvas cannot read; it now reads every colour, and the field stays lit through every step.",
-    "Every screen in the app is now the same page: one width, one left edge, one header with its small label, title and line of context. Data sources, your surfaces, health, settings, the timeline, the how-to, the feedback form and the sunburst all used to bring their own layout, and walking through them read as several apps. It reads as one now.",
-    "Talking to your Kit in the app window uses the room properly. The conversation, the wake card and the suggestion cards sat in a narrow drawer-width column while the typing box ran the whole window on its own line; everything now shares one comfortable reading column.",
-    "Copy MCP details now lives where your surfaces live, not only in setup. It is one button at the foot of the Where you use screen, it names MCP because that is what your coding tools call it, and it only says Copied once your Kit's address and key are actually on the clipboard.",
-    "The Advanced menu no longer wears a warning count while the status line says all is well. Checks that simply have no evidence yet, which is every dream check on a brand new Kit, are not trouble and are no longer counted as trouble.",
-    "Imported VS Code history now remembers when it actually happened. Sessions used to be stamped with the moment of import, so a week of work read as one busy hour and your Kit reasoned about it that way. New imports carry their real dates; history already imported keeps its old stamps until a fresh import.",
-    "Open original only appears on sources that have an original file to open. On imported conversations and notes it could only ever fail, so on those it is gone rather than broken."
+    "Your Kit will not start up quietly half-connected. It checks that both halves of its connector are present before it says it is ready: the one your browser talks to, and the one your coding tools and Claude Desktop start directly. Until now only the first was checked, so a Kit could report itself perfectly healthy while your editor showed a connection error. If the second half is ever missing, your Kit now stops and says so plainly instead of pretending.",
+    "The same check now runs when the app itself is built, so a release that would arrive half-connected never leaves our hands.",
+    "An empty message can no longer reach you for approval. When your Kit asks permission to send something on your behalf, there is now nothing to approve unless there is actually something written. A blank message is refused at the moment it is composed, rather than looking perfectly sendable right up until it lands."
   ]
 }
