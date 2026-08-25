@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kit — persistent memory for AI agents</title>
-  <meta name="description" content="Persistent memory substrate for AI agents. MCP-native: Claude Code, Codex, and any MCP client can persist, recall, and coordinate across sessions. Typed memories, knowledge graph, dream-cycle consolidation. Federation across sovereign kits under signed, revocable grants.">
+  <title>Kit — user-controlled memory for AI collaborators</title>
+  <meta name="description" content="Kit gives AI collaborators durable, user-controlled memory, so they can carry context across sessions, tools, and models without trapping it inside one platform.">
   <meta name="author" content="Peter Koen">
   <meta name="keywords" content="AI agent memory, MCP, Model Context Protocol, persistent memory, Claude Code, Codex, knowledge graph, agent substrate, agent federation, agent orchestration, agent infrastructure">
 
@@ -13,14 +13,14 @@
   <link rel="canonical" href="https://kit-project.com/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kit-project.com/">
-  <meta property="og:title" content="Kit — persistent memory for AI agents">
-  <meta property="og:description" content="Persistent memory substrate for AI agents. MCP-native, so Claude Code, Codex, and any MCP client can plug in. Typed memories, a knowledge graph, a nightly consolidation cycle. Federation across sovereign brains under signed, revocable grants.">
+  <meta property="og:title" content="Kit — user-controlled memory for AI collaborators">
+  <meta property="og:description" content="Stop re-explaining yourself to every new AI session. Kit gives agents durable, inspectable, portable memory that belongs to you.">
   <meta property="og:image" content="https://kit-project.com/assets/img/background.png">
   <meta property="og:image:alt" content="Kit's knowledge graph — glowing node clusters connected by curved edges on a dark navy backdrop.">
   <meta property="og:site_name" content="Kit">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kit — persistent memory for AI agents">
-  <meta name="twitter:description" content="MCP-native memory substrate for AI agents. Typed memories, a knowledge graph, a nightly consolidation cycle. Runs on your machine. Federation across sovereign brains under signed, revocable grants.">
+  <meta name="twitter:title" content="Kit — user-controlled memory for AI collaborators">
+  <meta name="twitter:description" content="Stop re-explaining yourself to every new AI session. Kit gives agents durable, inspectable, portable memory that belongs to you.">
   <meta name="twitter:image" content="https://kit-project.com/assets/img/background.png">
 
   <!-- Theme colour for mobile Safari / PWA-style surfaces. Matches --bg-deep. -->
@@ -154,7 +154,7 @@
     </a>
     <div class="nav__links">
       <a href="#install">Install</a>
-      <a href="https://demo.kit-project.com" target="_blank" rel="noopener">Live demo</a>
+      <a href="https://demo.kit-project.com/investigate" target="_blank" rel="noopener">See proof</a>
       <a href="#technical-evidence">Architecture</a>
       <a href="#letter">For agents</a>
       <a href="/blog/">Notes</a>
@@ -169,13 +169,13 @@
     <canvas class="hero__graph" aria-hidden="true"></canvas>
     <div class="hero hero--video">
       <div class="hero__copy hero__copy--video">
-        <h1>Every new chat starts from nothing. <strong>Kit remembers.</strong></h1>
+        <h1>Kit gives your AI collaborators memory you control.</h1>
         <p class="hero__lede">
-          Kit is an AI collaborator with a memory of its own: your decisions, your
-          projects, the people involved, and why things ended up the way they did.
-          Its memory and search run on your own Mac, and it works inside the tools
-          you already use. Model calls go only to the provider you choose; limited
-          beta health telemetry is <a href="/terms/#telemetry">disclosed and optional</a>.
+          Stop re-explaining yourself to every new agent, thread, and tool.
+          Kit keeps the context you choose, your decisions, projects, people,
+          corrections, and handoffs, then makes it available to the AI tools
+          you already use. The memory runs on your Mac, stays inspectable, and
+          is portable outside any one model provider.
         </p>
 
         <!-- Access status belongs before the action: the installer is gated,
@@ -187,7 +187,7 @@
 
         <div class="hero__ctas">
           <a href="/install/request/" class="btn btn--primary">Request beta access</a>
-          <a href="https://demo.kit-project.com" class="btn btn--ghost" target="_blank" rel="noopener">Try the public demo</a>
+          <a href="https://demo.kit-project.com/investigate" class="btn btn--ghost" target="_blank" rel="noopener">Run the proof demo</a>
         </div>
         <p class="hero__download-meta">
           Already invited? Open the personal link in your email; it unlocks the
@@ -221,6 +221,55 @@
         </p>
       </div>
     </div>
+  </section>
+
+  <!-- Practical proof: make the first public promise obvious before the
+       build log, architecture, or philosophy ask the reader for patience. -->
+  <section id="proof" class="section section--proof" data-reveal>
+    <h2>Feel the difference in five minutes</h2>
+    <p class="lede">
+      The public demo proves one thing: when memory lives outside the model,
+      an agent can leave a cold session and still reason from context it did
+      not already know.
+    </p>
+    <div class="proof-steps" aria-label="How the demo proves Kit">
+      <div class="proof-step">
+        <div class="proof-step__num">01</div>
+        <h3>Open a live Kit</h3>
+        <p>
+          The demo contains a fictional world split across two read-only kits,
+          so correct answers cannot be hand-waved as training data.
+        </p>
+      </div>
+      <div class="proof-step">
+        <div class="proof-step__num">02</div>
+        <h3>Run the investigation</h3>
+        <p>
+          Five questions query both archives live in your browser, showing
+          retrieval, empty results, provenance, and cross-kit synthesis.
+        </p>
+      </div>
+      <div class="proof-step">
+        <div class="proof-step__num">03</div>
+        <h3>Give it to your own agent</h3>
+        <p>
+          The same demo exposes agent-readable maps and MCP endpoints, so
+          Claude Code, Codex, Cursor, or another client can inspect it directly.
+        </p>
+      </div>
+      <div class="proof-step">
+        <div class="proof-step__num">04</div>
+        <h3>Bring the pattern home</h3>
+        <p>
+          On your machine, the same mechanics carry your work: what changed,
+          why it changed, who was involved, and what the next agent should know.
+        </p>
+      </div>
+    </div>
+    <p class="proof-cta">
+      <a href="https://demo.kit-project.com/investigate" class="btn btn--primary" target="_blank" rel="noopener">Run the investigation</a>
+      <a href="/walkthrough/" class="btn btn--ghost">Watch the walkthrough</a>
+    </p>
   </section>
 
   <!-- Surfaces marquee: every coding surface Kit connects to, drifting slowly
@@ -335,7 +384,7 @@
       </p>
       <div class="install__cta">
         <a href="/install/request/" class="btn btn--primary">Request beta access</a>
-        <a href="https://demo.kit-project.com" class="btn btn--ghost" target="_blank" rel="noopener">Try the live demo first</a>
+        <a href="https://demo.kit-project.com/investigate" class="btn btn--ghost" target="_blank" rel="noopener">Run the proof demo first</a>
       </div>
       <p class="install__cta-note">
         Tell us a little about what you are building and we will bring you in.
@@ -352,7 +401,8 @@
   <section id="in-action" class="section" data-reveal>
     <h2>Kit in action</h2>
     <p class="lede">
-      Watch Kit work inside a real coding session: we build a new pattern for
+      Watch Kit work inside a real coding session: a new agent starts with
+      context already in place, then helps build a new pattern for
       <a href="https://www.whiskerwool.co.za" target="_blank" rel="noopener">Whiskerwool</a>,
       a little shop for mittens for hamsters, with Kit carrying the context the
       whole way.
@@ -382,7 +432,7 @@
         nothing you find in there could have come from a model's training.
         Wander the memory as a graph, or
         <a href="#connect-agent">point your own agent at it</a> and watch a
-        borrowed model answer from that memory instead of their own. It is
+        borrowed model answer from that memory instead of its own. It is
         read-only: writing needs a key, because a memory worth trusting is one
         somebody curates.
       </p>
