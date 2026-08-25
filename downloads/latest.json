@@ -1,11 +1,10 @@
 {
-  "version": "0.2.213",
-  "url": "https://kit-project.com/downloads/Kit-0.2.213-macOS.dmg",
+  "version": "0.2.214",
+  "url": "https://kit-project.com/downloads/Kit-0.2.214-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Your Kit will not start up quietly half-connected. It checks that both halves of its connector are present before it says it is ready: the one your browser talks to, and the one your coding tools and Claude Desktop start directly. Until now only the first was checked, so a Kit could report itself perfectly healthy while your editor showed a connection error. If the second half is ever missing, your Kit now stops and says so plainly instead of pretending.",
-    "The same check now runs when the app itself is built, so a release that would arrive half-connected never leaves our hands.",
-    "An empty message can no longer reach you for approval. When your Kit asks permission to send something on your behalf, there is now nothing to approve unless there is actually something written. A blank message is refused at the moment it is composed, rather than looking perfectly sendable right up until it lands."
+    "Claude Code and Claude Desktop can reach your Kit again. If you turned either of them on, they were trying to start your Kit from a folder that has never existed, and failed instantly with a missing-file error every time. Restarting did not help, because nothing about it was temporary. They now look where your Kit actually lives. If you moved files by hand to work around this, you can put them back: the fix does not need them.",
+    "This affects Kits running without Docker. Everything else, including your memories, your surfaces and your settings, was untouched by it: only the doorway those two apps knock on was wrong."
   ]
 }

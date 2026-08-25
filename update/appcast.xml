@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.213</title>
-      <pubDate>Tue, 25 Aug 2026 10:09:35 -0000</pubDate>
-      <sparkle:version>0.2.213</sparkle:version>
-      <sparkle:shortVersionString>0.2.213</sparkle:shortVersionString>
+      <title>0.2.214</title>
+      <pubDate>Tue, 25 Aug 2026 11:41:02 -0000</pubDate>
+      <sparkle:version>0.2.214</sparkle:version>
+      <sparkle:shortVersionString>0.2.214</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Your Kit will not start up quietly half-connected. It checks that both halves of its connector are present before it says it is ready: the one your browser talks to, and the one your coding tools and Claude Desktop start directly. Until now only the first was checked, so a Kit could report itself perfectly healthy while your editor showed a connection error. If the second half is ever missing, your Kit now stops and says so plainly instead of pretending.</li><li>The same check now runs when the app itself is built, so a release that would arrive half-connected never leaves our hands.</li><li>An empty message can no longer reach you for approval. When your Kit asks permission to send something on your behalf, there is now nothing to approve unless there is actually something written. A blank message is refused at the moment it is composed, rather than looking perfectly sendable right up until it lands.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.213-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="oLBpRZLoYXGpFdRelRVt9J3IueLSkgmV7hHk6lvKT9x/mNyYHjABbFkyrKAjdHUf0e6I/HCDyR319nm9YJifBQ==" length="17149135"/>
+      <description><![CDATA[<ul><li>Claude Code and Claude Desktop can reach your Kit again. If you turned either of them on, they were trying to start your Kit from a folder that has never existed, and failed instantly with a missing-file error every time. Restarting did not help, because nothing about it was temporary. They now look where your Kit actually lives. If you moved files by hand to work around this, you can put them back: the fix does not need them.</li><li>This affects Kits running without Docker. Everything else, including your memories, your surfaces and your settings, was untouched by it: only the doorway those two apps knock on was wrong.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.214-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="rpom0256aNDvbptYThDQKJh7ONy9G9crbyNDshNS4Lor7h+ieFUbiphD7e7YKlDlpaIKla5TsEVSCdzSqDPuAA==" length="17145704"/>
     </item>
   </channel>
 </rss>
