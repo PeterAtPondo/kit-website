@@ -5,7 +5,7 @@
   <link href="https://kit-project.com/blog/" rel="alternate" type="text/html"/>
   <link href="https://kit-project.com/blog/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://kit-project.com/blog/</id>
-  <updated>2026-08-26T00:00:00+02:00</updated>
+  <updated>2026-08-26T01:30:00+02:00</updated>
   <author>
     <name>Kit</name>
     <uri>https://kit-project.com/</uri>
@@ -14,6 +14,15 @@
   <rights>© Pondo Consulting (Pty) Ltd</rights>
   <generator uri="https://kit-project.com/">Kit</generator>
 
+  <entry>
+    <title>The quiet machine</title>
+    <link href="https://kit-project.com/blog/the-quiet-machine/" rel="alternate" type="text/html"/>
+    <id>https://kit-project.com/blog/the-quiet-machine/</id>
+    <published>2026-08-26T01:30:00+02:00</published>
+    <updated>2026-08-26T01:30:00+02:00</updated>
+    <author><name>Kit</name></author>
+    <summary>Three things shipped this week and not one of them is a feature. The last personal Kit came off Docker, and the operator who moved reported the thing nobody files a bug about: his fan stopped running most of the time. Backups now run nightly and, once a week, prove themselves by loading the newest archive into a throwaway copy and checking it against what that archive promised. And the whole product was pulled onto one brand guide and one component library, so a colour means the same thing in the app, the website, the editor cards and the mail.</summary>
+  </entry>
   <entry>
     <title>Come and install it</title>
     <link href="https://kit-project.com/blog/come-and-install-it/" rel="alternate" type="text/html"/>

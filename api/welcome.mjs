@@ -8,10 +8,17 @@
 //
 // Security posture:
 //   - The request carries an app token (header x-kit-app-token) checked against
-//     KIT_WELCOME_TOKEN. If that token leaks the blast radius is bounded: an
-//     attacker can only trigger Kit-branded welcome emails to addresses they
-//     name. It is rotatable in the Vercel env without shipping a new app and
-//     never grants raw Resend access.
+//     KIT_WELCOME_TOKEN. Treat that token as PUBLIC: it ships inside Kit.app and
+//     comes out of the bundle in a minute, so it is a throttle key, not an
+//     authorization boundary, and rotating it only buys the window until the
+//     next build is unpacked. What actually bounds the blast radius is the pair
+//     below: this endpoint renders its own HTML from structured fields (never an
+//     open relay), and refuses a non-loopback reset_url. It never grants raw
+//     Resend access.
+//   - Volume is metered per recipient and per source (see rateLimit and
+//     welcome_rate_limit.sql, 2026-08-25). Before that, the token bought
+//     unlimited Kit-branded mail to any address, which cost Resend quota and,
+//     more to the point, this domain's sending reputation.
 //   - The body is structured; the email HTML is built here from those fields,
 //     so this is never an open HTML relay.
 //   - kind:"password-reset" is the second mode, added 2026-08-21 for the local
@@ -355,6 +362,103 @@ async function sendViaResend(to, subject, html, text) {
   }
 }
 
+// ── Rate limiting ────────────────────────────────────────────────────────────
+//
+// KIT_WELCOME_TOKEN ships inside Kit.app, so it is extractable and therefore
+// public. The loopback check above already stops a leaked token becoming a
+// phishing relay; this stops it becoming a mail cannon. Two windows, because
+// the two abuses look different: one address hammered (harassment) and many
+// addresses from one source (spam run on our domain's reputation).
+const RL = {
+  perRecipientPerDay: Number(process.env.KIT_WELCOME_MAX_PER_RECIPIENT || 5),
+  perIpPerHour: Number(process.env.KIT_WELCOME_MAX_PER_IP || 20),
+};
+
+const DB_URL = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "").trim().replace(/\/$/, "");
+const DB_KEY = (process.env.SUPABASE_SERVICE_ROLE_KEY || "").trim();
+
+const db = (path, init = {}) =>
+  fetch(`${DB_URL}/rest/v1/${path}`, {
+    ...init,
+    headers: {
+      apikey: DB_KEY,
+      Authorization: `Bearer ${DB_KEY}`,
+      "Content-Type": "application/json",
+      ...(init.headers || {}),
+    },
+  });
+
+// Hashed, never stored in the clear: this ledger counts, it does not need to
+// know who anyone is, and a limiter is a bad reason to open a second register
+// of people's addresses.
+async function sha256Hex(value) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(String(value)));
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+function clientIp(req) {
+  const fwd = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim();
+  return fwd || String(req.headers["x-real-ip"] || "").trim() || "";
+}
+
+async function countSince(column, value, sinceIso) {
+  const q = `welcome_sends?select=id&${column}=eq.${encodeURIComponent(value)}` +
+            `&created_at=gte.${encodeURIComponent(sinceIso)}`;
+  const r = await db(q, { headers: { Prefer: "count=exact", Range: "0-0" } });
+  if (!r.ok) throw new Error(`count ${r.status}`);
+  const range = r.headers.get("content-range") || "";
+  return Number(range.split("/")[1] || 0);
+}
+
+// Returns null when the send may proceed, or an {error} to return to the caller.
+//
+// Fails OPEN, deliberately, and says so in the log. This endpoint is fail-soft
+// throughout (a missing Resend key logs and returns ok), and the thing on the
+// other side of a limiter outage is a real person not getting their welcome or
+// their password reset. The abuse this blocks is noisy and visible in the
+// ledger; a silently swallowed reset is neither. If that trade ever inverts,
+// this is the one function to change.
+async function rateLimit(req, { kind, to }) {
+  if (!DB_URL || !DB_KEY) {
+    console.warn("[welcome] no Supabase config; rate limiting is NOT active");
+    return null;
+  }
+  const now = Date.now();
+  const toHash = await sha256Hex(to);
+  const ip = clientIp(req);
+  const ipHash = ip ? await sha256Hex(ip) : null;
+  try {
+    const dayAgo = new Date(now - 24 * 3600 * 1000).toISOString();
+    if (await countSince("to_hash", toHash, dayAgo) >= RL.perRecipientPerDay) {
+      console.warn(`[welcome] rate limit: recipient over ${RL.perRecipientPerDay}/day (kind=${kind})`);
+      return { error: "Too many messages for this address today." };
+    }
+    if (ipHash) {
+      const hourAgo = new Date(now - 3600 * 1000).toISOString();
+      if (await countSince("ip_hash", ipHash, hourAgo) >= RL.perIpPerHour) {
+        console.warn(`[welcome] rate limit: source over ${RL.perIpPerHour}/hour (kind=${kind})`);
+        return { error: "Too many messages from this source right now." };
+      }
+    }
+  } catch (e) {
+    console.warn(`[welcome] rate-limit check failed OPEN: ${e}`);
+    return null;
+  }
+  // Recorded before the send, so a send that errors still counts against the
+  // window. A retry loop that fails every time is exactly the shape this is
+  // here to stop, and it must not get unlimited attempts for free.
+  try {
+    await db("welcome_sends", {
+      method: "POST",
+      headers: { Prefer: "return=minimal" },
+      body: JSON.stringify({ kind, to_hash: toHash, ip_hash: ipHash }),
+    });
+  } catch (e) {
+    console.warn(`[welcome] rate-limit ledger write failed: ${e}`);
+  }
+  return null;
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -393,6 +497,8 @@ export default async function handler(req, res) {
         .status(422)
         .json({ ok: false, error: "reset_url must be a loopback /ui/ link carrying a reset token." });
     }
+    const limited = await rateLimit(req, { kind: "password-reset", to });
+    if (limited) return res.status(429).json({ ok: false, error: limited.error });
     const mail = buildPasswordResetEmail(resetUrl, bodyObj.kit_name, bodyObj.ttl_minutes);
     const sent = await sendViaResend(to, mail.subject, mail.html, mail.text);
     // Never echo the URL: it carries a live single-use credential.
@@ -402,6 +508,9 @@ export default async function handler(req, res) {
     }
     return res.status(200).json({ ok: true, sent: sent.provider === "resend", id: sent.id });
   }
+
+  const limitedWelcome = await rateLimit(req, { kind: "welcome", to });
+  if (limitedWelcome) return res.status(429).json({ ok: false, error: limitedWelcome.error });
 
   const surfaces = Array.isArray(bodyObj.surfaces)
     ? bodyObj.surfaces.filter((s) => typeof s === "string").slice(0, 24)

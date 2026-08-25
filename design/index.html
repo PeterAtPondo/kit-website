@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kit's visual identity</title>
+  <meta name="description" content="The brand guide and component library Kit is built from: what its colours mean, its one type scale, and the components every surface shares.">
+  <link rel="canonical" href="https://kit-project.com/design/">
+  <meta name="theme-color" content="#020617">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/blog.css">
+</head>
+<body>
+  <a href="#top" class="skip-link">Skip to content</a>
+
+  <nav class="nav">
+    <a class="nav__brand" href="/">
+      <svg class="nav__mark" width="22" height="22" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <g stroke="currentColor" stroke-linecap="round" stroke-width="5">
+          <line x1="49" y1="52" x2="77" y2="31"/>
+          <line x1="49" y1="52" x2="22" y2="62"/>
+          <line x1="49" y1="52" x2="62" y2="80"/>
+        </g>
+        <circle cx="49" cy="52" r="10" fill="currentColor"/>
+        <circle cx="77" cy="31" r="5.5" fill="currentColor"/>
+        <circle cx="22" cy="62" r="4.5" fill="currentColor"/>
+        <circle cx="62" cy="80" r="4" fill="currentColor"/>
+      </svg>
+      <span data-name></span>
+    </a>
+    <div class="nav__links">
+      <a href="/#install">Install</a>
+      <a href="https://demo.kit-project.com">Live demo</a>
+      <a href="/#arch">Architecture</a>
+      <a href="/blog/">Notes</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+
+  <main class="prose">
+    <h1>Kit's visual identity</h1>
+    <p class="lede">This is where Kit's look is decided. Everything in the product,
+    the Lantern, this website, the cards Kit draws inside your editor and the mail
+    it sends is generated from or built on what is here. If a colour, a control or
+    a piece of type disagrees with this folder, this folder is right and the code
+    is wrong.</p>
+
+    <h2>The two artefacts</h2>
+    <p><strong><a href="/design/styleguide/">The style guide</a></strong> is the
+    whole system on one page: the palette, the type scale, the spacing, and the
+    rules that hold them together.</p>
+    <p><strong><a href="/design/components/">The component library</a></strong> is
+    the code. A button, a field, a chip, a row, a card, a note, a tile, a drawer, a
+    tab strip, a dot. Every one of them live on the same stylesheet the product
+    uses, so what you see is what ships.</p>
+
+    <h2>The rules we hold ourselves to</h2>
+    <ul>
+      <li><strong>Use the library.</strong> A new button is a variant of the button
+      we have, not a new one built from utilities.</li>
+      <li><strong>Never declare a colour.</strong> No hex anywhere except in the one
+      file that defines what the colours mean.</li>
+      <li><strong>Alpha comes from a scale</strong> of six steps. Not a seventh
+      chosen by eye.</li>
+      <li><strong>Colour encodes, it does not decorate.</strong> Amber is the
+      accent. Emerald means live, fresh, succeeded, and nothing else. Purple means
+      dreaming. A state colour picked for variety is not allowed.</li>
+    </ul>
+    <p>These are not advice. They run as tests on every build, and they refuse a
+    carrier out of sync, a colour written into a stylesheet, a type size off the
+    scale, or a hand-styled control where a component exists.</p>
+
+    <h2>One source, five carriers</h2>
+    <p><a href="/design/tokens.json">tokens.json</a> is the vocabulary. Everything
+    else is generated from it: the web interface, this showroom, the MCP cards, the
+    email templates, and the Lantern. Nothing else may declare a palette.</p>
+
+    <h2>The written guide</h2>
+    <p>The prose that says what things mean, rather than what they are.</p>
+    <ul>
+      <li><a href="/design/colour-system.md">Colour system</a></li>
+      <li><a href="/design/typography.md">Typography</a></li>
+      <li><a href="/design/firefly-language.md">The firefly language</a></li>
+      <li><a href="/design/glyph-web.md">The mark on the web</a></li>
+      <li><a href="/design/glyph-app-comms.md">The mark in the app and in mail</a></li>
+      <li><a href="/design/dos-donts-changes.md">Dos, don'ts, and what changed</a></li>
+    </ul>
+  </main>
+
+  <script src="/scripts/site.js" defer></script>
+</body>
+</html>

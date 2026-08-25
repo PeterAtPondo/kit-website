@@ -1,0 +1,284 @@
+/* Kit design tokens, generated. Do not edit by hand: change tokens-semantic.json and rebuild. */
+/* Primitives are RGB triplets (rgb(var(--kit-amber)) opaque, rgba(var(--kit-amber), var(--kit-soft)) tinted). */
+/* Semantic tokens are resolved colours; accents and states carry an -rgb twin for tints. */
+/* No light theme in v1: this block is the night. Light context is a scoped block for email, print and documents. */
+:root {
+  color-scheme: dark;
+
+  /* Font families */
+  --kit-font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --kit-font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --kit-font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --font-display: var(--kit-font-display);
+  --font-body: var(--kit-font-body);
+  --font-mono: var(--kit-font-mono);
+
+  /* Primitives: grounds (RGB triplets, existing convention) */
+  --kit-bg-980: 2, 6, 23;
+  --kit-bg-950: 10, 15, 26;
+  --kit-bg-900: 15, 23, 42;
+  --kit-bg-850: 30, 41, 59;
+  --kit-black: 0, 0, 0;
+  --kit-white: 255, 255, 255;
+
+  /* Primitives: ink (new triplets) */
+  --kit-ink: 241, 245, 249;
+  --kit-ink-soft: 203, 213, 225;
+  --kit-ink-muted: var(--kit-slate);
+  --kit-ink-faint: 100, 116, 139;
+  --kit-ink-on-amber: 26, 18, 7;
+  --kit-warm-white: 255, 243, 223;
+
+  /* Primitives: the amber ramp (new triplets) */
+  --kit-amber: 232, 165, 92;
+  --kit-amber-50: 253, 245, 234;
+  --kit-amber-100: 251, 233, 210;
+  --kit-amber-200: 245, 208, 163;
+  --kit-amber-300: 240, 189, 130;
+  --kit-amber-400: var(--kit-amber);
+  --kit-amber-500: 212, 144, 74;
+  --kit-amber-600: 184, 119, 56;
+  --kit-amber-700: 143, 90, 42;
+  --kit-amber-800: 107, 67, 32;
+  --kit-amber-900: 74, 46, 22;
+  --kit-firefly: 255, 196, 107;
+
+  /* Primitives: secondary, tertiary and semantic hues (existing triplets) */
+  --kit-purple: 167, 139, 250;
+  --kit-violet: 139, 92, 246;
+  --kit-emerald-soft: 113, 224, 184;
+  --kit-red-soft: 250, 156, 156;
+  --kit-blue-soft: 144, 192, 252;
+  --kit-teal-soft: 142, 240, 225;
+  --kit-rose-soft: 247, 156, 204;
+  --kit-purple-soft: 196, 181, 253;
+  --kit-emerald: 52, 211, 153;
+  --kit-teal: 94, 234, 212;
+  --kit-rose: 244, 114, 182;
+  --kit-blue: 96, 165, 250;
+  --kit-red: 248, 113, 113;
+  --kit-yellow: 252, 211, 77;
+  --kit-orange: 251, 146, 60;
+  --kit-slate: 148, 163, 184;
+  --kit-slate-deep: 71, 85, 105;
+
+  /* Alpha scale */
+  --kit-tint: 0.06;
+  --kit-faint: 0.10;
+  --kit-soft: 0.18;
+  --kit-fill: 0.40;
+  --kit-strong: 0.60;
+  --kit-solid: 0.92;
+
+  /* Surface */
+  --kit-surface-page: rgb(var(--kit-bg-980));
+  --kit-surface-panel: rgba(var(--kit-bg-950), var(--kit-strong));
+  --kit-surface-raised: rgba(var(--kit-bg-900), var(--kit-strong));
+  --kit-surface-overlay: rgba(var(--kit-bg-900), var(--kit-solid));
+  --kit-surface-sunken: rgba(var(--kit-bg-980), var(--kit-strong));
+  --kit-surface-hover: rgba(var(--kit-bg-850), var(--kit-strong));
+  --kit-scrim: rgba(var(--kit-bg-980), var(--kit-strong));
+  --kit-scrim-heavy: rgba(var(--kit-bg-980), var(--kit-solid));
+  --kit-blur-card: 12px;
+  --kit-blur-sheet: 20px;
+
+  /* Text */
+  --kit-text-primary: rgb(var(--kit-ink));
+  --kit-text-secondary: rgb(var(--kit-ink-soft));
+  --kit-text-tertiary: rgb(var(--kit-ink-muted));
+  --kit-text-placeholder: rgb(var(--kit-ink-muted));
+  --kit-text-on-primary: rgb(var(--kit-ink-on-amber));
+  --kit-text-on-tile: rgb(var(--kit-white));
+  --kit-text-accent: rgb(var(--kit-amber));
+  --kit-text-link: rgb(var(--kit-amber-300));
+  --kit-text-link-hover: rgb(var(--kit-amber-200));
+  --kit-link-underline: rgba(var(--kit-amber), var(--kit-fill));
+  --kit-link-underline-hover: rgba(var(--kit-amber), var(--kit-solid));
+  --kit-measure: 65ch;
+
+  /* Border */
+  --kit-border-subtle: rgba(var(--kit-slate), var(--kit-faint));
+  --kit-border-default: rgba(var(--kit-slate), var(--kit-soft));
+  --kit-border-strong: rgba(var(--kit-slate), var(--kit-strong));
+  --kit-border-control: rgba(var(--kit-slate), var(--kit-strong));
+  --kit-border-focus: rgba(var(--kit-amber), var(--kit-strong));
+  --kit-border-accent: rgba(var(--kit-amber), var(--kit-soft));
+
+  /* Accent */
+  --kit-accent-primary: rgb(var(--kit-amber));
+  --kit-accent-primary-tint: rgba(var(--kit-amber), var(--kit-faint));
+  --kit-accent-primary-soft: rgba(var(--kit-amber), var(--kit-soft));
+  --kit-accent-primary-rgb: var(--kit-amber);
+  --kit-accent-primary-hover: rgb(var(--kit-amber-300));
+  --kit-accent-primary-pressed: rgb(var(--kit-amber-500));
+  --kit-accent-primary-disabled: rgba(var(--kit-amber), var(--kit-fill));
+  --kit-accent-secondary: rgb(var(--kit-purple));
+  --kit-accent-secondary-rgb: var(--kit-purple);
+  --kit-accent-secondary-fill: rgba(var(--kit-violet), var(--kit-fill));
+  --kit-accent-secondary-text: rgb(var(--kit-purple-soft));
+  --kit-accent-tertiary: rgb(var(--kit-emerald));
+  --kit-accent-tertiary-rgb: var(--kit-emerald);
+  --kit-accent-danger: rgb(var(--kit-red));
+  --kit-accent-danger-rgb: var(--kit-red);
+  --kit-accent-warning: rgb(var(--kit-orange));
+  --kit-accent-warning-rgb: var(--kit-orange);
+  --kit-accent-info: rgb(var(--kit-blue));
+  --kit-accent-info-rgb: var(--kit-blue);
+  --kit-light-halo: rgb(var(--kit-firefly));
+  --kit-light-halo-rgb: var(--kit-firefly);
+  --kit-light-core: rgb(var(--kit-warm-white));
+
+  /* State */
+  --kit-state-live: rgb(var(--kit-emerald));
+  --kit-state-live-rgb: var(--kit-emerald);
+  --kit-state-dreaming: rgb(var(--kit-purple));
+  --kit-state-dreaming-rgb: var(--kit-purple);
+  --kit-state-attention: rgb(var(--kit-amber));
+  --kit-state-attention-rgb: var(--kit-amber);
+  --kit-state-overdue: rgb(var(--kit-orange));
+  --kit-state-overdue-rgb: var(--kit-orange);
+  --kit-state-down: rgb(var(--kit-red));
+  --kit-state-down-rgb: var(--kit-red);
+  --kit-state-unknown: rgb(var(--kit-slate));
+  --kit-state-unknown-rgb: var(--kit-slate);
+  --kit-dot-size: 8px;
+
+  /* Runtime mood tokens (declared defaults; main.js overwrites per rest_state) */
+  --kit-aura: rgba(var(--kit-amber), var(--kit-soft));
+  --kit-mood-wash: rgba(var(--kit-amber), var(--kit-soft));
+  --kit-accent: rgba(var(--kit-amber), var(--kit-fill));
+  --kit-accent-text: rgb(var(--kit-amber-200));
+  --kit-scope-tint: rgba(var(--kit-rose), var(--kit-tint));
+  --kit-firefly-tint: rgba(var(--kit-amber), var(--kit-tint));
+
+  /* Card halo parameters (component tokens the halo recipe reads) */
+  --kit-card-border: var(--kit-border-default);
+  --kit-card-halo: transparent;
+  --kit-card-inner: transparent;
+  --kit-card-sheen: rgba(var(--kit-white), var(--kit-tint));
+
+  /* Space */
+  --kit-space-1: 4px;
+  --kit-space-2: 8px;
+  --kit-space-3: 12px;
+  --kit-space-4: 16px;
+  --kit-space-5: 20px;
+  --kit-space-6: 24px;
+  --kit-space-7: 32px;
+  --kit-space-8: 40px;
+  --kit-space-9: 48px;
+  --kit-space-10: 64px;
+  --kit-inset-1: 2px;
+  --kit-inset-2: 6px;
+  --kit-inset-3: 10px;
+  --kit-inset-4: 14px;
+
+  /* Radius */
+  --kit-radius-1: 6px;
+  --kit-radius-2: 10px;
+  --kit-radius-3: 14px;
+  --kit-radius-4: 20px;
+  --kit-radius-pill: 999px;
+
+  /* Shadow */
+  --kit-shadow-ambient: 0 10px 30px rgba(var(--kit-black), var(--kit-fill));
+  --kit-shadow-ambient-sheet: 0 28px 90px rgba(var(--kit-black), var(--kit-fill));
+  --kit-sheen: linear-gradient(to bottom, rgba(var(--kit-white), var(--kit-tint)), transparent 32%);
+
+  /* Motion */
+  --kit-motion-flip: 120ms;
+  --kit-motion-hover: 200ms;
+  --kit-motion-reveal: 320ms;
+  --kit-motion-scene: 600ms;
+  --kit-motion-mood: 1.8s;
+  --kit-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --kit-ease-loop: ease-in-out;
+  --kit-ease-linear: linear;
+  --kit-breath: 4.6s;
+  --kit-breath-dot: 2.3s;
+  --kit-motion-play: running;
+
+  /* Type roles (composite tokens as font shorthand, plus tracking) */
+  --kit-type-display-xl: 500 clamp(40px, 6.2vw, 74px)/1.02 var(--kit-font-display);
+  --kit-tracking-display-xl: -0.025em;
+  --kit-type-display: 500 36px/40px var(--kit-font-display);
+  --kit-tracking-display: -0.025em;
+  --kit-type-h1: 500 24px/32px var(--kit-font-display);
+  --kit-tracking-h1: -0.025em;
+  --kit-type-h2: 500 20px/28px var(--kit-font-display);
+  --kit-tracking-h2: -0.025em;
+  --kit-type-h3: 600 14px/20px var(--kit-font-body);
+  --kit-type-body-lg: 400 16px/1.6 var(--kit-font-body);
+  --kit-type-body: 400 14px/1.5 var(--kit-font-body);
+  --kit-type-body-sm: 400 12px/1.5 var(--kit-font-body);
+  --kit-type-caption: 500 11px/16px var(--kit-font-body);
+  --kit-tracking-caption: 0.01em;
+  --kit-type-eyebrow: 600 10.5px/14px var(--kit-font-body);
+  --kit-tracking-eyebrow: 0.16em;
+  --kit-type-mono: 400 12px/1.5 var(--kit-font-mono);
+  --kit-type-voice: italic 400 18px/1.45 var(--kit-font-display);
+  --kit-tracking-voice: 0.01em;
+  --kit-type-stat: 600 36px/1 var(--kit-font-body);
+  --kit-tracking-stat: -0.01em;
+  --kit-tracking-wordmark: -0.01em;
+
+  /* Z-index */
+  --kit-z-base: 0;
+  --kit-z-raised: 1;
+  --kit-z-sticky: 100;
+  --kit-z-overlay: 200;
+  --kit-z-modal: 300;
+  --kit-z-toast: 400;
+  --kit-z-tooltip: 500;
+  --kit-z-scene: 600;
+
+  /* Hit targets and icons */
+  --kit-hit-dense: 28px;
+  --kit-hit-compact: 32px;
+  --kit-hit-default: 36px;
+  --kit-hit-touch: 44px;
+  --kit-icon-sm: 16px;
+  --kit-icon-md: 20px;
+  --kit-icon-lg: 24px;
+  --kit-icon-caret: 12px;
+  --kit-icon-stroke: 2;
+  --kit-select-caret: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM5NGEzYjgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNNiA5bDYgNiA2LTYiLz48L3N2Zz4=");
+
+  /* Focus ring */
+  --kit-focus-width: 2px;
+  --kit-focus-offset: 2px;
+  --kit-focus-color: var(--kit-border-focus);
+
+  /* Firefly dot sprites (generated) */
+  --kit-dot-live: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMSAyMSI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJoIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPjxzdG9wIG9mZnNldD0iMC4wMCIgc3RvcC1jb2xvcj0iIzcxY2Y4YiIgc3RvcC1vcGFjaXR5PSIxLjAwMCIvPjxzdG9wIG9mZnNldD0iMC4xMCIgc3RvcC1jb2xvcj0iIzcxY2Y4YiIgc3RvcC1vcGFjaXR5PSIwLjgzMyIvPjxzdG9wIG9mZnNldD0iMC4yMCIgc3RvcC1jb2xvcj0iIzcxY2Y4YiIgc3RvcC1vcGFjaXR5PSIwLjYzNyIvPjxzdG9wIG9mZnNldD0iMC4zMCIgc3RvcC1jb2xvcj0iIzcxY2Y4YiIgc3RvcC1vcGFjaXR5PSIwLjQ0NyIvPjxzdG9wIG9mZnNldD0iMC40MCIgc3RvcC1jb2xvcj0iIzcxY2Y4YiIgc3RvcC1vcGFjaXR5PSIwLjI4OSIvPjxzdG9wIG9mZnNldD0iMC41MCIgc3RvcC1jb2xvcj0iIzcxY2Y4YiIgc3RvcC1vcGFjaXR5PSIwLjE3MiIvPjxzdG9wIG9mZnNldD0iMC42MCIgc3RvcC1jb2xvcj0iIzcxY2Y4YiIgc3RvcC1vcGFjaXR5PSIwLjA2MyIvPjxzdG9wIG9mZnNldD0iMC43MCIgc3RvcC1jb2xvcj0iIzcxY2Y4YiIgc3RvcC1vcGFjaXR5PSIwLjAxMyIvPjxzdG9wIG9mZnNldD0iMC44MCIgc3RvcC1jb2xvcj0iIzcxY2Y4YiIgc3RvcC1vcGFjaXR5PSIwLjAwMiIvPjxzdG9wIG9mZnNldD0iMC45MCIgc3RvcC1jb2xvcj0iIzcxY2Y4YiIgc3RvcC1vcGFjaXR5PSIwLjAwMCIvPjxzdG9wIG9mZnNldD0iMS4wMCIgc3RvcC1jb2xvcj0iIzcxY2Y4YiIgc3RvcC1vcGFjaXR5PSIwLjAwMCIvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJjIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2E0ZTVjMCIgc3RvcC1vcGFjaXR5PSIxIi8+PHN0b3Agb2Zmc2V0PSIuNTUiIHN0b3AtY29sb3I9IiNhNGU1YzAiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNzFjZjhiIiBzdG9wLW9wYWNpdHk9IjAiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSIxMC41IiBjeT0iMTAuNSIgcj0iMTAuNSIgZmlsbD0idXJsKCNoKSIvPjxjaXJjbGUgY3g9IjEwLjUiIGN5PSIxMC41IiByPSI0LjYiIGZpbGw9InVybCgjYykiLz48L3N2Zz4=");
+  --kit-dot-dreaming: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMSAyMSI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJoIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPjxzdG9wIG9mZnNldD0iMC4wMCIgc3RvcC1jb2xvcj0iI2MxOWNjZiIgc3RvcC1vcGFjaXR5PSIxLjAwMCIvPjxzdG9wIG9mZnNldD0iMC4xMCIgc3RvcC1jb2xvcj0iI2MxOWNjZiIgc3RvcC1vcGFjaXR5PSIwLjgzMyIvPjxzdG9wIG9mZnNldD0iMC4yMCIgc3RvcC1jb2xvcj0iI2MxOWNjZiIgc3RvcC1vcGFjaXR5PSIwLjYzNyIvPjxzdG9wIG9mZnNldD0iMC4zMCIgc3RvcC1jb2xvcj0iI2MxOWNjZiIgc3RvcC1vcGFjaXR5PSIwLjQ0NyIvPjxzdG9wIG9mZnNldD0iMC40MCIgc3RvcC1jb2xvcj0iI2MxOWNjZiIgc3RvcC1vcGFjaXR5PSIwLjI4OSIvPjxzdG9wIG9mZnNldD0iMC41MCIgc3RvcC1jb2xvcj0iI2MxOWNjZiIgc3RvcC1vcGFjaXR5PSIwLjE3MiIvPjxzdG9wIG9mZnNldD0iMC42MCIgc3RvcC1jb2xvcj0iI2MxOWNjZiIgc3RvcC1vcGFjaXR5PSIwLjA2MyIvPjxzdG9wIG9mZnNldD0iMC43MCIgc3RvcC1jb2xvcj0iI2MxOWNjZiIgc3RvcC1vcGFjaXR5PSIwLjAxMyIvPjxzdG9wIG9mZnNldD0iMC44MCIgc3RvcC1jb2xvcj0iI2MxOWNjZiIgc3RvcC1vcGFjaXR5PSIwLjAwMiIvPjxzdG9wIG9mZnNldD0iMC45MCIgc3RvcC1jb2xvcj0iI2MxOWNjZiIgc3RvcC1vcGFjaXR5PSIwLjAwMCIvPjxzdG9wIG9mZnNldD0iMS4wMCIgc3RvcC1jb2xvcj0iI2MxOWNjZiIgc3RvcC1vcGFjaXR5PSIwLjAwMCIvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJjIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Q3YzRlYiIgc3RvcC1vcGFjaXR5PSIxIi8+PHN0b3Agb2Zmc2V0PSIuNTUiIHN0b3AtY29sb3I9IiNkN2M0ZWIiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYzE5Y2NmIiBzdG9wLW9wYWNpdHk9IjAiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSIxMC41IiBjeT0iMTAuNSIgcj0iMTAuNSIgZmlsbD0idXJsKCNoKSIvPjxjaXJjbGUgY3g9IjEwLjUiIGN5PSIxMC41IiByPSI0LjYiIGZpbGw9InVybCgjYykiLz48L3N2Zz4=");
+  --kit-dot-attention: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMSAyMSI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJoIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPjxzdG9wIG9mZnNldD0iMC4wMCIgc3RvcC1jb2xvcj0iI2VmYWU2MSIgc3RvcC1vcGFjaXR5PSIxLjAwMCIvPjxzdG9wIG9mZnNldD0iMC4xMCIgc3RvcC1jb2xvcj0iI2VmYWU2MSIgc3RvcC1vcGFjaXR5PSIwLjgzMyIvPjxzdG9wIG9mZnNldD0iMC4yMCIgc3RvcC1jb2xvcj0iI2VmYWU2MSIgc3RvcC1vcGFjaXR5PSIwLjYzNyIvPjxzdG9wIG9mZnNldD0iMC4zMCIgc3RvcC1jb2xvcj0iI2VmYWU2MSIgc3RvcC1vcGFjaXR5PSIwLjQ0NyIvPjxzdG9wIG9mZnNldD0iMC40MCIgc3RvcC1jb2xvcj0iI2VmYWU2MSIgc3RvcC1vcGFjaXR5PSIwLjI4OSIvPjxzdG9wIG9mZnNldD0iMC41MCIgc3RvcC1jb2xvcj0iI2VmYWU2MSIgc3RvcC1vcGFjaXR5PSIwLjE3MiIvPjxzdG9wIG9mZnNldD0iMC42MCIgc3RvcC1jb2xvcj0iI2VmYWU2MSIgc3RvcC1vcGFjaXR5PSIwLjA2MyIvPjxzdG9wIG9mZnNldD0iMC43MCIgc3RvcC1jb2xvcj0iI2VmYWU2MSIgc3RvcC1vcGFjaXR5PSIwLjAxMyIvPjxzdG9wIG9mZnNldD0iMC44MCIgc3RvcC1jb2xvcj0iI2VmYWU2MSIgc3RvcC1vcGFjaXR5PSIwLjAwMiIvPjxzdG9wIG9mZnNldD0iMC45MCIgc3RvcC1jb2xvcj0iI2VmYWU2MSIgc3RvcC1vcGFjaXR5PSIwLjAwMCIvPjxzdG9wIG9mZnNldD0iMS4wMCIgc3RvcC1jb2xvcj0iI2VmYWU2MSIgc3RvcC1vcGFjaXR5PSIwLjAwMCIvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJjIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Y1ZDBhNCIgc3RvcC1vcGFjaXR5PSIxIi8+PHN0b3Agb2Zmc2V0PSIuNTUiIHN0b3AtY29sb3I9IiNmNWQwYTQiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZWZhZTYxIiBzdG9wLW9wYWNpdHk9IjAiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSIxMC41IiBjeT0iMTAuNSIgcj0iMTAuNSIgZmlsbD0idXJsKCNoKSIvPjxjaXJjbGUgY3g9IjEwLjUiIGN5PSIxMC41IiByPSI0LjYiIGZpbGw9InVybCgjYykiLz48L3N2Zz4=");
+  --kit-dot-down: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMSAyMSI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJoIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPjxzdG9wIG9mZnNldD0iMC4wMCIgc3RvcC1jb2xvcj0iI2ZhOGE2ZiIgc3RvcC1vcGFjaXR5PSIxLjAwMCIvPjxzdG9wIG9mZnNldD0iMC4xMCIgc3RvcC1jb2xvcj0iI2ZhOGE2ZiIgc3RvcC1vcGFjaXR5PSIwLjgzMyIvPjxzdG9wIG9mZnNldD0iMC4yMCIgc3RvcC1jb2xvcj0iI2ZhOGE2ZiIgc3RvcC1vcGFjaXR5PSIwLjYzNyIvPjxzdG9wIG9mZnNldD0iMC4zMCIgc3RvcC1jb2xvcj0iI2ZhOGE2ZiIgc3RvcC1vcGFjaXR5PSIwLjQ0NyIvPjxzdG9wIG9mZnNldD0iMC40MCIgc3RvcC1jb2xvcj0iI2ZhOGE2ZiIgc3RvcC1vcGFjaXR5PSIwLjI4OSIvPjxzdG9wIG9mZnNldD0iMC41MCIgc3RvcC1jb2xvcj0iI2ZhOGE2ZiIgc3RvcC1vcGFjaXR5PSIwLjE3MiIvPjxzdG9wIG9mZnNldD0iMC42MCIgc3RvcC1jb2xvcj0iI2ZhOGE2ZiIgc3RvcC1vcGFjaXR5PSIwLjA2MyIvPjxzdG9wIG9mZnNldD0iMC43MCIgc3RvcC1jb2xvcj0iI2ZhOGE2ZiIgc3RvcC1vcGFjaXR5PSIwLjAxMyIvPjxzdG9wIG9mZnNldD0iMC44MCIgc3RvcC1jb2xvcj0iI2ZhOGE2ZiIgc3RvcC1vcGFjaXR5PSIwLjAwMiIvPjxzdG9wIG9mZnNldD0iMC45MCIgc3RvcC1jb2xvcj0iI2ZhOGE2ZiIgc3RvcC1vcGFjaXR5PSIwLjAwMCIvPjxzdG9wIG9mZnNldD0iMS4wMCIgc3RvcC1jb2xvcj0iI2ZhOGE2ZiIgc3RvcC1vcGFjaXR5PSIwLjAwMCIvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJjIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZjYjlhZSIgc3RvcC1vcGFjaXR5PSIxIi8+PHN0b3Agb2Zmc2V0PSIuNTUiIHN0b3AtY29sb3I9IiNmY2I5YWUiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmE4YTZmIiBzdG9wLW9wYWNpdHk9IjAiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSIxMC41IiBjeT0iMTAuNSIgcj0iMTAuNSIgZmlsbD0idXJsKCNoKSIvPjxjaXJjbGUgY3g9IjEwLjUiIGN5PSIxMC41IiByPSI0LjYiIGZpbGw9InVybCgjYykiLz48L3N2Zz4=");
+  --kit-dot-unknown: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMSAyMSI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJoIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPjxzdG9wIG9mZnNldD0iMC4wMCIgc3RvcC1jb2xvcj0iI2I0YWRhMSIgc3RvcC1vcGFjaXR5PSIxLjAwMCIvPjxzdG9wIG9mZnNldD0iMC4xMCIgc3RvcC1jb2xvcj0iI2I0YWRhMSIgc3RvcC1vcGFjaXR5PSIwLjgzMyIvPjxzdG9wIG9mZnNldD0iMC4yMCIgc3RvcC1jb2xvcj0iI2I0YWRhMSIgc3RvcC1vcGFjaXR5PSIwLjYzNyIvPjxzdG9wIG9mZnNldD0iMC4zMCIgc3RvcC1jb2xvcj0iI2I0YWRhMSIgc3RvcC1vcGFjaXR5PSIwLjQ0NyIvPjxzdG9wIG9mZnNldD0iMC40MCIgc3RvcC1jb2xvcj0iI2I0YWRhMSIgc3RvcC1vcGFjaXR5PSIwLjI4OSIvPjxzdG9wIG9mZnNldD0iMC41MCIgc3RvcC1jb2xvcj0iI2I0YWRhMSIgc3RvcC1vcGFjaXR5PSIwLjE3MiIvPjxzdG9wIG9mZnNldD0iMC42MCIgc3RvcC1jb2xvcj0iI2I0YWRhMSIgc3RvcC1vcGFjaXR5PSIwLjA2MyIvPjxzdG9wIG9mZnNldD0iMC43MCIgc3RvcC1jb2xvcj0iI2I0YWRhMSIgc3RvcC1vcGFjaXR5PSIwLjAxMyIvPjxzdG9wIG9mZnNldD0iMC44MCIgc3RvcC1jb2xvcj0iI2I0YWRhMSIgc3RvcC1vcGFjaXR5PSIwLjAwMiIvPjxzdG9wIG9mZnNldD0iMC45MCIgc3RvcC1jb2xvcj0iI2I0YWRhMSIgc3RvcC1vcGFjaXR5PSIwLjAwMCIvPjxzdG9wIG9mZnNldD0iMS4wMCIgc3RvcC1jb2xvcj0iI2I0YWRhMSIgc3RvcC1vcGFjaXR5PSIwLjAwMCIvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJjIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2NmY2ZjZCIgc3RvcC1vcGFjaXR5PSIxIi8+PHN0b3Agb2Zmc2V0PSIuNTUiIHN0b3AtY29sb3I9IiNjZmNmY2QiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYjRhZGExIiBzdG9wLW9wYWNpdHk9IjAiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSIxMC41IiBjeT0iMTAuNSIgcj0iMTAuNSIgZmlsbD0idXJsKCNoKSIvPjxjaXJjbGUgY3g9IjEwLjUiIGN5PSIxMC41IiByPSI0LjYiIGZpbGw9InVybCgjYykiLz48L3N2Zz4=");
+}
+
+/* Composed tokens that read per-element parameters are declared on every element, not on :root: */
+/* var() inside a custom property resolves where that property is declared, so a :root halo would ignore data-accent. */
+* {
+  --kit-shadow-halo: 0 0 32px var(--kit-card-halo), inset 0 1px 0 0 rgba(var(--kit-white), var(--kit-tint)), inset 0 0 20px 0 var(--kit-card-inner);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --kit-motion-flip: 0ms;
+    --kit-motion-reveal: 0ms;
+    --kit-motion-scene: 0ms;
+    --kit-motion-play: paused;
+  }
+}
+
+/* Light context: email, print, documents. Not a theme. */
+[data-kit-context="light"] {
+  color-scheme: light;
+  --kit-surface-page: rgb(var(--kit-white));
+  --kit-text-primary: rgb(var(--kit-ink-on-amber));
+  --kit-text-secondary: rgb(var(--kit-slate-deep));
+  --kit-text-link: rgb(var(--kit-amber-700));
+  --kit-text-accent: rgb(var(--kit-amber-800));
+  --kit-border-default: rgba(var(--kit-slate-deep), var(--kit-soft));
+}
