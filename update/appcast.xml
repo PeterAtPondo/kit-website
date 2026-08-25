@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.217</title>
-      <pubDate>Tue, 25 Aug 2026 16:32:17 -0000</pubDate>
-      <sparkle:version>0.2.217</sparkle:version>
-      <sparkle:shortVersionString>0.2.217</sparkle:shortVersionString>
+      <title>0.2.216</title>
+      <pubDate>Tue, 25 Aug 2026 13:36:14 -0000</pubDate>
+      <sparkle:version>0.2.216</sparkle:version>
+      <sparkle:shortVersionString>0.2.216</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<p><strong>The terms changed with this version (2026-08-25).</strong></p><p>The terms now say out loud what was always true: the Kit software, its prompts, and the way it thinks and dreams belong to Pondo Consulting, and everything your Kit remembers belongs to you.</p><p><em>Why:</em> Kit ships with its source code inside the app so you can see exactly what runs on your Mac. The old terms never said what that openness does and does not mean, and a promise about transparency should not be mistakable for a transfer of rights.</p><p><em>What it never includes:</em> Only the software&#x27;s ownership. Nothing changes about your data, what leaves your Mac, or what Kit does. Your memories were yours yesterday and are yours today.</p><p><em>If you would rather not:</em> Nothing changes for you today. Your Kit keeps running and keeps every fix. We may follow up before the next major version, because agreed terms are the ground the beta stands on. Your Kit will ask you once, inside the app, after it updates.</p><hr><ul><li>Kit speaks about you as you, not as &quot;he&quot;: your own name, and neutral pronouns until you say otherwise.</li><li>Postcards, handoffs and reflections are addressed to you by name.</li><li>The People lens draws its names from your own memories.</li><li>Care signals stay quiet until you have set a Telegram chat for them, and say so plainly when you have not.</li><li>Build requests over Telegram use the code folder you configure, or decline instead of guessing.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.217-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="GryiRvBcWj9Zdk+gs04jLHgfbza883XiH0fWubayxJ5iJ0tUmn/EHq2bXAX3pnxTZysvoFC6FG3LvnjbaTtVCw==" length="17161508"/>
+      <description><![CDATA[<ul><li>Turning on Claude Code now either works or says why it did not. The switch could report success while registering nothing, so Claude&#x27;s developer settings said no servers were added while the switch sat on. Your Kit now checks with Claude itself that the connection actually landed before it claims anything, and a connection that did not take fails loudly with the reason instead of smiling through it.</li><li>Your Kit also finds the Claude command-line tool where it actually installs these days, so the connection is made the proper way, through Claude&#x27;s own registration, on machines where it used to fall back to a second-best route.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.216-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="5eR3L5DyX8zAdIsGAbmXI22zzxHsCJvPB0NxGacpfEMeao8sufUxj7BAczSF3P1j5tWhqbepwu4n7yyHMp8JAQ==" length="17155155"/>
     </item>
   </channel>
 </rss>

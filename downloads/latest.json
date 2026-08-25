@@ -1,13 +1,10 @@
 {
-  "version": "0.2.217",
-  "url": "https://kit-project.com/downloads/Kit-0.2.217-macOS.dmg",
+  "version": "0.2.216",
+  "url": "https://kit-project.com/downloads/Kit-0.2.216-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Kit speaks about you as you, not as \"he\": your own name, and neutral pronouns until you say otherwise.",
-    "Postcards, handoffs and reflections are addressed to you by name.",
-    "The People lens draws its names from your own memories.",
-    "Care signals stay quiet until you have set a Telegram chat for them, and say so plainly when you have not.",
-    "Build requests over Telegram use the code folder you configure, or decline instead of guessing."
+    "Turning on Claude Code now either works or says why it did not. The switch could report success while registering nothing, so Claude's developer settings said no servers were added while the switch sat on. Your Kit now checks with Claude itself that the connection actually landed before it claims anything, and a connection that did not take fails loudly with the reason instead of smiling through it.",
+    "Your Kit also finds the Claude command-line tool where it actually installs these days, so the connection is made the proper way, through Claude's own registration, on machines where it used to fall back to a second-best route."
   ]
 }
