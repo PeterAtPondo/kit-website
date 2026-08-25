@@ -1,10 +1,10 @@
 {
-  "version": "0.2.214",
-  "url": "https://kit-project.com/downloads/Kit-0.2.214-macOS.dmg",
+  "version": "0.2.215",
+  "url": "https://kit-project.com/downloads/Kit-0.2.215-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Claude Code and Claude Desktop can reach your Kit again. If you turned either of them on, they were trying to start your Kit from a folder that has never existed, and failed instantly with a missing-file error every time. Restarting did not help, because nothing about it was temporary. They now look where your Kit actually lives. If you moved files by hand to work around this, you can put them back: the fix does not need them.",
-    "This affects Kits running without Docker. Everything else, including your memories, your surfaces and your settings, was untouched by it: only the doorway those two apps knock on was wrong."
+    "Claude Code and Claude Desktop repair themselves. The last update corrected where your Kit starts from, but only for connections made after it, so anyone already connected kept the same error and updating appeared to do nothing. Your Kit now checks that the shortcut those apps use still points at the right place, and quietly rewrites it when it does not. Nothing to click: it happens within a minute of your Kit running.",
+    "Your backups are kept by date, not by when the file was last touched. If you keep them in a synced folder like OneDrive, iCloud Drive or Dropbox, syncing can change the second a file appears to have been modified, which could make the tidy-up delete the newest backup and keep the oldest. It now reads the date in the filename, which nothing else can rewrite. With thanks to Ian, who spotted it in his own setup before it could reach anyone else's."
   ]
 }

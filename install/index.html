@@ -313,6 +313,21 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.215</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Claude Code and Claude Desktop repair themselves. The last update corrected where your Kit starts from, but only for connections made after it, so anyone already connected kept the same error and updating appeared to do nothing. Your Kit now checks that the shortcut those apps use still points at the right place, and quietly rewrites it when it does not. Nothing to click: it happens within a minute of your Kit running.</li>
+            <li>Your backups are kept by date, not by when the file was last touched. If you keep them in a synced folder like OneDrive, iCloud Drive or Dropbox, syncing can change the second a file appears to have been modified, which could make the tidy-up delete the newest backup and keep the oldest. It now reads the date in the filename, which nothing else can rewrite. With thanks to Ian, who spotted it in his own setup before it could reach anyone else&#x27;s.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.214</span>
           <span class="release__date">August 2026</span>
         </div>
