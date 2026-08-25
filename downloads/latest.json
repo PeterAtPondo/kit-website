@@ -1,22 +1,15 @@
 {
-  "version": "0.2.211",
-  "url": "https://kit-project.com/downloads/Kit-0.2.211-macOS.dmg",
+  "version": "0.2.212",
+  "url": "https://kit-project.com/downloads/Kit-0.2.212-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Setting up a model now checks it can actually do the work, not just that it answers quickly. A model that thinks until it runs out of room is caught in about a minute, with a clear suggestion, instead of an hour into your first night.",
-    "Kit no longer wakes up over an empty first sleep. If nothing has been read yet, it offers you a faster model instead of introducing itself with nothing behind it.",
-    "The first-night progress now counts towards meeting Kit, not to the end of your whole history. The rest is read in the background once Kit is awake.",
-    "There is a way out of the dreaming screen once Kit is awake, and it lands on your settings.",
-    "Settings shows the local model you actually chose, instead of reporting no model at all.",
-    "Local model addresses default to this Mac. Fresh installs no longer suggest a Docker-only address that nothing can reach.",
-    "The fireflies stay alive through the whole of setup.",
-    "Smaller things: the Telegram step no longer overflows while it pairs, the slow-model offer can be reached, and the sign-in mark stands on its own.",
-    "Asking Kit to dream while it is already dreaming now joins the cycle in progress instead of starting a second one alongside it.",
-    "The fireflies keep flying. Five animations could be ended for good by a single bad frame, including the Fireflies view itself, which left a sky full of memories rendering as black.",
-    "Setup now tells you, while you are choosing, which local models think before they answer and will struggle on your machine. It asks your model server directly rather than guessing from the name.",
-    "Kit no longer suggests a model that cannot do the job. It prefers one that answers immediately over one that reasons its way past its own budget.",
-    "You cannot walk past the model check any more. The button waits for a pass, and a failure offers you other models you already have, one click each.",
-    "The first-night progress bar counts towards meeting Kit again, instead of quoting the hours of background reading that happen after you already have it."
+    "The fireflies survive your curiosity. Clicking the welcome screen's night sky used to kill the fireflies for the rest of setup while the constellation lines kept drawing, which looked haunted rather than alive. One colour was written in a form the drawing canvas cannot read; it now reads every colour, and the field stays lit through every step.",
+    "Every screen in the app is now the same page: one width, one left edge, one header with its small label, title and line of context. Data sources, your surfaces, health, settings, the timeline, the how-to, the feedback form and the sunburst all used to bring their own layout, and walking through them read as several apps. It reads as one now.",
+    "Talking to your Kit in the app window uses the room properly. The conversation, the wake card and the suggestion cards sat in a narrow drawer-width column while the typing box ran the whole window on its own line; everything now shares one comfortable reading column.",
+    "Copy MCP details now lives where your surfaces live, not only in setup. It is one button at the foot of the Where you use screen, it names MCP because that is what your coding tools call it, and it only says Copied once your Kit's address and key are actually on the clipboard.",
+    "The Advanced menu no longer wears a warning count while the status line says all is well. Checks that simply have no evidence yet, which is every dream check on a brand new Kit, are not trouble and are no longer counted as trouble.",
+    "Imported VS Code history now remembers when it actually happened. Sessions used to be stamped with the moment of import, so a week of work read as one busy hour and your Kit reasoned about it that way. New imports carry their real dates; history already imported keeps its old stamps until a fresh import.",
+    "Open original only appears on sources that have an original file to open. On imported conversations and notes it could only ever fail, so on those it is gone rather than broken."
   ]
 }
