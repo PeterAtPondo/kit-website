@@ -1,10 +1,10 @@
 {
-  "version": "0.2.215",
-  "url": "https://kit-project.com/downloads/Kit-0.2.215-macOS.dmg",
+  "version": "0.2.216",
+  "url": "https://kit-project.com/downloads/Kit-0.2.216-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Claude Code and Claude Desktop repair themselves. The last update corrected where your Kit starts from, but only for connections made after it, so anyone already connected kept the same error and updating appeared to do nothing. Your Kit now checks that the shortcut those apps use still points at the right place, and quietly rewrites it when it does not. Nothing to click: it happens within a minute of your Kit running.",
-    "Your backups are kept by date, not by when the file was last touched. If you keep them in a synced folder like OneDrive, iCloud Drive or Dropbox, syncing can change the second a file appears to have been modified, which could make the tidy-up delete the newest backup and keep the oldest. It now reads the date in the filename, which nothing else can rewrite. With thanks to Ian, who spotted it in his own setup before it could reach anyone else's."
+    "Turning on Claude Code now either works or says why it did not. The switch could report success while registering nothing, so Claude's developer settings said no servers were added while the switch sat on. Your Kit now checks with Claude itself that the connection actually landed before it claims anything, and a connection that did not take fails loudly with the reason instead of smiling through it.",
+    "Your Kit also finds the Claude command-line tool where it actually installs these days, so the connection is made the proper way, through Claude's own registration, on machines where it used to fall back to a second-best route."
   ]
 }

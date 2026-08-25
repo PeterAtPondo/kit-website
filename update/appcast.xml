@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.215</title>
-      <pubDate>Tue, 25 Aug 2026 12:46:37 -0000</pubDate>
-      <sparkle:version>0.2.215</sparkle:version>
-      <sparkle:shortVersionString>0.2.215</sparkle:shortVersionString>
+      <title>0.2.216</title>
+      <pubDate>Tue, 25 Aug 2026 13:36:14 -0000</pubDate>
+      <sparkle:version>0.2.216</sparkle:version>
+      <sparkle:shortVersionString>0.2.216</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Claude Code and Claude Desktop repair themselves. The last update corrected where your Kit starts from, but only for connections made after it, so anyone already connected kept the same error and updating appeared to do nothing. Your Kit now checks that the shortcut those apps use still points at the right place, and quietly rewrites it when it does not. Nothing to click: it happens within a minute of your Kit running.</li><li>Your backups are kept by date, not by when the file was last touched. If you keep them in a synced folder like OneDrive, iCloud Drive or Dropbox, syncing can change the second a file appears to have been modified, which could make the tidy-up delete the newest backup and keep the oldest. It now reads the date in the filename, which nothing else can rewrite. With thanks to Ian, who spotted it in his own setup before it could reach anyone else&#x27;s.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.215-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="46jeqr5ZYOPgBT3P3YHmjVP2nJcuT//IYboW0YvusNXwU6rtFbzItyFWU6SbXvZ3VEuOXfmSE0tX4YroyGmnAw==" length="17147270"/>
+      <description><![CDATA[<ul><li>Turning on Claude Code now either works or says why it did not. The switch could report success while registering nothing, so Claude&#x27;s developer settings said no servers were added while the switch sat on. Your Kit now checks with Claude itself that the connection actually landed before it claims anything, and a connection that did not take fails loudly with the reason instead of smiling through it.</li><li>Your Kit also finds the Claude command-line tool where it actually installs these days, so the connection is made the proper way, through Claude&#x27;s own registration, on machines where it used to fall back to a second-best route.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.216-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="5eR3L5DyX8zAdIsGAbmXI22zzxHsCJvPB0NxGacpfEMeao8sufUxj7BAczSF3P1j5tWhqbepwu4n7yyHMp8JAQ==" length="17155155"/>
     </item>
   </channel>
 </rss>

@@ -313,6 +313,21 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.216</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Turning on Claude Code now either works or says why it did not. The switch could report success while registering nothing, so Claude&#x27;s developer settings said no servers were added while the switch sat on. Your Kit now checks with Claude itself that the connection actually landed before it claims anything, and a connection that did not take fails loudly with the reason instead of smiling through it.</li>
+            <li>Your Kit also finds the Claude command-line tool where it actually installs these days, so the connection is made the proper way, through Claude&#x27;s own registration, on machines where it used to fall back to a second-best route.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.215</span>
           <span class="release__date">August 2026</span>
         </div>
