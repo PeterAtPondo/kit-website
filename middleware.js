@@ -111,6 +111,14 @@ export default async function middleware(request) {
     // the app token header (the same one beta-ping authenticates with). The
     // person already had an invite to install; their app should not need one
     // again to stay current.
+    // A checksum is for the reader who does not yet trust this page, so it is
+    // never gated. The dmg it describes still is, and /update/latest.json
+    // already serves the same hash publicly; a sidecar behind the invite just
+    // made the install page link a 403.
+    if (url.pathname.endsWith(".sha256")) {
+      return;
+    }
+
     const appToken = process.env.KIT_WELCOME_TOKEN;
     if (appToken && url.pathname.endsWith(".dmg") && request.headers.get("x-kit-app-token") === appToken) {
       return;
