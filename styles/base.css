@@ -152,7 +152,7 @@ p.lede {
   line-height: 1.55;
 }
 
-code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
+code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 
 /* Structural — page-level sections */
 .section {
@@ -607,6 +607,48 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   color: var(--ink-secondary);
   margin: 0;
 }
+/* Prose that closes a card-grid section. Bare paragraphs there inherit the
+   body size and primary ink, which reads louder than the cards above them and
+   starts at an edge nothing else uses; this keeps them in the section's own
+   voice. */
+.section-close {
+  max-width: 44rem;
+  margin-top: var(--space-8);
+  color: var(--ink-secondary);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.section-close + .section-close { margin-top: var(--space-4); }
+
+/* The note strip's card. Not post-card--featured: that class is the blog
+   index's two-column grid and expects a visual and a body wrapper. This card
+   has bare children, so the grid auto-placed the title into the empty second
+   column, which is how "Come and install it" ended up floating alone at
+   display size to the right of its own card. A strip card is one column. */
+.post-card--strip { display: block; max-width: 44rem; }
+.post-card--strip h3 {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink-primary);
+  margin: var(--space-3) 0 var(--space-2);
+  padding: 0 var(--space-6);
+}
+.post-card--strip .post-card__meta { padding: var(--space-6) var(--space-6) 0; }
+.post-card--strip > p {
+  padding: 0 var(--space-6) var(--space-6);
+  margin: 0;
+  color: var(--ink-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.note-strip__more { margin-top: var(--space-4); font-size: 0.9375rem; }
+
 .proof-cta {
   margin-top: var(--space-8);
   display: flex;
@@ -674,7 +716,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   background: rgba(232, 165, 92, 0.08);
   padding: 0 0.25rem;
   border-radius: 3px;
-  font-size: 0.85em;
+  font-size: 0.875em;
 }
 .spec__meta {
   color: var(--ink-quiet);
@@ -893,7 +935,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   display: inline-block;
   align-self: flex-start;
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   padding: 4px 10px;
   border-radius: 4px;
@@ -965,7 +1007,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   background: rgba(232, 165, 92, 0.08);
   padding: 0 0.25rem;
   border-radius: 3px;
-  font-size: 0.85em;
+  font-size: 0.875em;
 }
 
 /* Peter card — small "About Peter" block inside #builders, so Group-2
@@ -1044,7 +1086,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   background: rgba(232, 165, 92, 0.08);
   padding: 0 0.25rem;
   border-radius: 3px;
-  font-size: 0.85em;
+  font-size: 0.875em;
 }
 .sovereignty__claim p em {
   font-style: italic;
@@ -1343,7 +1385,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
     grid-template-columns: 1fr;
     gap: var(--space-1);
   }
-  .arch__layer .idx { font-size: 0.6875rem; }
+  .arch__layer .idx { font-size: 0.75rem; }
 }
 
 @media (max-width: 480px) {
@@ -1361,7 +1403,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   margin: var(--space-3) auto var(--space-6);
   max-width: max-content;
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--ink-quiet);
   display: flex;
   width: max-content;
@@ -1583,14 +1625,14 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
   border: 1px solid var(--ink-quiet);
   border-radius: 5px;
   font-family: var(--font-mono);
-  font-size: 8.5px;
+  font-size: 9px;
   letter-spacing: 0.02em;
   color: var(--ink-quiet);
   opacity: 0.9;
 }
 .surface-chip--soon { border-style: dashed; opacity: 0.65; }
 .surface-chip__soon {
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   color: var(--ink-quiet);
   border-left: 1px solid var(--edge-faint);
   padding-left: 9px;
@@ -1624,7 +1666,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 }
 .surface-marquee__label {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   color: var(--ink-quiet);
   text-align: center;
