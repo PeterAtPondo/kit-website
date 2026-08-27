@@ -1,15 +1,18 @@
 {
-  "version": "0.2.219",
-  "url": "https://kit-project.com/downloads/Kit-0.2.219-macOS.dmg",
+  "version": "0.2.262",
+  "url": "https://kit-project.com/downloads/Kit-0.2.262-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
   "notes": [
-    "Kit backs itself up on its own now, nightly, without being asked.",
-    "Once a week it takes the newest backup and proves it actually restores, into a throwaway copy that is thrown away.",
-    "Health says when you were last backed up and when that backup was last proven, so \"probably fine\" is never the answer.",
-    "Restoring says plainly what it cannot bring back. Anything that needed a password or a key has to be reconnected, and Kit now tells you that instead of letting it look connected and quietly do nothing.",
-    "A big import drains steadily, oldest first, and the health card can tell a stuck one from a busy one.",
-    "Your editor connection is tighter: Kit's owner tools listen only where they should, and older setups move themselves to key-based sign-in.",
-    "Charts, labels and the email Kit sends you finally share one set of type sizes."
+    "Restoring from a backup is a first-class journey now: pick the archive in Finder, watch it come home, and Kit returns to the tools it lived in, the model you chose, and the Telegram channel it had, with nothing asked twice.",
+    "Backups no longer carry your password. You choose a fresh one when you restore, because a backup file should never be a portable account.",
+    "Backups run weekly by default (you can make them more frequent in Settings), keep seven weekly and seven monthly archives, and live in any folder you pick, iCloud and synced drives included.",
+    "A brand-new Kit no longer worries you about backups it has not taken yet, and a moved backup folder no longer raises false alarms.",
+    "The model check shows its progress and says plainly why a model passed or failed, instead of leaving a locked button with no explanation.",
+    "Kit now watches each of its own jobs, in plain language: if summarising or memory work starts failing while the provider looks fine, the Models pane says what is failing, what it costs you, and what would fix it.",
+    "A night's sleep that cannot reach a model stops and says so, instead of grinding through every phase and filing the failure under warnings.",
+    "Memories are now checked against the sources they came from: a figure, date or amount that its source never contained gets flagged for your review instead of being trusted.",
+    "The install is about a third of a gigabyte smaller: the bundled runtime lost a mapping server it never used.",
+    "Onboarding links you straight to where each provider issues its API key."
   ]
 }
