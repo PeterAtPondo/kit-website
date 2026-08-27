@@ -223,6 +223,79 @@
     </div>
   </section>
 
+  <!-- Recognition before proof. A beta tester read the hero, the proof demo and
+       the architecture and still wrote: "It could be worthwhile to help users
+       like me understand why the context window and memory issue is something
+       that affects my workflow / is a problem for me." She had only understood
+       it from talking to us, not from the site. So the reader now meets the
+       symptom in their own week before being asked to care about the cure, and
+       the same section answers the second thing she asked out loud, which was
+       whether Kit is for someone in her role at all. -->
+  <section id="sound-familiar" class="section" data-reveal>
+    <h2>Does any of this sound like your week?</h2>
+    <p class="lede">
+      You do not have a context-window problem. You have four ordinary
+      annoyances that all turn out to be the same problem wearing different
+      clothes.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <span class="card__tag">designing in code</span>
+        <h3 class="card__title">You taught it your conventions yesterday</h3>
+        <p class="card__body">
+          An hour on your component library, your naming, the patterns you
+          never break. Today's chat has never heard of any of it, so you
+          explain it again, slightly differently, and get something slightly
+          different back.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__tag">client work</span>
+        <h3 class="card__title">Every project opens with the same six paragraphs</h3>
+        <p class="card__body">
+          Background, constraints, who decides what. Pasted again each time
+          until you are no longer sure which version of the brief the agent is
+          actually working from.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__tag">any of it</span>
+        <h3 class="card__title">You cannot tell what it actually knows</h3>
+        <p class="card__body">
+          The answer looks right, and usually is. Working out which time it was
+          not is your job, and there is nothing underneath it to check against.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__tag">decisions</span>
+        <h3 class="card__title">The reason is in a thread you cannot find</h3>
+        <p class="card__body">
+          You chose this approach for a good reason, in a conversation, in a
+          tool you have since stopped paying for. The decision survived. The
+          reason did not.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      If two of those landed, Kit is for you, and you do not have to be an
+      engineer. It is used most by people who work with AI every day without
+      building the software themselves: designers working in code, researchers,
+      writers, consultants running several clients at once. They hit the same
+      wall for the same reason, which is that the memory lives inside the
+      session and the session ends.
+    </p>
+    <p>
+      What Kit does about it is hold the context you choose, on your own
+      machine, and give it to whichever AI tool you open next. Nothing is
+      shipped to a memory service, a recall never leaves your Mac, and you can
+      read, correct or delete anything it holds.
+      <a href="#sovereignty">Here is exactly what that means for your data</a>,
+      including what still leaves the machine and when.
+    </p>
+  </section>
+
   <!-- Practical proof: make the first public promise obvious before the
        build log, architecture, or philosophy ask the reader for patience. -->
   <section id="proof" class="section section--proof" data-reveal>
@@ -669,16 +742,16 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
     <h2>The pattern</h2>
     <p class="lede">
       Every context window eventually ends. 1M tokens, 10M, 100M &mdash; all
-      hit continuity debt at some horizon. External state plus an
-      instantiation protocol is the only pattern that scales persistence
-      past any fixed context.
+      hit continuity debt at some horizon. Keeping the state outside the model,
+      and having a reliable way to load it back at the start of every session,
+      is the only pattern that scales persistence past any fixed context.
     </p>
     <p>
       Kit is one concrete shape of that pattern. A model is borrowed per
       session and discarded at context exhaustion. A substrate &mdash; the
       brain &mdash; holds the persistent state: typed memories, tiered
-      storage, edges, provenance. An instantiation protocol at session
-      boundaries stitches the two together.
+      storage, edges, provenance. A wake-up at the start of a session and a
+      handoff at the end stitch the two together.
     </p>
     <p>
       Memory isn't a prompt-stuffing trick. It's a separate system with
@@ -733,7 +806,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
           <div class="arch__layer">
             <div class="idx">04</div>
             <div>
-              <strong>Instantiation protocol</strong> &mdash;
+              <strong>Waking and handing off</strong> &mdash;
               <span>session-start hooks load soul + handoff + while-you-were-out; session-end hooks capture drafts and baton-pass the next self.</span>
             </div>
           </div>
