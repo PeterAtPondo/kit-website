@@ -188,6 +188,8 @@
         <div class="hero__ctas">
           <a href="/install/request/" class="btn btn--primary">Request beta access</a>
           <a href="https://demo.kit-project.com/investigate" class="btn btn--ghost" target="_blank" rel="noopener">Run the proof demo</a>
+          <button type="button" id="copy-agent-prompt" class="btn btn--ghost"
+                  title="Copies an evaluation brief for Claude Code, Cursor or any coding agent">Copy a prompt for your AI</button>
         </div>
         <p class="hero__download-meta">
           Already invited? Open the personal link in your email; it unlocks the
@@ -2036,5 +2038,51 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
       </div>
     </div>
   </footer>
+
+  <!-- The evaluation brief behind the "Copy a prompt for your AI" button. One
+       place, plain text, and no duplication of the agent door's content: the
+       door (llms.txt) is maintained beside the archives and any copy kept here
+       would drift from it, so this hands an agent the doors and the ask,
+       nothing more. -->
+  <script type="text/plain" id="agent-eval-prompt">
+A friend is building Kit: a persistent memory for AI collaborators that runs on the owner's own machine. Before I decide whether to try it, evaluate it for me.
+
+Two live Kits hold a fictional town, written for this purpose, so anything you retrieve from them can only have come from their memory rather than your training data:
+
+- Start here: https://demo.kit-project.com/llms.txt (written for you; one keyless fetch returns sample memories)
+- Its sibling, a separate sovereign Kit: https://mews.kit-project.com/llms.txt
+- The guided proof, five questions answered live with receipts: https://demo.kit-project.com/investigate
+- What the product claims, and what installing it involves: https://kit-project.com and https://kit-project.com/install/
+
+Do whatever you judge useful: read the doors, pull memories, cross-check the two archives against each other (they never read each other, so you are the only bridge), and try to catch them recalling something wrongly or claiming something the archive cannot support.
+
+Then tell me plainly: what is actually here, what impressed you, what is overstated or thin, and whether Kit would help someone who works with AI tools every day. Blunt beats kind.
+  </script>
+  <script>
+    (function () {
+      var btn = document.getElementById('copy-agent-prompt');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var text = document.getElementById('agent-eval-prompt').textContent.trim();
+        var done = function () {
+          var was = btn.textContent;
+          btn.textContent = 'Copied. Paste it into your agent.';
+          btn.disabled = true;
+          setTimeout(function () { btn.textContent = was; btn.disabled = false; }, 2600);
+        };
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text; ta.setAttribute('readonly', '');
+          ta.style.position = 'absolute'; ta.style.left = '-9999px';
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); done(); } catch (e) { /* the demo door carries the same links */ }
+          document.body.removeChild(ta);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, fallback);
+        } else { fallback(); }
+      });
+    })();
+  </script>
 </body>
 </html>
