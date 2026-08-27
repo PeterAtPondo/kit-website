@@ -652,6 +652,36 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .note-strip__more { margin-top: var(--space-4); font-size: 0.9375rem; }
 
+.note-strip__film {
+  margin: var(--space-6) 0 var(--space-6);
+  max-width: 44rem;
+}
+.note-strip__film video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg, 14px);
+  border: 1px solid var(--line-soft, rgba(255, 255, 255, 0.08));
+  background: var(--surface-sunken, #0b1017);
+}
+.note-strip__film figcaption {
+  margin-top: var(--space-3);
+  font-size: 0.875rem;
+  color: var(--ink-secondary);
+}
+
+/* The clamped paragraph promised five lines and the card showed six: the
+   overflow bled past the card's own rounded edge, so it read as a panel cut
+   off mid-sentence rather than a summary trimmed on purpose. Clip at the card,
+   bound the paragraph to the height its clamp promises, and leave room under
+   the last line. */
+.post-card--strip { overflow: hidden; }
+.post-card--strip > p {
+  max-height: calc(5 * 1.6 * 0.9375rem);
+  margin-bottom: var(--space-7, 2rem);
+}
+
+
 .proof-cta {
   margin-top: var(--space-8);
   display: flex;
