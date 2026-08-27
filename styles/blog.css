@@ -209,6 +209,7 @@ main { padding-top: 5rem; }
 .post-card__visual--fallback span {
   color: var(--ink-primary);
   font-family: var(--font-display);
+  font-weight: 500;
   font-size: clamp(1.1rem, 2vw, 1.6rem);
   line-height: 1.18;
 }
@@ -490,6 +491,7 @@ main { padding-top: 5rem; }
 /* Pull-quote — for a key line that should stop the eye. */
 .post__pullquote {
   font-family: var(--font-display);
+  font-weight: 500;
   font-size: 1.5rem;
   line-height: 1.35;
   font-style: italic;
@@ -820,7 +822,7 @@ main { padding-top: 5rem; }
   }
 
   .compare-card {
-    padding: 1rem;
+    padding: var(--space-4);
   }
 
   .compare-card__title {

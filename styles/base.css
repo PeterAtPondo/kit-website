@@ -637,8 +637,11 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .post-card--strip .post-card__meta { padding: var(--space-6) var(--space-6) 0; }
 .post-card--strip > p {
-  padding: 0 var(--space-6) var(--space-6);
-  margin: 0;
+  /* Margin, not padding: the line clamp clips at the content edge, and a
+     padded clamped box shows its first hidden line through the padding,
+     which put a stray sixth line under the ellipsis. */
+  padding: 0;
+  margin: 0 var(--space-6) var(--space-6);
   color: var(--ink-secondary);
   font-size: 0.9375rem;
   line-height: 1.6;
