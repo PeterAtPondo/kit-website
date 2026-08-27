@@ -218,6 +218,25 @@ async function decide(req, res) {
 }
 
 export default async function handler(req, res) {
+  // A visitor can be on www.kit-project.com: Vercel's host redirect covers /api
+  // but not the static pages, so the page loads on www and its POST crosses
+  // origins. Without these headers the preflight died with a bare 405 and both
+  // Chrome and Safari showed "Something went wrong" while curl sailed through
+  // (2026-08-27, found because the operator's own request failed). The form now
+  // posts to the apex absolutely; this is the other half, so an already-open
+  // www tab works too.
+  const origin = String(req.headers.origin || "");
+  if (origin === "https://kit-project.com" || origin === "https://www.kit-project.com") {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Vary", "Origin");
+  }
+  if (req.method === "OPTIONS") {
+    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
+    res.setHeader("Access-Control-Max-Age", "86400");
+    return res.status(204).end();
+  }
+
   res.setHeader("Cache-Control", "no-store");
 
   if (req.method === "POST") return record(req, res);
