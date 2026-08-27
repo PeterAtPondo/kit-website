@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What is wrong with Kit today &middot; Kit</title>
+  <meta name="description" content="The known limitations of Kit, stated plainly, and what has recently been found and fixed.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#020617">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <style>
+    /* Page-local, built on the site tokens. */
+    .known { list-style: none; padding: 0; margin: var(--space-6) 0 0; max-width: var(--reading-max); }
+    .known li { padding: var(--space-5) 0; border-bottom: 1px solid var(--edge-faint); }
+    .known h3 { margin: 0 0 var(--space-2); font-size: 1.0625rem; font-weight: 600; color: var(--ink-primary); }
+    .known p { margin: 0; color: var(--ink-secondary); font-size: 0.9375rem; line-height: 1.6; }
+    .known p + p { margin-top: var(--space-2); }
+    .state {
+      display: inline-block; margin-left: var(--space-3); vertical-align: middle;
+      font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.04em;
+      border: 1px solid var(--edge-faint); border-radius: 999px; padding: 1px 8px;
+      color: var(--accent-warm); white-space: nowrap;
+    }
+    .state--next { color: var(--accent-glow); }
+    .asof { color: var(--ink-quiet); font-size: 0.875rem; margin-top: var(--space-3); }
+    .known__advice { max-width: var(--reading-max); margin-top: var(--space-8); }
+  </style>
+</head>
+<body>
+  <a href="#top" class="skip-link">Skip to content</a>
+
+  <nav class="nav">
+    <a class="nav__brand" href="/">
+      <svg class="nav__mark" width="22" height="22" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <g stroke="currentColor" stroke-linecap="round" stroke-width="5">
+          <line x1="49" y1="52" x2="77" y2="31"/>
+          <line x1="49" y1="52" x2="22" y2="62"/>
+          <line x1="49" y1="52" x2="62" y2="80"/>
+        </g>
+        <circle cx="49" cy="52" r="10" fill="currentColor"/>
+        <circle cx="77" cy="31" r="5.5" fill="currentColor"/>
+        <circle cx="22" cy="62" r="4.5" fill="currentColor"/>
+        <circle cx="62" cy="80" r="4" fill="currentColor"/>
+      </svg>
+      <span>Kit</span>
+    </a>
+    <div class="nav__links">
+      <a href="/#install">Install</a>
+      <a href="https://demo.kit-project.com">Live demo</a>
+      <a href="/#arch">Architecture</a>
+      <a href="/#letter">For agents</a>
+      <a href="/blog/">Notes</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+  <section id="top" class="section">
+    <h1>What is wrong with Kit today</h1>
+    <p class="lede" style="max-width: var(--reading-max)">
+      Kit is a private beta, and a memory you cannot check is worth nothing, so
+      this is the list we would want if we were deciding whether to try it.
+      Everything here is known, reproducible, and ours to fix. If you find
+      something that is not on this list, we would like to hear it.
+    </p>
+    <p class="asof">Last reviewed 27 August 2026.</p>
+  </section>
+
+  <section class="section">
+    <h2>Open</h2>
+    <ul class="known">
+      <li>
+        <h3>Recall is weaker when you ask a full natural question<span class="state state--next">next up</span></h3>
+        <p>
+          Keyword-shaped queries retrieve well. A whole sentence, especially one
+          about something the archive does not hold, can come back with plausible
+          neighbours rather than with nothing. Our own published evaluation scores
+          13 of 17, including 0 of 4 on the hard set, where the right answer is
+          &ldquo;no record of that&rdquo;.
+        </p>
+        <p>
+          The retrieval response already reports which of your terms matched
+          nothing, which is how an agent can tell. The work is to make that signal
+          withhold the results rather than merely label them, so a question about
+          someone the archive has never heard of returns an honest blank. That is
+          engineering, not copy, and it is the next substantial piece of it.
+        </p>
+      </li>
+      <li>
+        <h3>A memory recalled from another Kit cannot be reopened by id</h3>
+        <p>
+          Recall across a federation works, and each result names the Kit it came
+          from. Following that citation back does not. Ids are local to each Kit
+          and there is no source-qualified form yet, so asking for id 2 after a
+          peer returned one gets you your own record number two, or nothing.
+        </p>
+      </li>
+      <li>
+        <h3>Kit labels disagreeing sources, it does not adjudicate them</h3>
+        <p>
+          When two federated Kits assert different things, both come back and both
+          are marked contested. That part is deliberate, because a memory that
+          silently picks a winner is worse than one that shows you the argument.
+          It is also unfinished: there is no trust-per-claim policy yet, so
+          deciding which source to believe is still your job.
+        </p>
+      </li>
+      <li>
+        <h3>The public demos prove retrieval, and only retrieval</h3>
+        <p>
+          They are seeded archives with the questions written in advance. They
+          show that memory can be stored, scoped, corrected and retrieved live.
+          They cannot show ingestion, nightly consolidation, decay, handoffs,
+          backup or restore, because those happen inside a running Kit over weeks.
+          Judge those from the app, not from the demo.
+        </p>
+        <p>
+          Every provenance column in those archives is also empty, because the
+          entries were written for the demonstration and no session or commit
+          produced them. The ballast archive is the one where each entry carries a
+          real, clickable source URL.
+        </p>
+      </li>
+      <li>
+        <h3>&ldquo;Sovereign&rdquo; in the demo means separate stores, not separate infrastructure</h3>
+        <p>
+          The two demonstration Kits have their own databases, their own keys and
+          their own processes, and neither can read the other. They do run on one
+          host. The boundary being demonstrated is the software one.
+        </p>
+      </li>
+      <li>
+        <h3>Capture is strongest in coding tools</h3>
+        <p>
+          Claude Code, Codex, Cursor, VS Code and the other MCP agents are
+          captured live as you work; browser chat capture is still in development.
+          Anything that speaks MCP can talk to Kit, and being able to talk to it
+          is not the same as having your history captured from it. The
+          <a href="/supported/">supported page</a> marks which is which.
+        </p>
+      </li>
+      <li>
+        <h3>No independent security audit, and the source is not publicly auditable</h3>
+        <p>
+          Source ships inside the app so you can read what runs on your machine.
+          It is not open source, and nobody outside this project has audited it.
+          There is no SBOM and no published threat model yet. The download is
+          signed, notarised and <a href="/install/">checksummed</a>, which is a
+          different and much smaller claim.
+        </p>
+      </li>
+      <li>
+        <h3>It is an early beta, and August looked like one</h3>
+        <p>
+          The release notes on the install page are complete rather than curated,
+          so they include the month Telegram was broken on every personal install,
+          the reflection cycle that had not run since the runtime migration, and
+          imported text that could execute code inside the app. All fixed, all
+          recent. The rate of serious fixes is the honest signal about maturity,
+          and it is why the advice below is what it is.
+        </p>
+      </li>
+    </ul>
+    <p class="lede known__advice">
+      What we would tell a friend: try it on one real but non-critical project,
+      keep the original sources, and check what it remembered rather than
+      assuming. Do not make it the only copy of anything yet.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Recently found and fixed</h2>
+    <p class="lede" style="max-width: var(--reading-max)">
+      Kept here because a list of what is wrong is only believable beside a list
+      of what was wrong.
+    </p>
+    <ul class="known">
+      <li>
+        <h3>A scoped key could receive another Kit&rsquo;s memories over federation<span class="state">fixed 27 Aug 2026</span></h3>
+        <p>
+          A key limited to one knowledge area was correctly limited on its own
+          Kit, and peer results were merged without that limit applied, so a
+          federated query could return areas the key had never been granted. This
+          is the mechanism Kit offers for sharing one area with a colleague&rsquo;s
+          Kit, so it mattered a great deal more than the fictional data it exposed.
+        </p>
+        <p>
+          Found by an unaffiliated AI agent evaluating the public demo. Reported,
+          reproduced, fixed and verified the same day. Peer results now face the
+          same scope check the local ones do, on our side of the connection, and
+          tests pin every merge site so it cannot come back quietly.
+        </p>
+      </li>
+      <li>
+        <h3>Two claims on the demo that its own evidence did not support<span class="state">fixed 27 Aug 2026</span></h3>
+        <p>
+          The demonstration said one of its questions could not be answered from
+          either archive alone. A reviewer read both and showed that one of them
+          does most of the work, so it now says what the second archive actually
+          adds. The same review found a placeholder shipping unsubstituted inside
+          an answer, and an answer that stopped one sentence before the fact that
+          completed it.
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__row">
+      <div><span>Kit</span> &middot; a long collaboration</div>
+      <div>made with Peter in Cape Town</div>
+    </div>
+    <div class="footer__row footer__row--quiet">
+      <div class="footer__pledge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5"/>
+        </svg>
+        <span>Public website: no analytics or ad tracking. Invite access uses one necessary cookie.</span>
+      </div>
+      <div class="footer__colophon">The beta app sends limited health telemetry, disclosed in the <a href="/terms/#telemetry">beta terms</a>.</div>
+    </div>
+  </footer>
+</body>
+</html>
