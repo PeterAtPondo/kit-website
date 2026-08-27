@@ -282,6 +282,17 @@
           build, so the same download runs on both.
         </p>
       </div>
+        <div class="card">
+          <div class="card__title">Signed, notarised, checksummed</div>
+          <p class="card__body">
+            The app is Developer ID signed and notarised by Apple, and in-app
+            updates carry an EdDSA signature the installed app checks before it
+            swaps anything. If you would rather verify the download yourself:
+            <code>shasum -a 256 Kit-macOS.dmg</code> should match
+            <a href="/downloads/Kit-macOS.dmg.sha256">the published checksum</a>,
+            which is also in <a href="/update/latest.json">the release manifest</a>.
+          </p>
+        </div>
       <div class="card">
         <div class="card__title">Nothing else to install</div>
         <p class="card__body">

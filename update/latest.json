@@ -14,5 +14,6 @@
     "Memories are now checked against the sources they came from: a figure, date or amount that its source never contained gets flagged for your review instead of being trusted.",
     "The install is about a third of a gigabyte smaller: the bundled runtime lost a mapping server it never used.",
     "Onboarding links you straight to where each provider issues its API key."
-  ]
+  ],
+  "sha256": "c34ce130fa6cdd48e0b67404f3d4fd2d8479022ac17b58af23eedc05cdd3f1eb"
 }
