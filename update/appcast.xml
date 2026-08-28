@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.267</title>
-      <pubDate>Fri, 28 Aug 2026 09:14:43 -0000</pubDate>
-      <sparkle:version>0.2.267</sparkle:version>
-      <sparkle:shortVersionString>0.2.267</sparkle:shortVersionString>
+      <title>0.2.268</title>
+      <pubDate>Fri, 28 Aug 2026 12:20:00 -0000</pubDate>
+      <sparkle:version>0.2.268</sparkle:version>
+      <sparkle:shortVersionString>0.2.268</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>When two Kits share a body of knowledge, neither takes the other&#x27;s evidence on trust. A Kit asked to draw a conclusion from a record its partner holds now requires a signed receipt from the Kit that actually served it, checked against a key it already has. Neither Kit reads the other, and neither can be told a record exists that does not.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.267-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="2L6XKR4aw/K3EFP+YN27xgU2QNsA2Qej/oojlTbfGsq7o/YPk2ju+twao0tYrUgC0LpeGvTGs3O7njhav5J3Cg==" length="15897012"/>
+      <description><![CDATA[<ul><li>Your Kit&#x27;s database now needs a password. It was created accepting any connection from this Mac with no credential at all, which meant any program running under your account, including one you never installed deliberately, could read everything Kit remembers. Existing Kits are moved across on the next start, and only after proving the new way in works first.</li><li>Your Kit&#x27;s name, and anything a restore hands it, can no longer run as a command. Several setup fields were written into a file the installer executes, so a name containing the right characters would have run when Kit was set up or restored. Every field is quoted now, structurally, so a new one cannot be missed.</li><li>Backups, logs and the Garmin token are readable only by you. All three were written readable by every account on the Mac, and backups are your whole memory in the clear. Kit repairs the ones already on disk when it next starts.</li><li>The beta health report no longer carries file paths. It was already stripped of credentials, but a crash line could include the path of whatever you were working on, and the terms promise it never sends that. Kit&#x27;s own filenames stay, because they say where the fault was.</li><li>The setup gate token stops appearing in Kit&#x27;s log. It was written there on every gated open, in a file that was itself readable by anything on the machine.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.268-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="qCV2Pm+HZEhHlfzduTVAH+zIOMlOQJnEWbzp1F2lflU//WfpREJCg9LGuQzl/1pDkbMFwLHUq5uggp3gnH2mCA==" length="15862731"/>
     </item>
   </channel>
 </rss>

@@ -352,6 +352,24 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.268</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Your Kit&#x27;s database now needs a password. It was created accepting any connection from this Mac with no credential at all, which meant any program running under your account, including one you never installed deliberately, could read everything Kit remembers. Existing Kits are moved across on the next start, and only after proving the new way in works first.</li>
+            <li>Your Kit&#x27;s name, and anything a restore hands it, can no longer run as a command. Several setup fields were written into a file the installer executes, so a name containing the right characters would have run when Kit was set up or restored. Every field is quoted now, structurally, so a new one cannot be missed.</li>
+            <li>Backups, logs and the Garmin token are readable only by you. All three were written readable by every account on the Mac, and backups are your whole memory in the clear. Kit repairs the ones already on disk when it next starts.</li>
+            <li>The beta health report no longer carries file paths. It was already stripped of credentials, but a crash line could include the path of whatever you were working on, and the terms promise it never sends that. Kit&#x27;s own filenames stay, because they say where the fault was.</li>
+            <li>The setup gate token stops appearing in Kit&#x27;s log. It was written there on every gated open, in a file that was itself readable by anything on the machine.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.267</span>
           <span class="release__date">August 2026</span>
         </div>

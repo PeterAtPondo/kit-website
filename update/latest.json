@@ -1,10 +1,14 @@
 {
-  "version": "0.2.267",
-  "url": "https://kit-project.com/downloads/Kit-0.2.267-macOS.dmg",
+  "version": "0.2.268",
+  "url": "https://kit-project.com/downloads/Kit-0.2.268-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "c529f46482272c44e271b5e0d30dd5eee614b8ffa11085d2d27c95892ecc276b",
+  "sha256": "e52d1e290e0226903c2733826ea2259c6f62e34f22dbba30096770f2c30ea9e6",
   "notes": [
-    "When two Kits share a body of knowledge, neither takes the other's evidence on trust. A Kit asked to draw a conclusion from a record its partner holds now requires a signed receipt from the Kit that actually served it, checked against a key it already has. Neither Kit reads the other, and neither can be told a record exists that does not."
+    "Your Kit's database now needs a password. It was created accepting any connection from this Mac with no credential at all, which meant any program running under your account, including one you never installed deliberately, could read everything Kit remembers. Existing Kits are moved across on the next start, and only after proving the new way in works first.",
+    "Your Kit's name, and anything a restore hands it, can no longer run as a command. Several setup fields were written into a file the installer executes, so a name containing the right characters would have run when Kit was set up or restored. Every field is quoted now, structurally, so a new one cannot be missed.",
+    "Backups, logs and the Garmin token are readable only by you. All three were written readable by every account on the Mac, and backups are your whole memory in the clear. Kit repairs the ones already on disk when it next starts.",
+    "The beta health report no longer carries file paths. It was already stripped of credentials, but a crash line could include the path of whatever you were working on, and the terms promise it never sends that. Kit's own filenames stay, because they say where the fault was.",
+    "The setup gate token stops appearing in Kit's log. It was written there on every gated open, in a file that was itself readable by anything on the machine."
   ]
 }
