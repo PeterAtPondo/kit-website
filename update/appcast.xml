@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.264</title>
-      <pubDate>Fri, 28 Aug 2026 06:03:13 -0000</pubDate>
-      <sparkle:version>0.2.264</sparkle:version>
-      <sparkle:shortVersionString>0.2.264</sparkle:shortVersionString>
+      <title>0.2.265</title>
+      <pubDate>Fri, 28 Aug 2026 06:34:03 -0000</pubDate>
+      <sparkle:version>0.2.265</sparkle:version>
+      <sparkle:shortVersionString>0.2.265</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Clicking Kit in the Dock opens Kit. One click, not two, and it opens the Lantern where your memories are, rather than the last screen of the setup wizard you finished weeks ago.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.264-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="rXYX5Xp2VNYax+DulueujuEPjuK2AYx5a2o9NMNv6mhmj0mo9LrreM1MImvdC/+Y+aPCqtQhe179I0Pj+t9NAg==" length="15841997"/>
+      <description><![CDATA[<ul><li>Kit stops telling you the same thing four times. Its background watchers ran once per server worker, each with its own idea of what it had already said, so a single event could produce four notifications, twice inside the same second on a bad day. One watcher now holds the job and the rest stand by.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.265-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="4XCUSH0BFfiV6iUFhNZW69PiGy9CwyfkCI6rDnN/DoOHGaDbefz/xSHXhpaEzsXSmVDO6iRc9UVlg2JpyacKAQ==" length="15847584"/>
     </item>
   </channel>
 </rss>
