@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.268</title>
-      <pubDate>Fri, 28 Aug 2026 12:20:00 -0000</pubDate>
-      <sparkle:version>0.2.268</sparkle:version>
-      <sparkle:shortVersionString>0.2.268</sparkle:shortVersionString>
+      <title>0.2.269</title>
+      <pubDate>Fri, 28 Aug 2026 13:56:23 -0000</pubDate>
+      <sparkle:version>0.2.269</sparkle:version>
+      <sparkle:shortVersionString>0.2.269</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Your Kit&#x27;s database now needs a password. It was created accepting any connection from this Mac with no credential at all, which meant any program running under your account, including one you never installed deliberately, could read everything Kit remembers. Existing Kits are moved across on the next start, and only after proving the new way in works first.</li><li>Your Kit&#x27;s name, and anything a restore hands it, can no longer run as a command. Several setup fields were written into a file the installer executes, so a name containing the right characters would have run when Kit was set up or restored. Every field is quoted now, structurally, so a new one cannot be missed.</li><li>Backups, logs and the Garmin token are readable only by you. All three were written readable by every account on the Mac, and backups are your whole memory in the clear. Kit repairs the ones already on disk when it next starts.</li><li>The beta health report no longer carries file paths. It was already stripped of credentials, but a crash line could include the path of whatever you were working on, and the terms promise it never sends that. Kit&#x27;s own filenames stay, because they say where the fault was.</li><li>The setup gate token stops appearing in Kit&#x27;s log. It was written there on every gated open, in a file that was itself readable by anything on the machine.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.268-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="qCV2Pm+HZEhHlfzduTVAH+zIOMlOQJnEWbzp1F2lflU//WfpREJCg9LGuQzl/1pDkbMFwLHUq5uggp3gnH2mCA==" length="15862731"/>
+      <description><![CDATA[<ul><li>Everything your Kit has read is now readable only by you. Documents you gave it, mail it fetched, attachments, exports: all of it lives in a folder that was created readable by every account on this Mac, and on one real install that was 3,343 files including 928 document originals. The fix repairs the whole folder every time Kit starts, so an install that has been collecting since March is fixed by its next launch rather than by a reinstall, and new files are written private as they arrive.</li><li>Beta monitoring stops sending health summaries. A health check writes its one line for your screen, so it says the useful thing, and the useful thing is sometimes a folder you named and where it used to be. That line was going out with the daily report. Only the check&#x27;s own name travels now, shortened to the part that is Kit&#x27;s vocabulary rather than yours, and every field in the report passes a filter that strips file paths before anything is sent.</li><li>Choosing a new backup folder no longer exposes your settings file. Saving that choice rewrote the file holding your database password and setup token, and the rewrite left it readable by every account on the Mac. It stays private now.</li><li>Found by the same outside reviewer who found the last set, reading the build we shipped that morning to check whether our own release notes were true. Two of them were not, and this release is what makes them true.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.269-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="/E8X9yvSfn27DjQ+Z87lcjCAp89A3ZnoKAYTJ8be8S/m+GJzcFKui0h4wFhKb6WQnS2sHqMjgdS5asiGWdOyCA==" length="15902789"/>
     </item>
   </channel>
 </rss>

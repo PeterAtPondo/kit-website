@@ -1,14 +1,13 @@
 {
-  "version": "0.2.268",
-  "url": "https://kit-project.com/downloads/Kit-0.2.268-macOS.dmg",
+  "version": "0.2.269",
+  "url": "https://kit-project.com/downloads/Kit-0.2.269-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "e52d1e290e0226903c2733826ea2259c6f62e34f22dbba30096770f2c30ea9e6",
+  "sha256": "440225d739ac04a93223404d712c000a7fa49f2bb438112d7c1457198a9c13f3",
   "notes": [
-    "Your Kit's database now needs a password. It was created accepting any connection from this Mac with no credential at all, which meant any program running under your account, including one you never installed deliberately, could read everything Kit remembers. Existing Kits are moved across on the next start, and only after proving the new way in works first.",
-    "Your Kit's name, and anything a restore hands it, can no longer run as a command. Several setup fields were written into a file the installer executes, so a name containing the right characters would have run when Kit was set up or restored. Every field is quoted now, structurally, so a new one cannot be missed.",
-    "Backups, logs and the Garmin token are readable only by you. All three were written readable by every account on the Mac, and backups are your whole memory in the clear. Kit repairs the ones already on disk when it next starts.",
-    "The beta health report no longer carries file paths. It was already stripped of credentials, but a crash line could include the path of whatever you were working on, and the terms promise it never sends that. Kit's own filenames stay, because they say where the fault was.",
-    "The setup gate token stops appearing in Kit's log. It was written there on every gated open, in a file that was itself readable by anything on the machine."
+    "Everything your Kit has read is now readable only by you. Documents you gave it, mail it fetched, attachments, exports: all of it lives in a folder that was created readable by every account on this Mac, and on one real install that was 3,343 files including 928 document originals. The fix repairs the whole folder every time Kit starts, so an install that has been collecting since March is fixed by its next launch rather than by a reinstall, and new files are written private as they arrive.",
+    "Beta monitoring stops sending health summaries. A health check writes its one line for your screen, so it says the useful thing, and the useful thing is sometimes a folder you named and where it used to be. That line was going out with the daily report. Only the check's own name travels now, shortened to the part that is Kit's vocabulary rather than yours, and every field in the report passes a filter that strips file paths before anything is sent.",
+    "Choosing a new backup folder no longer exposes your settings file. Saving that choice rewrote the file holding your database password and setup token, and the rewrite left it readable by every account on the Mac. It stays private now.",
+    "Found by the same outside reviewer who found the last set, reading the build we shipped that morning to check whether our own release notes were true. Two of them were not, and this release is what makes them true."
   ]
 }

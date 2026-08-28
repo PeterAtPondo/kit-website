@@ -352,6 +352,23 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.269</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Everything your Kit has read is now readable only by you. Documents you gave it, mail it fetched, attachments, exports: all of it lives in a folder that was created readable by every account on this Mac, and on one real install that was 3,343 files including 928 document originals. The fix repairs the whole folder every time Kit starts, so an install that has been collecting since March is fixed by its next launch rather than by a reinstall, and new files are written private as they arrive.</li>
+            <li>Beta monitoring stops sending health summaries. A health check writes its one line for your screen, so it says the useful thing, and the useful thing is sometimes a folder you named and where it used to be. That line was going out with the daily report. Only the check&#x27;s own name travels now, shortened to the part that is Kit&#x27;s vocabulary rather than yours, and every field in the report passes a filter that strips file paths before anything is sent.</li>
+            <li>Choosing a new backup folder no longer exposes your settings file. Saving that choice rewrote the file holding your database password and setup token, and the rewrite left it readable by every account on the Mac. It stays private now.</li>
+            <li>Found by the same outside reviewer who found the last set, reading the build we shipped that morning to check whether our own release notes were true. Two of them were not, and this release is what makes them true.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.268</span>
           <span class="release__date">August 2026</span>
         </div>
