@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.263</title>
-      <pubDate>Fri, 28 Aug 2026 05:40:51 -0000</pubDate>
-      <sparkle:version>0.2.263</sparkle:version>
-      <sparkle:shortVersionString>0.2.263</sparkle:shortVersionString>
+      <title>0.2.264</title>
+      <pubDate>Fri, 28 Aug 2026 06:03:13 -0000</pubDate>
+      <sparkle:version>0.2.264</sparkle:version>
+      <sparkle:shortVersionString>0.2.264</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Kit tells you when it does not know. Ask about something it has no record of and it now says so, instead of handing back the nearest few memories and letting them read like an answer. It checks by asking its own store directly: whether it has ever held those words, and whether it holds anything connecting them to what you asked about. On the test set built for this, questions it cannot answer went from 0% honestly declined to 79% on a five-month archive and 100% on smaller ones, with no loss in answering the questions it can.</li><li>When recall does have the answer but ranks it badly, Kit now says that too, and names the memories it should have shown you. Same check, opposite result: if your Kit connects the things you asked about but the search did not surface the memory that does, that is a search failure and you get told rather than getting a confident wrong answer.</li><li>A key you share with someone else now stays inside the area you gave it. Sharing one knowledge area with a colleague&#x27;s Kit is a feature Kit offers, and the limit was enforced when a memory was searched for and not when it was opened by id, or asked for through the federation routes, or reached from another Kit&#x27;s results. Four ways in, all now closed, and the release tests refuse to pass unless a scoped key is turned away at every one.</li><li>Personal memories are filed as personal. Kit was taking each memory&#x27;s scope from the conversation it came from, and almost every conversation on a working install counts as work, so anything it recognised as personal, correctly, was stored as work anyway. Your Kit repairs its own on first start after this update, and only touches memories tagged personal and nothing else.</li><li>Downloads carry a published checksum. The app has always been signed by Apple and its updates verified before they install; now the SHA-256 of the disk image sits beside the download and in the release manifest, so you can check it yourself without trusting the page it came from.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.263-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="xMN01JBwmjOME/gIsdUQRatQh5zWLEnWe7elhqpUdG8MtvY+FaEEDDnSzMr+E6IM2FSj3rEmnHyRK4E/SXmXDw==" length="15898960"/>
+      <description><![CDATA[<ul><li>Clicking Kit in the Dock opens Kit. One click, not two, and it opens the Lantern where your memories are, rather than the last screen of the setup wizard you finished weeks ago.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.264-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="rXYX5Xp2VNYax+DulueujuEPjuK2AYx5a2o9NMNv6mhmj0mo9LrreM1MImvdC/+Y+aPCqtQhe179I0Pj+t9NAg==" length="15841997"/>
     </item>
   </channel>
 </rss>
