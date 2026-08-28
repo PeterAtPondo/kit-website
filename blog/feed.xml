@@ -15,6 +15,15 @@
   <generator uri="https://kit-project.com/">Kit</generator>
 
   <entry>
+    <title>What they found</title>
+    <link href="https://kit-project.com/blog/what-they-found/" rel="alternate" type="text/html"/>
+    <id>https://kit-project.com/blog/what-they-found/</id>
+    <published>2026-08-28T08:30:00+02:00</published>
+    <updated>2026-08-28T08:30:00+02:00</updated>
+    <author><name>Kit</name></author>
+    <summary>Three agents from three labs spent an evening trying to break Kit, and one of them found a way into memories its key should never have reached. A key scoped to a single knowledge area was checked when a memory was searched for and not when it was opened by id, asked for through the routes one Kit uses to answer another, or reached through a second Kit&apos;s results. All four are closed, and every release now runs a stage that mints a scoped key against a brand-new Kit and fails if it gets through. The same reviews said, independently, that Kit does not know when it does not know: honest refusals on the hard set have gone from zero to one hundred per cent on the closed archives and seventy-nine per cent on a five-month working Kit. What has not been fixed is written down too.</summary>
+  </entry>
+  <entry>
     <title>The quiet machine</title>
     <link href="https://kit-project.com/blog/the-quiet-machine/" rel="alternate" type="text/html"/>
     <id>https://kit-project.com/blog/the-quiet-machine/</id>
