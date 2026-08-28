@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.265</title>
-      <pubDate>Fri, 28 Aug 2026 06:34:03 -0000</pubDate>
-      <sparkle:version>0.2.265</sparkle:version>
-      <sparkle:shortVersionString>0.2.265</sparkle:shortVersionString>
+      <title>0.2.266</title>
+      <pubDate>Fri, 28 Aug 2026 07:34:41 -0000</pubDate>
+      <sparkle:version>0.2.266</sparkle:version>
+      <sparkle:shortVersionString>0.2.266</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Kit stops telling you the same thing four times. Its background watchers ran once per server worker, each with its own idea of what it had already said, so a single event could produce four notifications, twice inside the same second on a bad day. One watcher now holds the job and the rest stand by.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.265-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="4XCUSH0BFfiV6iUFhNZW69PiGy9CwyfkCI6rDnN/DoOHGaDbefz/xSHXhpaEzsXSmVDO6iRc9UVlg2JpyacKAQ==" length="15847584"/>
+      <description><![CDATA[<ul><li>Paired Kits stop answering questions they cannot check. When two Kits split a body of knowledge, either one could be asked to draw a conclusion from records held only by the other, and it would answer on nobody&#x27;s word. A Kit now declines that and names the one holding the evidence, so the answer comes from the Kit that can actually prove it.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.266-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="DsIRZ9GKQbwo803c/970G2a7EoWtOW9n1AyyiVIh+yXhkU8XthK3DiW9lukslY0UlVAQZa/t5vQOsaPUEt0nDQ==" length="15844023"/>
     </item>
   </channel>
 </rss>

@@ -1,10 +1,10 @@
 {
-  "version": "0.2.265",
-  "url": "https://kit-project.com/downloads/Kit-0.2.265-macOS.dmg",
+  "version": "0.2.266",
+  "url": "https://kit-project.com/downloads/Kit-0.2.266-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "46f014312a59e1f576c29cedbdf09fb1143bc72b19025378e0f1a3a11a2e20c0",
+  "sha256": "3a0b6e0f49aa563c9378a1e0d992cbfa1351474a1dedf7bdcf72b155eabf5b71",
   "notes": [
-    "Kit stops telling you the same thing four times. Its background watchers ran once per server worker, each with its own idea of what it had already said, so a single event could produce four notifications, twice inside the same second on a bad day. One watcher now holds the job and the rest stand by."
+    "Paired Kits stop answering questions they cannot check. When two Kits split a body of knowledge, either one could be asked to draw a conclusion from records held only by the other, and it would answer on nobody's word. A Kit now declines that and names the one holding the evidence, so the answer comes from the Kit that can actually prove it."
   ]
 }
