@@ -352,6 +352,23 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.270</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Everything your Kit has read is now readable only by you, and stays that way. Documents you gave it, mail attachments, exports: all of it lives in a folder that was created readable by every account on this Mac. Kit repairs the whole folder every time it starts, and the background pollers that used to undo that repair within the minute now write their own files privately too.</li>
+            <li>Beta monitoring stops sending health summaries. A health check writes its one line for your screen, so it says the useful thing, and the useful thing is sometimes a folder you named and where it used to be. Only the check&#x27;s own name travels now, and every field in the report passes a filter that strips file paths before anything is sent.</li>
+            <li>Your settings file is never created world-readable, not even for a moment. It holds your database password and setup token, and both the installer and the backup-location setting used to create it readable by everyone and correct that a line later. They now write it private from the first byte.</li>
+            <li>A permissions fix in the previous release stripped the execute bit from files that needed it. If Kit&#x27;s Gmail helper stopped working after 0.2.269, this repairs it.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.269</span>
           <span class="release__date">August 2026</span>
         </div>
