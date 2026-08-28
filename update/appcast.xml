@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.266</title>
-      <pubDate>Fri, 28 Aug 2026 07:34:41 -0000</pubDate>
-      <sparkle:version>0.2.266</sparkle:version>
-      <sparkle:shortVersionString>0.2.266</sparkle:shortVersionString>
+      <title>0.2.267</title>
+      <pubDate>Fri, 28 Aug 2026 09:14:43 -0000</pubDate>
+      <sparkle:version>0.2.267</sparkle:version>
+      <sparkle:shortVersionString>0.2.267</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Paired Kits stop answering questions they cannot check. When two Kits split a body of knowledge, either one could be asked to draw a conclusion from records held only by the other, and it would answer on nobody&#x27;s word. A Kit now declines that and names the one holding the evidence, so the answer comes from the Kit that can actually prove it.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.266-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="DsIRZ9GKQbwo803c/970G2a7EoWtOW9n1AyyiVIh+yXhkU8XthK3DiW9lukslY0UlVAQZa/t5vQOsaPUEt0nDQ==" length="15844023"/>
+      <description><![CDATA[<ul><li>When two Kits share a body of knowledge, neither takes the other&#x27;s evidence on trust. A Kit asked to draw a conclusion from a record its partner holds now requires a signed receipt from the Kit that actually served it, checked against a key it already has. Neither Kit reads the other, and neither can be told a record exists that does not.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.267-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="2L6XKR4aw/K3EFP+YN27xgU2QNsA2Qej/oojlTbfGsq7o/YPk2ju+twao0tYrUgC0LpeGvTGs3O7njhav5J3Cg==" length="15897012"/>
     </item>
   </channel>
 </rss>

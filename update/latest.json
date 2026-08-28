@@ -1,10 +1,10 @@
 {
-  "version": "0.2.266",
-  "url": "https://kit-project.com/downloads/Kit-0.2.266-macOS.dmg",
+  "version": "0.2.267",
+  "url": "https://kit-project.com/downloads/Kit-0.2.267-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "3a0b6e0f49aa563c9378a1e0d992cbfa1351474a1dedf7bdcf72b155eabf5b71",
+  "sha256": "c529f46482272c44e271b5e0d30dd5eee614b8ffa11085d2d27c95892ecc276b",
   "notes": [
-    "Paired Kits stop answering questions they cannot check. When two Kits split a body of knowledge, either one could be asked to draw a conclusion from records held only by the other, and it would answer on nobody's word. A Kit now declines that and names the one holding the evidence, so the answer comes from the Kit that can actually prove it."
+    "When two Kits share a body of knowledge, neither takes the other's evidence on trust. A Kit asked to draw a conclusion from a record its partner holds now requires a signed receipt from the Kit that actually served it, checked against a key it already has. Neither Kit reads the other, and neither can be told a record exists that does not."
   ]
 }
