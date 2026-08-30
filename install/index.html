@@ -352,6 +352,24 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.271</span>
+          <span class="release__date">August 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Please update as soon as you can. This release closes a gap in how your Kit decided what a caller was allowed to do. It confirmed who was calling, but the check on what that caller could change did not always run. Every route that changes something now names the permission it needs, and that permission is checked before any work happens.</li>
+            <li>Agents your Kit spawns now run on their own credential. They used to inherit your key and your database connection, which meant a helper doing one small job could reach everything you can. Each one is now issued a key scoped to its own work, in an environment holding only what it needs.</li>
+            <li>What a search or a source listing returns is now fenced to what the person asking is allowed to see, and the fence runs before the page is cut, so a long listing no longer hides rows you can read behind rows you cannot.</li>
+            <li>Password reset works again on Docker installs. A recent tightening of how Kit recognises a local request treated your own browser as remote and refused you, which locked you out of the one route that exists to let you back in.</li>
+            <li>Kit starts in seconds instead of minutes. A schema check ran hundreds of statements every time it started, each waiting for a lock it did not need, which during a backup could hold every request for half a minute. It now reads what your database already has and skips the ones with nothing to do.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.270</span>
           <span class="release__date">August 2026</span>
         </div>
