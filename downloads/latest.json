@@ -1,11 +1,10 @@
 {
-  "version": "0.2.272",
-  "url": "https://kit-project.com/downloads/Kit-0.2.272-macOS.dmg",
+  "version": "0.2.273",
+  "url": "https://kit-project.com/downloads/Kit-0.2.273-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "fcc4853b9fdf150b4d566c822c3f3ec24f5f625fa88c7eb01214c592e117c06d",
+  "sha256": "92260257f026209c1fd6b3d52e1d97ba9148462ade91ef3bb2ef88193e92af1b",
   "notes": [
-    "A dream cycle that fails now says why. A night stopped partway used to go out wearing the summary written earlier in the evening, so a crash report could open with how tidy the consolidation was. A stopped night now names what stopped it, which is usually the model connection worth checking.",
-    "One failure, one report. Your Kit could resurface an old dream failure as if it had just happened whenever the record behind it shifted, so the same bad night kept being announced as fresh news. A failure is announced once, and only a genuinely newer one is announced again."
+    "Long conversations no longer cost more and more to remember. When your Kit refreshed its summary of an ongoing chat, it re-read the entire conversation from the beginning every time, so the longer a thread ran the more it cost to keep up with. It now reads only what you have said since the last summary, which it already had the notes to do. On a long thread that is a fortieth of the work, and on a local model it is the difference between a summary that finishes and one that times out."
   ]
 }
