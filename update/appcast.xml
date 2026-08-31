@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.271</title>
-      <pubDate>Sun, 30 Aug 2026 15:57:09 -0000</pubDate>
-      <sparkle:version>0.2.271</sparkle:version>
-      <sparkle:shortVersionString>0.2.271</sparkle:shortVersionString>
+      <title>0.2.272</title>
+      <pubDate>Mon, 31 Aug 2026 06:45:45 -0000</pubDate>
+      <sparkle:version>0.2.272</sparkle:version>
+      <sparkle:shortVersionString>0.2.272</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Please update as soon as you can. This release closes a gap in how your Kit decided what a caller was allowed to do. It confirmed who was calling, but the check on what that caller could change did not always run. Every route that changes something now names the permission it needs, and that permission is checked before any work happens.</li><li>Agents your Kit spawns now run on their own credential. They used to inherit your key and your database connection, which meant a helper doing one small job could reach everything you can. Each one is now issued a key scoped to its own work, in an environment holding only what it needs.</li><li>What a search or a source listing returns is now fenced to what the person asking is allowed to see, and the fence runs before the page is cut, so a long listing no longer hides rows you can read behind rows you cannot.</li><li>Password reset works again on Docker installs. A recent tightening of how Kit recognises a local request treated your own browser as remote and refused you, which locked you out of the one route that exists to let you back in.</li><li>Kit starts in seconds instead of minutes. A schema check ran hundreds of statements every time it started, each waiting for a lock it did not need, which during a backup could hold every request for half a minute. It now reads what your database already has and skips the ones with nothing to do.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.271-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="0ifBwaEdGBUU0NOwSlIQRP/1HoXpHB3EbhtQlGudqH7/tGtRbhloUKu/gQkDPGisbikiu3tWcBTHOZwaOEa/Dg==" length="17097074"/>
+      <description><![CDATA[<ul><li>A dream cycle that fails now says why. A night stopped partway used to go out wearing the summary written earlier in the evening, so a crash report could open with how tidy the consolidation was. A stopped night now names what stopped it, which is usually the model connection worth checking.</li><li>One failure, one report. Your Kit could resurface an old dream failure as if it had just happened whenever the record behind it shifted, so the same bad night kept being announced as fresh news. A failure is announced once, and only a genuinely newer one is announced again.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.272-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="BFD59w+pQEz5t2vP7QA7LT1WjEqVkXJbDCqGAYz9Rm7RacXoqx2biMo2fVlwsEKfDMd90xjoaXfiwJ1nrCbZAQ==" length="17089682"/>
     </item>
   </channel>
 </rss>
