@@ -410,6 +410,11 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   text-align: center;
 }
 
+/* Inline links in the lede lift one step, the same move .hero__download-meta
+   makes against its own quieter body. Without it a link here inherits the
+   surrounding colour exactly and stops reading as a link at all. */
+.hero__lede a { color: var(--ink-primary); }
+
 /* The practical facts belong beside the download, not three sections below
    it: she downloaded before she knew what she was getting, and separately
    was unsure she had the disk space. */
