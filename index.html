@@ -156,6 +156,7 @@
       <a href="#install">Install</a>
       <a href="https://demo.kit-project.com/investigate" target="_blank" rel="noopener">See proof</a>
       <a href="#technical-evidence">Architecture</a>
+      <a href="#companies">For companies</a>
       <a href="#letter">For agents</a>
       <a href="/blog/">Notes</a>
       <a href="#contact">Contact</a>
@@ -1279,6 +1280,68 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
     </p>
   </section>
 
+  <!-- Section 5d: For companies. The company story already existed, but only
+       inside the collapsed Architecture deep-dive, where a first-time reader
+       never met it. This states it in the open, at the point sovereignty has
+       just been argued, because owning the substrate is the precondition for
+       a company buying one at all. Scope stays honest: shared deployment is
+       being built, not shipped. -->
+  <section id="companies" class="section section--tint" data-reveal>
+    <div class="inner">
+      <h2>For companies</h2>
+      <p class="lede">
+        The same memory, one level up. What a company knows sits in people's
+        heads, in chat histories nobody can search, and in documents that went
+        stale a year ago. When someone leaves, it leaves with them.
+      </p>
+      <p>
+        A company Kit is a brain the organisation owns: decisions and the
+        reasoning behind them, projects, customers, the corrections that were
+        expensive to learn. Everyone's agents work through it, so context
+        accumulates instead of being retyped every Monday. Personal Kits stay
+        personal and federate into it, which means someone can bring their own
+        context to company work without handing over their own brain.
+      </p>
+      <p>
+        What makes this buyable is the same thing that makes the personal
+        version worth installing: you own the substrate. It runs on
+        infrastructure you control, works with any provider or model including
+        ones running on your own hardware, and the memory stays readable and
+        portable if you ever decide to walk.
+      </p>
+
+      <h3 class="sub">Honest scope</h3>
+      <div class="sources sources--quad">
+        <div class="source source--live">
+          <div class="source__status">Live</div>
+          <div class="source__name">Federated recall</div>
+          <p class="source__desc">One kit queries another over a scoped, read-only key; results come back merged and labelled by source, and the receiver enforces the grant per key. Honest scope: both stores currently sit on one host, so this is separate stores and separate keys, not separate operators.</p>
+        </div>
+        <div class="source source--live">
+          <div class="source__status">Live</div>
+          <div class="source__name">Orchestration</div>
+          <p class="source__desc">Many agents across different providers and models, coordinated through one memory, with the work watchable and steerable rather than fired into the dark. Kit's own build runs on it daily.</p>
+        </div>
+        <div class="source source--development">
+          <div class="source__status">IN DEVELOPMENT</div>
+          <div class="source__name">Shared deployment</div>
+          <p class="source__desc">Kit on a server that several people and their agents connect to, with permissions keeping scopes honest and personal context pulled in only where it helps. This is the piece a company actually buys, and it is being built now rather than shipped.</p>
+        </div>
+        <div class="source source--development">
+          <div class="source__status">IN DEVELOPMENT</div>
+          <div class="source__name">Governance</div>
+          <p class="source__desc">Declaring a brain's purpose, who may write to it, and what is allowed to leave it. Purpose becomes part of how the brain behaves, not a config file nobody reads.</p>
+        </div>
+      </div>
+
+      <p class="surface-strip__note">
+        Thinking about this for a team?
+        <a href="#contact" data-preselect-context="company">Start a conversation</a>.
+        It is early enough that what you need can still shape what gets built.
+      </p>
+    </div>
+  </section>
+
   <!-- Section 6: Build Kit with Peter -->
   <section id="builders" class="section" data-reveal>
     <h2>Build Kit with Peter</h2>
@@ -1558,6 +1621,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
           <select id="cf-context" name="context">
             <option value="beta">I'd like beta access</option>
             <option value="collaboration">I want to collaborate on Kit</option>
+            <option value="company">Kit for my company</option>
             <option value="builder">Building something adjacent</option>
             <option value="curious">Just curious</option>
             <option value="other">Something else</option>
