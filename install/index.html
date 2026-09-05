@@ -352,6 +352,31 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.333</span>
+          <span class="release__date">September 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>A new Kit begins with a light first read of recent conversations, so it can show one recognisable thing it understands while deeper extraction, entities and connections continue in the background.</li>
+            <li>ChatGPT and Claude exports now import behind a durable progress receipt. A restart reports an interrupted import honestly, and re-uploading the same or a newer export safely continues without duplicating conversations.</li>
+            <li>Obsidian notes and other stored sources now carry their exact source identity into enrichment, and upgrade backfills drain every batch without repeated restarts, even when sources share a name.</li>
+            <li>Connecting VS Code and other MCP surfaces now writes configuration as one reversible transaction, keeps secret-bearing files owner-only, and leaves a clear recovery receipt when anything fails.</li>
+            <li>The first model chosen during setup now reaches every text task and the fallback immediately, and switching providers cannot carry the previous provider&#x27;s settings across by accident.</li>
+            <li>Notes you asked Kit to keep now reach the graph. The nightly valve that promotes them had been failing silently since 1 September; it is repaired, and a health row watches it.</li>
+            <li>Every health row that goes amber now says what to do about it, and the retention sweeper that runs the nightly housekeeping is watched like every other background worker.</li>
+            <li>Telegram: Kit reads each message once, a sentence that merely starts with no is no longer taken as a verdict on an open decision, and a card the provider refused goes back on the next tick instead of waiting for the reminder.</li>
+            <li>Hard rules in Settings can name which gate they are for, and the pane shows whether each rule has ever fired.</li>
+            <li>Curation runs to a written policy: a model can take a shadow seat beside your decisions, reviews come at most once a week, and leaving one unanswered keeps rather than moves.</li>
+            <li>Your own Telegram words and each day&#x27;s health reading are now copies the dream can never rewrite.</li>
+            <li>Every control in the web app explains itself with a tooltip you can reach from the keyboard; no native browser tooltips remain.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.287</span>
           <span class="release__date">September 2026</span>
         </div>

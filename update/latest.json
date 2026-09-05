@@ -1,13 +1,21 @@
 {
-  "version": "0.2.287",
-  "url": "https://kit-project.com/downloads/Kit-0.2.287-macOS.dmg",
+  "version": "0.2.333",
+  "url": "https://kit-project.com/downloads/Kit-0.2.333-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "6123d5977d3b1f7ae42040091269c15c6124ed438ee43dab5d995d6552a1baed",
+  "sha256": "f1c3e72123fe32387cb9a54bfa97b135e767a65ed0b798f24201918f2214cf3d",
   "notes": [
-    "Your Kit stops flagging its own thinking as self-contradictory. It checks new memories against what it already knows and raises a conflict when the two disagree, which is worth doing for things you told it and things it decided. It was also doing it to its own inner monologue and its own handover notes between sessions, where two entries hours apart are near-identical by nature, so it kept asking you to adjudicate whether it had contradicted itself. Those two kinds of note are now left out of the check, and the conflicts you are asked about should be real ones.",
-    "A summary that comes back unreadable is no longer bought twice. If the model returned something your Kit could not parse, the conversation went back to the front of the queue and was sent to the same model again on the next pass, which produced the same unreadable answer. That one is now set aside until the conversation actually grows.",
-    "Consolidation now records which phase of the night spent what, so a slow or expensive step can be found instead of guessed at.",
-    "Every surface of your personal Kit now starts with the complete tool set and wakes as the same Kit by default. New and existing Kit facets inherit that access automatically, while explicit outside reviewers and public or federated callers remain separate, non-admin identities."
+    "A new Kit begins with a light first read of recent conversations, so it can show one recognisable thing it understands while deeper extraction, entities and connections continue in the background.",
+    "ChatGPT and Claude exports now import behind a durable progress receipt. A restart reports an interrupted import honestly, and re-uploading the same or a newer export safely continues without duplicating conversations.",
+    "Obsidian notes and other stored sources now carry their exact source identity into enrichment, and upgrade backfills drain every batch without repeated restarts, even when sources share a name.",
+    "Connecting VS Code and other MCP surfaces now writes configuration as one reversible transaction, keeps secret-bearing files owner-only, and leaves a clear recovery receipt when anything fails.",
+    "The first model chosen during setup now reaches every text task and the fallback immediately, and switching providers cannot carry the previous provider's settings across by accident.",
+    "Notes you asked Kit to keep now reach the graph. The nightly valve that promotes them had been failing silently since 1 September; it is repaired, and a health row watches it.",
+    "Every health row that goes amber now says what to do about it, and the retention sweeper that runs the nightly housekeeping is watched like every other background worker.",
+    "Telegram: Kit reads each message once, a sentence that merely starts with no is no longer taken as a verdict on an open decision, and a card the provider refused goes back on the next tick instead of waiting for the reminder.",
+    "Hard rules in Settings can name which gate they are for, and the pane shows whether each rule has ever fired.",
+    "Curation runs to a written policy: a model can take a shadow seat beside your decisions, reviews come at most once a week, and leaving one unanswered keeps rather than moves.",
+    "Your own Telegram words and each day's health reading are now copies the dream can never rewrite.",
+    "Every control in the web app explains itself with a tooltip you can reach from the keyboard; no native browser tooltips remain."
   ]
 }
