@@ -13,5 +13,6 @@ node_modules
 # for a real front-end asset.
 scripts/beta-invite.sh
 scripts/roster-preview.mjs
+scripts/test-beta-ping.mjs
 scripts/narration/
 scripts/howto-video/

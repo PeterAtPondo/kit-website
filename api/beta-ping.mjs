@@ -29,12 +29,20 @@
 //   background process alive/restart counts, health rollup, an
 //   operator-stopped flag, the two dream-cycle numbers, the ids and
 //   one-line summaries of unhappy health checks, and the newest runtime
-//   failure). States, counts and Kit's own words about its own machinery,
-//   never content.
-// Never: memories, message content, file paths, project names, IP addresses.
+//   failure with its crash record: the stack version, the dream phase and
+//   step with their clocks, the exception classes down the cause chain, the
+//   frames that resolved inside Kit's own package as base name, function and
+//   line, how many did not, the failing statement with its binds dropped and
+//   how many there were, and three row estimates for Kit's own tables).
+//   States, counts and Kit's own words about its own machinery, never
+//   content.
+// Never: memories, message content, the operator's own paths, directories or
+// project names, IP addresses. A frame names a file of Kit's own, by base
+// name, and that is the whole of what a file name here can be.
 //
 // The health-check names and summaries, the dream numbers and the runtime
-// failure are all disclosed in the 2026-08-21 terms; that clause and this
+// failure are all disclosed in the 2026-08-21 terms, and the crash record's
+// frames and row estimates in the 2026-09-06 revision; that clause and this
 // file move together. The app has been sending them since 0.2.19x and this
 // receiver dropped every one of them on the floor, because it rebuilds the
 // debug block field by field and an unknown key simply never survives. That
@@ -76,20 +84,144 @@ const count = (v, max) =>
 const days = (v) =>
   Number.isFinite(Number(v)) ? Math.min(Math.max(0, Math.round(Number(v) * 10) / 10), 3650) : null;
 
+// A declared integer, taken only as one. count() above coerces on purpose,
+// because the numbers it guards arrive as whatever an older app put in them.
+// The crash-record fields below are typed on the Mac before they are sent (a
+// step is an Int there), so a value that is not already a whole number in
+// range is not the field it claims to be, and goes on the floor rather than
+// being rounded into something that looks like an answer.
+const whole = (v, max) =>
+  typeof v === "number" && Number.isInteger(v) && v >= 0 && v <= max ? v : null;
+
+// An exception class or a dream phase key: a name out of Kit's own vocabulary.
+// Anything that is not a bare identifier was built at runtime, and a
+// runtime-built name can hold whatever built it. Over-long is dropped rather
+// than cut, because half an identifier is not one.
+const IDENT_RE = /^[A-Za-z_][A-Za-z0-9_]*$/;
+const identifier = (v, n) => {
+  const s = typeof v === "string" ? v.trim() : "";
+  return s && s.length <= n && IDENT_RE.test(s) ? s : null;
+};
+
+// A month of milliseconds. A dream cycle that ran longer than that did not.
+const MONTH_MS = 31 * 24 * 60 * 60 * 1000;
+
+// Where the cycle stopped: a phase key, whether it was a resume, and counts
+// and clocks. Every one of them is resolvable only against stack_version,
+// which is why that travels beside them.
+const crashDream = (v) => {
+  if (!v || typeof v !== "object") return null;
+  const dream = {};
+  const phase = identifier(v.phase, 60);
+  if (phase) dream.phase = phase;
+  if (typeof v.resumed === "boolean") dream.resumed = v.resumed;
+  for (const [key, max] of [["step", 999], ["attempts", 9999], ["generation", 9999]]) {
+    const n = whole(v[key], max);
+    if (n !== null) dream[key] = n;
+  }
+  for (const key of ["phase_ms", "cycle_ms"]) {
+    const ms = whole(v[key], MONTH_MS);
+    if (ms !== null) dream[key] = ms;
+  }
+  return Object.keys(dream).length ? dream : null;
+};
+
+// One traceback frame: the base name of the file, the function, and the line.
+// The stack sends a base name and never a directory, for the same reason the
+// app redacts paths: a directory tree is a description of someone's work. So a
+// separator or a space here means this is not the field it says it is, and the
+// frame is dropped whole rather than repaired.
+const crashFrame = (f) => {
+  if (!f || typeof f !== "object") return null;
+  const file = typeof f.file === "string" ? f.file.trim() : "";
+  const func = typeof f.func === "string" ? f.func.trim() : "";
+  const line = whole(f.line, 9999999);
+  if (!file || file.length > 80 || /[/\\\s]/.test(file)) return null;
+  if (!func || func.length > 120 || /[/\\\s]/.test(func)) return null;
+  if (line === null) return null;
+  return { file, func, line };
+};
+
+// The failing statement, whole or not at all, with its own cap. Whole because
+// the detail cap of 300 cuts the worked example in half and half a statement
+// cannot tell a kNN scan from a filtered one, and those want opposite fixes.
+// The quote check runs on what arrived, before the cap, so a quoted value out
+// past 2000 characters drops the statement rather than being sliced off it:
+// nothing that keeps part of a statement can tell a keyword from someone's
+// name. The stack applies this same rule first; this is its second fence.
+const crashSql = (v) => {
+  if (typeof v !== "string" || /['"`]/.test(v)) return null;
+  return v.trim().slice(0, 2000) || null;
+};
+
+// How big this Kit's own tables are: three row estimates, integers, nothing
+// else. That is how big its machinery is, never anything kept in it.
+const crashCorpus = (v) => {
+  if (!v || typeof v !== "object") return null;
+  const corpus = {};
+  for (const key of ["memories", "memories_embedded", "memory_edges"]) {
+    const n = whole(v[key], 1000000000000);
+    if (n !== null) corpus[key] = n;
+  }
+  return Object.keys(corpus).length ? corpus : null;
+};
+
 // Update failures and runtime failures are the same shape by design (the app
 // builds both from one recorder), so they get one set of caps here rather than
 // two that can drift apart. The app strips credentials from log_tail before
 // sending; these caps are the second fence, not the first.
-const failure = (v) =>
-  v && typeof v === "object"
-    ? {
-        kind: cap(v.kind, 40),
-        detail: cap(v.detail, 300),
-        app_version: version(v.app_version),
-        at: cap(v.at, 40),
-        log_tail: cap(v.log_tail, 3000),
-      }
-    : null;
+//
+// Since kit item 78 a failure also carries the v2 crash record: where a dream
+// cycle stopped, in values nobody wrote. The four fields above say what broke;
+// these say where, well enough that a fix can be written without asking the
+// operator for a screenshot. Each is named here one at a time and taken only
+// at the type it is declared to be, because the type is the filter as much as
+// the name is: a step is an integer, a phase is a phase key, a frame is a base
+// name and two numbers, and none of those shapes can hold a sentence. A field
+// that fails its own shape is dropped in silence, and a key nobody named here
+// never existed, which is the same default the debug block has always had.
+const failure = (v) => {
+  if (!v || typeof v !== "object") return null;
+  const out = {
+    kind: cap(v.kind, 40),
+    detail: cap(v.detail, 300),
+    app_version: version(v.app_version),
+    at: cap(v.at, 40),
+    log_tail: cap(v.log_tail, 3000),
+  };
+  // The stack that actually crashed, which is not always the app bundle
+  // app_version already names. A frame's line number and a step's index are
+  // resolvable only against the tree that raised them.
+  const stack = version(v.stack_version);
+  if (stack) out.stack_version = stack;
+  const dream = crashDream(v.dream);
+  if (dream) out.dream = dream;
+  // The cause chain, outermost first: the visible exception is often not the
+  // one that matters. Eight is headroom over the five the stack walks.
+  if (Array.isArray(v.cause_types)) {
+    const causes = v.cause_types.slice(0, 8).map((t) => identifier(t, 80)).filter(Boolean);
+    if (causes.length) out.cause_types = causes;
+  }
+  // Kit's own frames, innermost first. Twelve is the stack's own cap, so a
+  // real record is never truncated here.
+  if (Array.isArray(v.frames)) {
+    const frames = v.frames.slice(0, 12).map(crashFrame).filter(Boolean);
+    if (frames.length) out.frames = frames;
+  }
+  // Kept even at zero: "all nine frames were elsewhere" is a real answer, and
+  // a missing number reads as no traceback at all.
+  const elsewhere = whole(v.frames_elsewhere, 99999);
+  if (elsewhere !== null) out.frames_elsewhere = elsewhere;
+  const sql = crashSql(v.sql);
+  if (sql) out.sql = sql;
+  // How many binds the statement took. The values themselves never travel;
+  // the stack counts them out of the statement's own placeholders.
+  const binds = whole(v.sql_params, 9999);
+  if (binds !== null) out.sql_params = binds;
+  const corpus = crashCorpus(v.corpus);
+  if (corpus) out.corpus = corpus;
+  return out;
+};
 
 // Upsert one install. first_seen is deliberately NOT sent: the column defaults
 // to now() on insert, and PostgREST leaves columns absent from the body alone
