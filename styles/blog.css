@@ -894,3 +894,50 @@ main { padding-top: 5rem; }
 }
 .post__editor-note strong { color: var(--accent-warm, #d8a657); font-weight: 600; }
 .post__editor-note a { color: var(--accent-glow); text-decoration: underline; text-underline-offset: 0.2em; }
+
+/* ── Sources (2026-09-07) ────────────────────────────────────────────
+   A note that leans on outside reporting carries numbered sources under
+   the article rather than links buried in the prose, so a figure can be
+   checked without breaking the sentence it sits in. The marker is a
+   link into the list; the list itself is apparatus, which is why it
+   lives in the footer rather than the body and is never narrated. */
+.post__ref {
+  font-size: 0.7em;
+  line-height: 0;
+  vertical-align: 0.45em;
+  margin-left: 0.08em;
+}
+.post__ref a {
+  color: var(--accent-glow);
+  text-decoration: none;
+  padding: 0 0.12em;
+}
+.post__ref a:hover { text-decoration: underline; }
+
+.post__sources {
+  flex-basis: 100%;
+  margin: 0 0 var(--space-8);
+}
+.post__sources-title {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: var(--ink-primary);
+  letter-spacing: -0.01em;
+}
+.post__sources ol {
+  margin: 0;
+  padding-left: var(--space-6);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-secondary);
+}
+.post__sources li { margin-bottom: var(--space-2); }
+.post__sources li:target { color: var(--ink-primary); }
+.post__sources a {
+  color: var(--accent-glow);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}

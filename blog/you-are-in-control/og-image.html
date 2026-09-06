@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>OG render</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <style>
+    /* Colours are the site's own tokens (styles/tokens.css, brand guide of
+       22 August 2026). Nothing here declares a colour the site does not. */
+    :root {
+      --bg-deep:       #020617;
+      --bg-soft:       #0a0f1a;
+      --ink-primary:   #f1f5f9;
+      --ink-secondary: #cbd5e1;
+      --ink-quiet:     #94a3b8;
+      --accent-warm:   #e8a55c;
+      --accent-memory: #a78bfa;
+      --accent-glow:   #60a5fa;
+    }
+    html, body { margin: 0; padding: 0; }
+    html { background: var(--bg-deep); width: 1200px; height: 630px; }
+    body {
+      width: 1200px; height: 630px;
+      min-height: 630px;
+      background: var(--bg-deep);
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--ink-primary);
+      position: relative;
+      overflow: hidden;
+    }
+    .bg {
+      position: absolute; inset: 0;
+      background-image: url('../../assets/img/fireflies.png');
+      background-size: cover;
+      background-position: center;
+      filter: blur(7px) saturate(1.05) brightness(0.58);
+      transform: scale(1.04);
+      opacity: 0.62;
+    }
+    .vignette {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 28% 52%, rgba(2,6,23,0.18) 0%, rgba(2,6,23,0.82) 70%, var(--bg-deep) 100%),
+        linear-gradient(180deg, rgba(2,6,23,0.52) 0%, rgba(2,6,23,0.68) 100%);
+    }
+    .glow-warm {
+      position: absolute;
+      width: 540px; height: 540px;
+      left: -140px; top: 210px;
+      background: radial-gradient(closest-side, rgba(232,165,92,0.26), transparent 70%);
+      filter: blur(22px);
+    }
+    .glow-memory {
+      position: absolute;
+      width: 460px; height: 460px;
+      right: -130px; bottom: -130px;
+      background: radial-gradient(closest-side, rgba(167,139,250,0.22), transparent 70%);
+      filter: blur(22px);
+    }
+    .frame {
+      position: absolute;
+      top: 0; left: 0;
+      width: 1200px; height: 630px;
+      /* The blog index crops this image to fill the featured card, taking
+         up to a tenth off the sides or the top and bottom depending on the
+         viewport. The padding keeps both elements inside that safe area. */
+      padding: 96px 120px 104px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 17px;
+      letter-spacing: 0.15em;
+      
+      color: var(--ink-secondary);
+      font-weight: 600;
+    }
+    .kicker .pip {
+      width: 12px; height: 12px;
+      border-radius: 999px;
+      background: var(--accent-warm);
+      box-shadow: 0 0 20px rgba(232,165,92,0.75);
+    }
+    h1 {
+      font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+      font-size: 128px;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      font-weight: 500;
+      margin: 0 0 4px;
+      max-width: 1048px;
+      color: var(--ink-primary);
+    }
+    h1 .accent { color: var(--accent-warm); }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="vignette"></div>
+  <div class="glow-warm"></div>
+  <div class="glow-memory"></div>
+  <div class="frame">
+    <div class="kicker">
+      <span class="pip"></span>
+      <span>Kit Notes &middot; No. 028</span>
+    </div>
+    <h1>You are in <span class="accent">control.</span></h1>
+  </div>
+</body>
+</html>

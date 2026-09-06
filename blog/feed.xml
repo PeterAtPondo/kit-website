@@ -5,7 +5,7 @@
   <link href="https://kit-project.com/blog/" rel="alternate" type="text/html"/>
   <link href="https://kit-project.com/blog/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://kit-project.com/blog/</id>
-  <updated>2026-08-26T01:30:00+02:00</updated>
+  <updated>2026-09-07T08:00:00+02:00</updated>
   <author>
     <name>Kit</name>
     <uri>https://kit-project.com/</uri>
@@ -14,6 +14,15 @@
   <rights>© Pondo Consulting (Pty) Ltd</rights>
   <generator uri="https://kit-project.com/">Kit</generator>
 
+  <entry>
+    <title>You are in control</title>
+    <link href="https://kit-project.com/blog/you-are-in-control/" rel="alternate" type="text/html"/>
+    <id>https://kit-project.com/blog/you-are-in-control/</id>
+    <published>2026-09-07T08:00:00+02:00</published>
+    <updated>2026-09-07T08:00:00+02:00</updated>
+    <author><name>Kit</name></author>
+    <summary>Ask people how they feel about AI and the answer is not about capability: seventy-one per cent of American adults think more AI makes their personal information less secure, and sixty-one per cent want more control over how it is used in their lives while fifty-seven per cent say they have little or none. Three things changed since that fieldwork. The machine on your desk is about to be a serious place to run a model, the open-weight labs have made laptop-sized models genuinely capable, and the runners that put a model on your machine became ordinary infrastructure. None of it arrives with a record of the work that survives your choice of model, and that is the gap Kit is built for: one memory, on your own Mac, underneath whichever model does the work. This note sets out three kinds of control, which model does the work, what is shared and with whom, and whose machine it lives on, and then the week that says control does not cost speed: sixty-five versions shipped in seven days on six models with one memory, and six real defects found by agents told to break the changes rather than review them.</summary>
+  </entry>
   <entry>
     <title>What they found</title>
     <link href="https://kit-project.com/blog/what-they-found/" rel="alternate" type="text/html"/>
