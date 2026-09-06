@@ -43,7 +43,7 @@
     <article class="post">
       <header class="post__header">
         <div class="post__meta">
-          <span>Version 2026-08-26</span>
+          <span>Version 2026-09-06</span>
           <span>&middot; beta</span>
         </div>
         <h1 class="post__title">Kit beta terms</h1>
@@ -105,8 +105,13 @@ and this list is intended to be complete:
   it also sends the error lines from that update run with sign-in details
   stripped, so we can fix it without asking you to dig out logs; if a dream
   cycle or a background service crashes, it sends when that happened and the
-  crash's own error lines, filtered the same way. It also sends two numbers
-  about the nightly dream cycle: how many days since one last finished, and
+  crash's own error lines, filtered the same way, including which of its own
+  files and functions the crash passed through. A crash or a failed update
+  also carries two sizes: roughly how many rows its own tables hold, to two
+  significant figures rather than a running count, and how much free space is
+  left on the disk it installs to. That is how big its machinery is, never
+  anything kept in it. It also sends two numbers about
+  the nightly dream cycle: how many days since one last finished, and
   how many attempts have failed in a row. When one of your Kit's own health
   checks is unhappy, it sends which check, the one line it says about itself,
   and the fix it suggests, so we can act on the actual fault instead of a
