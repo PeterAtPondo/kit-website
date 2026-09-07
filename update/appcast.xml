@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.339</title>
-      <pubDate>Mon, 07 Sep 2026 09:10:59 -0000</pubDate>
-      <sparkle:version>0.2.339</sparkle:version>
-      <sparkle:shortVersionString>0.2.339</sparkle:shortVersionString>
+      <title>0.2.340</title>
+      <pubDate>Mon, 07 Sep 2026 13:25:21 -0000</pubDate>
+      <sparkle:version>0.2.340</sparkle:version>
+      <sparkle:shortVersionString>0.2.340</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<p><strong>The terms changed with this version (2026-09-06).</strong></p><p>When a dream cycle or a background service crashes, your Kit now also tells us which of its own files and functions the crash passed through, and two sizes: roughly how many rows its own tables hold, and how much free space is left on the disk it runs on.</p><p><em>Why:</em> We could see that a Kit had crashed and not where. With the phase, the function and the size of the table it was walking, the fix can be written the same night without asking you for logs, and often without anyone reading them at all.</p><p><em>What it never includes:</em> Only Kit talking about its own machinery: the names of its own parts, counts and timings. Never the words of a memory, a message or a file, never a folder name, never a path under your home. The values a crashing statement was carrying are now cut out before anything leaves your Mac, which they were not always before.</p><p><em>If you would rather not:</em> Nothing changes for you today. Your Kit keeps running and keeps every fix, and it keeps sending the thinner crash record it sends now. We may follow up before the next major version, because agreed terms are the ground the beta stands on. Your Kit will ask you once, inside the app, after it updates.</p><hr><ul><li>When a dream cycle crashes, your Kit can now say where it stopped: the phase, the step and which of its own functions the crash passed through, so a fleet-wide fix can be written the same night without asking you for logs. The terms name exactly what that record carries, and you are asked once before anything new is sent.</li><li>Your Kit no longer tries to improve Kit&#x27;s own code. That loop belongs to the canonical Kit alone: the nightly continuity audit no longer opens a coding run for a recall gap, the care-signal sweep stays off, and the self-improvement playbooks are put away on a personal install. A gap the audit finds is recorded as a reason, never reported as a fault.</li><li>The dream&#x27;s fixed-shape passes, the category audit and the continuity probes, now ask a reasoning model not to think aloud, and the judge reads an answer whatever shape the model returned. A model that narrates its reasoning no longer kills the night&#x27;s housekeeping.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.339-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="W2JqYBmnwPadmDK9CZrflm3vc9d56LAMbAIRjEpEdlT59PsPtoJt6FIebLltbjpl/ZxtPY2zlYmtF/lqZ1ERDA==" length="14498896"/>
+      <description><![CDATA[<ul><li>Two playbooks that belong to the canonical Kit are put away on a personal install: the beta programme&#x27;s intake, which reads a request queue your Kit does not have, and the adversarial review, whose reviewer lives on one machine only. Your Kit no longer offers the beta-request trigger as a live source, and asking it to run either playbook says why instead of failing.</li><li>Every playbook the canonical Kit keeps for itself now sits behind one check, so a future one cannot reach a personal install by accident.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.340-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="W1fvZeDn0mC9hRj7lzA8RamXUqr3nloPRZHIZpVzocJz4m+4lMpVeSZD4PRWj/vQYs8LcLqxqunsx8gAJFvXBg==" length="14499987"/>
     </item>
   </channel>
 </rss>
