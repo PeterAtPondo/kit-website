@@ -18,6 +18,3 @@ scripts/roster-preview.mjs
 scripts/test-beta-ping.mjs
 scripts/narration/
 scripts/howto-video/
-
-# YouTube publishing tool: operator-only, reads the keychain, never for visitors.
-scripts/youtube/
