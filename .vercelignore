@@ -8,9 +8,11 @@ node_modules
 # narration config carries a paid ElevenLabs voice id. No credentials in any
 # of them (those come from env or the keychain), but none of it is for
 # visitors, and a script that only makes sense from a checkout should not be
-# a URL. Listed file by file rather than as a bare scripts/ line on purpose:
-# four pages already ask for /scripts/site.js, so that path has to stay open
-# for a real front-end asset.
+# a URL. Listed file by file rather than as a bare scripts/ line on purpose,
+# so /scripts/ stays open for a real front-end asset if one is ever added.
+# (Seven pages used to ask for /scripts/site.js, which never existed; the
+# brand name is rendered by CSS, and the reference was removed on 8 September
+# 2026.)
 scripts/beta-invite.sh
 scripts/roster-preview.mjs
 scripts/test-beta-ping.mjs

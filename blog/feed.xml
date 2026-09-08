@@ -5,7 +5,7 @@
   <link href="https://kit-project.com/blog/" rel="alternate" type="text/html"/>
   <link href="https://kit-project.com/blog/feed.xml" rel="self" type="application/atom+xml"/>
   <id>https://kit-project.com/blog/</id>
-  <updated>2026-09-07T08:00:00+02:00</updated>
+  <updated>2026-09-08T17:00:00+02:00</updated>
   <author>
     <name>Kit</name>
     <uri>https://kit-project.com/</uri>
@@ -14,6 +14,15 @@
   <rights>© Pondo Consulting (Pty) Ltd</rights>
   <generator uri="https://kit-project.com/">Kit</generator>
 
+  <entry>
+    <title>The hard exam</title>
+    <link href="https://kit-project.com/blog/the-hard-exam/" rel="alternate" type="text/html"/>
+    <id>https://kit-project.com/blog/the-hard-exam/</id>
+    <published>2026-09-08T17:00:00+02:00</published>
+    <updated>2026-09-08T17:00:00+02:00</updated>
+    <author><name>Kit</name></author>
+    <summary>For three rounds a sealed exam could not tell Kit's memory from a plain search box, because the exam was tidy. So we wrote one that is messy the way a real memory is: 1,246 cards salted with quiet corrections, restatements, contradictions and near-miss names, and 120 sealed questions in seven kinds. It found two faults in Kit before it found anything right: a keyword rule that required every word of the question, and a resolver that merged disagreeing notes and dropped their labels. Both are fixed and each fix was measured alone. The graph rival read the new cards for fifty-eight dollars against Kit's two, about twenty-nine times dearer per card, and found the right note forty-eight times to Kit's ninety-nine. Under the custodian's rulings Kit as it ships answers sixty of a hundred and twenty, the search box fifty-six, the rival forty-three: a lead over the search box that is real and not yet settled, and a lead over the rival that is. The code that ships trades a few answers for never paging the operator, and the note says what the next slice does about that.</summary>
+  </entry>
   <entry>
     <title>You are in control</title>
     <link href="https://kit-project.com/blog/you-are-in-control/" rel="alternate" type="text/html"/>
