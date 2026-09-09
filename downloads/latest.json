@@ -1,11 +1,15 @@
 {
-  "version": "0.2.340",
-  "url": "https://kit-project.com/downloads/Kit-0.2.340-macOS.dmg",
+  "version": "0.2.351",
+  "url": "https://kit-project.com/downloads/Kit-0.2.351-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "4cd96bde838742e362a26dcd55d08fe04f1dbe365393655fcd6a290c101b93be",
+  "sha256": "6560552584aa09778bf83fb38d1008d98265da10b903a6f260645a84f13c6e0a",
   "notes": [
-    "Two playbooks that belong to the canonical Kit are put away on a personal install: the beta programme's intake, which reads a request queue your Kit does not have, and the adversarial review, whose reviewer lives on one machine only. Your Kit no longer offers the beta-request trigger as a live source, and asking it to run either playbook says why instead of failing.",
-    "Every playbook the canonical Kit keeps for itself now sits behind one check, so a future one cannot reach a personal install by accident."
+    "Ask in your own words and your kit finds the note. Its keyword search used to require every word of your question to appear in the memory, so a question phrased naturally found nothing on that side. Rare words now count for more than common ones, the way a librarian weighs a surname over a 'the'.",
+    "Your kit notices far more of its own quiet corrections. It used to compare a new memory only against ones worded like it, so a fact corrected later in different words slipped past. It now also compares against the memories nearest in subject.",
+    "A memory merged from two others keeps where both came from. Until now a merge lost the area and project of its sources, which left it in your kit and unreachable under the scope it belonged to. Merges made before this update are repaired the first time your kit starts after it.",
+    "Conversations have names, and you can return to one. Sessions your kit is holding across your tools now appear on the timeline as conversations rather than loose activity, and sessions can talk to each other where you can see it.",
+    "Every memory now records which session wrote it, so a note can say where it came from as well as what it says.",
+    "The same thing is called the same thing on every screen. Activity, Data sources and Where you use Kit each answered to several names depending on where you met them."
   ]
 }
