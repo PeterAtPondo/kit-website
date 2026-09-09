@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.351</title>
-      <pubDate>Wed, 09 Sep 2026 06:41:38 -0000</pubDate>
-      <sparkle:version>0.2.351</sparkle:version>
-      <sparkle:shortVersionString>0.2.351</sparkle:shortVersionString>
+      <title>0.2.354</title>
+      <pubDate>Wed, 09 Sep 2026 22:28:41 -0000</pubDate>
+      <sparkle:version>0.2.354</sparkle:version>
+      <sparkle:shortVersionString>0.2.354</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Ask in your own words and your kit finds the note. Its keyword search used to require every word of your question to appear in the memory, so a question phrased naturally found nothing on that side. Rare words now count for more than common ones, the way a librarian weighs a surname over a &#x27;the&#x27;.</li><li>Your kit notices far more of its own quiet corrections. It used to compare a new memory only against ones worded like it, so a fact corrected later in different words slipped past. It now also compares against the memories nearest in subject.</li><li>A memory merged from two others keeps where both came from. Until now a merge lost the area and project of its sources, which left it in your kit and unreachable under the scope it belonged to. Merges made before this update are repaired the first time your kit starts after it.</li><li>Conversations have names, and you can return to one. Sessions your kit is holding across your tools now appear on the timeline as conversations rather than loose activity, and sessions can talk to each other where you can see it.</li><li>Every memory now records which session wrote it, so a note can say where it came from as well as what it says.</li><li>The same thing is called the same thing on every screen. Activity, Data sources and Where you use Kit each answered to several names depending on where you met them.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.351-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="k/CqP/wmV+PxHLyosItxrfZoBSIsWsPI3BPefDiqc7Q8NiHwfJcc4brbOblTDmkGf16nWV7OIZ1JXMfeEg6PCA==" length="14846823"/>
+      <description><![CDATA[<ul><li>Telepathy in Claude Code lets opted-in sessions receive messages in the background and coordinate with other Kit sessions. Quiet waiting does not poll a model; handling messages uses the receiving session as usual.</li><li>Your session has a visible callsign, and Telepathy preferences stay consistent across onboarding, the Lantern and the web app.</li><li>A new Kit requires a confirmed data source, a connected surface and a responding model before setup can finish. Local imports can start becoming useful while the remaining conversations arrive.</li><li>New memories remain visible while topics are still being worked out. Onboarding controls fit more comfortably, and update text stays readable in dark mode.</li><li>The save card says “Kit is deciding what to save” while it waits. Activity reports failures clearly, and wake cards show consistent memory counts.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.354-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="mZbbI6qgGwsr4qWX7zpBVVO6ZJzEpFOARcSkmDLuxusVoXpFeXhhCmpouKqIsA6oOjunPBN009JhRg72++S/Dw==" length="14940978"/>
     </item>
   </channel>
 </rss>
