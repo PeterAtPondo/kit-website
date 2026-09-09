@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Supported surfaces and data sources · Kit</title>
   <meta name="description" content="The surfaces Kit can live in and the data sources Kit can remember, with links to each tool.">
-  <!-- Hidden page: linkable by URL, kept out of search and the site nav. -->
-  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://kit-project.com/supported/">
   <meta name="theme-color" content="#020617">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/styles/tokens.css">
@@ -69,7 +68,7 @@
     <p class="lede" style="max-width: var(--reading-max)">
       Kit lives in the tools you already use, and remembers the history you
       already have. Here is what Kit supports today, with a link to each tool.
-      Anything marked in development is on the way.
+      Items marked in development are not available through the app yet. Reviewed 9 September 2026. <a class="req-link" href="/evaluate/">Choose a trial for your work</a>.
     </p>
   </section>
 
@@ -78,8 +77,8 @@
     <h2>Surfaces, where Kit lives</h2>
     <p class="group__lead">
       A surface is a place Kit can talk with you. Anything that speaks MCP
-      qualifies, so new agent CLIs work the moment they appear. The Mac app
-      detects which of these are installed and connects them for you.
+      can connect, subject to that client’s configuration and compatibility. The Mac app
+      detects supported installed tools and offers to connect them.
     </p>
     <ul class="tool-list">
       <li class="tool">
@@ -169,6 +168,7 @@
     </ul>
   </section>
 
+  <section class="section group"><h2>Check the missing connection first</h2><p class="group__lead">Direct Figma sync and automatic capture from browser chats are not available. A chat export, document or manual note can support a trial, but has to be kept current. Telegram is available after Mac setup; it does not remove the installation or model-connection step. Team deployment and enterprise governance are still in development.</p></section>
   <!-- Data sources (the capture facet) -->
   <section class="section group">
     <h2>Data sources, what Kit remembers</h2>
@@ -176,8 +176,9 @@
       A data source is anything that feeds Kit's memory. Kit captures your
       connected coding tools live as you work, imports the history those tools
       already hold, and brings in a ChatGPT export and a connected mailbox from
-      the app. The rest below is on the way. Nothing leaves your Mac unless you
-      send it.
+      the app. Selected material can be sent to the model you choose for extraction
+      and consolidation. Local storage does not mean a hosted model never sees your data.
+      Check <a class="req-link" href="/terms/">the data paths</a> before importing company or client information.
     </p>
 
     <h3 style="margin-top: var(--space-8)">Captured live</h3>
@@ -199,7 +200,7 @@
       <li class="tool">
         <div class="tool__main">
           <div class="tool__name">ChatGPT export</div>
-          <div class="tool__desc">Your exported ChatGPT conversations. Put the export's <code>conversations.json</code> in Desktop, Downloads or Documents and the app offers it.</div>
+          <div class="tool__desc">Request an export from ChatGPT, then use Upload archive under Data sources → Web chats. The file picker accepts the export; Kit does not have direct access to your ChatGPT account.</div>
         </div>
         <a class="tool__link" href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com &#8599;</a>
       </li>
@@ -210,6 +211,21 @@
         </div>
         <span class="tool__link" style="color: var(--ink-quiet)">IMAP</span>
       </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Claude export</div>
+          <div class="tool__desc">Request your archive from Claude, then choose Upload archive under Data sources → Web chats. New exports can be added later; this is not live capture.</div>
+        </div>
+        <a class="tool__link" href="https://claude.ai" target="_blank" rel="noopener">claude.ai &#8599;</a>
+      </li>
+      <li class="tool">
+        <div class="tool__main">
+          <div class="tool__name">Documents</div>
+          <div class="tool__desc">Use Sources → Documents → Add Documents, or include a folder. Check the extracted content and derived memories: importing a file does not establish faithful visual understanding.</div>
+        </div>
+        <span class="tool__link" style="color: var(--ink-quiet)">local files</span>
+      </li>
+      <li class="tool"><div class="tool__main"><div class="tool__name">Obsidian and included folders</div><div class="tool__desc">Select an existing vault or folder, then check its import status and source records. Keeping files in sync and recalling their meaning are separate checks.</div></div><span class="tool__link">local files</span></li>
     </ul>
 
     <h3 style="margin-top: var(--space-8)">Imported history<span class="pill">in development</span></h3>
@@ -220,20 +236,8 @@
       building next. Listed here so you can see where Kit is heading.
     </p>
     <ul class="tool-list">
-      <li class="tool">
-        <div class="tool__main">
-          <div class="tool__name">Claude export</div>
-          <div class="tool__desc">Your exported Claude conversations.</div>
-        </div>
-        <a class="tool__link" href="https://claude.ai" target="_blank" rel="noopener">claude.ai &#8599;</a>
-      </li>
-      <li class="tool">
-        <div class="tool__main">
-          <div class="tool__name">Documents</div>
-          <div class="tool__desc">PDFs, Word documents, and images you bring in.</div>
-        </div>
-        <span class="tool__link" style="color: var(--ink-quiet)">local files</span>
-      </li>
+
+
       <li class="tool">
         <div class="tool__main">
           <div class="tool__name">Strava</div>

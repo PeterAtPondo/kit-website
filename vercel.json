@@ -4,13 +4,24 @@
     {
       "source": "/:path(.*)",
       "has": [
-        { "type": "host", "value": "www.kit-project.com" }
+        {
+          "type": "host",
+          "value": "www.kit-project.com"
+        }
       ],
       "destination": "https://kit-project.com/:path",
       "permanent": true
+    },
+    {
+      "source": "/ui/docs/recall-proof.html",
+      "destination": "https://demo.kit-project.com/ui/docs/recall-proof.html",
+      "permanent": false
     }
   ],
   "rewrites": [
-    { "source": "/beta", "destination": "/api/beta-roster" }
+    {
+      "source": "/beta",
+      "destination": "/api/beta-roster"
+    }
   ]
 }
