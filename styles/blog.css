@@ -12,7 +12,7 @@ main { padding-top: 5rem; }
 .blog-index {
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: var(--space-12) var(--space-6) var(--space-24);
+  padding: var(--space-12) var(--space-8) var(--space-24);
 }
 .blog-index__header {
   display: flex;
@@ -308,10 +308,12 @@ main { padding-top: 5rem; }
 }
 
 /* ── Single post ─────────────────────────────────────────────────── */
+/* A centred reading column: the measure plus the site gutter on each side,
+   so the text itself is 38rem wide, the same as a lede on the homepage. */
 .post {
-  max-width: var(--reading-max);
+  max-width: calc(var(--reading-max) + 2 * var(--space-8));
   margin: 0 auto;
-  padding: var(--space-12) var(--space-6) var(--space-24);
+  padding: var(--space-12) var(--space-8) var(--space-24);
 }
 
 .post__back {

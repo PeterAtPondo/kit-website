@@ -1,10 +1,6 @@
 /* Site component family and tokens: kit/docs/design/visual-identity-2026-08/README.md. */
 .evaluation-guide .section { padding-block: var(--space-16); }
 .evaluation-guide .section:first-child { padding-top: var(--space-24); }
-.evaluation-guide h1, .evaluation-guide h2, .evaluation-guide h3 {
-  max-width: var(--reading-max);
-  text-wrap: balance;
-}
 .evaluation-guide .section--tint { padding-inline: 0; }
 .evaluation-guide p, .evaluation-guide li { color: var(--ink-secondary); }
 .evaluation-guide strong { color: var(--ink-primary); }

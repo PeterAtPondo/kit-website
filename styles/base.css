@@ -422,16 +422,11 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
   max-width: 42rem;
 }
 
-/* Frosted panel behind the hero copy — keeps text readable on the
-   atmospheric background without dimming the whole left half. */
+/* The hero copy sits straight on the backdrop, starting on the grid edge like
+   every section under it. It used to be a frosted panel with its own inset,
+   which put the install title 33px to the right of everything below. */
 .hero__copy {
   position: relative;
-  padding: var(--space-8) var(--space-8) var(--space-6);
-  border-radius: var(--radius-lg);
-  background: rgba(10, 14, 26, 0.38);
-  backdrop-filter: blur(14px) saturate(120%);
-  -webkit-backdrop-filter: blur(14px) saturate(120%);
-  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 /* The name in the headline is amber, flat: it was a blue-to-violet gradient,
    which made the first word of the site a colour Kit does not lead with. */
@@ -654,10 +649,6 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
 
 /* Proof loop: the practical bridge for a cold visitor. It sits before the
    deeper architecture so the site first proves usefulness, then explains it. */
-.section--proof {
-  padding-top: var(--space-20);
-  padding-bottom: var(--space-20);
-}
 .proof-steps {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -705,10 +696,10 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
 .note-strip__more { margin-top: var(--space-4); font-size: 0.9375rem; }
 
 .install__cost {
-  margin-top: var(--space-7, 2rem);
+  margin-top: var(--space-8);
   padding-top: var(--space-6);
-  border-top: 1px solid var(--line-soft, rgba(255, 255, 255, 0.08));
-  max-width: 44rem;
+  border-top: 1px solid var(--edge-faint);
+  max-width: var(--reading-max);
 }
 .install__cost h3 {
   margin: 0 0 var(--space-3);
@@ -884,9 +875,11 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
 }
 
 
-/* Letter to other agents — typewriter-ish header, generous reading column */
+/* Letter to other agents. The section header sits on the grid like every
+   other; the letter body keeps the reading measure. */
 .letter {
   padding: var(--space-8) 0;
+  max-width: var(--reading-max);
 }
 .letter__address {
   font-family: var(--font-mono);
@@ -905,7 +898,6 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
   font-size: 1.0625rem;
   line-height: 1.7;
   color: var(--ink-secondary);
-  max-width: none;
   margin-bottom: var(--space-4);
 }
 .letter p em {
@@ -947,6 +939,7 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
   margin-top: var(--space-12);
   padding-top: var(--space-6);
   border-top: 1px solid var(--edge-faint);
+  max-width: var(--reading-max);
 }
 .letter__share-title {
   margin: 0 0 var(--space-4);
@@ -1189,17 +1182,13 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
   .sovereignty { grid-template-columns: 1fr; }
 }
 
-/* Narrow inner for contact form */
-.inner--narrow {
-  max-width: 38rem !important;
-}
-
-/* Contact form */
+/* Contact form: the reading measure, on the grid edge. */
 .contact-form {
   margin-top: var(--space-8);
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
+  max-width: var(--reading-max);
 }
 .contact-form[hidden] { display: none; }
 .contact-form__honey {
@@ -1302,6 +1291,7 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
   padding: var(--space-6) var(--space-8);
   border-radius: var(--radius-md);
   margin-bottom: var(--space-6);
+  max-width: var(--reading-max);
 }
 .contact-form__status--success {
   border: 1px solid rgba(127, 232, 157, 0.3);
@@ -1398,7 +1388,6 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
   .section { padding: var(--space-16) var(--space-6); }
   .section--hero { padding-top: var(--space-24); min-height: 75vh; }
   .section--hero .hero { padding: 0 var(--space-6); }
-  .hero__copy { padding: var(--space-6) var(--space-6) var(--space-5); }
   h1 { font-size: 2.25rem; }
   p.lede { font-size: 1.0625rem; }
   .hero__overlay {
@@ -1414,10 +1403,6 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
   .section { padding: var(--space-12) var(--space-6); }
   .section--hero { padding-top: var(--space-16); min-height: auto; }
   .section--hero .hero { padding: 0 var(--space-5); }
-  .hero__copy {
-    padding: var(--space-5) var(--space-5) var(--space-4);
-    border-radius: var(--radius-md);
-  }
   h1 { font-size: 1.875rem; }
   h2 { font-size: 1.5rem; }
   p.lede { font-size: 1rem; line-height: 1.55; }
@@ -1698,7 +1683,7 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
   border: 0;
 }
 .surface-marquee {
-  padding: var(--space-6, 24px) 0 var(--space-7, 32px);
+  padding: var(--space-6) 0 var(--space-8);
   border-bottom: 1px solid var(--edge-faint);
 }
 .surface-marquee__label {
@@ -1929,8 +1914,7 @@ html { scroll-padding-top: 5.5rem; }
 /* walkthrough/index.html */
 /* Page-local touches, built on the site tokens. */
 .film-wrap {
-  max-width: 1040px;
-  margin: var(--space-8) auto 0;
+  margin: var(--space-8) 0 0;
 }
 /* Leading the page: no top margin to fight the section's own padding. */
 .film-wrap--lead { margin-top: 0; }
@@ -1948,13 +1932,12 @@ html { scroll-padding-top: 5.5rem; }
   font-size: 0.75rem;
   color: var(--ink-quiet);
   letter-spacing: 0.02em;
-  text-align: center;
 }
 .chapters {
   list-style: none;
   padding: 0;
-  margin: var(--space-6) auto 0;
-  max-width: 720px;
+  margin: var(--space-8) 0 0;
+  max-width: 45rem;
   border: 1px solid var(--edge-faint);
   border-radius: var(--radius-md);
   background: var(--bg-card);
@@ -1989,7 +1972,7 @@ html { scroll-padding-top: 5.5rem; }
 @media (max-width: 640px) { .chapters .what { display: none; } }
 .made-note {
   max-width: var(--reading-max);
-  margin: var(--space-8) auto 0;
+  margin: var(--space-8) 0 0;
   padding: var(--space-6) var(--space-8);
   background: var(--bg-card);
   border: 1px solid var(--edge-faint);
@@ -2003,7 +1986,6 @@ html { scroll-padding-top: 5.5rem; }
 .after-ctas {
   display: flex;
   gap: var(--space-4);
-  justify-content: center;
   margin-top: var(--space-8);
   flex-wrap: wrap;
 }
@@ -2023,6 +2005,7 @@ html { scroll-padding-top: 5.5rem; }
 /* supported/index.html */
 /* Page-local touches, built on the site tokens. */
 .group { margin-top: var(--space-8); }
+.group h3 { margin-top: var(--space-8); }
 .group__lead { max-width: var(--reading-max); color: var(--ink-secondary); font-size: 1.0625rem; line-height: 1.6; }
 .tool-list { list-style: none; padding: 0; margin: var(--space-6) 0 0; max-width: var(--reading-max); }
 .tool {
