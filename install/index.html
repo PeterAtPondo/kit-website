@@ -315,6 +315,22 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.359</span>
+          <span class="release__date">September 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Kit reflects once a day again. A check meant to stop Kit reflecting on top of itself had quietly jammed shut in an earlier release, and on busy installs it could stand every scheduled reflection down indefinitely. The rule now measures reflections themselves, so it can delay one but never starve them.</li>
+            <li>The reflection schedule is a single setting instead of two numbers that could drift apart, and the alert that warns you reflections have stopped is derived from it.</li>
+            <li>The &quot;monologue has gone quiet&quot; alert stops crying wolf. It was reading a store the awareness pipeline no longer writes to, so it fired most of every day about a pipeline that was working.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.358</span>
           <span class="release__date">September 2026</span>
         </div>

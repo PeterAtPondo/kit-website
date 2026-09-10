@@ -1,13 +1,12 @@
 {
-  "version": "0.2.358",
-  "url": "https://kit-project.com/downloads/Kit-0.2.358-macOS.dmg",
+  "version": "0.2.359",
+  "url": "https://kit-project.com/downloads/Kit-0.2.359-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "70c52ef9ae0bf69f32df4462edc529fc4b0f52e12cd7d02927eb440040c73d60",
+  "sha256": "5074d9a15e409f2b786bd709360647b3d880f1e58cd31ed85b94c0e9d7fcd3da",
   "notes": [
-    "Nightly tidying no longer dies partway through: a pass that folds duplicate tags asked the database a question it could not answer, and every deep cycle that found a tag worth folding stopped there.",
-    "The health page stops reporting a fault it already knows may be fixed. A problem found before Kit last restarted now reads as unknown rather than counting against your Kit's health, and clears itself on the next cycle.",
-    "Health buttons say when they cannot act. \"Run a dream now\" is shown disabled, with the reason and the phase, while a cycle is already running, instead of answering \"already dreaming\" after you press it.",
-    "Health rows now say which cycle they are about and when it finished, so a report about last night stops reading as a claim about right now."
+    "Kit reflects once a day again. A check meant to stop Kit reflecting on top of itself had quietly jammed shut in an earlier release, and on busy installs it could stand every scheduled reflection down indefinitely. The rule now measures reflections themselves, so it can delay one but never starve them.",
+    "The reflection schedule is a single setting instead of two numbers that could drift apart, and the alert that warns you reflections have stopped is derived from it.",
+    "The \"monologue has gone quiet\" alert stops crying wolf. It was reading a store the awareness pipeline no longer writes to, so it fired most of every day about a pipeline that was working."
   ]
 }
