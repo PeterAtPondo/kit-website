@@ -13,63 +13,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/base.css">
-  <style>
-    .notfound {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: var(--space-16) var(--space-6);
-      text-align: center;
-      max-width: 42rem;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-    .notfound svg { color: var(--accent-warm); filter: drop-shadow(0 0 16px rgba(232,165,92,0.4)); margin-bottom: var(--space-6); }
-    .notfound h1 {
-      font-family: var(--font-display);
-      font-weight: 500;
-      font-size: clamp(2.25rem, 5vw, 3.5rem);
-      letter-spacing: -0.02em;
-      margin: 0 0 var(--space-4);
-    }
-    .notfound__code {
-      font-family: var(--font-mono);
-      color: var(--ink-quiet);
-      font-size: 0.8125rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: var(--space-8);
-    }
-    .notfound p {
-      color: var(--ink-secondary);
-      max-width: 36rem;
-      margin: 0 auto var(--space-4);
-    }
-    .notfound__actions {
-      display: flex;
-      gap: var(--space-4);
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: var(--space-8);
-    }
-    .notfound a.btn--primary {
-      text-decoration: none;
-      display: inline-block;
-    }
-    .notfound a.btn--ghost {
-      text-decoration: none;
-      padding: var(--space-3) var(--space-6);
-      color: var(--ink-primary);
-      font-weight: 500;
-      border: 1px solid var(--edge-soft);
-      border-radius: var(--radius-sm);
-      font-size: 0.9375rem;
-    }
-    .notfound a.btn--ghost:hover { border-color: var(--accent-glow); color: var(--accent-glow); }
-  </style>
 </head>
 <body>
 
