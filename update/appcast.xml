@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.359</title>
-      <pubDate>Thu, 10 Sep 2026 16:27:34 -0000</pubDate>
-      <sparkle:version>0.2.359</sparkle:version>
-      <sparkle:shortVersionString>0.2.359</sparkle:shortVersionString>
+      <title>0.2.360</title>
+      <pubDate>Thu, 10 Sep 2026 20:27:05 -0000</pubDate>
+      <sparkle:version>0.2.360</sparkle:version>
+      <sparkle:shortVersionString>0.2.360</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Kit reflects once a day again. A check meant to stop Kit reflecting on top of itself had quietly jammed shut in an earlier release, and on busy installs it could stand every scheduled reflection down indefinitely. The rule now measures reflections themselves, so it can delay one but never starve them.</li><li>The reflection schedule is a single setting instead of two numbers that could drift apart, and the alert that warns you reflections have stopped is derived from it.</li><li>The &quot;monologue has gone quiet&quot; alert stops crying wolf. It was reading a store the awareness pipeline no longer writes to, so it fired most of every day about a pipeline that was working.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.359-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="ToKEljKBg0PJ0FtwXKIBE1ncp8CTgIbiIx/Ct43OSDt7dynxFLijrGdrUp6U+EYIPBZ0uY47Wu5S53QRiUBFBA==" length="14960891"/>
+      <description><![CDATA[<ul><li>The dreaming screen now shows you where Kit actually is. A cycle is more than twenty stages, and the screen could only name five broad phases, so a long night looked the same whether it was working or stuck. It now draws the night as a path: the stages already done fall behind, the one running is lit in front of you, and the ones still to come lead away.</li><li>Every stage says what it is doing and why that stage exists at all, so a slow one reads as thorough rather than hung. The header carries how long the current stage has been going, separately from the whole cycle.</li><li>A first run is shown the same way. It has five stages rather than twenty-eight, and where Kit is counting something real, like your conversations, the screen shows the count. Kit no longer calls a first run &#x27;dreaming&#x27;.</li><li>When Kit stops and needs something from you, the screen says so plainly rather than looking like it has stalled.</li><li>Dream stages that fail can no longer be quietly recorded as complete, so a cycle stops reporting success while a stage inside it was lost.</li><li>On a machine that cannot draw the new screen smoothly, Kit notices within a few seconds and returns to the simpler version rather than leaving you with a stuttering one.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.360-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="cWHu9lcrR+oBEmyO94YKv+Dn+WZtUO962DJG/wD01OBF8SDtRHb0Ciyirx137HSdtpn8VGIf8D4kpqRlqRquCw==" length="14987869"/>
     </item>
   </channel>
 </rss>

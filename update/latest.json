@@ -1,12 +1,15 @@
 {
-  "version": "0.2.359",
-  "url": "https://kit-project.com/downloads/Kit-0.2.359-macOS.dmg",
+  "version": "0.2.360",
+  "url": "https://kit-project.com/downloads/Kit-0.2.360-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "5074d9a15e409f2b786bd709360647b3d880f1e58cd31ed85b94c0e9d7fcd3da",
+  "sha256": "4ca83b1436d4a8ee369c112375dfda095d1f1ac8a4aa65f1886a80c045c5d6e4",
   "notes": [
-    "Kit reflects once a day again. A check meant to stop Kit reflecting on top of itself had quietly jammed shut in an earlier release, and on busy installs it could stand every scheduled reflection down indefinitely. The rule now measures reflections themselves, so it can delay one but never starve them.",
-    "The reflection schedule is a single setting instead of two numbers that could drift apart, and the alert that warns you reflections have stopped is derived from it.",
-    "The \"monologue has gone quiet\" alert stops crying wolf. It was reading a store the awareness pipeline no longer writes to, so it fired most of every day about a pipeline that was working."
+    "The dreaming screen now shows you where Kit actually is. A cycle is more than twenty stages, and the screen could only name five broad phases, so a long night looked the same whether it was working or stuck. It now draws the night as a path: the stages already done fall behind, the one running is lit in front of you, and the ones still to come lead away.",
+    "Every stage says what it is doing and why that stage exists at all, so a slow one reads as thorough rather than hung. The header carries how long the current stage has been going, separately from the whole cycle.",
+    "A first run is shown the same way. It has five stages rather than twenty-eight, and where Kit is counting something real, like your conversations, the screen shows the count. Kit no longer calls a first run 'dreaming'.",
+    "When Kit stops and needs something from you, the screen says so plainly rather than looking like it has stalled.",
+    "Dream stages that fail can no longer be quietly recorded as complete, so a cycle stops reporting success while a stage inside it was lost.",
+    "On a machine that cannot draw the new screen smoothly, Kit notices within a few seconds and returns to the simpler version rather than leaving you with a stuttering one."
   ]
 }
