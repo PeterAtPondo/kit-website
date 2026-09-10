@@ -315,6 +315,22 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.362</span>
+          <span class="release__date">September 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>An editor connected on a key without a mailbox now writes memories that say where they came from. Cursor, VS Code and any other tool you connect with a Full access or Contribute key used to leave the source blank on everything it wrote; wake now hands that session an id of its own, every later call carries it, and a memory it writes records the session and the wake that started it.</li>
+            <li>The same session id is what your kit checks before it accepts a write, so a tool that skipped waking is refused on those keys too, the way it already was on your own.</li>
+            <li>Cursor could not wake at all. It runs your kit&#x27;s Claude Code hooks and spells the wake call differently, so the gate that holds every tool until wake refused the wake itself. The gate now recognises the call however the host spells it.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.361</span>
           <span class="release__date">September 2026</span>
         </div>

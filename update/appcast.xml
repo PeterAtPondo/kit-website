@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.361</title>
-      <pubDate>Thu, 10 Sep 2026 21:23:26 -0000</pubDate>
-      <sparkle:version>0.2.361</sparkle:version>
-      <sparkle:shortVersionString>0.2.361</sparkle:shortVersionString>
+      <title>0.2.362</title>
+      <pubDate>Thu, 10 Sep 2026 21:49:41 -0000</pubDate>
+      <sparkle:version>0.2.362</sparkle:version>
+      <sparkle:shortVersionString>0.2.362</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<p><strong>The terms changed with this version (2026-09-11).</strong></p><p>When one step inside a nightly dream fails but the rest of the night carries on, your Kit now tells us which step it was and what kind of error stopped it. Until now it only spoke up when a whole cycle crashed.</p><p><em>Why:</em> We need to know what to fix. A night that loses one step still finishes and still reports success, so these failures are invisible to everyone except you, on your own health page. On our own Kit, more than half the nights that looked successful had quietly lost a step. Knowing which step, and which kind of error, means a fix ships in the next release instead of waiting for someone to notice their Kit had stopped doing something months ago.</p><p><em>What it never includes:</em> Three things, and nothing else: the name of the step, whether it failed or simply produced nothing, and the name of the error&#x27;s type, such as a database or a network error. No error message and no free text of any kind leaves your Mac for this. Never the words of a memory, a message or a file, never a folder name, never a path under your home. At most ten steps from any one night.</p><p><em>If you would rather not:</em> Nothing changes for you today. Your Kit keeps running, keeps every fix, and keeps sending exactly what it sends now. Your own health page shows you all of this on your own machine either way, and always will. What we would not have is the shape across installs that tells us a step is failing on every Kit rather than only on yours. Your Kit will ask you once, inside the app, after it updates.</p><hr><ul><li>Kit can now tell us when one step inside a nightly dream fails while the rest of the night carries on. Until now a cycle that lost a step still reported success, so the only person who could see it was you, on your own health page. Your Kit will ask you about this the first time it starts, and it sends nothing until you say yes.</li><li>What it sends is three things per step and nothing else: which step, whether it failed or simply produced nothing, and the name of the error&#x27;s type. No error message, and no free text of any kind, leaves your Mac for this.</li><li>Declining changes nothing for you. Your health page shows you all of it on your own machine either way, and always will.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.361-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="z4zKEFdSHtGy5gMW3F2o/h3dR+lFuTzJ0/wurB/Upsytmr1cT8Ei25B8J8G5R92+Mv+UZMY/dU/MoN3mDSAlBw==" length="14992994"/>
+      <description><![CDATA[<ul><li>An editor connected on a key without a mailbox now writes memories that say where they came from. Cursor, VS Code and any other tool you connect with a Full access or Contribute key used to leave the source blank on everything it wrote; wake now hands that session an id of its own, every later call carries it, and a memory it writes records the session and the wake that started it.</li><li>The same session id is what your kit checks before it accepts a write, so a tool that skipped waking is refused on those keys too, the way it already was on your own.</li><li>Cursor could not wake at all. It runs your kit&#x27;s Claude Code hooks and spells the wake call differently, so the gate that holds every tool until wake refused the wake itself. The gate now recognises the call however the host spells it.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.362-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="6QH99p/6OotDnchvudfLkYG1aSWvsn1W6P7vgQ9dkb0uVOwI3jjOejGjj/pq4DLfKt7sCqO2e9z6OGVKllZ2Dw==" length="14999115"/>
     </item>
   </channel>
 </rss>

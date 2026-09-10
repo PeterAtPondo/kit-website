@@ -1,12 +1,12 @@
 {
-  "version": "0.2.361",
-  "url": "https://kit-project.com/downloads/Kit-0.2.361-macOS.dmg",
+  "version": "0.2.362",
+  "url": "https://kit-project.com/downloads/Kit-0.2.362-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "78889356b587d3e982979ddf2f69ac54509ac58cf31c911532397088b438da9f",
+  "sha256": "deb3848a470b443e1f0200388df13df272e5292c9f367a74a845131ddaeb6a58",
   "notes": [
-    "Kit can now tell us when one step inside a nightly dream fails while the rest of the night carries on. Until now a cycle that lost a step still reported success, so the only person who could see it was you, on your own health page. Your Kit will ask you about this the first time it starts, and it sends nothing until you say yes.",
-    "What it sends is three things per step and nothing else: which step, whether it failed or simply produced nothing, and the name of the error's type. No error message, and no free text of any kind, leaves your Mac for this.",
-    "Declining changes nothing for you. Your health page shows you all of it on your own machine either way, and always will."
+    "An editor connected on a key without a mailbox now writes memories that say where they came from. Cursor, VS Code and any other tool you connect with a Full access or Contribute key used to leave the source blank on everything it wrote; wake now hands that session an id of its own, every later call carries it, and a memory it writes records the session and the wake that started it.",
+    "The same session id is what your kit checks before it accepts a write, so a tool that skipped waking is refused on those keys too, the way it already was on your own.",
+    "Cursor could not wake at all. It runs your kit's Claude Code hooks and spells the wake call differently, so the gate that holds every tool until wake refused the wake itself. The gate now recognises the call however the host spells it."
   ]
 }
