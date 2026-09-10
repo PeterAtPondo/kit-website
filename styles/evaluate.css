@@ -1,5 +1,4 @@
 /* Site component family and tokens: kit/docs/design/visual-identity-2026-08/README.md. */
-.evaluation-guide [id] { scroll-margin-top: var(--space-24); }
 .evaluation-guide .section { padding-block: var(--space-16); }
 .evaluation-guide .section:first-child { padding-top: var(--space-24); }
 .evaluation-guide h1, .evaluation-guide h2, .evaluation-guide h3 {
