@@ -568,6 +568,13 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   border-top: 1px solid var(--edge-faint);
 }
 .shot--wide { max-width: none; }
+/* A figure that sits between sections, outside any container, still takes
+   the grid's content width rather than the viewport. */
+.deep-dive__content > .shot {
+  max-width: calc(var(--content-max) - 2 * var(--space-8));
+  margin-left: auto;
+  margin-right: auto;
+}
 /* Video inside a .shot figure fills the frame like the image does. */
 .shot video {
   width: 100%;
