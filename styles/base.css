@@ -1666,6 +1666,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   border-bottom: 1px solid var(--edge-faint);
 }
 .surface-marquee__label {
+  max-width: none;
   text-align: center;
   margin: 0 0 var(--space-4, 16px);
 }
