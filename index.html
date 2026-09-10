@@ -283,7 +283,7 @@
       session, and the session ends.
     </p>
 
-    <div class="cards">
+    <div class="cards cards--quad">
       <div class="card">
         <span class="card__tag">developers</span>
         <h3 class="card__title">You explained the architecture on Monday</h3>
@@ -755,7 +755,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         watch the run unfold in Studio, step by step. Four pieces make it work:
       </p>
 
-      <div class="stack">
+      <div class="stack stack--quad">
         <div class="stack__col">
           <h3>Orchestration</h3>
           <ul class="spec">
@@ -1143,13 +1143,13 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
           <div class="source__name">Mailbox</div>
           <p class="source__desc">Connect a mailbox and your Kit reads it: mail from you is met as you, mail that needs your call parks for your decision and reaches you on Telegram or in Studio, and you can tell it whose address is whose. Calendar is not in the app yet.</p>
         </div>
+    </div>
         <div class="source source--extend">
           <div class="source__status">Extend</div>
           <div class="source__name">Write your own</div>
           <p class="source__desc">The ingest endpoint is HTTP. <code>POST /ingest/session</code> with any transcript, structured event, or custom record; the extractor handles speaker schemas, dedup cleans the rest. New source in an afternoon.</p>
         </div>
       </div>
-    </div>
   </section>
 
   <!-- Section 5c: What's next: three in-development directions. Roadmap

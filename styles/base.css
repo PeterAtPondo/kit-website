@@ -59,7 +59,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  font-size: 1.0625rem;
+  font-size: 1rem;
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
@@ -223,7 +223,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   gap: var(--space-2);
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   line-height: 1.4;
   letter-spacing: 0.06em;
   padding: 2px 10px;
@@ -444,11 +444,9 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   font-weight: 500;
 }
 .hero__meta {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--ink-quiet);
   margin-top: var(--space-8);
-  letter-spacing: 0.02em;
 }
 
 /* With the tall video, top-align the hero so the title clears the fixed nav
@@ -564,18 +562,12 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 }
 .shot figcaption {
   padding: var(--space-3) var(--space-4);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--ink-quiet);
   background: var(--bg-soft);
   border-top: 1px solid var(--edge-faint);
-  font-family: var(--font-mono);
-  letter-spacing: 0.02em;
 }
-.shot--wide {
-  max-width: 54rem;
-  margin-left: auto;
-  margin-right: auto;
-}
+.shot--wide { max-width: none; }
 /* Video inside a .shot figure fills the frame like the image does. */
 .shot video {
   width: 100%;
@@ -583,11 +575,8 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   display: block;
   background: var(--bg-deep);
 }
-/* Demo videos (install + in action) are tall screen recordings, so cap
-   their width tighter than a wide screenshot to keep them calm. */
-.demo-figure {
-  max-width: 46rem;
-}
+/* Media spans the grid, like a card row. Text beside it takes the measure. */
+.demo-figure { max-width: none; }
 
 /* Section titles */
 .section h2 {
@@ -626,7 +615,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   border-radius: var(--radius-md);
   padding: var(--space-5) var(--space-6);
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.6;
 }
 .note--dream { border-left-color: var(--accent-memory); }
@@ -651,7 +640,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   color: var(--ink-primary);
 }
 .card__body {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--ink-secondary);
   line-height: 1.5;
   margin: 0;
@@ -666,10 +655,12 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-6);
   margin-top: var(--space-8);
 }
+/* Four cards sit two by two; three or six sit three across. */
+.cards.cards--quad, .stack.stack--quad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 /* Proof loop: the practical bridge for a cold visitor. It sits before the
    deeper architecture so the site first proves usefulness, then explains it. */
@@ -686,9 +677,10 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   padding: var(--space-6);
 }
 .proof-step__num {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
+  font-weight: 600;
   font-size: 0.75rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.08em;
   color: var(--accent-warm);
   margin-bottom: var(--space-3);
 }
@@ -697,8 +689,8 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   margin-bottom: var(--space-3);
 }
 .proof-step p {
-  font-size: 0.9375rem;
-  line-height: 1.55;
+  font-size: 1rem;
+  line-height: 1.6;
   color: var(--ink-secondary);
   margin: 0;
 }
@@ -707,15 +699,15 @@ p.eyebrow { margin: 0 0 var(--space-3); }
    starts at an edge nothing else uses; this keeps them in the section's own
    voice. */
 .section-close {
-  max-width: 44rem;
+  max-width: var(--reading-max);
   margin-top: var(--space-8);
   color: var(--ink-secondary);
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 .section-close + .section-close { margin-top: var(--space-4); }
 
-.note-strip__more { margin-top: var(--space-4); font-size: 0.9375rem; }
+.note-strip__more { margin-top: var(--space-4); font-size: 1rem; }
 
 .install__cost {
   margin-top: var(--space-8);
@@ -728,7 +720,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 }
 .install__cost p {
   margin: 0 0 var(--space-3);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--ink-secondary);
 }
@@ -736,7 +728,6 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 
 .note-strip__film {
   margin: var(--space-6) 0 var(--space-6);
-  max-width: 44rem;
 }
 .note-strip__film video {
   display: block;
@@ -753,6 +744,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 }
 
 .proof-cta {
+  max-width: none;
   margin-top: var(--space-8);
   display: flex;
   gap: var(--space-4);
@@ -768,7 +760,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 /* Under the hood — four-column stack spec */
 .stack {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-6);
   margin-top: var(--space-8);
 }
@@ -793,7 +785,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 }
 .spec li {
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.5;
   margin-bottom: var(--space-3);
   padding-left: var(--space-4);
@@ -861,7 +853,6 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   grid-template-columns: 1fr;
   gap: var(--space-4);
   margin: var(--space-4) 0 0;
-  max-width: 42rem;
 }
 .arch__layer {
   padding: var(--space-4) var(--space-6);
@@ -881,7 +872,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 }
 .arch__layer span {
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 .arch__layer .idx {
   font-family: var(--font-mono);
@@ -914,8 +905,8 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   line-height: 1.8;
 }
 .letter p {
-  font-size: 1.0625rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.6;
   color: var(--ink-secondary);
   margin-bottom: var(--space-4);
 }
@@ -928,7 +919,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   padding-top: var(--space-4);
   border-top: 1px solid var(--edge-faint);
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 .letter__sign .mono {
   font-family: var(--font-mono);
@@ -951,7 +942,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 }
 .letter__share-quote {
   font-family: var(--font-display);
-  font-size: 1.0625rem;
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--ink-primary);
   background: var(--bg-card);
@@ -962,7 +953,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   margin: 0 0 var(--space-5);
 }
 .letter__share-close {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--ink-secondary);
   margin: 0;
 }
@@ -1025,6 +1016,10 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   color: var(--accent-glow);
   border-color: rgba(96, 165, 250, 0.35);
 }
+.source--extend {
+  margin-top: var(--space-6);
+  max-width: var(--reading-max);
+}
 .source--extend .source__status {
   color: var(--accent-memory);
   border-color: rgba(167, 139, 250, 0.35);
@@ -1042,7 +1037,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   letter-spacing: -0.01em;
 }
 .source__desc {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--ink-secondary);
   line-height: 1.5;
   margin: 0;
@@ -1081,7 +1076,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 .peter__body {
   margin: 0;
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.6;
 }
 .peter__cta {
@@ -1116,7 +1111,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 .sovereignty__claim p {
   margin: 0;
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.55;
 }
 .sovereignty__claim p code {
@@ -1137,7 +1132,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   padding-top: var(--space-3);
   border-top: 1px dashed var(--edge-faint);
   color: var(--ink-quiet) !important;
-  font-size: 0.9375rem !important;
+  font-size: 1rem !important;
   font-style: italic;
 }
 /* The strategic-argument paragraph below the four claims. Distinct from
@@ -1151,7 +1146,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   border-left: 3px solid var(--accent-warm);
   border-radius: var(--radius-md);
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.6;
   max-width: var(--reading-max);
 }
@@ -1192,7 +1187,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 .contact-form select,
 .contact-form textarea {
   font: inherit;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--ink-primary);
   background: var(--bg-card);
   border: 1px solid var(--edge-faint);
@@ -1220,7 +1215,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 
 .btn {
   font: inherit;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 500;
   padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-md);   /* 10: the control radius */
@@ -1288,14 +1283,14 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 .contact-form__status--success p {
   margin: 0;
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 .contact-form__status--error {
   border: 1px solid var(--edge-faint);
   background: var(--bg-card);
   border-left: 3px solid rgba(232, 127, 127, 0.8);
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 .contact-form__status--error p {
   margin: 0;
@@ -1339,14 +1334,9 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   align-items: center;
   gap: var(--space-2);
   color: var(--accent-green);
-  font-family: var(--font-mono);
-  letter-spacing: 0.02em;
 }
 .footer__colophon {
   color: var(--ink-quiet);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.02em;
 }
 @media (max-width: 640px) {
   .footer__row { flex-direction: column; align-items: flex-start; }
@@ -1361,8 +1351,10 @@ p.eyebrow { margin: 0 0 var(--space-3); }
      480px — minimum: nothing should break below this
 */
 @media (max-width: 900px) {
-  .stack { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
-  .cards { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+  .stack, .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .stack, .cards { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 780px) {
@@ -1370,7 +1362,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   .section--hero { padding-top: var(--space-24); min-height: 75vh; }
   .section--hero .hero { padding: 0 var(--space-6); }
   h1 { font-size: 2.25rem; }
-  p.lede { font-size: 1.0625rem; }
+  p.lede { font-size: 1rem; }
   .hero__overlay {
     background:
       linear-gradient(180deg,
@@ -1387,7 +1379,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   h1 { font-size: 1.875rem; }
   h2 { font-size: 1.5rem; }
   p.lede { font-size: 1rem; line-height: 1.55; }
-  body { font-size: 0.9375rem; }
+  body { font-size: 1rem; }
 
   /* Figure captions shrink to stay readable */
   .shot figcaption { padding: var(--space-2) var(--space-3); font-size: 0.75rem; }
@@ -1471,7 +1463,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 .in-action__live p {
   margin: 0;
   color: var(--ink-soft, var(--ink-quiet));
-  line-height: 1.65;
+  line-height: 1.6;
 }
 
 /* ── Connect your agent (2026-07-26) ─────────────────────────────────
@@ -1515,7 +1507,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   border-radius: var(--radius-md);
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  line-height: 1.65;
+  line-height: 1.6;
   color: var(--ink-secondary);
   white-space: pre-wrap;
   overflow-wrap: anywhere;
@@ -1547,16 +1539,16 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 }
 .connect__peer p {
   margin: 0 0 var(--space-3);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--ink-quiet);
-  line-height: 1.65;
+  line-height: 1.6;
 }
 .connect__peer p:last-child { margin-bottom: 0; }
 
 .in-action__live .connect__hint,
 .in-action__live .connect__note {
   margin: var(--space-4) 0 0;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--ink-quiet);
   line-height: 1.6;
 }
@@ -1568,7 +1560,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   margin: 0 0 var(--space-8);
   padding-bottom: var(--space-6);
   border-bottom: 1px dashed var(--edge-faint);
-  line-height: 1.7;
+  line-height: 1.6;
 }
 .letter__verify code {
   font-family: var(--font-mono);
@@ -1583,9 +1575,9 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   padding-top: var(--space-4);
   border-top: 1px dashed var(--edge-faint);
   color: var(--ink-quiet) !important;
-  font-size: 0.9375rem !important;
+  font-size: 1rem !important;
   font-style: italic;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 /* ── Surface strip (2026-07-21) ──────────────────────────────────────
@@ -1628,7 +1620,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   border: 1px solid var(--ink-quiet);
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   letter-spacing: 0.02em;
   color: var(--ink-quiet);
   opacity: 0.9;
@@ -1643,9 +1635,8 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 .surface-strip__note {
   font-size: 0.8125rem;
   color: var(--ink-quiet);
-  line-height: 1.6;
-  margin: 0 0 var(--space-6, 24px);
-  max-width: 62ch;
+  line-height: 1.6;  margin: 0 0 var(--space-6);
+  max-width: var(--reading-max);
 }
 
 /* ── Surfaces marquee (2026-07-21) ───────────────────────────────────
@@ -1694,7 +1685,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   display: inline-flex;
   align-items: center;
   gap: 11px;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--ink-quiet);
   white-space: nowrap;
 }
@@ -1708,7 +1699,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   border: 1px solid var(--ink-quiet);
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   letter-spacing: 0.02em;
   opacity: 0.9;
 }
@@ -1736,9 +1727,8 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   margin: var(--space-5, 20px) 0 var(--space-4, 16px);
 }
 .install__cta-note {
-  font-size: 0.8125rem;
-  color: var(--ink-quiet);
-  max-width: 56ch;
+  font-size: 0.8125rem;  color: var(--ink-quiet);
+  max-width: var(--reading-max);
   margin: 0;
 }
 
@@ -1857,7 +1847,7 @@ html { scroll-padding-top: 5.5rem; }
   letter-spacing: 0.02em;
 }
 .install-access-note {
-  max-width: 54ch;
+  max-width: var(--reading-max);
   margin-top: var(--space-4);
   color: var(--ink-quiet);
   font-size: 0.8125rem;
@@ -1869,7 +1859,7 @@ html { scroll-padding-top: 5.5rem; }
   position: relative;
   padding: 0 0 var(--space-6) var(--space-12);
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.6;
 }
 .steps li::before {
@@ -1891,7 +1881,7 @@ html { scroll-padding-top: 5.5rem; }
   border-left: 3px solid var(--accent-warm);
   border-radius: var(--radius-md);
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.6;
 }
 /* Release notes: a growing log, newest first. Calm and short. */
@@ -1899,12 +1889,12 @@ html { scroll-padding-top: 5.5rem; }
 .release { padding: var(--space-6) 0; border-top: 1px solid var(--edge-faint); }
 .release:first-child { border-top: 0; }
 .release__head { display: flex; align-items: baseline; gap: var(--space-4); }
-.release__ver { color: var(--ink-primary); font-weight: 600; font-size: 1.0625rem; }
+.release__ver { color: var(--ink-primary); font-weight: 600; font-size: 1rem; }
 .release__date { color: var(--ink-quiet); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.02em; }
 .release__kind { margin-top: var(--space-4); }
 .release__kind h4 { margin: 0 0 var(--space-2); }
 .release__kind ul { margin: 0; padding-left: 1.1rem; }
-.release__kind li { color: var(--ink-secondary); font-size: 0.9375rem; line-height: 1.55; margin: 4px 0; }
+.release__kind li { color: var(--ink-secondary); font-size: 1rem; line-height: 1.55; margin: 4px 0; }
 
 /* walkthrough/index.html */
 /* Page-local touches, built on the site tokens. */
@@ -1923,16 +1913,12 @@ html { scroll-padding-top: 5.5rem; }
 }
 .film-meta {
   margin-top: var(--space-4);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--ink-quiet);
-  letter-spacing: 0.02em;
 }
 .chapters {
   list-style: none;
-  padding: 0;
-  margin: var(--space-8) 0 0;
-  max-width: 45rem;
+  padding: 0;  margin: var(--space-8) 0 0;
   border: 1px solid var(--edge-faint);
   border-radius: var(--radius-xl);
   background: var(--bg-soft);
@@ -1951,7 +1937,7 @@ html { scroll-padding-top: 5.5rem; }
   cursor: pointer;
   text-align: left;
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.5;
   transition: background 0.15s ease, color 0.15s ease;
 }
@@ -1974,8 +1960,8 @@ html { scroll-padding-top: 5.5rem; }
   border-left: 3px solid var(--accent-memory);
   border-radius: var(--radius-md);
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 .made-note strong { color: var(--ink-primary); }
 .after-ctas {
@@ -1990,7 +1976,7 @@ html { scroll-padding-top: 5.5rem; }
 .known { list-style: none; padding: 0; margin: var(--space-6) 0 0; max-width: var(--reading-max); }
 .known li { padding: var(--space-5) 0; border-bottom: 1px solid var(--edge-faint); }
 .known h3 { margin: 0 0 var(--space-2); font-size: 1.125rem; }
-.known p { margin: 0; color: var(--ink-secondary); font-size: 0.9375rem; line-height: 1.6; }
+.known p { margin: 0; color: var(--ink-secondary); font-size: 1rem; line-height: 1.6; }
 .known p + p { margin-top: var(--space-2); }
 .state { margin-left: var(--space-3); vertical-align: middle; }
 .state--next { color: var(--accent-glow); border-color: rgba(96, 165, 250, 0.35); }
@@ -2001,7 +1987,7 @@ html { scroll-padding-top: 5.5rem; }
 /* Page-local touches, built on the site tokens. */
 .group { margin-top: var(--space-8); }
 .group h3 { margin-top: var(--space-8); }
-.group__lead { max-width: var(--reading-max); color: var(--ink-secondary); font-size: 1.0625rem; line-height: 1.6; }
+.group__lead { max-width: var(--reading-max); color: var(--ink-secondary); font-size: 1rem; line-height: 1.6; }
 .tool-list { list-style: none; padding: 0; margin: var(--space-6) 0 0; max-width: var(--reading-max); }
 .tool {
   display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-6);
@@ -2009,9 +1995,9 @@ html { scroll-padding-top: 5.5rem; }
   border-bottom: 1px solid var(--edge-faint);
 }
 .tool__main { min-width: 0; }
-.tool__name { color: var(--ink-primary); font-weight: 600; font-size: 1.0625rem; }
+.tool__name { color: var(--ink-primary); font-weight: 600; font-size: 1rem; }
 .tool__desc { color: var(--ink-quiet); font-size: 0.8125rem; line-height: 1.5; margin-top: 2px; }
-.tool__link { color: var(--accent-glow); font-size: 0.9375rem; white-space: nowrap; flex: 0 0 auto; text-decoration: underline; text-decoration-color: var(--edge-soft); text-underline-offset: 0.2em; }
+.tool__link { color: var(--accent-glow); font-size: 1rem; white-space: nowrap; flex: 0 0 auto; text-decoration: underline; text-decoration-color: var(--edge-soft); text-underline-offset: 0.2em; }
 .tool__link:hover { text-decoration-color: currentColor; }
 .pill { margin-left: var(--space-3); vertical-align: middle; }
 

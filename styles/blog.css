@@ -98,7 +98,7 @@ main { padding-top: 5rem; }
 }
 .blog-guide__links strong {
   color: var(--ink-primary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 .blog-guide__links span {
   color: var(--ink-quiet);
@@ -129,7 +129,7 @@ main { padding-top: 5rem; }
   color: var(--ink-primary);
   font: inherit;
   font-family: var(--font-body);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   border: 1px solid var(--edge-faint);
   border-radius: var(--radius-md);
   background: var(--bg-card);
@@ -243,7 +243,7 @@ main { padding-top: 5rem; }
 .post-card p {
   margin: 0;
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
@@ -251,7 +251,7 @@ main { padding-top: 5rem; }
 }
 /* The homepage note uses an authored short summary, shown in full. The body
    owns the padding, so text never runs into the rounded card edge. */
-.post-card--strip { max-width: 44rem; }
+.post-card--strip { max-width: none; }
 .post-card--strip .post-card__body { padding: var(--space-6); }
 .post-card--strip h3 {
   font-size: 1.5rem;
@@ -393,8 +393,8 @@ main { padding-top: 5rem; }
 /* Long-form prose. Reading width capped at --reading-max. */
 .post__body {
   font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.6;
   color: var(--ink-secondary);
 }
 .post__body p {
@@ -491,7 +491,7 @@ main { padding-top: 5rem; }
 }
 .post__toc a {
   color: var(--ink-secondary);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   text-decoration: none;
 }
 .post__toc a:hover { color: var(--accent-glow); }
@@ -701,7 +701,7 @@ main { padding-top: 5rem; }
   border: 1px solid var(--edge-faint);
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   letter-spacing: 0.06em;
   line-height: 1.4;
   white-space: nowrap;
@@ -790,7 +790,7 @@ main { padding-top: 5rem; }
 
   .compare-card__copy,
   .compare-card__prompt {
-    font-size: 0.9375rem;
+    font-size: 1rem;
   }
 
   .compare-card__eyebrow {
@@ -832,7 +832,7 @@ main { padding-top: 5rem; }
 
   .compare-card__copy,
   .compare-card__prompt {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     line-height: 1.5;
   }
 
@@ -850,7 +850,7 @@ main { padding-top: 5rem; }
   margin-top: var(--space-16);
   padding-top: var(--space-8);
   border-top: 1px solid var(--edge-faint);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--ink-quiet);
   display: flex;
   justify-content: space-between;
@@ -889,7 +889,7 @@ main { padding-top: 5rem; }
   border: 1px solid var(--edge-faint);
   border-left: 3px solid var(--accent-warm);
   border-radius: var(--radius-md);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--ink-quiet, #8b95af);
 }
@@ -931,7 +931,7 @@ main { padding-top: 5rem; }
   margin: 0;
   padding-left: var(--space-6);
   font-family: var(--font-body);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--ink-secondary);
 }
