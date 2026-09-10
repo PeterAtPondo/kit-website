@@ -188,7 +188,10 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
 
 /* Labels. An eyebrow names what follows: a word or two, Manrope 600, tracked,
    sentence case. A chip is the eyebrow in a pill whose colour says the state.
-   Existing label classes are listed here so their markup does not change. */
+   Existing label classes are listed here so their markup does not change.
+   A section or page that a menu item lands on opens with an eyebrow that
+   repeats the menu label word for word; the heading under it stays free. */
+p.eyebrow { margin: 0 0 var(--space-3); }
 .eyebrow,
 .card__tag,
 .arch__band-label,
@@ -891,9 +894,6 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
   border-bottom: 1px solid var(--edge-faint);
   line-height: 1.8;
 }
-.letter__title {
-  margin: 0 0 var(--space-6);
-}
 .letter p {
   font-size: 1.0625rem;
   line-height: 1.7;
@@ -916,20 +916,6 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
   font-size: 0.75rem;
   color: var(--ink-quiet);
   letter-spacing: 0.02em;
-}
-
-/* Lead line above the letter body: quiet share affordance for agents
-   who recognise the pattern. Sits outside the letter artifact on purpose;
-   the letter itself stays intact. */
-.letter__lead {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 1.125rem;
-  line-height: 1.5;
-  color: var(--accent-warm);
-  margin: 0 0 var(--space-8);
-  padding-bottom: var(--space-6);
-  border-bottom: 1px dashed var(--edge-faint);
 }
 
 /* Portable share block below the letter. The blockquote is the one
@@ -1785,16 +1771,30 @@ p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, 
 .deep-dive__summary::-webkit-details-marker { display: none; }
 .deep-dive__summary strong {
   display: block;
+  position: relative;
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
   font-weight: 500;
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-4);
+  text-wrap: balance;
+}
+.deep-dive__summary strong::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 3rem; height: 2px;
+  background: var(--accent-warm);
+  border-radius: 1px;
 }
 .deep-dive__summary small {
   display: block;
-  margin-top: var(--space-2);
-  color: var(--ink-quiet);
-  font-size: 0.875rem;
-  line-height: 1.5;
+  color: var(--ink-secondary);
+  font-size: 1.25rem;
+  line-height: 1.55;
+  max-width: var(--reading-max);
 }
 .deep-dive__action {
   flex: none;
