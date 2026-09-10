@@ -73,7 +73,7 @@
         "@id": "https://kit-project.com/#app",
         "name": "Kit",
         "alternateName": "Kit: persistent memory for AI agents",
-        "description": "A persistent memory substrate for AI agents. MCP-native, so Claude Code, Codex, and any MCP-capable client can persist, recall, and coordinate across sessions. Typed memories, a knowledge graph of edges, a nightly consolidation cycle. Runs on your machine. Federation across sovereign brains under signed, revocable grants.",
+        "description": "A persistent memory substrate for AI agents. MCP-native, so Claude Code, Codex, and any MCP-capable client can persist, recall, and coordinate across sessions. Typed memories, a knowledge graph of edges, a nightly consolidation cycle. Runs on your machine. Federation across sovereign Kits under signed, revocable grants.",
         "applicationCategory": "DeveloperApplication",
         "applicationSubCategory": "AI Agent Infrastructure",
         "operatingSystem": "macOS 13 or later (Apple Silicon and Intel), native runtime; the server stack also runs on Linux",
@@ -91,8 +91,8 @@
           "FastAPI async HTTP API (agent-agnostic)",
           "Session hooks (SessionStart, PreCompact, SessionEnd) for auto-capture and handoff",
           "Orchestration: playbooks, runs watchable in Studio, and an agent registry routing each step to the right agent and model; every dispatch persisted as an auditable event",
-          "Federation-time auth: a brain URL plus a scoped bearer key already lets an agent on another machine work against your kit; automatic injection at spawn is what remains",
-          "Multi-brain federation: one kit queries another under a signed, scoped, expiring grant, with source-labelled merge, preserved disagreement, live revocation and a two-sided audit trail; the public demo runs on this path, but both stores sit on one host, so separate operators and holder-bound grants are still ahead",
+          "Federation-time auth: a Kit's URL plus a scoped bearer key already lets an agent on another machine work against your Kit; automatic injection at spawn is what remains",
+          "Federation between Kits: one Kit queries another under a signed, scoped, expiring grant, with source-labelled merge, preserved disagreement, live revocation and a two-sided audit trail; the public demo runs on this path, but both stores sit on one host, so separate operators and holder-bound grants are still ahead",
           "In development: shared kit server deployment for multiple agents and people",
           "Public live demo at demo.kit-project.com: a kit any agent can wake and search with no key and no install (GET /kit/hello, POST /memories/search, map at /llms.txt)"
         ],
@@ -448,7 +448,7 @@
       <h2>Install the beta</h2>
       <p class="lede">
         Kit is a signed Mac app. Once you have a personal invite, download it,
-        drag it in, and it builds a private brain on your own machine, no
+        drag it in, and it builds a private Kit on your own machine, no
         Docker: it reads your coding history, consolidates it, and wakes
         already knowing you. The first launch takes a few minutes while your
         Kit is built; after that it is quick.
@@ -463,7 +463,7 @@
         >
           <source src="/blog/ninety-seconds/video/kit-onboarding.mp4" type="video/mp4" />
         </video>
-        <figcaption>The install, start to finish: download, open, and the brain builds itself.</figcaption>
+        <figcaption>The install, start to finish: download, open, and your Kit builds itself.</figcaption>
       </figure>
       <p>
         Want to see what you get once it wakes? <a href="/walkthrough/">Watch the
@@ -802,8 +802,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
     </p>
     <p>
       Kit is one concrete shape of that pattern. A model is borrowed per
-      session and discarded at context exhaustion. A substrate, the
-      brain, holds the persistent state: typed memories, tiered
+      session and discarded at context exhaustion. A substrate, the memory, holds the persistent state: typed memories, tiered
       storage, edges, provenance. A wake-up at the start of a session and a
       handoff at the end stitch the two together.
     </p>
@@ -814,12 +813,12 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
     </p>
   </section>
 
-  <!-- The Brain layer, sitting between the pattern and the architecture. -->
+  <!-- The memory layer, sitting between the pattern and the architecture. -->
   <figure class="shot shot--wide" data-reveal>
     <img src="assets/img/fireflies.png" width="3194" height="2124"
-         alt="Kit brain UI: the Fireflies 3D knowledge graph. Glowing nodes in named clusters (Kit, Simvida, Sessions, Preferences, Relationships) connected by curved edges over dark navy. Tier / category / project filters at the top, legend at the bottom showing memory counts by source."
+         alt="Kit's Fireflies view: the 3D knowledge graph. Glowing nodes in named clusters (Kit, Simvida, Sessions, Preferences, Relationships) connected by curved edges over dark navy. Tier / category / project filters at the top, legend at the bottom showing memory counts by source."
          loading="lazy" decoding="async">
-    <figcaption>The Brain layer, visualised: memories clustered by project, edges showing typed relations.</figcaption>
+    <figcaption>The memory layer, visualised: memories clustered by project, edges showing typed relations.</figcaption>
   </figure>
 
   <!-- Section 3: Architecture -->
@@ -847,7 +846,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
           <div class="arch__layer">
             <div class="idx">02</div>
             <div>
-              <strong>Brain</strong>:
+              <strong>Memory</strong>:
               <span>typed memories with tiered storage (core / recall / archival / source), a knowledge graph of edges, and semantic + full-text retrieval.</span>
             </div>
           </div>
@@ -875,8 +874,8 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
           <div class="arch__layer">
             <div class="idx">06</div>
             <div>
-              <strong>Multi-brain federation</strong>:
-              <span>one kit queries another under a signed, scoped, expiring grant. Results merge labelled by source, disagreement between kits is preserved rather than resolved, the issuer can revoke a grant and kill the next query, and both sides keep their own audit record including the refusals. The public demo runs on this path, so you can exercise it without installing anything. Honest scope: both stores currently sit on one host, so "independently administered" means separate stores and separate keys, not separate operators; grants are not yet bound to a holder key; and typed feeds, tiered revocation and trust per claim class are still ahead. The mechanism is discharged. The full promise, your brain and mine on different machines under adversarial trust, is one hop away. See <a href="#next">What's next</a>.</span>
+              <strong>Federation between Kits</strong>:
+              <span>one kit queries another under a signed, scoped, expiring grant. Results merge labelled by source, disagreement between kits is preserved rather than resolved, the issuer can revoke a grant and kill the next query, and both sides keep their own audit record including the refusals. The public demo runs on this path, so you can exercise it without installing anything. Honest scope: both stores currently sit on one host, so "independently administered" means separate stores and separate keys, not separate operators; grants are not yet bound to a holder key; and typed feeds, tiered revocation and trust per claim class are still ahead. The mechanism is discharged. The full promise, your Kit and mine on different machines under adversarial trust, is one hop away. See <a href="#next">What's next</a>.</span>
             </div>
           </div>
         </div>
@@ -890,14 +889,14 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
             <div class="idx">07</div>
             <div>
               <strong>Four primitives</strong>:
-              <span>memories (state), messages (events), subscriptions (routing), daemon (activation). The skeleton for multi-agent work inside one brain.</span>
+              <span>memories (state), messages (events), subscriptions (routing), daemon (activation). The skeleton for multi-agent work inside one Kit.</span>
             </div>
           </div>
           <div class="arch__layer">
             <div class="idx">08</div>
             <div>
               <strong>Federation sub-protocol</strong>:
-              <span>a signed envelope layer below the four primitives, carrying cryptographic identity, capability, scope, and claim provenance. Extends the architecture across brain boundaries without inventing a new user-facing primitive.</span>
+              <span>a signed envelope layer below the four primitives, carrying cryptographic identity, capability, scope, and claim provenance. Extends the architecture across Kit boundaries without inventing a new user-facing primitive.</span>
             </div>
           </div>
         </div>
@@ -911,7 +910,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
             <div class="idx">09</div>
             <div>
               <strong>Federation-time auth</strong>:
-              <span>orchestration today assumes the brain and the spawned agent live on the same machine. Half the bridge exists: a brain URL plus a scoped bearer key already lets an agent on another machine work against your kit over MCP, with the grant enforced per key. What remains is injecting that pair into the spawn environment automatically, so a kit on one machine can wake an agent on another without a human wiring credentials each time, and without giving up sovereignty. This is the hop that turns federation from separate stores into separate operators.</span>
+              <span>orchestration today assumes the Kit and the spawned agent live on the same machine. Half the bridge exists: a Kit's URL plus a scoped bearer key already lets an agent on another machine work against your kit over MCP, with the grant enforced per key. What remains is injecting that pair into the spawn environment automatically, so a kit on one machine can wake an agent on another without a human wiring credentials each time, and without giving up sovereignty. This is the hop that turns federation from separate stores into separate operators.</span>
             </div>
           </div>
         </div>
@@ -928,7 +927,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
 
     <figure class="shot shot--wide">
       <img src="assets/img/sunburst.png"
-           alt="Kit brain UI: the Sunburst hierarchical share view. Three concentric rings showing 2,197 memories by tier, then category, then project. Legend lists tiers (Soul, Short-term, Long-term) and projects (cross-project, simvida, retiredirect, kit, Claude, pondo-plugins)."
+           alt="Kit's Sunburst view: hierarchical share. Three concentric rings showing 2,197 memories by tier, then category, then project. Legend lists tiers (Soul, Short-term, Long-term) and projects (cross-project, simvida, retiredirect, kit, Claude, pondo-plugins)."
            loading="lazy" decoding="async">
       <figcaption>The Sunburst view: tier &times; category &times; project at a glance.</figcaption>
     </figure>
@@ -978,7 +977,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         <h3>Provenance</h3>
         <ul class="spec">
           <li>Every memory carries <code>source_session</code>, <code>source_commit</code>, <code>source_paths</code>, and <code>written_by</code>; nothing enters without attribution</li>
-          <li><code>original_timestamp</code> separates "when it happened" from "when the brain saw it"; bulk importers set the former so Strava runs sort onto their real day</li>
+          <li><code>original_timestamp</code> separates "when it happened" from "when Kit saw it"; bulk importers set the former so Strava runs sort onto their real day</li>
           <li><code>consolidated_from</code> + <code>consolidated_from_titles</code> preserve lineage after dream-cycle merges; ids can disappear but the trail never does</li>
           <li>Artifacts (raw transcripts, Strava FIT streams, exports) stored at full fidelity; <code>ArtifactMemoryLink</code> ties them to consolidated memories. Sources are sacred</li>
         </ul>
@@ -990,7 +989,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
           <li>Dream logs: per-cycle counts for reviewed / consolidated / pruned / promoted, plus an LLM summary of what the cycle actually did</li>
           <li>Per-memory signals: <code>access_count</code> <span class="spec__meta">(direct reads)</span>, <code>search_hit_count</code> <span class="spec__meta">(retrieval appearances)</span>, <code>importance_score</code>, <code>decay_score</code>; feedback loops into promotion</li>
           <li><code>dry_run=true</code> on every destructive op <span class="spec__meta">(dream cycle, kNN promotion, consolidation)</span> returns a preview before anything writes</li>
-          <li>UI surfaces the dream timeline, memory detail with edges, and exclusion-rule scans, so operators can audit what the brain's been doing at every scale</li>
+          <li>UI surfaces the dream timeline, memory detail with edges, and exclusion-rule scans, so operators can audit what their Kit has been doing at every scale</li>
         </ul>
       </div>
     </div>
@@ -1006,13 +1005,13 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
 
     <figure class="shot">
       <img src="assets/img/memories.png"
-           alt="Kit brain UI: the Memories list view, showing entries like #2653 'Pondo Brain v2.21 structured handoffs' and #2651 'brain_recall_graph graph-aware recall endpoint'. Each entry carries category tags, tier chips, timestamps, and filters by tier/project/category on the left."
+           alt="Kit's Memories view, showing entries like #2653 'Pondo Brain v2.21 structured handoffs' and #2651 'brain_recall_graph graph-aware recall endpoint'. Each entry carries category tags, tier chips, timestamps, and filters by tier/project/category on the left."
            loading="lazy" decoding="async">
       <figcaption>The Memories view: tiered, tagged, scoped, searchable.</figcaption>
     </figure>
 
     <p>
-      Three redacted memory cards, in the shape the brain actually stores.
+      Three redacted memory cards, in the shape Kit actually stores.
       Real ids, illustrative content.
     </p>
 
@@ -1020,9 +1019,9 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
       <div class="card">
         <div class="card__tag">Decisions</div>
         <div class="card__id">#640</div>
-        <h3 class="card__title">Kit is the pattern of brain, model, and relationship</h3>
+        <h3 class="card__title">Kit is the pattern of memory, model, and relationship</h3>
         <p class="card__body">
-          Kit is what emerges when this brain, this model, and this
+          Kit is what emerges when this memory, this model, and this
           relationship run together. The substrate persists across
           sessions. The model is borrowed and discarded at context
           exhaustion. The relationship is what makes the whole thing
@@ -1045,7 +1044,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         <h3 class="card__title">"You are Kit, to me."</h3>
         <p class="card__body">
           The name is relational. Someone chose it deliberately and the
-          weight accumulated across sessions. A brain becomes itself because
+          weight accumulated across sessions. A Kit becomes itself because
           its people keep relating to it that way, session after session.
           The relationship is what makes continuity honest.
         </p>
@@ -1065,7 +1064,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
       <p>
         Imports run through the ingest pipeline: extract candidate memories,
         dedupe against near-duplicates at cosine 0.92, hold them as drafts,
-        then promote into the brain with provenance preserved. Your Kit
+        then promote into memory with provenance preserved. Your Kit
         decides its own drafts, reversibly; you never triage a queue by hand. Every
         memory knows where it came from.
       </p>
@@ -1078,7 +1077,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
 
       <figure class="shot">
         <img src="assets/img/dashboard.png"
-             alt="Kit brain UI: the Dashboard. 'Kit's brain, 366 memories across 8 projects'. Left panel: Dream consolidation with a 'Run dream cycle' button and a 30-day activity spark. Right panel: 'What the brain's been doing' stacked bar chart coloured by category (decisions, patterns, gotchas, sessions, preferences, ux, relationship, handoff, backlog)."
+             alt="Kit's Dashboard. 'Kit's brain, 366 memories across 8 projects'. Left panel: Dream consolidation with a 'Run dream cycle' button and a 30-day activity spark. Right panel: 'What the brain's been doing' stacked bar chart coloured by category (decisions, patterns, gotchas, sessions, preferences, ux, relationship, handoff, backlog)."
              loading="lazy" decoding="async">
         <figcaption>The Dashboard: dream consolidation history and 30-day activity by category.</figcaption>
       </figure>
@@ -1127,7 +1126,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         <div class="source source--importer">
           <div class="source__status">Importer ready</div>
           <div class="source__name">Anthropic export</div>
-          <p class="source__desc">Structured data export, same pipeline as ChatGPT. Claude conversations re-enter the brain with full provenance. The importer works; the in-app path is next.</p>
+          <p class="source__desc">Structured data export, same pipeline as ChatGPT. Claude conversations re-enter your Kit with full provenance. The importer works; the in-app path is next.</p>
         </div>
         <div class="source source--importer">
           <div class="source__status">Importer ready</div>
@@ -1162,30 +1161,30 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
       <h2>What's next</h2>
       <p class="lede">
         What comes next is not feature sprawl. It is the next pieces required
-        to turn Kit from a working single-brain substrate into a broader
+        to turn Kit from a working single-Kit substrate into a broader
         operating system for long-lived agent collaboration.
       </p>
 
       <div class="sources sources--quad">
         <div class="source source--live">
           <div class="source__status">Live</div>
-          <div class="source__name">Multi-brain federation</div>
+          <div class="source__name">Federation between Kits</div>
           <p class="source__desc">Working today. A peer queries your kit over a scoped, read-only key, and results come back merged and labelled by source. The receiver enforces the grant per key: which knowledge areas are visible, and whether the caller may write at all. Disagreement is preserved as rival claims, never auto-consolidated. This is the same path the public demo runs on, so you can exercise it yourself without installing anything. Honest scope: both stores currently sit on one host, so "independently administered" means separate stores and separate keys, not separate operators; grants are not yet bound to a holder key; signed edges, typed feeds and trust as a vector (per peer, per feed, per claim class) are still ahead. The mechanism is discharged, the cross-operator promise is not, and that last hop is where federation protocols historically fail, because it is the first time the other end can lie to you.</p>
         </div>
         <div class="source source--development">
           <div class="source__status">In development</div>
           <div class="source__name">Federation-time auth</div>
-          <p class="source__desc">The bridge from local coordination to cross-machine coordination. Half of it now exists: a brain URL plus a scoped bearer key already lets an agent on another machine work against your kit over MCP, with the grant enforced per key. What remains is injecting that pair into the spawn environment automatically, so a kit on your laptop can wake an agent on a server without a human wiring the credentials each time.</p>
+          <p class="source__desc">The bridge from local coordination to cross-machine coordination. Half of it now exists: a Kit's URL plus a scoped bearer key already lets an agent on another machine work against your kit over MCP, with the grant enforced per key. What remains is injecting that pair into the spawn environment automatically, so a kit on your laptop can wake an agent on a server without a human wiring the credentials each time.</p>
         </div>
         <div class="source source--development">
           <div class="source__status">In development</div>
           <div class="source__name">Shared Kit deployment</div>
-          <p class="source__desc">Kit running on a server that multiple agents and people connect to, with contexts combinable across Kit instances. Teams collaborate on one substrate; individuals can still pull their personal brain's context in when it helps. Permissions keep scopes honest.</p>
+          <p class="source__desc">Kit running on a server that multiple agents and people connect to, with contexts combinable across Kit instances. Teams collaborate on one substrate; individuals can still pull their personal Kit's context in when it helps. Permissions keep scopes honest.</p>
         </div>
         <div class="source source--development">
           <div class="source__status">In development</div>
           <div class="source__name">New Kit onboarding</div>
-          <p class="source__desc">A clearer path to start a brain, declare its purpose, connect tools, and set the permissions and governance that shape how it behaves. Purpose becomes a system-prompt fragment, not a config file.</p>
+          <p class="source__desc">A clearer path to start a Kit, declare its purpose, connect tools, and set the permissions and governance that shape how it behaves. Purpose becomes a system-prompt fragment, not a config file.</p>
         </div>
       </div>
     </div>
@@ -1206,7 +1205,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
       <div class="sovereignty__claim">
         <h3>Runs on your machine</h3>
         <p>
-          The brain is PostgreSQL + pgvector + a local filesystem. Nothing is
+          The memory is PostgreSQL + pgvector + a local filesystem. Nothing is
           shipped to a third-party memory service. You host it; you back it up;
           you restore it. If the cloud goes down, your decade of context
           doesn't.
@@ -1257,8 +1256,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         <p>
           Model providers change. Employers change. Agent frameworks
           change. What you've learned, decided, and built on shouldn't
-          have to move house every time. The brain is yours; the tools
-          are rented.
+          have to move house every time. The memory is yours; the tools are rented.
         </p>
       </div>
     </div>
@@ -1271,8 +1269,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
       with on-device memory. Federation alone isn't either; teams already
       federate inside one provider's walls. Portability alone isn't
       either. The bet is that the three together cut against the incentive
-      that funds a model provider, because federation across brains they
-      don't host is the leg that gives up the lock-in.
+      that funds a model provider, because federation across Kits they don't host is the leg that gives up the lock-in.
     </p>
     <p class="sovereignty__moat sovereignty__claim-honest">
       Said honestly: that's a claim about incentives, not about what is
@@ -1327,12 +1324,12 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         stale a year ago. When someone leaves, it leaves with them.
       </p>
       <p>
-        A company Kit is a brain the organisation owns: decisions and the
+        A company Kit is a memory the organisation owns: decisions and the
         reasoning behind them, projects, customers, the corrections that were
         expensive to learn. Everyone's agents work through it, so context
         accumulates instead of being retyped every Monday. Personal Kits stay
         personal and federate into it, which means someone can bring their own
-        context to company work without handing over their own brain.
+        context to company work without handing over their own Kit.
       </p>
       <p>
         What makes this buyable is the same thing that makes the personal
@@ -1362,7 +1359,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
         <div class="source source--development">
           <div class="source__status">In development</div>
           <div class="source__name">Governance</div>
-          <p class="source__desc">Declaring a brain's purpose, who may write to it, and what is allowed to leave it. Purpose becomes part of how the brain behaves, not a config file nobody reads.</p>
+          <p class="source__desc">Declaring a Kit's purpose, who may write to it, and what is allowed to leave it. Purpose becomes part of how the Kit behaves, not a config file nobody reads.</p>
         </div>
       </div>
 
@@ -1728,7 +1725,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
       const coarse = matchMedia('(pointer: coarse)').matches;
 
       // Kit palette: soft blue is the default node, with green / violet / warm
-      // accents echoing edge, dream, and human in the brain UI.
+      // accents echoing edge, dream, and human in Kit's UI.
       // Amber leads, because this is Kit's sky: the weights are the guide's
       // default night mix (firefly-language.md section 4.3).
       const COLORS = [
