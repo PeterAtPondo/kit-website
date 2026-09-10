@@ -154,11 +154,11 @@
     <button class="btn btn--ghost nav__toggle" type="button" aria-expanded="false" aria-controls="site-menu" hidden>Menu</button>
     <div class="nav__links" id="site-menu">
       <a href="/#install">Install</a>
-      <a href="https://demo.kit-project.com/investigate">See proof</a>
-      <a href="/#technical-evidence">Architecture</a>
+      <a href="/#arch">Architecture</a>
       <a href="/#companies">For companies</a>
       <a href="/#letter">For agents</a>
       <a href="/evaluate/">Evaluate</a>
+      <a href="/#proof">See proof</a>
       <a href="/blog/">Notes</a>
       <a href="/#contact">Contact</a>
     </div>
@@ -250,26 +250,18 @@
       </figure>
 
     <a class="post-card post-card--strip" href="/blog/you-are-in-control/">
+      <div class="post-card__body">
       <div class="post-card__meta">
         <span class="num">No. 028</span>
         <span>2026 &middot; 09 &middot; 07</span>
         <span>&middot; position</span>
       </div>
       <h3>You are in control</h3>
-      <p>
-        The models are becoming interchangeable and the hardware to run them is
-        arriving on a published schedule. Sixty-one per cent of people say they
-        want more control over how AI is used in their lives, and fifty-seven per
-        cent say they have little or none. What is arriving does not close that:
-        a framework that unifies how you call a model gives you no record of the
-        work that survives your choice of model, a runner on your own machine
-        does not know what you did last quarter, and every provider's memory
-        stops at that provider's door. Kit is the other half. One memory, on
-        your own Mac, underneath whichever model does the work, with three kinds
-        of control over it: which model, what is shared and with whom, and whose
-        machine it lives on. Sixty-five versions shipped in a week on six models
-        shows model switching in our own work, not a measured saving for yours.
-      </p>
+      <p>The models are becoming interchangeable, but their memories still stop
+        at each provider’s door. Kit puts one portable memory on your Mac,
+        underneath whichever model does the work, with control over what is
+        shared, which model sees it, and where it lives.</p>
+      </div>
     </a>
 
     <p class="note-strip__more"><a href="/blog/">See all notes &rarr;</a></p>
@@ -721,7 +713,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
   <!-- The complete implementation evidence remains on this page, but it no
        longer makes every first-time reader cross the whole architecture to
        reach privacy, the builders, or contact. Deep links open it below. -->
-  <details id="technical-evidence" class="deep-dive" data-reveal>
+  <details id="technical-evidence" class="deep-dive">
     <summary class="deep-dive__summary">
       <span>
         <strong>Architecture and technical evidence</strong>
@@ -822,7 +814,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
 
   <!-- The Brain layer, sitting between the pattern and the architecture. -->
   <figure class="shot shot--wide" data-reveal>
-    <img src="assets/img/fireflies.png"
+    <img src="assets/img/fireflies.png" width="3194" height="2124"
          alt="Kit brain UI: the Fireflies 3D knowledge graph. Glowing nodes in named clusters (Kit, Simvida, Sessions, Preferences, Relationships) connected by curved edges over dark navy. Tier / category / project filters at the top, legend at the bottom showing memory counts by source."
          loading="lazy" decoding="async">
     <figcaption>The Brain layer, visualised: memories clustered by project, edges showing typed relations.</figcaption>
@@ -1658,8 +1650,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
 
   <!-- Reading progress + active-section highlighting.
        Progress: throttled scroll listener writes width% to the bar.
-       Active section: IntersectionObserver watches each top-level section
-       and adds .is-current to the matching nav link. -->
+       Active-section tracking and hash navigation live in site-navigation.js. -->
   <script>
     (() => {
       const fill = document.getElementById('progress-fill');
@@ -1677,57 +1668,6 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
       }, { passive: true });
       update();
 
-      // Active-section highlighting
-      const links = [...document.querySelectorAll('.nav__links a[href^="/#"]')];
-      const map = new Map();
-      links.forEach(a => {
-        const id = new URL(a.href).hash.slice(1);
-        const sec = document.getElementById(id);
-        if (sec) map.set(sec, a);
-      });
-      const setCurrent = (sec) => {
-        links.forEach(a => a.classList.remove('is-current'));
-        const a = map.get(sec);
-        if (a) a.classList.add('is-current');
-      };
-      if ('IntersectionObserver' in window && map.size) {
-        const io = new IntersectionObserver((entries) => {
-          // Pick the entry closest to the top of the viewport among
-          // those currently intersecting.
-          const visible = entries.filter(e => e.isIntersecting);
-          if (!visible.length) return;
-          visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-          setCurrent(visible[0].target);
-        }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
-        map.forEach((_, sec) => io.observe(sec));
-      }
-    })();
-  </script>
-
-  <!-- Open progressive technical evidence when a visitor follows any of its
-       deep links. This keeps #arch, #stack and #next honest and useful. -->
-  <script>
-    (() => {
-      const deepDive = document.getElementById('technical-evidence');
-      if (!deepDive) return;
-      const openForHash = () => {
-        const id = decodeURIComponent(location.hash.slice(1));
-        const target = id ? document.getElementById(id) : null;
-        if (target && (target === deepDive || deepDive.contains(target))) {
-          deepDive.open = true;
-        }
-      };
-      document.addEventListener('click', (event) => {
-        const link = event.target.closest('a[href^="#"]');
-        if (!link) return;
-        const id = decodeURIComponent(link.getAttribute('href').slice(1));
-        const target = id ? document.getElementById(id) : null;
-        if (target && (target === deepDive || deepDive.contains(target))) {
-          deepDive.open = true;
-        }
-      });
-      window.addEventListener('hashchange', openForHash);
-      openForHash();
     })();
   </script>
 
@@ -1996,7 +1936,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
   </script>
 
   <!-- Scroll-reveal: IntersectionObserver fades + slides in any element
-       tagged with [data-reveal] when 15% of it enters the viewport.
+       tagged with [data-reveal] as it enters the viewport, regardless of its height.
        Respects prefers-reduced-motion via the CSS rule.
        Deep-link robustness: elements already at or above the viewport on
        load (e.g. when a user visits /#stack directly) are revealed
@@ -2055,7 +1995,7 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
             io.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+      }, { threshold: 0, rootMargin: '0px 0px -5% 0px' });
       toObserve.forEach(el => io.observe(el));
     })();
   </script>

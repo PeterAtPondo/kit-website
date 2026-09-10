@@ -251,6 +251,21 @@ main { padding-top: 5rem; }
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
 }
+/* The homepage note uses an authored short summary, shown in full. The body
+   owns the padding, so text never runs into the rounded card edge. */
+.post-card--strip { max-width: 44rem; }
+.post-card--strip .post-card__body { padding: var(--space-6); }
+.post-card--strip h3 {
+  font-size: 1.375rem;
+  font-weight: 500;
+  margin: var(--space-3) 0 var(--space-3);
+}
+.post-card--strip p {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
 .post-card--featured {
   grid-column: 1 / -1;
   display: grid;
