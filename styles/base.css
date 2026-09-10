@@ -447,13 +447,15 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   font-size: 0.8125rem;
   color: var(--ink-quiet);
   margin-top: var(--space-8);
+  max-width: none;
 }
 
 /* With the tall video, top-align the hero so the title clears the fixed nav
    and the page scrolls naturally rather than centring and overflowing. */
 .section--hero:has(.hero--video) {
   justify-content: flex-start;
-  padding-top: var(--space-24);
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
   min-height: auto;
 }
 
@@ -470,7 +472,8 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   padding: 0;
 }
 .hero__copy--video h1 { text-align: center; }
-.hero__video-wrap { margin: var(--space-6) 0 0; }
+.hero__video-wrap { margin: var(--space-8) 0 0; }
+.install__cta-note + .install__cta-note { margin-top: var(--space-3); }
 .hero__video {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -486,7 +489,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
    the video, so a first-time visitor gets an answer before deciding whether
    to spend ninety seconds watching one (2026-08-24, Hanna's beta feedback). */
 .hero__lede {
-  max-width: 62ch;
+  max-width: 66ch;
   margin: var(--space-4) auto 0;
   font-size: 1.25rem;
   line-height: 1.55;
