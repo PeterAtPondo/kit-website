@@ -15,8 +15,7 @@
   text-underline-offset: .2em;
 }
 .evaluation-guide a:not(.btn):hover { text-decoration-color: currentColor; }
-.evaluation-guide .guide__eyebrow { color: var(--accent-warm); }
-.evaluation-guide .guide__date { color: var(--ink-quiet); }
+.evaluation-guide .guide__date { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.02em; color: var(--ink-quiet); }
 .guide__contents {
   display: flex;
   flex-wrap: wrap;

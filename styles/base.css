@@ -32,7 +32,7 @@ select:focus-visible,
 textarea:focus-visible {
   outline: 2px solid var(--accent-warm);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 /* Scroll-triggered reveal. Elements tagged with [data-reveal] start slightly
@@ -53,7 +53,7 @@ textarea:focus-visible {
 }
 html {
   font-family: var(--font-body);
-  color: var(--ink-primary);
+  color: var(--ink-secondary);
   background: var(--bg-deep);
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
@@ -135,24 +135,104 @@ img, svg { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; }
 
-/* Typography */
+/* Typography: one scale, mapped to the brand guide's roles (10 September 2026).
+   display-xl is the homepage hero only; display is every other page title;
+   h2 is a section, h3 a sub-section, h4 a card or panel title. Running text
+   is lede 20, body 17, body-sm 15, small 13. Labels are eyebrows (Manrope 600,
+   sentence case, tracked); mono is for data people copy or compare. Every
+   size within two pixels of a neighbour folded into one of these. */
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 500;
   letter-spacing: -0.015em;
   margin: 0 0 var(--space-6);
+  color: var(--ink-primary);
 }
-h1 { font-size: clamp(2.5rem, 5vw, 4.25rem); line-height: 1.05; letter-spacing: -0.025em; }
-h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.15; }
-h3 { font-size: 1.375rem; line-height: 1.3; font-weight: 600; }
+h1 { font-size: clamp(2.25rem, 4vw, 3.25rem); line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance; }
+.hero__copy--video h1 { font-size: clamp(2.5rem, 5vw, 4.25rem); line-height: 1.05; letter-spacing: -0.025em; }
+h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.15; text-wrap: balance; }
+h3 { font-size: 1.5rem; line-height: 1.3; }
+h4 { font-size: 1.125rem; line-height: 1.3; margin-bottom: var(--space-3); }
 p  { margin: 0 0 var(--space-4); max-width: var(--reading-max); }
+strong, b { color: var(--ink-primary); font-weight: 600; }
 p.lede {
   font-size: 1.25rem;
   color: var(--ink-secondary);
   line-height: 1.55;
 }
+.small { font-size: 0.8125rem; line-height: 1.5; color: var(--ink-quiet); }
+.voice {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--ink-secondary);
+}
 
-code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
+code { font-family: var(--font-mono); font-size: 0.875em; }
+.mono { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.02em; }
+
+/* Links inside prose read as links everywhere: information blue, underlined
+   in the soft edge colour. The amber and bare variants that grew per page go. */
+p a:not(.btn), li a:not(.btn), figcaption a, .req-link, dd a {
+  color: var(--accent-glow);
+  text-decoration: underline;
+  text-decoration-color: var(--edge-soft);
+  text-underline-offset: 0.2em;
+}
+p a:not(.btn):hover, li a:not(.btn):hover, figcaption a:hover, .req-link:hover, dd a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Labels. An eyebrow names what follows: a word or two, Manrope 600, tracked,
+   sentence case. A chip is the eyebrow in a pill whose colour says the state.
+   Existing label classes are listed here so their markup does not change. */
+.eyebrow,
+.card__tag,
+.arch__band-label,
+.letter__share-title,
+.surface-marquee__label,
+.contact-form__row label,
+.release__kind h4,
+.deep-dive__action {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  color: var(--accent-warm);
+}
+.eyebrow--quiet,
+.arch__band-label,
+.letter__share-title,
+.surface-marquee__label,
+.contact-form__row label {
+  color: var(--ink-quiet);
+}
+.chip,
+.source__status,
+.state,
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--edge-faint);
+  color: var(--accent-warm);
+  background: transparent;
+  white-space: nowrap;
+}
+.chip--live { color: var(--accent-green); border-color: rgba(52, 211, 153, 0.35); }
+.chip--info { color: var(--accent-glow); border-color: rgba(96, 165, 250, 0.35); }
+.chip--dream { color: var(--accent-memory); border-color: rgba(167, 139, 250, 0.35); }
 
 /* Structural — page-level sections */
 .section {
@@ -370,7 +450,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   font-size: 0.75rem;
   color: var(--ink-quiet);
   margin-top: var(--space-8);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
 }
 
 /* With the tall video, top-align the hero so the title clears the fixed nav
@@ -412,16 +492,11 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 .hero__lede {
   max-width: 62ch;
   margin: var(--space-4) auto 0;
-  font-size: 1.125rem;
-  line-height: 1.65;
+  font-size: 1.25rem;
+  line-height: 1.55;
   color: var(--ink-secondary);
   text-align: center;
 }
-
-/* Inline links in the lede lift one step, the same move .hero__download-meta
-   makes against its own quieter body. Without it a link here inherits the
-   surrounding colour exactly and stops reading as a link at all. */
-.hero__lede a { color: var(--ink-primary); }
 
 /* The practical facts belong beside the download, not three sections below
    it: she downloaded before she knew what she was getting, and separately
@@ -436,8 +511,6 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   text-align: center;
 }
 .hero__platforms { margin-top: var(--space-2); }
-.hero__download-meta a,
-.hero__platforms a { color: var(--ink-secondary); }
 
 /* Hero CTAs — side-by-side on desktop, stacked on small screens. */
 .hero__ctas {
@@ -495,7 +568,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .shot figcaption {
   padding: var(--space-3) var(--space-4);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   color: var(--ink-quiet);
   background: var(--bg-soft);
   border-top: 1px solid var(--edge-faint);
@@ -549,10 +622,6 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .card__tag {
   display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--accent-warm);
-  letter-spacing: 0.06em;
   margin-bottom: var(--space-2);
 }
 .card__title {
@@ -606,12 +675,12 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 .proof-step__num {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.02em;
   color: var(--accent-warm);
   margin-bottom: var(--space-3);
 }
 .proof-step h3 {
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   margin-bottom: var(--space-3);
 }
 .proof-step p {
@@ -628,7 +697,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   max-width: 44rem;
   margin-top: var(--space-8);
   color: var(--ink-secondary);
-  font-size: 1rem;
+  font-size: 1.0625rem;
   line-height: 1.65;
 }
 .section-close + .section-close { margin-top: var(--space-4); }
@@ -642,11 +711,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   max-width: 44rem;
 }
 .install__cost h3 {
-  font-family: var(--font-display);
-  font-size: 1.125rem;
-  font-weight: 500;
   margin: 0 0 var(--space-3);
-  color: var(--ink-primary);
 }
 .install__cost p {
   margin: 0 0 var(--space-3);
@@ -670,8 +735,8 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .note-strip__film figcaption {
   margin-top: var(--space-3);
-  font-size: 0.875rem;
-  color: var(--ink-secondary);
+  font-size: 0.8125rem;
+  color: var(--ink-quiet);
 }
 
 .proof-cta {
@@ -702,10 +767,8 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .stack__col h3 {
   margin: 0 0 var(--space-4);
-  font-family: var(--font-display);
   font-size: 1.125rem;
-  font-weight: 500;
-  color: var(--accent-warm);
+  color: var(--ink-primary);
   letter-spacing: -0.01em;
   padding-bottom: var(--space-3);
   border-bottom: 1px solid var(--edge-faint);
@@ -740,7 +803,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   color: var(--accent-warm);
   background: rgba(232, 165, 92, 0.08);
   padding: 0 0.25rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   font-size: 0.875em;
 }
 .spec__meta {
@@ -756,12 +819,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   margin: var(--space-8) 0 var(--space-12);
 }
 .arch__band-label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  color: var(--ink-secondary);
   margin: 0 0 var(--space-4);
-  font-weight: 500;
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
@@ -805,7 +863,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 .arch__layer strong {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   color: var(--ink-primary);
 }
 .arch__layer span {
@@ -816,7 +874,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--ink-quiet);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.02em;
 }
 
 /* Placeholder name — the [data-name] inline placeholder gets swapped at launch */
@@ -832,7 +890,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .letter__address {
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   color: var(--ink-quiet);
   letter-spacing: 0.02em;
   padding-bottom: var(--space-4);
@@ -841,18 +899,12 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   line-height: 1.8;
 }
 .letter__title {
-  font-family: var(--font-display);
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
-  font-weight: 500;
-  letter-spacing: -0.015em;
   margin: 0 0 var(--space-6);
-  padding-bottom: 0;
 }
-.letter__title::after { display: none; }
 .letter p {
   font-size: 1.0625rem;
   line-height: 1.7;
-  color: var(--ink-primary);
+  color: var(--ink-secondary);
   max-width: none;
   margin-bottom: var(--space-4);
 }
@@ -897,12 +949,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   border-top: 1px solid var(--edge-faint);
 }
 .letter__share-title {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  color: var(--ink-quiet);
   margin: 0 0 var(--space-4);
-  font-weight: 500;
 }
 .letter__share-quote {
   font-family: var(--font-display);
@@ -957,13 +1004,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   transform: translateY(-1px);
 }
 .source__status {
-  display: inline-block;
   align-self: flex-start;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  padding: 4px 10px;
-  border-radius: 4px;
   margin-bottom: var(--space-4);
 }
 @media (max-width: 900px) {
@@ -974,7 +1015,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .source--live .source__status {
   color: var(--accent-green);
-  background: rgba(127, 232, 157, 0.1);
+  border-color: rgba(52, 211, 153, 0.35);
 }
 .source--planned {
   border-style: dashed;
@@ -982,7 +1023,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .source--planned .source__status {
   color: var(--accent-warm);
-  background: rgba(232, 165, 92, 0.1);
+  border-color: var(--edge-soft);
 }
 .source--importer {
   border-style: solid;
@@ -991,7 +1032,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .source--importer .source__status {
   color: var(--accent-glow);
-  background: rgba(107, 191, 255, 0.1);
+  border-color: rgba(96, 165, 250, 0.35);
 }
 .source--extend {
   border-color: rgba(157, 127, 232, 0.3);
@@ -999,7 +1040,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .source--extend .source__status {
   color: var(--accent-memory);
-  background: rgba(157, 127, 232, 0.12);
+  border-color: rgba(167, 139, 250, 0.35);
 }
 /* In-development cards — used in #next for horizon pieces (federation,
    kitd, onboarding). Warm amber, same shape as planned, slightly stronger
@@ -1010,8 +1051,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .source--development .source__status {
   color: var(--accent-warm);
-  background: rgba(232, 165, 92, 0.14);
-  letter-spacing: 0.08em;
+  border-color: var(--edge-soft);
 }
 .source__name {
   font-family: var(--font-display);
@@ -1022,7 +1062,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   letter-spacing: -0.01em;
 }
 .source__desc {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: var(--ink-secondary);
   line-height: 1.5;
   margin: 0;
@@ -1031,7 +1071,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   color: var(--accent-warm);
   background: rgba(232, 165, 92, 0.08);
   padding: 0 0.25rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   font-size: 0.875em;
 }
 
@@ -1053,14 +1093,14 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   margin: 0;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   letter-spacing: -0.01em;
   color: var(--ink-primary);
 }
 .peter__body {
   margin: 0;
   color: var(--ink-secondary);
-  font-size: 1rem;
+  font-size: 0.9375rem;
   line-height: 1.6;
 }
 .peter__cta {
@@ -1110,7 +1150,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   color: var(--accent-warm);
   background: rgba(232, 165, 92, 0.08);
   padding: 0 0.25rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   font-size: 0.875em;
 }
 .sovereignty__claim p em {
@@ -1124,7 +1164,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   padding-top: var(--space-3);
   border-top: 1px dashed var(--edge-faint);
   color: var(--ink-quiet) !important;
-  font-size: 0.875rem !important;
+  font-size: 0.9375rem !important;
   font-style: italic;
 }
 /* The strategic-argument paragraph below the four claims. Distinct from
@@ -1176,10 +1216,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   gap: var(--space-2);
 }
 .contact-form__row label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  color: var(--ink-quiet);
+  display: block;
 }
 .contact-form input,
 .contact-form select,
@@ -1255,10 +1292,8 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   margin-top: var(--space-2);
 }
 .contact-form__note {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--ink-quiet);
-  letter-spacing: 0.02em;
 }
 
 /* Inline submit states — success replaces the form, error sits above it
@@ -1275,9 +1310,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .contact-form__status--success h3 {
   margin: 0 0 var(--space-2);
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   letter-spacing: -0.01em;
   color: var(--ink-primary);
 }
@@ -1312,7 +1345,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   max-width: var(--content-max);
   margin: 0 auto;
   color: var(--ink-quiet);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   border-top: 1px solid var(--edge-faint);
   display: flex;
   flex-direction: column;
@@ -1463,29 +1496,17 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   padding: var(--space-6);
   background: var(--bg-card);
   border: 1px solid var(--edge-faint);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
 }
 .in-action__live h3 {
   margin: 0 0 var(--space-3);
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
 }
 .in-action__live p {
   margin: 0;
   color: var(--ink-soft, var(--ink-quiet));
   line-height: 1.65;
 }
-/* Links here must read as links: `a { color: inherit }` is the global
-   default, so without this the one "go and try it" link on the page is
-   the same colour as the prose around it. Matches .post__body a. */
-.in-action__live a,
-.letter__verify a {
-  color: var(--accent-glow);
-  text-decoration: underline;
-  text-decoration-color: var(--edge-soft);
-  text-underline-offset: 0.2em;
-}
-.in-action__live a:hover,
-.letter__verify a:hover { text-decoration-color: var(--accent-glow); }
 
 /* ── Connect your agent (2026-07-26) ─────────────────────────────────
    Per-tool copy-paste snippets for the hosted demo kits. Shares the
@@ -1500,7 +1521,8 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   margin: 0 0 var(--space-4);
 }
 .connect__tab {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
+  font-weight: 500;
   font-size: 0.8125rem;
   padding: 6px 14px;
   border-radius: 999px;
@@ -1524,7 +1546,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   padding-right: 64px; /* room for the copy button */
   background: var(--bg-deep, #0a0e1a);
   border: 1px solid var(--edge-faint);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   line-height: 1.65;
@@ -1539,7 +1561,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   font-family: var(--font-mono);
   font-size: 0.75rem;
   padding: 4px 10px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--edge-faint);
   background: var(--bg-card);
   color: var(--ink-quiet);
@@ -1556,12 +1578,10 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .connect__peer h4 {
   margin: 0 0 var(--space-3);
-  font-size: 0.9375rem;
-  color: var(--accent-warm);
 }
 .connect__peer p {
   margin: 0 0 var(--space-3);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: var(--ink-quiet);
   line-height: 1.65;
 }
@@ -1570,7 +1590,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 .connect__hint,
 .connect__note {
   margin: var(--space-4) 0 0;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: var(--ink-quiet);
   line-height: 1.6;
 }
@@ -1586,7 +1606,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .letter__verify code {
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: 0.875em;
   overflow-wrap: anywhere;
 }
 /* Honest scope under the letter, given the same candour treatment as the
@@ -1609,9 +1629,8 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
    (Codex, VS Code, AnythingLLM, CodeWhale, Antigravity), which is
    deliberate rather than a missing asset. */
 .sub--minor {
-  font-size: 0.9375rem;
-  color: var(--ink-soft, var(--ink));
-  margin: var(--space-7, 32px) 0 var(--space-4, 16px);
+  font-size: 1.125rem;
+  margin: var(--space-8) 0 var(--space-4);
 }
 .surface-strip {
   list-style: none;
@@ -1628,9 +1647,9 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   padding: 9px 14px;
   background: var(--bg-card);
   border: 1px solid var(--edge-faint);
-  border-radius: 10px;
-  font-size: 0.875rem;
-  color: var(--ink-soft, var(--ink));
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+  color: var(--ink-secondary);
   line-height: 1;
 }
 .surface-chip img { display: block; opacity: 0.85; }
@@ -1641,9 +1660,9 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   width: 20px;
   height: 20px;
   border: 1px solid var(--ink-quiet);
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 0.6875rem;
   letter-spacing: 0.02em;
   color: var(--ink-quiet);
   opacity: 0.9;
@@ -1656,7 +1675,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   padding-left: 9px;
 }
 .surface-strip__note {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--ink-quiet);
   line-height: 1.6;
   margin: 0 0 var(--space-6, 24px);
@@ -1683,10 +1702,6 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   border-bottom: 1px solid var(--edge-faint);
 }
 .surface-marquee__label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  color: var(--ink-quiet);
   text-align: center;
   margin: 0 0 var(--space-4, 16px);
 }
@@ -1725,9 +1740,9 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   width: 22px;
   height: 22px;
   border: 1px solid var(--ink-quiet);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 0.6875rem;
   letter-spacing: 0.02em;
   opacity: 0.9;
 }
@@ -1755,12 +1770,11 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
   margin: var(--space-5, 20px) 0 var(--space-4, 16px);
 }
 .install__cta-note {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--ink-quiet);
   max-width: 56ch;
   margin: 0;
 }
-.install__cta-note a { color: var(--ink-secondary); }
 
 /* The homepage keeps the complete implementation record, but first-time
    readers opt into it instead of scrolling through six dense sections. */
@@ -1799,10 +1813,6 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 .deep-dive__action {
   flex: none;
-  color: var(--accent-warm);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.02em;
 }
 .deep-dive__action::before { content: 'Open the deep dive +'; }
 .deep-dive[open] .deep-dive__action::before { content: 'Close the deep dive −'; }
@@ -1862,7 +1872,7 @@ html { scroll-padding-top: 5.5rem; }
 .install-meta {
   margin-top: var(--space-4);
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   color: var(--ink-quiet);
   letter-spacing: 0.02em;
 }
@@ -1870,17 +1880,16 @@ html { scroll-padding-top: 5.5rem; }
   max-width: 54ch;
   margin-top: var(--space-4);
   color: var(--ink-quiet);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   line-height: 1.6;
 }
-#what { scroll-margin-top: 5rem; }
 .steps { counter-reset: step; list-style: none; padding: 0; margin: var(--space-6) 0 0; max-width: var(--reading-max); }
 .steps li {
   counter-increment: step;
   position: relative;
   padding: 0 0 var(--space-6) var(--space-12);
   color: var(--ink-secondary);
-  font-size: 1rem;
+  font-size: 0.9375rem;
   line-height: 1.6;
 }
 .steps li::before {
@@ -1888,7 +1897,7 @@ html { scroll-padding-top: 5.5rem; }
   position: absolute; left: 0; top: -2px;
   width: 2rem; height: 2rem;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-mono); font-size: 0.875rem; color: var(--bg-deep);
+  font-family: var(--font-mono); font-size: 0.75rem; color: var(--bg-deep);
   background: linear-gradient(135deg, var(--accent-glow) 0%, var(--accent-memory) 100%);
   border-radius: 50%;
 }
@@ -1905,21 +1914,15 @@ html { scroll-padding-top: 5.5rem; }
   font-size: 0.9375rem;
   line-height: 1.6;
 }
-.note-card a { color: var(--accent-warm); }
-.req-link { color: var(--accent-glow); text-decoration: none; }
-.req-link:hover { text-decoration: underline; }
 /* Release notes: a growing log, newest first. Calm and short. */
 .releases { max-width: var(--reading-max); margin-top: var(--space-6); }
 .release { padding: var(--space-6) 0; border-top: 1px solid var(--edge-faint); }
 .release:first-child { border-top: 0; }
 .release__head { display: flex; align-items: baseline; gap: var(--space-4); }
 .release__ver { color: var(--ink-primary); font-weight: 600; font-size: 1.0625rem; }
-.release__date { color: var(--ink-quiet); font-family: var(--font-mono); font-size: 0.8125rem; }
+.release__date { color: var(--ink-quiet); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.02em; }
 .release__kind { margin-top: var(--space-4); }
-.release__kind h4 {
-  margin: 0 0 var(--space-2); font-size: 0.75rem; font-weight: 600;
-  letter-spacing: 0.06em; color: var(--accent-warm);
-}
+.release__kind h4 { margin: 0 0 var(--space-2); }
 .release__kind ul { margin: 0; padding-left: 1.1rem; }
 .release__kind li { color: var(--ink-secondary); font-size: 0.9375rem; line-height: 1.55; margin: 4px 0; }
 
@@ -1942,7 +1945,7 @@ html { scroll-padding-top: 5.5rem; }
 .film-meta {
   margin-top: var(--space-4);
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   color: var(--ink-quiet);
   letter-spacing: 0.02em;
   text-align: center;
@@ -1977,12 +1980,12 @@ html { scroll-padding-top: 5.5rem; }
 .chapters button:hover { background: rgba(255, 255, 255, 0.04); color: var(--ink-primary); }
 .chapters .t {
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   color: var(--accent-glow);
   min-width: 3ch;
   font-variant-numeric: tabular-nums;
 }
-.chapters .what { color: var(--ink-quiet); font-size: 0.85rem; margin-left: auto; text-align: right; }
+.chapters .what { color: var(--ink-quiet); font-size: 0.8125rem; margin-left: auto; text-align: right; }
 @media (max-width: 640px) { .chapters .what { display: none; } }
 .made-note {
   max-width: var(--reading-max);
@@ -2009,23 +2012,18 @@ html { scroll-padding-top: 5.5rem; }
 /* Page-local, built on the site tokens. */
 .known { list-style: none; padding: 0; margin: var(--space-6) 0 0; max-width: var(--reading-max); }
 .known li { padding: var(--space-5) 0; border-bottom: 1px solid var(--edge-faint); }
-.known h3 { margin: 0 0 var(--space-2); font-size: 1.0625rem; font-weight: 600; color: var(--ink-primary); }
+.known h3 { margin: 0 0 var(--space-2); font-size: 1.125rem; }
 .known p { margin: 0; color: var(--ink-secondary); font-size: 0.9375rem; line-height: 1.6; }
 .known p + p { margin-top: var(--space-2); }
-.state {
-  display: inline-block; margin-left: var(--space-3); vertical-align: middle;
-  font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.04em;
-  border: 1px solid var(--edge-faint); border-radius: 999px; padding: 1px 8px;
-  color: var(--accent-warm); white-space: nowrap;
-}
-.state--next { color: var(--accent-glow); }
-.asof { color: var(--ink-quiet); font-size: 0.875rem; margin-top: var(--space-3); }
+.state { margin-left: var(--space-3); vertical-align: middle; }
+.state--next { color: var(--accent-glow); border-color: rgba(96, 165, 250, 0.35); }
+.asof { color: var(--ink-quiet); font-size: 0.8125rem; margin-top: var(--space-3); }
 .known__advice { max-width: var(--reading-max); margin-top: var(--space-8); }
 
 /* supported/index.html */
 /* Page-local touches, built on the site tokens. */
 .group { margin-top: var(--space-8); }
-.group__lead { max-width: var(--reading-max); color: var(--ink-secondary); font-size: 1rem; line-height: 1.6; }
+.group__lead { max-width: var(--reading-max); color: var(--ink-secondary); font-size: 1.0625rem; line-height: 1.6; }
 .tool-list { list-style: none; padding: 0; margin: var(--space-6) 0 0; max-width: var(--reading-max); }
 .tool {
   display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-6);
@@ -2034,17 +2032,10 @@ html { scroll-padding-top: 5.5rem; }
 }
 .tool__main { min-width: 0; }
 .tool__name { color: var(--ink-primary); font-weight: 600; font-size: 1.0625rem; }
-.tool__desc { color: var(--ink-quiet); font-size: 0.9rem; line-height: 1.5; margin-top: 2px; }
-.tool__link { color: var(--accent-glow); text-decoration: none; font-size: 0.9rem; white-space: nowrap; flex: 0 0 auto; }
-.tool__link:hover { text-decoration: underline; }
-.pill {
-  display: inline-block; margin-left: var(--space-3);
-  font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.04em;
-  color: var(--accent-warm); border: 1px solid var(--edge-faint); border-radius: 999px;
-  padding: 1px 8px; vertical-align: middle;
-}
-.req-link { color: var(--accent-warm); text-decoration: none; }
-.req-link:hover { text-decoration: underline; }
+.tool__desc { color: var(--ink-quiet); font-size: 0.8125rem; line-height: 1.5; margin-top: 2px; }
+.tool__link { color: var(--accent-glow); font-size: 0.9375rem; white-space: nowrap; flex: 0 0 auto; text-decoration: underline; text-decoration-color: var(--edge-soft); text-underline-offset: 0.2em; }
+.tool__link:hover { text-decoration-color: currentColor; }
+.pill { margin-left: var(--space-3); vertical-align: middle; }
 
 /* 404.html */
 .notfound {
@@ -2061,19 +2052,12 @@ html { scroll-padding-top: 5.5rem; }
   z-index: 2;
 }
 .notfound svg { color: var(--accent-warm); filter: drop-shadow(0 0 16px rgba(232,165,92,0.4)); margin-bottom: var(--space-6); }
-.notfound h1 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
-  letter-spacing: -0.02em;
-  margin: 0 0 var(--space-4);
-}
+.notfound h1 { margin: 0 0 var(--space-4); }
 .notfound__code {
   font-family: var(--font-mono);
   color: var(--ink-quiet);
-  font-size: 0.8125rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
   margin-bottom: var(--space-8);
 }
 .notfound p {
@@ -2088,17 +2072,3 @@ html { scroll-padding-top: 5.5rem; }
   justify-content: center;
   margin-top: var(--space-8);
 }
-.notfound a.btn--primary {
-  text-decoration: none;
-  display: inline-block;
-}
-.notfound a.btn--ghost {
-  text-decoration: none;
-  padding: var(--space-3) var(--space-6);
-  color: var(--ink-primary);
-  font-weight: 500;
-  border: 1px solid var(--edge-soft);
-  border-radius: var(--radius-sm);
-  font-size: 0.9375rem;
-}
-.notfound a.btn--ghost:hover { border-color: var(--accent-glow); color: var(--accent-glow); }
