@@ -477,7 +477,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   width: 100%;
   aspect-ratio: 16 / 9;
   display: block;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
   background: var(--bg-deep);
 }
@@ -535,13 +535,11 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 .hero__shot {
   margin: 0;
   position: relative;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   overflow: hidden;
   background: var(--bg-card);
   border: 1px solid var(--edge-faint);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    0 0 48px rgba(107, 191, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 .hero__shot img {
   width: 100%;
@@ -552,9 +550,9 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 /* Generic screenshot figures — used inline in sections */
 .shot {
   margin: var(--space-8) 0 var(--space-4);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  background: var(--bg-card);
+  background: var(--bg-soft);
   border: 1px solid var(--edge-faint);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   max-width: 100%;
@@ -605,18 +603,41 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   border-radius: 1px;
 }
 
-/* Cards — the memory-card style echoes the brain UI */
+/* Three panel families (10 September 2026). A card lives in a grid and has
+   a title: bg-card, faint edge, 14px radius. A note is an aside in the flow
+   of text with a 3px rail whose colour says what kind of aside it is: 10px
+   radius. A panel holds an object (video, audio, code, a contents list):
+   bg-soft, 20px radius. Every bordered box on the site is one of the three. */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--edge-faint);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--space-6);
-  transition: transform var(--t-medium), border-color var(--t-medium), box-shadow var(--t-medium);
+  transition: transform var(--t-medium), border-color var(--t-medium);
 }
 .card:hover {
   transform: translateY(-2px);
   border-color: var(--edge-soft);
-  box-shadow: var(--glow-blue);
+}
+.note {
+  background: var(--bg-card);
+  border: 1px solid var(--edge-faint);
+  border-left: 3px solid var(--accent-warm);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-6);
+  color: var(--ink-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+.note--dream { border-left-color: var(--accent-memory); }
+.note--live { border-left-color: var(--accent-green); }
+.note--info { border-left-color: var(--accent-glow); }
+.note--quiet { border-left-color: var(--ink-quiet); color: var(--ink-quiet); font-style: italic; }
+.panel {
+  background: var(--bg-soft);
+  border: 1px solid var(--edge-faint);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5) var(--space-6);
 }
 .card__tag {
   display: inline-block;
@@ -660,11 +681,9 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 }
 .proof-step {
   border: 1px solid var(--edge-faint);
-  border-radius: var(--radius-md);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0)),
-    var(--bg-card);
-  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  padding: var(--space-6);
 }
 .proof-step__num {
   font-family: var(--font-mono);
@@ -723,9 +742,9 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   display: block;
   width: 100%;
   height: auto;
-  border-radius: var(--radius-lg, 14px);
-  border: 1px solid var(--line-soft, rgba(255, 255, 255, 0.08));
-  background: var(--surface-sunken, #0b1017);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--edge-faint);
+  background: var(--bg-deep);
 }
 .note-strip__film figcaption {
   margin-top: var(--space-3);
@@ -756,7 +775,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 .stack__col {
   background: var(--bg-card);
   border: 1px solid var(--edge-faint);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--space-6);
 }
 .stack__col h3 {
@@ -846,7 +865,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 }
 .arch__layer {
   padding: var(--space-4) var(--space-6);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   background: var(--bg-card);
   border: 1px solid var(--edge-faint);
   display: grid;
@@ -935,10 +954,12 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   font-size: 1.0625rem;
   line-height: 1.6;
   color: var(--ink-primary);
-  border-left: 2px solid var(--accent-warm);
-  padding: var(--space-3) 0 var(--space-3) var(--space-5);
+  background: var(--bg-card);
+  border: 1px solid var(--edge-faint);
+  border-left: 3px solid var(--accent-warm);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-6);
   margin: 0 0 var(--space-5);
-  background: linear-gradient(90deg, rgba(232, 165, 92, 0.04) 0%, transparent 80%);
 }
 .letter__share-close {
   font-size: 0.9375rem;
@@ -971,8 +992,8 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 .source {
   background: var(--bg-card);
   border: 1px solid var(--edge-faint);
-  border-radius: var(--radius-md);
-  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
   position: relative;
   transition: border-color var(--t-medium), transform var(--t-medium);
   display: flex;
@@ -996,37 +1017,17 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   color: var(--accent-green);
   border-color: rgba(52, 211, 153, 0.35);
 }
-.source--planned {
-  border-style: dashed;
-  opacity: 0.78;
-}
 .source--planned .source__status {
   color: var(--accent-warm);
   border-color: var(--edge-soft);
-}
-.source--importer {
-  border-style: solid;
-  border-color: rgba(107, 191, 255, 0.22);
-  opacity: 0.92;
 }
 .source--importer .source__status {
   color: var(--accent-glow);
   border-color: rgba(96, 165, 250, 0.35);
 }
-.source--extend {
-  border-color: rgba(157, 127, 232, 0.3);
-  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(157, 127, 232, 0.05) 100%);
-}
 .source--extend .source__status {
   color: var(--accent-memory);
   border-color: rgba(167, 139, 250, 0.35);
-}
-/* In-development cards — used in #next for horizon pieces (federation,
-   kitd, onboarding). Warm amber, same shape as planned, slightly stronger
-   presence so the roadmap reads as intention, not wishlist. */
-.source--development {
-  border-color: rgba(232, 165, 92, 0.4);
-  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(232, 165, 92, 0.06) 100%);
 }
 .source--development .source__status {
   color: var(--accent-warm);
@@ -1059,11 +1060,12 @@ p.eyebrow { margin: 0 0 var(--space-3); }
    copy, not a separate section. */
 .peter {
   margin-top: var(--space-8);
-  padding: var(--space-8);
+  padding: var(--space-6) var(--space-8);
   border: 1px solid var(--edge-faint);
   border-left: 3px solid var(--accent-warm);
   border-radius: var(--radius-md);
-  background: linear-gradient(90deg, rgba(232, 165, 92, 0.05) 0%, transparent 80%);
+  background: var(--bg-card);
+  max-width: var(--reading-max);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -1094,23 +1096,15 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   margin-top: var(--space-8);
 }
 .sovereignty__claim {
-  padding: var(--space-6);
-  border-left: 2px solid var(--accent-glow);
-  background: linear-gradient(90deg, rgba(107, 191, 255, 0.04) 0%, transparent 80%);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-5) var(--space-6);
+  background: var(--bg-card);
+  border: 1px solid var(--edge-faint);
+  border-left: 3px solid var(--accent-glow);
+  border-radius: var(--radius-md);
 }
-.sovereignty__claim:nth-child(2) {
-  border-left-color: var(--accent-memory);
-  background: linear-gradient(90deg, rgba(157, 127, 232, 0.04) 0%, transparent 80%);
-}
-.sovereignty__claim:nth-child(3) {
-  border-left-color: var(--accent-warm);
-  background: linear-gradient(90deg, rgba(232, 165, 92, 0.04) 0%, transparent 80%);
-}
-.sovereignty__claim:nth-child(4) {
-  border-left-color: var(--accent-green);
-  background: linear-gradient(90deg, rgba(127, 232, 157, 0.04) 0%, transparent 80%);
-}
+.sovereignty__claim:nth-child(2) { border-left-color: var(--accent-memory); }
+.sovereignty__claim:nth-child(3) { border-left-color: var(--accent-warm); }
+.sovereignty__claim:nth-child(4) { border-left-color: var(--accent-green); }
 .sovereignty__claim h3 {
   margin: 0 0 var(--space-3);
   font-family: var(--font-display);
@@ -1151,14 +1145,15 @@ p.eyebrow { margin: 0 0 var(--space-3); }
    want the why, not just the what. */
 .sovereignty__moat {
   margin-top: var(--space-12);
-  padding: var(--space-6) var(--space-8);
-  border-left: 2px solid var(--accent-warm);
-  background: linear-gradient(90deg, rgba(232, 165, 92, 0.06) 0%, transparent 80%);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-5) var(--space-6);
+  background: var(--bg-card);
+  border: 1px solid var(--edge-faint);
+  border-left: 3px solid var(--accent-warm);
+  border-radius: var(--radius-md);
   color: var(--ink-secondary);
   font-size: 0.9375rem;
   line-height: 1.6;
-  max-width: 48rem;
+  max-width: var(--reading-max);
 }
 .sovereignty__moat strong {
   color: var(--ink-primary);
@@ -1201,7 +1196,7 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   color: var(--ink-primary);
   background: var(--bg-card);
   border: 1px solid var(--edge-faint);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   padding: var(--space-3) var(--space-4);
   transition: border-color var(--t-fast), box-shadow var(--t-fast);
   width: 100%;
@@ -1280,8 +1275,8 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   max-width: var(--reading-max);
 }
 .contact-form__status--success {
-  border: 1px solid rgba(127, 232, 157, 0.3);
-  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(127, 232, 157, 0.06) 100%);
+  border: 1px solid var(--edge-faint);
+  background: var(--bg-card);
   border-left: 3px solid var(--accent-green);
 }
 .contact-form__status--success h3 {
@@ -1296,8 +1291,8 @@ p.eyebrow { margin: 0 0 var(--space-3); }
   font-size: 0.9375rem;
 }
 .contact-form__status--error {
-  border: 1px solid rgba(232, 127, 127, 0.35);
-  background: rgba(232, 127, 127, 0.06);
+  border: 1px solid var(--edge-faint);
+  background: var(--bg-card);
   border-left: 3px solid rgba(232, 127, 127, 0.8);
   color: var(--ink-secondary);
   font-size: 0.9375rem;
@@ -1558,8 +1553,8 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 }
 .connect__peer p:last-child { margin-bottom: 0; }
 
-.connect__hint,
-.connect__note {
+.in-action__live .connect__hint,
+.in-action__live .connect__note {
   margin: var(--space-4) 0 0;
   font-size: 0.9375rem;
   color: var(--ink-quiet);
@@ -1921,7 +1916,7 @@ html { scroll-padding-top: 5.5rem; }
 .film-wrap video {
   display: block;
   width: 100%;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--edge-faint);
   background: var(--bg-deep);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
@@ -1939,8 +1934,8 @@ html { scroll-padding-top: 5.5rem; }
   margin: var(--space-8) 0 0;
   max-width: 45rem;
   border: 1px solid var(--edge-faint);
-  border-radius: var(--radius-md);
-  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  background: var(--bg-soft);
   overflow: hidden;
 }
 .chapters li { border-bottom: 1px solid var(--edge-faint); }

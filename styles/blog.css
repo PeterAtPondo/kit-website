@@ -63,7 +63,7 @@ main { padding-top: 5rem; }
   margin-bottom: var(--space-8);
   padding: var(--space-6);
   border: 1px solid var(--edge-faint);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   background: var(--bg-soft);
 }
 .blog-guide__intro h2 {
@@ -361,11 +361,10 @@ main { padding-top: 5rem; }
    identity; the public label stays "narrated by Kit". */
 .post__audio {
   margin: 0 0 var(--space-8);
-  padding: 18px 20px;
-  background: var(--bg-card);
-  border: 1px solid rgba(167, 139, 250, 0.22);
-  border-radius: var(--radius-md);
-  box-shadow: var(--glow-blue);
+  padding: var(--space-5) var(--space-6);
+  background: var(--bg-soft);
+  border: 1px solid var(--edge-faint);
+  border-radius: var(--radius-xl);
 }
 .post__audio-label {
   display: flex;
@@ -450,7 +449,6 @@ main { padding-top: 5rem; }
   padding: var(--space-2) 0 var(--space-2) var(--space-5);
   color: var(--ink-secondary);
   font-style: italic;
-  background: linear-gradient(90deg, rgba(232, 165, 92, 0.04), transparent);
 }
 .post__body blockquote p:last-child { margin-bottom: 0; }
 .post__body ul, .post__body ol {
@@ -468,7 +466,7 @@ main { padding-top: 5rem; }
   margin: 0 0 var(--space-8);
   padding: var(--space-5) var(--space-6);
   border: 1px solid var(--edge-faint);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-xl);
   background: var(--bg-soft);
 }
 .post__toc h2 {
@@ -520,7 +518,7 @@ main { padding-top: 5rem; }
   padding: var(--space-6);
   background: var(--bg-soft);
   border: 1px solid var(--edge-faint);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-xl);
 }
 .post__diagram svg { width: 100%; height: auto; display: block; }
 .post__diagram figcaption {
@@ -885,11 +883,12 @@ main { padding-top: 5rem; }
    marked aside says what changed and when. Preserves the record while
    stopping a reader from acting on something no longer true. */
 .post__editor-note {
-  margin: var(--space-5, 20px) 0;
-  padding: 14px 18px;
-  border-left: 2px solid var(--accent-warm);
-  background: rgba(232, 165, 92, 0.06);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin: var(--space-5) 0;
+  padding: var(--space-4) var(--space-5);
+  background: var(--bg-card);
+  border: 1px solid var(--edge-faint);
+  border-left: 3px solid var(--accent-warm);
+  border-radius: var(--radius-md);
   font-size: 0.9375rem;
   line-height: 1.6;
   color: var(--ink-quiet, #8b95af);
