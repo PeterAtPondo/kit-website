@@ -1,16 +1,13 @@
 {
-  "version": "0.2.357",
-  "url": "https://kit-project.com/downloads/Kit-0.2.357-macOS.dmg",
+  "version": "0.2.358",
+  "url": "https://kit-project.com/downloads/Kit-0.2.358-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "5d3431b940945e22d8a5d17f6869a11e04f9828b26297b6bdb1671858bafba56",
+  "sha256": "70c52ef9ae0bf69f32df4462edc529fc4b0f52e12cd7d02927eb440040c73d60",
   "notes": [
-    "One Claude switch connects or disconnects Code and Desktop together, while preserving connections to other Kits.",
-    "Installed desktop tools, including Codex, are recognised before they create their first profile folder. You can complete setup with any one supported surface.",
-    "The Lantern refreshes memories while you browse and when you return.",
-    "Nightly memory maintenance recovers more reliably after interruptions and can continue when a slow step times out.",
-    "Scheduled backups wait for active imports and use a consistent snapshot, so new memories cannot cause misleading restore-check failures.",
-    "Routine label formatting is tidied automatically. Names that need more context stay separate, without asking you to manage technical merges.",
-    "Logs and support diagnostics use limited storage, and older settings snapshots are cleaned up conservatively."
+    "Nightly tidying no longer dies partway through: a pass that folds duplicate tags asked the database a question it could not answer, and every deep cycle that found a tag worth folding stopped there.",
+    "The health page stops reporting a fault it already knows may be fixed. A problem found before Kit last restarted now reads as unknown rather than counting against your Kit's health, and clears itself on the next cycle.",
+    "Health buttons say when they cannot act. \"Run a dream now\" is shown disabled, with the reason and the phase, while a cycle is already running, instead of answering \"already dreaming\" after you press it.",
+    "Health rows now say which cycle they are about and when it finished, so a report about last night stops reading as a claim about right now."
   ]
 }

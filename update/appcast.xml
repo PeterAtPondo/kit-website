@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.357</title>
-      <pubDate>Thu, 10 Sep 2026 12:35:21 -0000</pubDate>
-      <sparkle:version>0.2.357</sparkle:version>
-      <sparkle:shortVersionString>0.2.357</sparkle:shortVersionString>
+      <title>0.2.358</title>
+      <pubDate>Thu, 10 Sep 2026 15:24:11 -0000</pubDate>
+      <sparkle:version>0.2.358</sparkle:version>
+      <sparkle:shortVersionString>0.2.358</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>One Claude switch connects or disconnects Code and Desktop together, while preserving connections to other Kits.</li><li>Installed desktop tools, including Codex, are recognised before they create their first profile folder. You can complete setup with any one supported surface.</li><li>The Lantern refreshes memories while you browse and when you return.</li><li>Nightly memory maintenance recovers more reliably after interruptions and can continue when a slow step times out.</li><li>Scheduled backups wait for active imports and use a consistent snapshot, so new memories cannot cause misleading restore-check failures.</li><li>Routine label formatting is tidied automatically. Names that need more context stay separate, without asking you to manage technical merges.</li><li>Logs and support diagnostics use limited storage, and older settings snapshots are cleaned up conservatively.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.357-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="z6n7EJ+1QibrYvxHKaECxkVjC0P2sUipnXx335GXCzxplXzO17/J1dRIclWuzkR2WRCpLPp2OL+d06HK/36fDA==" length="14957065"/>
+      <description><![CDATA[<ul><li>Nightly tidying no longer dies partway through: a pass that folds duplicate tags asked the database a question it could not answer, and every deep cycle that found a tag worth folding stopped there.</li><li>The health page stops reporting a fault it already knows may be fixed. A problem found before Kit last restarted now reads as unknown rather than counting against your Kit&#x27;s health, and clears itself on the next cycle.</li><li>Health buttons say when they cannot act. &quot;Run a dream now&quot; is shown disabled, with the reason and the phase, while a cycle is already running, instead of answering &quot;already dreaming&quot; after you press it.</li><li>Health rows now say which cycle they are about and when it finished, so a report about last night stops reading as a claim about right now.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.358-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="wUTWrmccMuQLmmlQobYLaJe0lZBQ/Ko37fBHb7EnV4q0Yfyi4MFXZIrflLE8jsds+OIbH9RPSxezmG2xwgXKCg==" length="14960592"/>
     </item>
   </channel>
 </rss>

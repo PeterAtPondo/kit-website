@@ -315,6 +315,23 @@
 
       <article class="release">
         <div class="release__head">
+          <span class="release__ver">0.2.358</span>
+          <span class="release__date">September 2026</span>
+        </div>
+        <div class="release__kind">
+          <h4>What changed</h4>
+          <ul>
+            <li>Nightly tidying no longer dies partway through: a pass that folds duplicate tags asked the database a question it could not answer, and every deep cycle that found a tag worth folding stopped there.</li>
+            <li>The health page stops reporting a fault it already knows may be fixed. A problem found before Kit last restarted now reads as unknown rather than counting against your Kit&#x27;s health, and clears itself on the next cycle.</li>
+            <li>Health buttons say when they cannot act. &quot;Run a dream now&quot; is shown disabled, with the reason and the phase, while a cycle is already running, instead of answering &quot;already dreaming&quot; after you press it.</li>
+            <li>Health rows now say which cycle they are about and when it finished, so a report about last night stops reading as a claim about right now.</li>
+          </ul>
+        </div>
+      </article>
+
+
+      <article class="release">
+        <div class="release__head">
           <span class="release__ver">0.2.357</span>
           <span class="release__date">September 2026</span>
         </div>
