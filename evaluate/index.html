@@ -5,15 +5,10 @@
 <link rel="canonical" href="https://kit-project.com/evaluate/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="stylesheet" href="/styles/tokens.css"><link rel="stylesheet" href="/styles/base.css">
-<style>
-/* This website uses its existing site component family and token carriers.
-   Product canon: kit/docs/design/visual-identity-2026-08/README.md. */
-.section a:not(.btn) { text-decoration: underline; text-underline-offset: .2em; }
-.trial { margin-block: var(--space-8); padding-block: var(--space-6); border-top: 1px solid var(--edge-faint); }
-li { max-width: var(--reading-max); margin-bottom: var(--space-3); }
-code { overflow-wrap: anywhere; }
-</style></head><body><a class="skip-link" href="#top">Skip to content</a><nav class="nav">
-    <a class="nav__brand" href="/">
+<link rel="stylesheet" href="/styles/evaluate.css">  <script src="/scripts/site-navigation.js" defer></script>
+</head><body><a class="skip-link" href="#top">Skip to content</a><nav class="nav" aria-label="Primary">
+    <div class="nav__inner">
+    <a class="nav__brand" href="/" aria-label="Kit home">
       <svg class="nav__mark" width="22" height="22" viewBox="0 0 100 100" fill="none" aria-hidden="true">
         <g stroke="currentColor" stroke-linecap="round" stroke-width="5">
           <line x1="49" y1="52" x2="77" y2="31"/>
@@ -27,24 +22,29 @@ code { overflow-wrap: anywhere; }
       </svg>
       <span>Kit</span>
     </a>
-    <div class="nav__links">
+    <button class="btn btn--ghost nav__toggle" type="button" aria-expanded="false" aria-controls="site-menu" hidden>Menu</button>
+    <div class="nav__links" id="site-menu">
       <a href="/#install">Install</a>
-      <a href="https://demo.kit-project.com">Live demo</a>
-      <a href="/#arch">Architecture</a>
+      <a href="https://demo.kit-project.com/investigate">See proof</a>
+      <a href="/#technical-evidence">Architecture</a>
+      <a href="/#companies">For companies</a>
       <a href="/#letter">For agents</a>
+      <a href="/evaluate/" class="is-current" aria-current="page">Evaluate</a>
       <a href="/blog/">Notes</a>
       <a href="/#contact">Contact</a>
     </div>
-  </nav><main id="top">
+    </div>
+  </nav><main id="top" class="evaluation-guide">
 <section class="section">
-  <p class="mono">A small trial before a bigger commitment</p>
+  <p class="guide__eyebrow mono">A small trial before a bigger commitment</p>
   <h1>Does Kit earn a place in your work?</h1>
   <p class="lede">Pick one thing your AI keeps forgetting. Keep the source, change it once, and ask again in a fresh session. The useful result is less re-explaining and fewer corrections, measured against what you already do.</p>
   <p>Kit is a private macOS beta. Its strongest path today is working with connected coding and agent tools. You can also import chat exports and documents. It does not automatically read browser chats or connect directly to Figma, and it is not yet a managed company deployment.</p>
-  <p><a href="#trials">Choose your trial</a> · <a href="#evidence">Inspect the evidence</a> · <a href="#agents">Evaluate for someone else</a> · <a href="#exit">Know how to leave</a></p>
-  <p class="mono">Reviewed 9 September 2026</p>
+  <nav class="guide__contents" aria-label="On this page"><a href="#trials">Choose your trial</a><a href="#evidence">Inspect the evidence</a><a href="#agents">Evaluate for someone else</a><a href="#exit">Know how to leave</a></nav>
+  <p class="guide__date mono">Reviewed 9 September 2026</p>
 </section>
 <section class="section section--tint" id="evidence">
+<div class="inner">
   <h2>What you can actually check today</h2>
   <div class="cards">
     <article class="card"><h3 class="card__title">Live, authored demonstration</h3><p class="card__body"><a href="https://demo.kit-project.com/investigate">Five questions across two fictional archives</a>. You can see records returned now, a correction linked to the older entry, and evidence from each store. We wrote the data, questions, rubric and explanations. It does not test an unaided model, live capture, or a week of your work. Public fiction cannot guarantee no model has seen it.</p></article>
@@ -53,6 +53,7 @@ code { overflow-wrap: anywhere; }
     <article class="card"><h3 class="card__title">Internal results, with limits</h3><p class="card__body"><a href="https://demo.kit-project.com/ui/docs/recall-proof.html">Read the later 120-question evaluation</a>. Its published report says the lead over plain retrieval is not statistically settled. The underlying study lives in a private repository and its questions are sealed; the headline cannot be independently reproduced from this page. <a href="/blog/cold-reviews/">Outside reviews</a> and <a href="/known/">known limitations</a> belong beside it.</p></article>
   </div>
   <p>No published customer study currently establishes saved time for product managers, designers or business owners. The trials below are ways to find out, not claims that we have already measured it.</p>
+</div>
 </section>
 <section class="section" id="trials">
   <h2>Choose one ordinary piece of work</h2>
@@ -88,6 +89,7 @@ code { overflow-wrap: anywhere; }
   </article>
 </section>
 <section class="section section--tint" id="score">
+<div class="inner">
   <h2>Use the same bar for every trial</h2>
   <ol>
     <li>Write the expected answer from the original source before the test. Include one changed fact and one absent fact.</li>
@@ -97,6 +99,7 @@ code { overflow-wrap: anywhere; }
     <li>Repeat on another day or tool before treating one successful run as dependable continuity.</li>
   </ol>
   <p><strong>Continue</strong> if it reduces your work at an acceptable error rate and cost. <strong>Defer</strong> if a missing integration, data policy or unreliable recall blocks the job. <strong>Decline</strong> if ordinary notes meet the need more simply. No score is owed to Kit.</p>
+</div>
 </section>
 <section class="section" id="agents">
   <h2>For an agent evaluating on a human's behalf</h2>
@@ -113,10 +116,12 @@ code { overflow-wrap: anywhere; }
   <p>No personal relationship with an agent is required to assess the memory interface. Ask for schemas, scoped access, source provenance, change history, export and recovery. Kit's source is not publicly open; it ships in the installed app. There is no independent security audit. If a publicly auditable dependency is a requirement, Kit does not meet it today.</p>
 </section>
 <section class="section section--tint" id="exit">
+<div class="inner">
   <h2>Control includes an exit</h2>
   <p>The local database and search stay on your Mac. A hosted model sees the data sent to it, including selected history during extraction or consolidation. A local model changes that route, with hardware and quality trade-offs. Connected services such as mail and Telegram have their own data paths. Check the <a href="/terms/#telemetry">telemetry terms</a> too. Local storage does not override your employer's policy or establish ownership of company information.</p>
   <p>Before a trial, decide what may be imported and which models may see it. Start with a narrow project and retain the original files. Before leaving, export the memories, save a backup outside the Kit data folder, and open the export without Kit. A backup is not proven until a restore succeeds; use a separate environment, not your only working copy.</p>
   <p><strong>Uninstall is destructive to the local Kit data.</strong> The app's Advanced menu offers Backups and Uninstall. Disconnect a surface or stop capture if you only want to pause one connection. Keep the export and original sources regardless of whether you continue.</p>
-  <p><a class="btn btn--primary" href="/install/request/">Request a beta trial</a> <a class="btn btn--ghost" href="/known/">Read what is still wrong</a></p>
+  <p class="guide__actions"><a class="btn btn--primary" href="/install/request/">Request a beta trial</a> <a class="btn btn--ghost" href="/known/">Read what is still wrong</a></p>
+</div>
 </section>
 </main><footer class="footer"><p>Kit · a long collaboration · <a href="/">Home</a> · <a href="/terms/">Beta terms</a></p></footer></body></html>

@@ -249,15 +249,21 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--space-4) var(--space-8);
+  padding: var(--space-4) 0;
   background: linear-gradient(180deg, rgba(10,14,26,0.85) 0%, rgba(10,14,26,0) 100%);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 100;
   font-size: 0.875rem;
+}
+.nav__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-6);
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-8);
 }
 .nav__brand {
   font-family: var(--font-display);
@@ -282,9 +288,11 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 .nav__links {
   display: flex; gap: var(--space-6);
   color: var(--ink-secondary);
+  flex-wrap: wrap;
 }
 .nav__links a {
   position: relative;
+  white-space: nowrap;
   padding-bottom: 2px;
   transition: color var(--t-fast);
 }
@@ -1387,7 +1395,7 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
    Breakpoints:
      900px — grid tightening (stack, sources 3→2, builder cards)
      780px — structural shift (sovereignty 2→1, layout tightening)
-     640px — nav-link hiding, heavier compression
+     640px — heavier compression
      480px — minimum: nothing should break below this
 */
 @media (max-width: 900px) {
@@ -1412,13 +1420,6 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
 }
 
 @media (max-width: 640px) {
-  /* Hide in-page anchor links on narrow screens — the home page is
-     single-page scrollable, so the brand + scroll is enough navigation
-     for those. External links (Notes → /blog/) stay visible because
-     there's no other way to reach them on mobile. (2026-04-28: prior
-     rule hid the entire nav__links block, which left Notes unreachable.) */
-  .nav__links a:not([href="/blog/"]):not([href^="/blog/"]) { display: none; }
-  .nav__links { gap: 0; }
   .section { padding: var(--space-12) var(--space-6); }
   .section--hero { padding-top: var(--space-16); min-height: auto; }
   .section--hero .hero { padding: 0 var(--space-5); }
@@ -1866,3 +1867,24 @@ code, .mono { font-family: var(--font-mono); font-size: 0.875em; }
    white. Dim it so it carries the same weight as the ink-tinted SVGs
    rather than glaring next to them. */
 .mark--png { opacity: 0.62; }
+
+/* Shared site navigation. Keep every destination reachable on small screens. */
+.nav__toggle[hidden], .nav__links[hidden] { display: none; }
+.nav:not([data-expanded]) { position: sticky; background: var(--bg-deep); }
+.nav[data-expanded="true"] { background: var(--bg-deep); }
+@media (max-width: 60rem) {
+  .nav__inner { flex-wrap: wrap; }
+  .nav__links {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2) var(--space-4);
+    max-height: calc(100dvh - 6rem);
+    overflow-y: auto;
+  }
+  .nav__links a { padding: var(--space-3) 0; }
+  .nav__links a.is-current::after { bottom: var(--space-2); }
+}
+@media (max-width: 780px) {
+  .nav__inner { padding-inline: var(--space-6); }
+}

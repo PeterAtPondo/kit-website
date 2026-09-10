@@ -1,0 +1,51 @@
+/* Site component family and tokens: kit/docs/design/visual-identity-2026-08/README.md. */
+.evaluation-guide [id] { scroll-margin-top: var(--space-24); }
+.evaluation-guide .section { padding-block: var(--space-16); }
+.evaluation-guide .section:first-child { padding-top: var(--space-24); }
+.evaluation-guide h1, .evaluation-guide h2, .evaluation-guide h3 {
+  max-width: var(--reading-max);
+  text-wrap: balance;
+}
+.evaluation-guide .section--tint { padding-inline: 0; }
+.evaluation-guide p, .evaluation-guide li { color: var(--ink-secondary); }
+.evaluation-guide strong { color: var(--ink-primary); }
+.evaluation-guide a:not(.btn) {
+  color: var(--accent-glow);
+  text-decoration: underline;
+  text-decoration-color: var(--edge-soft);
+  text-underline-offset: .2em;
+}
+.evaluation-guide a:not(.btn):hover { text-decoration-color: currentColor; }
+.evaluation-guide .guide__eyebrow { color: var(--accent-warm); }
+.evaluation-guide .guide__date { color: var(--ink-quiet); }
+.guide__contents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  max-width: var(--reading-max);
+  margin-block: var(--space-6);
+}
+.evaluation-guide .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: var(--space-8); }
+.trial {
+  max-width: var(--reading-max);
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--edge-faint);
+}
+.evaluation-guide ol {
+  max-width: var(--reading-max);
+  padding-left: var(--space-6);
+  margin-block: var(--space-6);
+}
+.evaluation-guide li { margin-bottom: var(--space-3); }
+.evaluation-guide code { overflow-wrap: anywhere; }
+.guide__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-8); }
+@media (max-width: 780px) {
+  .evaluation-guide .section { padding-block: var(--space-12); }
+  .evaluation-guide .section:first-child { padding-top: var(--space-24); }
+  .evaluation-guide .section--tint > .inner { padding-inline: var(--space-6); }
+}
+@media (max-width: 640px) {
+  .evaluation-guide { font-size: 1rem; }
+  .evaluation-guide .cards { grid-template-columns: minmax(0, 1fr); }
+}

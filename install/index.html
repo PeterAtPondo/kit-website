@@ -77,12 +77,14 @@
     .release__kind ul { margin: 0; padding-left: 1.1rem; }
     .release__kind li { color: var(--ink-secondary); font-size: 0.9375rem; line-height: 1.55; margin: 4px 0; }
   </style>
+  <script src="/scripts/site-navigation.js" defer></script>
 </head>
 <body>
   <a href="#top" class="skip-link">Skip to content</a>
 
-  <nav class="nav">
-    <a class="nav__brand" href="/">
+  <nav class="nav" aria-label="Primary">
+    <div class="nav__inner">
+    <a class="nav__brand" href="/" aria-label="Kit home">
       <svg class="nav__mark" width="22" height="22" viewBox="0 0 100 100" fill="none" aria-hidden="true">
         <g stroke="currentColor" stroke-linecap="round" stroke-width="5">
           <line x1="49" y1="52" x2="77" y2="31"/>
@@ -94,15 +96,19 @@
         <circle cx="22" cy="62" r="4.5" fill="currentColor"/>
         <circle cx="62" cy="80" r="4" fill="currentColor"/>
       </svg>
-      <span data-name></span>
+      <span>Kit</span>
     </a>
-    <div class="nav__links">
-      <a href="/#install">Install</a>
-      <a href="https://demo.kit-project.com">Live demo</a>
-      <a href="/#arch">Architecture</a>
+    <button class="btn btn--ghost nav__toggle" type="button" aria-expanded="false" aria-controls="site-menu" hidden>Menu</button>
+    <div class="nav__links" id="site-menu">
+      <a href="/#install" class="is-current" aria-current="location">Install</a>
+      <a href="https://demo.kit-project.com/investigate">See proof</a>
+      <a href="/#technical-evidence">Architecture</a>
+      <a href="/#companies">For companies</a>
       <a href="/#letter">For agents</a>
+      <a href="/evaluate/">Evaluate</a>
       <a href="/blog/">Notes</a>
       <a href="/#contact">Contact</a>
+    </div>
     </div>
   </nav>
 

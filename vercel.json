@@ -23,5 +23,7 @@
       "source": "/beta",
       "destination": "/api/beta-roster"
     }
-  ]
+  ],
+  "buildCommand": "node scripts/sync-navigation.mjs --check",
+  "outputDirectory": "."
 }
