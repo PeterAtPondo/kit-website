@@ -1,11 +1,11 @@
 {
-  "version": "0.2.366",
-  "url": "https://kit-project.com/downloads/Kit-0.2.366-macOS.dmg",
+  "version": "0.2.367",
+  "url": "https://kit-project.com/downloads/Kit-0.2.367-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "ff24b2695bb73dcb70c40d6ced11ee7a0224507301daef763cd4e17328a7fe1a",
+  "sha256": "0bbe40104c135d06ea33433ffee9c7d875998cbdf0b530c4a95965e86fa3b936",
   "notes": [
-    "Your kit's nightly enrichment works through its whole backlog instead of rereading the same notes. It took the oldest unenriched notes each night, and a note with no people or topics in it stayed unenriched after reading, so the same notes led every night's batch and the queue barely moved. Notes it has not read yet now go first.",
-    "The health card that says memories are waiting for enrichment counts only notes your kit has not read yet, and no longer counts its own bookkeeping. On one kit 3620 of the 5101 it reported were receipts from the conflict checker, not memories."
+    "Your kit's nightly enrichment now runs for a time rather than a count. It measures how fast your model is going and stops at the batch that would take it past its share of the night: 10, 20 or 30 minutes, depending on your Sleep Quality setting. A fast model clears its whole backlog in one night, and a slow one gets a steady, bounded share.",
+    "The dream output card no longer blames the dream when a young kit consolidates nothing. Consolidation only revisits memories that have faded, and a kit a few months old has nothing faded yet. The card now warns only when memories are waiting and the night read none of them."
   ]
 }
