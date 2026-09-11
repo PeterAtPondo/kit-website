@@ -1,11 +1,12 @@
 {
-  "version": "0.2.369",
-  "url": "https://kit-project.com/downloads/Kit-0.2.369-macOS.dmg",
+  "version": "0.2.370",
+  "url": "https://kit-project.com/downloads/Kit-0.2.370-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "b34aae507987ffd16bbd42a4fb53d0525d3fcc4041406fe1f6c0b2a8b5e1b5f3",
+  "sha256": "a17cea55b5ae46311628b7ab22185a3247d639a813ea69c96565c8e6b14ae46b",
   "notes": [
     "Saving a model on the AI key card now sticks. If your kit's model had ever been removed, saving a new one said it was saved, but your kit's jobs stayed without a model and the card read not set again after a restart. The save now gives every job the model you chose, and the card remembers it when you reopen your kit.",
-    "An update that lands while your kit is reading your history no longer reports a crash. The reading is paused, recorded as interrupted, and carries on from where it stopped when your kit starts again."
+    "An update that lands while your kit is reading your history no longer reports a crash. The reading is paused, recorded as interrupted, and carries on from where it stopped when your kit starts again.",
+    "In Claude Code, Cursor and other tools, the card for a save shows a firefly circling while your kit decides what to keep, and a save that never reached your kit now says nothing was saved instead of spinning for good."
   ]
 }
