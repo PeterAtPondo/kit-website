@@ -1,13 +1,11 @@
 {
-  "version": "0.2.368",
-  "url": "https://kit-project.com/downloads/Kit-0.2.368-macOS.dmg",
+  "version": "0.2.369",
+  "url": "https://kit-project.com/downloads/Kit-0.2.369-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "eccdb463b0b3f23107d3f12b7068124102acdca4522b92934096b8518a7cb995",
+  "sha256": "b34aae507987ffd16bbd42a4fb53d0525d3fcc4041406fe1f6c0b2a8b5e1b5f3",
   "notes": [
-    "The dreaming screen tells you how long is left, in plain minutes, worked out from how long each stage took on your kit last time. Underneath, one bar shows every stage of the night at its usual length, in four chapters: Tidying, Settling, Dreaming and Checking. The five labels that did not line up with anything are gone.",
-    "A stage that usually takes a while says so, so a long wait reads as expected rather than stuck. A step that fails turns amber on the bar and the screen says the night carried on without it.",
-    "While your kit dreams, a green line shows something it just did. When the night ends, the bar fills, your kit's morning line appears with a few facts about the night, and it stays until you press Done.",
-    "Opening a past night from Activity now leads with your kit's own morning line and the same bar, drawn to what actually happened, with the longest stretches named. The phase cards and the full stage list sit behind Every stage, and the model details behind Raw details."
+    "Saving a model on the AI key card now sticks. If your kit's model had ever been removed, saving a new one said it was saved, but your kit's jobs stayed without a model and the card read not set again after a restart. The save now gives every job the model you chose, and the card remembers it when you reopen your kit.",
+    "An update that lands while your kit is reading your history no longer reports a crash. The reading is paused, recorded as interrupted, and carries on from where it stopped when your kit starts again."
   ]
 }
