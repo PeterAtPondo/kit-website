@@ -28,8 +28,19 @@ process.env.SUPABASE_SERVICE_ROLE_KEY = "test-service-key";
 // upsert: a POST with merge-duplicates writes on id and leaves columns absent
 // from the body alone, so rows merge rather than replace.
 const table = new Map();
+// The history table beside it (2026-09-11): every heartbeat appends a row,
+// and a store without the table answers 404 the way PostgREST does.
+const pings = [];
+let historyTable = true;
 globalThis.fetch = async (input, init = {}) => {
   const url = String(input);
+  if (url.startsWith(`${DB_URL}/rest/v1/beta_install_pings`)) {
+    if (!historyTable) return Response.json({ code: "PGRST205", message: "Could not find the table" }, { status: 404 });
+    const method = (init.method ?? "GET").toUpperCase();
+    if (method === "POST") { pings.push(...JSON.parse(init.body)); return new Response(null, { status: 204 }); }
+    if (method === "DELETE") return new Response(null, { status: 204 });
+    return Response.json(pings);
+  }
   if (url.startsWith(`${DB_URL}/rest/v1/beta_installs`)) {
     if ((init.method ?? "GET").toUpperCase() === "POST") {
       for (const row of JSON.parse(init.body)) {
@@ -152,6 +163,54 @@ await check("an honest crash record reaches the feed row whole", async () => {
   const row = await feedRow("honest@example.com");
   assert.deepEqual(row.debug.last_failure, HONEST_CRASH);
   assert.equal(row.debug.runtime, "native");
+});
+
+await check("every heartbeat leaves one history row, flattened to counts and kinds", async () => {
+  await heartbeat({
+    email: "history@example.com",
+    app_version: "0.2.370",
+    stack_version: "0.2.370",
+    debug: {
+      runtime: "native",
+      native_processes: [{ name: "api", alive: true, restarts: 3 }, { name: "worker", alive: false, restarts: 1 }],
+      health: { overall: "degraded", attention: 2, attention_ids: ["dream.invariants", "llm.lanes"] },
+      dream: { last_completed_age_days: 1.5, consecutive_failures: 1 },
+      last_failure: HONEST_CRASH,
+    },
+  });
+  const id = (await feedRow("history@example.com")).id;
+  const row = pings.find((p) => p.install_id === id);
+  assert.ok(row, "no history row was written");
+  assert.equal(row.overall, "degraded");
+  assert.equal(row.attention, 2);
+  assert.deepEqual(row.attention_ids, ["dream.invariants", "llm.lanes"]);
+  assert.equal(row.restarts, 4);
+  assert.equal(row.dead_processes, 1);
+  assert.equal(row.dream_age_days, 1.5);
+  assert.equal(row.dream_failures, 1);
+  assert.equal(row.crash_kind, "dream_crashed");
+  assert.equal(row.app_version, "0.2.370");
+  assert.equal(row.runtime, "native");
+  assert.ok(!("detail" in row) && !("log_tail" in row), "free text must not reach the history");
+});
+
+await check("a heartbeat with no health block writes a row that says so", async () => {
+  await heartbeat({ email: "quiet@example.com", app_version: "0.2.362", debug: { runtime: "native" } });
+  const quietId = (await feedRow("quiet@example.com")).id;
+  const row = pings.find((p) => p.install_id === quietId);
+  assert.ok(row);
+  assert.equal(row.overall, null);
+  assert.equal(row.attention, null);
+});
+
+await check("a store without the history table still takes the heartbeat", async () => {
+  historyTable = false;
+  const before = pings.length;
+  const res = await heartbeat({ email: "old-store@example.com", app_version: "0.2.300" });
+  historyTable = true;
+  assert.equal(res.statusCode, 204);
+  assert.equal(pings.length, before);
+  await feedRow("old-store@example.com");
 });
 
 await check("a failure carrying no crash record is the shape it always was", async () => {

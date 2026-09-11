@@ -249,6 +249,56 @@ async function upsertInstall(record) {
   return (await post(withoutDebug)).ok;
 }
 
+// History (2026-09-11): one row per heartbeat, so the roster can show what an
+// install has been doing and not only its latest word. The same bounded
+// fields the roster row already holds, flattened; nothing new leaves the
+// machine. Written after the roster row has landed. A missing table is a
+// silent no-op, so an old database never loses a heartbeat to this one, and
+// rows older than 90 days go with each new one, per install.
+const HISTORY_KEEP_DAYS = 90;
+async function recordPing(record) {
+  if (!DB_URL || !DB_KEY) return;
+  const d = record.debug || {};
+  const h = d.health || null;
+  const procs = Array.isArray(d.native_processes) ? d.native_processes : [];
+  const row = {
+    install_id: record.id,
+    seen_at: record.last_seen,
+    app_version: record.app_version ?? null,
+    stack_version: record.stack_version ?? null,
+    runtime: d.runtime ?? null,
+    overall: h ? (h.overall ?? null) : null,
+    attention: h ? (h.attention ?? 0) : null,
+    attention_ids: h && Array.isArray(h.attention_ids) ? h.attention_ids : [],
+    dream_age_days: d.dream?.last_completed_age_days ?? null,
+    dream_failures: d.dream?.consecutive_failures ?? null,
+    restarts: procs.length ? procs.reduce((n, p) => n + (p.restarts || 0), 0) : null,
+    dead_processes: procs.length ? procs.filter((p) => !p.alive).length : null,
+    crash_kind: d.last_failure?.kind ?? null,
+    crash_at: d.last_failure?.at ?? null,
+    update_failure_kind: record.update_failure?.kind ?? null,
+    operator_stopped: d.operator_stopped === true,
+  };
+  const headers = {
+    apikey: DB_KEY,
+    Authorization: `Bearer ${DB_KEY}`,
+    "Content-Type": "application/json",
+    Prefer: "return=minimal",
+  };
+  try {
+    const resp = await fetch(`${DB_URL}/rest/v1/beta_install_pings`, {
+      method: "POST", headers, body: JSON.stringify([row]),
+    });
+    if (!resp.ok) return;
+    const cutoff = new Date(Date.now() - HISTORY_KEEP_DAYS * 86400e3).toISOString();
+    await fetch(`${DB_URL}/rest/v1/beta_install_pings?install_id=eq.${record.id}&seen_at=lt.${encodeURIComponent(cutoff)}`, {
+      method: "DELETE", headers,
+    });
+  } catch {
+    // History is best effort; the roster row is the promise.
+  }
+}
+
 async function readBody(req) {
   if (req.body) return typeof req.body === "string" ? JSON.parse(req.body) : req.body;
   const chunks = [];
@@ -369,7 +419,7 @@ export default async function handler(req, res) {
       record.debug = debug;
     }
 
-    await upsertInstall(record);
+    if (await upsertInstall(record)) await recordPing(record);
 
     // Control channel (2026-08-03, Peter: bugs must surface as found, and
     // fixes must reach opted-in operators without waiting for tomorrow).

@@ -91,6 +91,34 @@ const invites = [
   { id: 6, email: "gone@example.com", label: "old round", created_at: daysAgo(80), expires_at: daysAgo(50), max_uses: 5, uses: 5, last_used_at: daysAgo(70), revoked: true, created_by: "roster", archived_at: daysAgo(3) },
 ];
 
+// History (2026-09-11): a fortnight of heartbeats per install, shaped like
+// the real table. Ludwig is steady, Ian has been degraded for a week and
+// moved version twice, Kat went down two days ago and restarts climb, Roger
+// is stopped and silent, Sam pings without health, Early adopter has none.
+// NO_HISTORY=1 answers the way a store without the table does.
+const HAS_HISTORY = process.env.NO_HISTORY !== "1";
+const ping = (install, d, extra = {}) => ({
+  install_id: install.id, seen_at: daysAgo(d), app_version: install.app_version, stack_version: install.stack_version,
+  runtime: (install.debug || {}).runtime || "docker", overall: null, attention: null, attention_ids: [],
+  dream_age_days: null, dream_failures: null, restarts: null, dead_processes: null,
+  crash_kind: null, crash_at: null, update_failure_kind: null, operator_stopped: false, ...extra,
+});
+const pings = [];
+for (let d = 13; d >= 0; d--) {
+  pings.push(ping(installs[0], d + 0.3, { overall: "ok", attention: 0, restarts: 2, dead_processes: 0, dream_age_days: 0.8 }));
+  if (d % 3 === 0) pings.push(ping(installs[0], d + 0.1, { overall: null }));
+  pings.push(ping(installs[1], d + 0.5, {
+    app_version: d > 9 ? "0.2.196" : d > 4 ? "0.2.198" : "0.2.201", stack_version: "0.2.198",
+    overall: d > 7 ? "ok" : "degraded", attention: d > 7 ? 0 : 2, attention_ids: d > 7 ? [] : ["dream_cycle", "recall_canary"],
+    restarts: 20 + (13 - d), dead_processes: 0, dream_age_days: d > 7 ? 0.5 : 9 - d * 0.2, dream_failures: d > 7 ? 0 : 4,
+    update_failure_kind: d < 4 ? "compose_pull" : null,
+  }));
+  if (d > 1) pings.push(ping(installs[2], d + 0.2, { overall: "ok", attention: 0, restarts: d > 5 ? 3 : 3 + (5 - d) * 2, dead_processes: 0 }));
+  else pings.push(ping(installs[2], d + 0.2, { overall: "down", attention: 1, attention_ids: ["system.native-processes"], restarts: 14, dead_processes: 1, crash_kind: "dream_crash", crash_at: daysAgo(0.2) }));
+  if (d > 8) pings.push(ping(installs[4], d, { overall: null, restarts: 1 }));
+}
+pings.sort((a, b) => Date.parse(a.seen_at) - Date.parse(b.seen_at));
+
 const hostile = (row) => Object.fromEntries(Object.entries(row).map(([k, v]) =>
   [k, typeof v === "string" && k !== "id" ? X : v]));
 
@@ -104,6 +132,10 @@ globalThis.fetch = async (url, init = {}) => {
   if (method !== "GET") {
     console.log(`MUTATE ${method} ${table}${u.search} ${init.body || ""}`);
     return new Response(null, { status: 204 });
+  }
+  if (table.startsWith("beta_install_pings")) {
+    if (!HAS_HISTORY) return json({ code: "PGRST205", message: "Could not find the table 'public.beta_install_pings'" }, 404);
+    return json(HOSTILE ? pings.map(hostile) : pings);
   }
   if (table.startsWith("beta_installs")) return json(HOSTILE ? installs.map(hostile) : installs);
   if (table.startsWith("beta_invites")) {

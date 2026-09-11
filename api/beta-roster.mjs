@@ -176,8 +176,126 @@ function dreamTrouble(r) {
   return "";
 }
 
+// ── History: one row per heartbeat, so an install has a past and not only a
+// latest word (2026-09-11, Peter: the roster read "?" and "unknown" for most
+// installs, with no way to see what each Kit had been doing). Fourteen days,
+// grouped per install, newest last. The table arrives by hand like the
+// archive column did; until it has, the page says so instead of drawing an
+// empty strip that reads as fourteen days of silence.
+const HISTORY_DAYS = 14;
+const PING_COLS = "install_id,seen_at,app_version,stack_version,overall,attention,attention_ids,dream_age_days,dream_failures,restarts,dead_processes,crash_kind,crash_at,update_failure_kind,operator_stopped";
+async function loadPings() {
+  const since = new Date(Date.now() - HISTORY_DAYS * 86400e3).toISOString();
+  const r = await dbRaw(`beta_install_pings?select=${PING_COLS}&seen_at=gte.${encodeURIComponent(since)}&order=seen_at.asc&limit=5000`);
+  const pings = new Map();
+  if (r.ok) {
+    for (const row of r.data || []) {
+      if (!pings.has(row.install_id)) pings.set(row.install_id, []);
+      pings.get(row.install_id).push(row);
+    }
+    return { pings, historyReady: true };
+  }
+  // 404 is PostgREST not knowing the table and 400 its older way of saying
+  // the same; either is the not-yet-migrated store. Anything else is the
+  // store being unwell, and telling him to paste SQL he already pasted would
+  // send him the wrong way.
+  return { pings, historyReady: r.status !== 404 && r.status !== 400 };
+}
+
+// The tone a reading earns, one vocabulary for the pill and the strip. An
+// app reports "unknown" when some of its checks have no evidence yet, which
+// on a quiet Kit is the ordinary state of every dream check until the first
+// dream lands; with nothing degraded it is calm, not amber.
+function toneOf(overall, attention) {
+  const n = Number(attention) || 0;
+  if (overall === "down") return "bad";
+  if (overall === "degraded" || n > 0) return "warn";
+  if (overall === "ok") return "good";
+  return "calm";
+}
+const TONE_RANK = { bad: 3, warn: 2, calm: 1, good: 0 };
+function labelOf(overall, attention) {
+  const n = Number(attention) || 0;
+  if (!overall) return "no health";
+  if (overall === "unknown" && n === 0) return "ok, unconfirmed";
+  return `${overall}${n ? ` ${n}` : ""}`;
+}
+
+// Fourteen cells, one per day, each the worst reading that day. A cell with
+// no heartbeat is empty, which is itself the fact: the app pings daily and on
+// every relaunch, so a gap is a Mac that was closed or a Kit that was not
+// running. A version change is marked on the day it arrived.
+function historyStrip(pings) {
+  const day = 86400e3;
+  const today = Math.floor(Date.now() / day);
+  const cells = Array.from({ length: HISTORY_DAYS }, (_, i) => ({ day: today - (HISTORY_DAYS - 1 - i), rank: -1, tone: "", n: 0, notes: [], versions: new Set() }));
+  const byDay = new Map(cells.map((c) => [c.day, c]));
+  let lastVersion = null;
+  for (const p of pings) {
+    const c = byDay.get(Math.floor(Date.parse(p.seen_at) / day));
+    if (!c) continue;
+    c.n += 1;
+    if (p.overall) {
+      const tone = toneOf(p.overall, p.attention);
+      if (TONE_RANK[tone] > c.rank) { c.rank = TONE_RANK[tone]; c.tone = tone; }
+      c.notes.push(labelOf(p.overall, p.attention) + (Array.isArray(p.attention_ids) && p.attention_ids.length ? `: ${p.attention_ids.join(", ")}` : ""));
+    } else {
+      if (c.rank < 0) { c.rank = 0; c.tone = "none"; }
+      c.notes.push("no health in this heartbeat");
+    }
+    // A mark is a move, so the first version seen in the window is not one.
+    if (p.app_version && lastVersion !== null && p.app_version !== lastVersion) c.versions.add(p.app_version);
+    if (p.app_version) lastVersion = p.app_version;
+    if (p.crash_kind) c.notes.push(`crash: ${p.crash_kind}`);
+  }
+  const W = 9, G = 3, H = 14;
+  const rects = cells.map((c, i) => {
+    const x = i * (W + G);
+    const date = new Date(c.day * day).toISOString().slice(5, 10);
+    const title = c.n
+      ? `${date} · ${c.n} heartbeat${c.n === 1 ? "" : "s"} · ${[...new Set(c.notes)].join("; ")}${c.versions.size ? ` · app ${[...c.versions].join(", ")}` : ""}`
+      : `${date} · no heartbeat`;
+    const mark = c.versions.size ? `<rect class="ver" x="${x}" y="0" width="${W}" height="2"/>` : "";
+    return `<g><title>${esc(title)}</title><rect class="cell ${c.n ? c.tone || "none" : "empty"}" x="${x}" y="3" width="${W}" height="${H - 3}" rx="1.5"/>${mark}</g>`;
+  });
+  return `<svg class="strip14" width="${HISTORY_DAYS * (W + G) - G}" height="${H}" viewBox="0 0 ${HISTORY_DAYS * (W + G) - G} ${H}" aria-label="last ${HISTORY_DAYS} days">${rects.join("")}</svg>`;
+}
+
+// The history block under a card: every heartbeat in the window, newest
+// first, and the restart count read as a change rather than a total, because
+// "13 restarts" since some unknown day says less than "+4 this week".
+function historyRow(pings, r) {
+  if (!pings.length) return "";
+  const first = pings[0], last = pings[pings.length - 1];
+  const restartDelta = Number.isFinite(Number(first.restarts)) && Number.isFinite(Number(last.restarts))
+    ? Number(last.restarts) - Number(first.restarts) : null;
+  const versions = [...new Set(pings.map((p) => p.app_version).filter(Boolean))];
+  const bits = [`${pings.length} heartbeat${pings.length === 1 ? "" : "s"} in ${HISTORY_DAYS} days`];
+  if (restartDelta !== null && pings.length > 1) bits.push(restartDelta > 0 ? `${restartDelta} restart${restartDelta === 1 ? "" : "s"} in that time` : "no restarts in that time");
+  if (versions.length > 1) bits.push(`app ${versions.join(" → ")}`);
+  const rows = pings.slice().reverse().slice(0, 40).map((p) => {
+    const ids = Array.isArray(p.attention_ids) ? p.attention_ids : [];
+    const dream = p.dream_age_days !== null && p.dream_age_days !== undefined
+      ? `${esc(p.dream_age_days)}d${Number(p.dream_failures) > 0 ? `, ${esc(p.dream_failures)} failed` : ""}` : "";
+    const trouble = [p.crash_kind ? `crash: ${p.crash_kind}` : "", p.update_failure_kind ? `update: ${p.update_failure_kind}` : "", p.operator_stopped ? "stopped" : ""].filter(Boolean).join(" · ");
+    return `<tr>
+        <td class="sub">${esc(String(p.seen_at).slice(0, 16).replace("T", " "))}</td>
+        <td class="sub">${esc(p.app_version || "?")}${p.stack_version && p.stack_version !== p.app_version ? ` / ${esc(p.stack_version)}` : ""}</td>
+        <td><span class="pill ${p.overall ? toneOf(p.overall, p.attention) : "calm"}">${esc(labelOf(p.overall, p.attention))}</span>${ids.length ? ` <span class="sub">${ids.map(esc).join(", ")}</span>` : ""}</td>
+        <td class="sub">${dream}</td>
+        <td class="sub">${esc(p.restarts ?? "")}${Number(p.dead_processes) > 0 ? ` <span class="bit bad">${esc(p.dead_processes)} down</span>` : ""}</td>
+        <td class="sub">${esc(trouble)}</td>
+      </tr>`;
+  }).join("");
+  return `<tr><td colspan="9" class="hist"><details>
+      <summary>${esc(bits.join(" · "))}</summary>
+      <table class="histtable"><thead><tr><th>When (UTC)</th><th>App / stack</th><th>Health</th><th>Last dream</th><th>Restarts</th><th></th></tr></thead>
+      <tbody>${rows}</tbody></table>
+    </details></td></tr>`;
+}
+
 function page(rows, invites, opts = {}) {
-  const { minted = null, showArchived = false, archiveReady = true } = opts;
+  const { minted = null, showArchived = false, archiveReady = true, pings = new Map(), historyReady = true } = opts;
 
   const body = rows.length
     ? rows
@@ -200,15 +318,23 @@ function page(rows, invites, opts = {}) {
           // Health, in its own column, because it is the thing worth scanning
           // a list of installs for. The count was all we ever had; the names
           // and the check's own words are what makes it actionable.
-          let healthCell = '<span class="sub">?</span>';
+          // Current health, then the last fortnight under it. A heartbeat
+          // with no health block is an app that pinged before it had read
+          // its own health (every relaunch does), and a "?" for that made
+          // the install look broken; the last reading that did carry health
+          // says more, with its age.
+          const history = pings.get(r.id) || [];
+          let healthCell;
           if (health) {
-            const n = Number(health.attention) || 0;
-            const tone = health.overall === "down" ? "bad"
-              : (health.overall === "degraded" || n > 0) ? "warn"
-              : health.overall === "ok" ? "good"
-              : "calm";
-            healthCell = `<span class="pill ${tone}">${esc(health.overall || "unknown")}${n ? ` ${n}` : ""}</span>`;
+            healthCell = `<span class="pill ${toneOf(health.overall, health.attention)}">${esc(labelOf(health.overall, health.attention))}</span>`;
+          } else {
+            const known = history.filter((p) => p.overall).pop();
+            healthCell = known
+              ? `<span class="pill ${toneOf(known.overall, known.attention)} faded">${esc(labelOf(known.overall, known.attention))}</span> <span class="sub">as of ${esc(ago(known.seen_at))}</span>`
+              : '<span class="pill calm">no health yet</span>';
+            healthCell += '<div class="sub">latest heartbeat carried no health</div>';
           }
+          if (historyReady) healthCell += `<div class="stripwrap">${historyStrip(history)}</div>`;
 
           // Failure evidence the app pushed with its heartbeat: why the
           // update did not land, or what crashed at 03:00, without asking the
@@ -302,7 +428,7 @@ function page(rows, invites, opts = {}) {
       <td class="${stale ? "stale" : ""}">${esc(ago(r.last_seen))}</td>
       <td class="sub">${esc((r.first_seen || "").slice(0, 10))}</td>
       <td><a class="forget" href="?forget=${encodeURIComponent(r.id)}">forget</a></td>
-    </tr>${dbgRow}${checksRow}${failureRow("update", "update failed")}${failureRow("runtime", "crash")}
+    </tr>${dbgRow}${checksRow}${failureRow("update", "update failed")}${failureRow("runtime", "crash")}${historyRow(history, r)}
   </tbody>`;
         })
         .join('\n<tbody class="gap"><tr><td colspan="9"></td></tr></tbody>\n')
@@ -317,6 +443,7 @@ function page(rows, invites, opts = {}) {
     [rows.filter(isSkewed).length, "update not applied", "updates not applied", "warn"],
     [rows.filter((r) => failureOf(r, "update") || failureOf(r, "runtime")).length, "crash reported", "crashes reported", "bad"],
     [rows.filter(isStale).length, "quiet for a week", "quiet for a week", "calm"],
+    [rows.filter((r) => !healthOf(r)).length, "sent no health", "sent no health", "calm"],
     [rows.filter((r) => (debugOf(r) || {}).operator_stopped).length, "stopped by its operator", "stopped by their operators", "calm"],
   ].filter(([n]) => n > 0);
   const strip = `<div class="strip">
@@ -455,14 +582,32 @@ function page(rows, invites, opts = {}) {
   .checklist li:last-child { margin-bottom: 0; }
   .checklist .fix { margin-top: 4px; color: #6ee7b7; }
   .checklist .fix::before { content: "fix: "; color: #64748b; }
+  .pill.faded { opacity: 0.6; }
+  .stripwrap { margin-top: 6px; }
+  .strip14 { display: block; }
+  .strip14 .cell.good  { fill: rgba(52,211,153,0.55); }
+  .strip14 .cell.warn  { fill: rgba(240,184,77,0.65); }
+  .strip14 .cell.bad   { fill: rgba(248,113,113,0.7); }
+  .strip14 .cell.calm  { fill: rgba(148,163,184,0.35); }
+  .strip14 .cell.none  { fill: rgba(148,163,184,0.18); }
+  .strip14 .cell.empty { fill: rgba(148,163,184,0.07); }
+  .strip14 .ver { fill: #e2e8f0; }
+  .hist { padding-top: 0; }
+  .hist summary { cursor: pointer; color: #64748b; font-size: 12px; }
+  .histtable { margin: 8px 0 4px; width: auto; min-width: 0; border-spacing: 0; }
+  .histtable th { padding: 0 14px 4px 0; }
+  .histtable td { padding: 3px 14px 3px 0; background: transparent !important; border: 0 !important; }
 </style></head>
 <body>
   <h1>Beta installs</h1>
-  <p class="lede">A highlighted row means the app updated but the stack did not, so that Kit
-  is running older code than its version says; a red one means its own health checks say it is
-  down. Open a row's summary to read which check is unhappy, in Kit's own words. Forget deletes
-  a row outright, which is how someone comes off this list when they ask.</p>
+  <p class="lede">Health is each Kit's own verdict on itself from its latest heartbeat, with the last
+  fourteen days under it: one cell a day, the worst reading that day, a bar across the top where
+  the app version moved, and nothing where no heartbeat came. Open a card's history for every
+  heartbeat. A highlighted row means the app updated but the stack did not; a red one means its
+  checks say it is down. Forget deletes a row outright, which is how someone comes off this list
+  when they ask.</p>
   ${strip}
+  ${historyReady ? "" : '<p class="lede" style="color:#f0b84d">History needs the beta_install_pings table: paste api/beta_install_pings.sql into the Supabase SQL editor. Until then the page shows only each install\'s latest heartbeat.</p>'}
   <div class="scroller"><table>
     <thead><tr><th>Operator</th><th>Kit</th><th>App</th><th>Stack</th>
     <th>Surfaces</th><th>Health</th><th>Last seen</th><th>Since</th><th></th></tr></thead>
@@ -547,9 +692,12 @@ function sameSecret(a, b) {
 // Everything the page needs, in one place, so the GET path and the POST path
 // cannot drift into showing different things.
 async function render(opts = {}) {
-  const rows = (await db("beta_installs?select=*&order=last_seen.desc")) || [];
-  const { invites, archiveReady } = await loadInvites();
-  return page(rows, invites, { ...opts, archiveReady });
+  const [rows, { invites, archiveReady }, { pings, historyReady }] = await Promise.all([
+    db("beta_installs?select=*&order=last_seen.desc").then((r) => r || []),
+    loadInvites(),
+    loadPings(),
+  ]);
+  return page(rows, invites, { ...opts, archiveReady, pings, historyReady });
 }
 
 export default async function handler(req, res) {
