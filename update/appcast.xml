@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.367</title>
-      <pubDate>Fri, 11 Sep 2026 10:15:28 -0000</pubDate>
-      <sparkle:version>0.2.367</sparkle:version>
-      <sparkle:shortVersionString>0.2.367</sparkle:shortVersionString>
+      <title>0.2.368</title>
+      <pubDate>Fri, 11 Sep 2026 12:47:26 -0000</pubDate>
+      <sparkle:version>0.2.368</sparkle:version>
+      <sparkle:shortVersionString>0.2.368</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Your kit&#x27;s nightly enrichment now runs for a time rather than a count. It measures how fast your model is going and stops at the batch that would take it past its share of the night: 10, 20 or 30 minutes, depending on your Sleep Quality setting. A fast model clears its whole backlog in one night, and a slow one gets a steady, bounded share.</li><li>The dream output card no longer blames the dream when a young kit consolidates nothing. Consolidation only revisits memories that have faded, and a kit a few months old has nothing faded yet. The card now warns only when memories are waiting and the night read none of them.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.367-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="q+HBs5isTyei+Fb1jztnCDB4OHUi1oPvAKIfMcsjxjONzz5ySrdOK150uNZJ2itwqItUVNoaJsIQlJEVNI9eAw==" length="15007782"/>
+      <description><![CDATA[<ul><li>The dreaming screen tells you how long is left, in plain minutes, worked out from how long each stage took on your kit last time. Underneath, one bar shows every stage of the night at its usual length, in four chapters: Tidying, Settling, Dreaming and Checking. The five labels that did not line up with anything are gone.</li><li>A stage that usually takes a while says so, so a long wait reads as expected rather than stuck. A step that fails turns amber on the bar and the screen says the night carried on without it.</li><li>While your kit dreams, a green line shows something it just did. When the night ends, the bar fills, your kit&#x27;s morning line appears with a few facts about the night, and it stays until you press Done.</li><li>Opening a past night from Activity now leads with your kit&#x27;s own morning line and the same bar, drawn to what actually happened, with the longest stretches named. The phase cards and the full stage list sit behind Every stage, and the model details behind Raw details.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.368-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="05wbrrvOXsI2iatHQT7hBqPeViA+jx5LYebsuK9T17oQWo9HKa7lJvrVlf7+60YNdJ9q+nBI88JOqZS5mpN4Bg==" length="15016871"/>
     </item>
   </channel>
 </rss>
