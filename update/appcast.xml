@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.365</title>
-      <pubDate>Fri, 11 Sep 2026 08:54:12 -0000</pubDate>
-      <sparkle:version>0.2.365</sparkle:version>
-      <sparkle:shortVersionString>0.2.365</sparkle:shortVersionString>
+      <title>0.2.366</title>
+      <pubDate>Fri, 11 Sep 2026 09:22:56 -0000</pubDate>
+      <sparkle:version>0.2.366</sparkle:version>
+      <sparkle:shortVersionString>0.2.366</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>The dreaming screen now names the stage your kit is on, where it sits in the night, how long it has been there and anything it lost along the way. The screen was built to show all of this and the server was dropping it on the way out, so every kit watched &quot;Settling what matters&quot; for the whole cycle.</li><li>The housekeeping stages at the start of a night no longer read as Settling. They read as what they are: your kit checking what it filed and recognising the names that keep coming up.</li><li>A history import that an update stopped mid-batch no longer leaves &quot;Generating memories, 2/3&quot; in the menu bar afterwards. Nothing was running, so the menu now says what your kit is actually doing.</li><li>The dreaming screen in the main window now draws the trail of the night: the stages already finished behind, the one running now at the focal point, the rest ahead. It was only ever drawn on a first run before, because the main window had never loaded it.</li><li>A kit on a model that reasons out loud no longer loses its answers to the reasoning. Every question your kit asks its model for a fixed answer, a search intent, a probe question, the morning summary, now asks the model not to think first. On one kit the model spent its whole budget narrating &quot;We need answer user&#x27;s request&quot; and the morning line opened with it; asked not to think, it answers in one line.</li><li>The health page no longer fails outright while a dream is running after a producer failed the night before. The card that names the failed producer and says a cycle is running now had a stray comma in it, and the whole page went down with it.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.365-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="r6eO5gGIojHUcfRMSgoWMwy7HeYF/lS2AXkKXVkUbIzAfxwuyDAWJX/A8toyToWe6EkEB2cvuMrK1turxPu6Cw==" length="15007401"/>
+      <description><![CDATA[<ul><li>Your kit&#x27;s nightly enrichment works through its whole backlog instead of rereading the same notes. It took the oldest unenriched notes each night, and a note with no people or topics in it stayed unenriched after reading, so the same notes led every night&#x27;s batch and the queue barely moved. Notes it has not read yet now go first.</li><li>The health card that says memories are waiting for enrichment counts only notes your kit has not read yet, and no longer counts its own bookkeeping. On one kit 3620 of the 5101 it reported were receipts from the conflict checker, not memories.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.366-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="9nze4rgVfIpqXvKf68gD5D97a69o6jBZN98wOF5njJOog35t4wxTenwO4OovbgFQQK9jIFE1wjaeG3RMnwhtBQ==" length="15006938"/>
     </item>
   </channel>
 </rss>
