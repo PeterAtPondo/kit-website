@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.375</title>
-      <pubDate>Sun, 13 Sep 2026 14:38:36 -0000</pubDate>
-      <sparkle:version>0.2.375</sparkle:version>
-      <sparkle:shortVersionString>0.2.375</sparkle:shortVersionString>
+      <title>0.2.376</title>
+      <pubDate>Sun, 13 Sep 2026 17:33:11 -0000</pubDate>
+      <sparkle:version>0.2.376</sparkle:version>
+      <sparkle:shortVersionString>0.2.376</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>The setup screens have their fireflies back: they drift and light up under your pointer again while you set your kit up, and the sky of your memories takes over when your kit starts reading.</li><li>When you import VS Code history during setup, VS Code is now switched on as a connected tool, the way every other tool already was.</li><li>The update screen&#x27;s title is easier to read over your memories.</li><li>The waking screen links to the walkthrough film again.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.375-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="ynW2gB0EAJ2ZK8zXxWXFkfv9X1v0rPbB+KuR6eCgZJbnpchVCunr81Hl15Q+HDRLTzpzAsOZGwC/2lgayOklAw==" length="15487752"/>
+      <description><![CDATA[<ul><li>Kit&#x27;s cards in your chat are redrawn: every card names your kit, receipts and recalls sit on one line that opens for more, and each card has its own sky of fireflies.</li><li>Your kit&#x27;s wake card now shows how it is doing beside the greeting, with memory, capture and backups each saying when they were last checked.</li><li>The sleep chart on the wake card grows day by day, and a small moon settles on each night, coloured by how the dream went, with last night&#x27;s stages underneath.</li><li>Cards only show buttons and links your chat app can actually use, and a card from earlier in a conversation says so instead of waiting for ever.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.376-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="yNM/4LUsIr/zIZmCOIm+YMZl5YoJgXenMg/x587XuVivNsg4AQ/s2L9E0pWiwlV/LMqLxInhndqI7WmFj8bQCg==" length="15531745"/>
     </item>
   </channel>
 </rss>

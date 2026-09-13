@@ -1,13 +1,13 @@
 {
-  "version": "0.2.375",
-  "url": "https://kit-project.com/downloads/Kit-0.2.375-macOS.dmg",
+  "version": "0.2.376",
+  "url": "https://kit-project.com/downloads/Kit-0.2.376-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "94be7ba11130f56acc3197e1e15009f5020a0ab1eccdc258dd245681a3c9ba62",
+  "sha256": "aea7cfa75f051f89a9bb180c341975cbf3d38c4cc58b2f648a6357298ea8cb68",
   "notes": [
-    "The setup screens have their fireflies back: they drift and light up under your pointer again while you set your kit up, and the sky of your memories takes over when your kit starts reading.",
-    "When you import VS Code history during setup, VS Code is now switched on as a connected tool, the way every other tool already was.",
-    "The update screen's title is easier to read over your memories.",
-    "The waking screen links to the walkthrough film again."
+    "Kit's cards in your chat are redrawn: every card names your kit, receipts and recalls sit on one line that opens for more, and each card has its own sky of fireflies.",
+    "Your kit's wake card now shows how it is doing beside the greeting, with memory, capture and backups each saying when they were last checked.",
+    "The sleep chart on the wake card grows day by day, and a small moon settles on each night, coloured by how the dream went, with last night's stages underneath.",
+    "Cards only show buttons and links your chat app can actually use, and a card from earlier in a conversation says so instead of waiting for ever."
   ]
 }
