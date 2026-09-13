@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.374</title>
-      <pubDate>Sun, 13 Sep 2026 13:34:27 -0000</pubDate>
-      <sparkle:version>0.2.374</sparkle:version>
-      <sparkle:shortVersionString>0.2.374</sparkle:shortVersionString>
+      <title>0.2.375</title>
+      <pubDate>Sun, 13 Sep 2026 14:38:36 -0000</pubDate>
+      <sparkle:version>0.2.375</sparkle:version>
+      <sparkle:shortVersionString>0.2.375</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Your kit wakes on its own sky. When the app opens, your memories gather out of the dark and thread together, a little differently each time.</li><li>The Fireflies views are clearer. Places, People and Entities show every memory that has one, labels stay put and grow readable under your pointer, crowded clusters no longer blow out white, and opening a place regroups what is inside it by topic.</li><li>Filters and search now sit together at the top of the knowledge views, in the app as well as the browser, and a filter dims the connections along with the memories.</li><li>While your kit dreams, the top of the screen says what it is doing and why, and a click opens the dreaming view.</li><li>Your kit keeps one short memory of who you are, and checks each night that it can still find it.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.374-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="4yHPiKMY3lAE0o7lSX4NKkd9lquzTZhd8KQ+45VkmAnUHd+Q1RPznKdr82p8htChVaGTyjjvzOkQBf7V2fVSBg==" length="15487251"/>
+      <description><![CDATA[<ul><li>The setup screens have their fireflies back: they drift and light up under your pointer again while you set your kit up, and the sky of your memories takes over when your kit starts reading.</li><li>When you import VS Code history during setup, VS Code is now switched on as a connected tool, the way every other tool already was.</li><li>The update screen&#x27;s title is easier to read over your memories.</li><li>The waking screen links to the walkthrough film again.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.375-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="ynW2gB0EAJ2ZK8zXxWXFkfv9X1v0rPbB+KuR6eCgZJbnpchVCunr81Hl15Q+HDRLTzpzAsOZGwC/2lgayOklAw==" length="15487752"/>
     </item>
   </channel>
 </rss>

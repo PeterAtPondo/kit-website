@@ -1,14 +1,13 @@
 {
-  "version": "0.2.374",
-  "url": "https://kit-project.com/downloads/Kit-0.2.374-macOS.dmg",
+  "version": "0.2.375",
+  "url": "https://kit-project.com/downloads/Kit-0.2.375-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "0267143addb019230943eb88522d4777373604ad107731c332093ac3b10f5820",
+  "sha256": "94be7ba11130f56acc3197e1e15009f5020a0ab1eccdc258dd245681a3c9ba62",
   "notes": [
-    "Your kit wakes on its own sky. When the app opens, your memories gather out of the dark and thread together, a little differently each time.",
-    "The Fireflies views are clearer. Places, People and Entities show every memory that has one, labels stay put and grow readable under your pointer, crowded clusters no longer blow out white, and opening a place regroups what is inside it by topic.",
-    "Filters and search now sit together at the top of the knowledge views, in the app as well as the browser, and a filter dims the connections along with the memories.",
-    "While your kit dreams, the top of the screen says what it is doing and why, and a click opens the dreaming view.",
-    "Your kit keeps one short memory of who you are, and checks each night that it can still find it."
+    "The setup screens have their fireflies back: they drift and light up under your pointer again while you set your kit up, and the sky of your memories takes over when your kit starts reading.",
+    "When you import VS Code history during setup, VS Code is now switched on as a connected tool, the way every other tool already was.",
+    "The update screen's title is easier to read over your memories.",
+    "The waking screen links to the walkthrough film again."
   ]
 }
