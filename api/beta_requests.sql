@@ -46,7 +46,7 @@ create table if not exists public.beta_requests (
   notes        text,
 
   constraint beta_requests_status_known
-    check (status in ('new', 'notified', 'approved', 'declined', 'failed'))
+    check (status in ('new', 'notified', 'approved', 'declined', 'ignored', 'failed'))
 );
 
 -- The feed reads "what is waiting", so index the way it asks.

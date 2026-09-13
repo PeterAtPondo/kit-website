@@ -202,7 +202,8 @@ async function decide(req, res) {
   // Stamp the clock here rather than trusting a caller's idea of now.
   const now = new Date().toISOString();
   if (patch.status === "notified" && patch.notified_at === undefined) patch.notified_at = now;
-  if ((patch.status === "approved" || patch.status === "declined") && patch.decided_at === undefined) {
+  // "ignored" is a decision too: the operator chose silence for a spam row.
+  if (["approved", "declined", "ignored"].includes(patch.status) && patch.decided_at === undefined) {
     patch.decided_at = now;
   }
 
