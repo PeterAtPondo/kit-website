@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.387</title>
-      <pubDate>Tue, 15 Sep 2026 08:55:53 -0000</pubDate>
-      <sparkle:version>0.2.387</sparkle:version>
-      <sparkle:shortVersionString>0.2.387</sparkle:shortVersionString>
+      <title>0.2.391</title>
+      <pubDate>Tue, 15 Sep 2026 12:19:58 -0000</pubDate>
+      <sparkle:version>0.2.391</sparkle:version>
+      <sparkle:shortVersionString>0.2.391</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Dreams are sturdier: no stage can lose its database connection while it waits on a slow model.</li><li>The conflict queue only shows contradictions that are still open, and old verdicts retire on their own.</li><li>Local only can be turned on with your kit&#x27;s built-in memory model, which never leaves your machine.</li><li>Adding a model in Settings puts it to work on any job that had no model.</li><li>Imports that keep failing now say so, and Retry picks them up again.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.387-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="Vs+0oNkScWuV9/Pahc5DHXMJUuV83RmxkYgjW5ox3XCi9ENJZxMGtEEDipGzj3b56Pw1jzIomsDb4XCDenu9CA==" length="15644782"/>
+      <description><![CDATA[<ul><li>Dreams are quicker and cheaper: the night skips memories it kept this week, links only what is new, and reuses its fixed prompts instead of paying for them again.</li><li>How I slept now says where the night&#x27;s spend went, phase by phase.</li><li>The sleep quality dial names its default level and shows what each level costs.</li><li>Updating your kit shows real progress through every stage, and watching a dream no longer drops you back to the ready page.</li><li>Approval cards on Telegram survive a crash mid delivery, and a gate takes exactly one answer.</li><li>Every release now rehearses a full night before it ships, so a dream that could lose its connection never reaches you.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.391-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="EU0GZ0wux+qcpiMW+Lg0OijRwjatIwq+LUqZ+HGBx/m1zACf6m6DgchdyCTiDLoMg8iUpG4A4slPeugS5A1XDQ==" length="15716086"/>
     </item>
   </channel>
 </rss>

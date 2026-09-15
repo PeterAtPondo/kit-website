@@ -1,14 +1,15 @@
 {
-  "version": "0.2.387",
-  "url": "https://kit-project.com/downloads/Kit-0.2.387-macOS.dmg",
+  "version": "0.2.391",
+  "url": "https://kit-project.com/downloads/Kit-0.2.391-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "2212fab95ee972cb973fe88ddb9aff385bb8b77371063cb7d75608d31c9c71dc",
+  "sha256": "3a06bd94efff7f5357dcc52715e4d38fffc6f4488fc857dd032f92428f79955c",
   "notes": [
-    "Dreams are sturdier: no stage can lose its database connection while it waits on a slow model.",
-    "The conflict queue only shows contradictions that are still open, and old verdicts retire on their own.",
-    "Local only can be turned on with your kit's built-in memory model, which never leaves your machine.",
-    "Adding a model in Settings puts it to work on any job that had no model.",
-    "Imports that keep failing now say so, and Retry picks them up again."
+    "Dreams are quicker and cheaper: the night skips memories it kept this week, links only what is new, and reuses its fixed prompts instead of paying for them again.",
+    "How I slept now says where the night's spend went, phase by phase.",
+    "The sleep quality dial names its default level and shows what each level costs.",
+    "Updating your kit shows real progress through every stage, and watching a dream no longer drops you back to the ready page.",
+    "Approval cards on Telegram survive a crash mid delivery, and a gate takes exactly one answer.",
+    "Every release now rehearses a full night before it ships, so a dream that could lose its connection never reaches you."
   ]
 }
