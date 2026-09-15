@@ -1,13 +1,14 @@
 {
-  "version": "0.2.376",
-  "url": "https://kit-project.com/downloads/Kit-0.2.376-macOS.dmg",
+  "version": "0.2.387",
+  "url": "https://kit-project.com/downloads/Kit-0.2.387-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "aea7cfa75f051f89a9bb180c341975cbf3d38c4cc58b2f648a6357298ea8cb68",
+  "sha256": "2212fab95ee972cb973fe88ddb9aff385bb8b77371063cb7d75608d31c9c71dc",
   "notes": [
-    "Kit's cards in your chat are redrawn: every card names your kit, receipts and recalls sit on one line that opens for more, and each card has its own sky of fireflies.",
-    "Your kit's wake card now shows how it is doing beside the greeting, with memory, capture and backups each saying when they were last checked.",
-    "The sleep chart on the wake card grows day by day, and a small moon settles on each night, coloured by how the dream went, with last night's stages underneath.",
-    "Cards only show buttons and links your chat app can actually use, and a card from earlier in a conversation says so instead of waiting for ever."
+    "Dreams are sturdier: no stage can lose its database connection while it waits on a slow model.",
+    "The conflict queue only shows contradictions that are still open, and old verdicts retire on their own.",
+    "Local only can be turned on with your kit's built-in memory model, which never leaves your machine.",
+    "Adding a model in Settings puts it to work on any job that had no model.",
+    "Imports that keep failing now say so, and Retry picks them up again."
   ]
 }

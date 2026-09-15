@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.376</title>
-      <pubDate>Sun, 13 Sep 2026 17:33:11 -0000</pubDate>
-      <sparkle:version>0.2.376</sparkle:version>
-      <sparkle:shortVersionString>0.2.376</sparkle:shortVersionString>
+      <title>0.2.387</title>
+      <pubDate>Tue, 15 Sep 2026 08:55:53 -0000</pubDate>
+      <sparkle:version>0.2.387</sparkle:version>
+      <sparkle:shortVersionString>0.2.387</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Kit&#x27;s cards in your chat are redrawn: every card names your kit, receipts and recalls sit on one line that opens for more, and each card has its own sky of fireflies.</li><li>Your kit&#x27;s wake card now shows how it is doing beside the greeting, with memory, capture and backups each saying when they were last checked.</li><li>The sleep chart on the wake card grows day by day, and a small moon settles on each night, coloured by how the dream went, with last night&#x27;s stages underneath.</li><li>Cards only show buttons and links your chat app can actually use, and a card from earlier in a conversation says so instead of waiting for ever.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.376-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="yNM/4LUsIr/zIZmCOIm+YMZl5YoJgXenMg/x587XuVivNsg4AQ/s2L9E0pWiwlV/LMqLxInhndqI7WmFj8bQCg==" length="15531745"/>
+      <description><![CDATA[<ul><li>Dreams are sturdier: no stage can lose its database connection while it waits on a slow model.</li><li>The conflict queue only shows contradictions that are still open, and old verdicts retire on their own.</li><li>Local only can be turned on with your kit&#x27;s built-in memory model, which never leaves your machine.</li><li>Adding a model in Settings puts it to work on any job that had no model.</li><li>Imports that keep failing now say so, and Retry picks them up again.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.387-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="Vs+0oNkScWuV9/Pahc5DHXMJUuV83RmxkYgjW5ox3XCi9ENJZxMGtEEDipGzj3b56Pw1jzIomsDb4XCDenu9CA==" length="15644782"/>
     </item>
   </channel>
 </rss>
