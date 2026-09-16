@@ -1,11 +1,12 @@
 {
-  "version": "0.2.395",
-  "url": "https://kit-project.com/downloads/Kit-0.2.395-macOS.dmg",
+  "version": "0.2.396",
+  "url": "https://kit-project.com/downloads/Kit-0.2.396-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "997dbd06fa441534b868070df430d03996120b6a920299571b6f654f0595b58e",
+  "sha256": "6c65fc2748d63badf74c26d48a52dbb716d8373129df1333c86570023de39a15",
   "notes": [
-    "Updating your kit now shows each step by name, keeps moving the whole time, and counts down from what your last update actually took. A step that runs long says so instead of standing still.",
-    "The first wake of a session no longer fails once before it works: your kit's tools stopped advertising defaults that the chat app rejects, so every call lands on the first try."
+    "Kit stays in the Claude app. If Kit had been removed from Claude's settings, it puts itself back, and Connected tools now tells you plainly when something is missing instead of showing a tick.",
+    "While Kit is updating or dreaming, clicking its Dock icon or menu brings you back to that screen instead of opening Kit halfway through, and quitting mid-update asks first.",
+    "Kit no longer switches off a tool that is still working, and never deletes Claude's own settings file."
   ]
 }
