@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.396</title>
-      <pubDate>Wed, 16 Sep 2026 13:59:06 -0000</pubDate>
-      <sparkle:version>0.2.396</sparkle:version>
-      <sparkle:shortVersionString>0.2.396</sparkle:shortVersionString>
+      <title>0.2.397</title>
+      <pubDate>Wed, 16 Sep 2026 14:23:32 -0000</pubDate>
+      <sparkle:version>0.2.397</sparkle:version>
+      <sparkle:shortVersionString>0.2.397</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Kit stays in the Claude app. If Kit had been removed from Claude&#x27;s settings, it puts itself back, and Connected tools now tells you plainly when something is missing instead of showing a tick.</li><li>While Kit is updating or dreaming, clicking its Dock icon or menu brings you back to that screen instead of opening Kit halfway through, and quitting mid-update asks first.</li><li>Kit no longer switches off a tool that is still working, and never deletes Claude&#x27;s own settings file.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.396-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="9a9HorfY3W/Pk11jT5IbIRmombI6KqLlJ51zvBIDMAfMAkYuI+11x8Gq+Wsl+JVc78tHUqjXDGtkWJtu6U+gDg==" length="15873513"/>
+      <description><![CDATA[<ul><li>While Kit is updating, its menu bar icon and status line say so, and Show update progress takes you straight back to the update screen.</li><li>Everything from 0.2.396 is here too: Kit stays in the Claude app, and the Dock and menu no longer open Kit halfway through an update.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.397-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="HV4fTzR2Ozyl7M+ZULcHBuqdS/SmVkw5szkDa4yUMroEzVUCGkBI/ANbYnmEDlR91Pr4VDfBpL5UK1aZ/JtxAw==" length="15876024"/>
     </item>
   </channel>
 </rss>
