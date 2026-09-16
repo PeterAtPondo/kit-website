@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.391</title>
-      <pubDate>Tue, 15 Sep 2026 12:19:58 -0000</pubDate>
-      <sparkle:version>0.2.391</sparkle:version>
-      <sparkle:shortVersionString>0.2.391</sparkle:shortVersionString>
+      <title>0.2.394</title>
+      <pubDate>Wed, 16 Sep 2026 08:42:19 -0000</pubDate>
+      <sparkle:version>0.2.394</sparkle:version>
+      <sparkle:shortVersionString>0.2.394</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Dreams are quicker and cheaper: the night skips memories it kept this week, links only what is new, and reuses its fixed prompts instead of paying for them again.</li><li>How I slept now says where the night&#x27;s spend went, phase by phase.</li><li>The sleep quality dial names its default level and shows what each level costs.</li><li>Updating your kit shows real progress through every stage, and watching a dream no longer drops you back to the ready page.</li><li>Approval cards on Telegram survive a crash mid delivery, and a gate takes exactly one answer.</li><li>Every release now rehearses a full night before it ships, so a dream that could lose its connection never reaches you.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.391-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="EU0GZ0wux+qcpiMW+Lg0OijRwjatIwq+LUqZ+HGBx/m1zACf6m6DgchdyCTiDLoMg8iUpG4A4slPeugS5A1XDQ==" length="15716086"/>
+      <description><![CDATA[<ul><li>Your kit no longer queues two memories about different things as a conflict, and when a newer memory plainly updates an older one it settles that on the spot instead of waiting for the night.</li><li>Your kit now reads long notes all the way through when it learns who and what they mention, not just their opening.</li><li>Recall no longer tells your agents there is no answer when the answer is right in front of them.</li><li>Your kit&#x27;s soul keeps growing on models that like to think first; before, it could quietly write nothing.</li><li>Imports finish faster and each night costs less, with recall held where it was.</li><li>The night drops a stage that only wrote to a log, and the dream bar no longer shows it.</li><li>The nightly sleep report is no longer mistaken for a memory that could contradict your others.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.394-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="iy8ddoAO5c0+X7wlM0lZ8+6roTvkt4sV/G9YWQFG4xTtDUWh4t3kklbeFD43oXglbOoa6Xq3LrrC7wtB+bBCDA==" length="15705401"/>
     </item>
   </channel>
 </rss>

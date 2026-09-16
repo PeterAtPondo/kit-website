@@ -1,15 +1,16 @@
 {
-  "version": "0.2.391",
-  "url": "https://kit-project.com/downloads/Kit-0.2.391-macOS.dmg",
+  "version": "0.2.394",
+  "url": "https://kit-project.com/downloads/Kit-0.2.394-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "3a06bd94efff7f5357dcc52715e4d38fffc6f4488fc857dd032f92428f79955c",
+  "sha256": "2bc096c6111733a00ebe586aacdfdce8875aff8033457719c64b6bcbbe90077c",
   "notes": [
-    "Dreams are quicker and cheaper: the night skips memories it kept this week, links only what is new, and reuses its fixed prompts instead of paying for them again.",
-    "How I slept now says where the night's spend went, phase by phase.",
-    "The sleep quality dial names its default level and shows what each level costs.",
-    "Updating your kit shows real progress through every stage, and watching a dream no longer drops you back to the ready page.",
-    "Approval cards on Telegram survive a crash mid delivery, and a gate takes exactly one answer.",
-    "Every release now rehearses a full night before it ships, so a dream that could lose its connection never reaches you."
+    "Your kit no longer queues two memories about different things as a conflict, and when a newer memory plainly updates an older one it settles that on the spot instead of waiting for the night.",
+    "Your kit now reads long notes all the way through when it learns who and what they mention, not just their opening.",
+    "Recall no longer tells your agents there is no answer when the answer is right in front of them.",
+    "Your kit's soul keeps growing on models that like to think first; before, it could quietly write nothing.",
+    "Imports finish faster and each night costs less, with recall held where it was.",
+    "The night drops a stage that only wrote to a log, and the dream bar no longer shows it.",
+    "The nightly sleep report is no longer mistaken for a memory that could contradict your others."
   ]
 }
