@@ -1,16 +1,11 @@
 {
-  "version": "0.2.394",
-  "url": "https://kit-project.com/downloads/Kit-0.2.394-macOS.dmg",
+  "version": "0.2.395",
+  "url": "https://kit-project.com/downloads/Kit-0.2.395-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "2bc096c6111733a00ebe586aacdfdce8875aff8033457719c64b6bcbbe90077c",
+  "sha256": "997dbd06fa441534b868070df430d03996120b6a920299571b6f654f0595b58e",
   "notes": [
-    "Your kit no longer queues two memories about different things as a conflict, and when a newer memory plainly updates an older one it settles that on the spot instead of waiting for the night.",
-    "Your kit now reads long notes all the way through when it learns who and what they mention, not just their opening.",
-    "Recall no longer tells your agents there is no answer when the answer is right in front of them.",
-    "Your kit's soul keeps growing on models that like to think first; before, it could quietly write nothing.",
-    "Imports finish faster and each night costs less, with recall held where it was.",
-    "The night drops a stage that only wrote to a log, and the dream bar no longer shows it.",
-    "The nightly sleep report is no longer mistaken for a memory that could contradict your others."
+    "Updating your kit now shows each step by name, keeps moving the whole time, and counts down from what your last update actually took. A step that runs long says so instead of standing still.",
+    "The first wake of a session no longer fails once before it works: your kit's tools stopped advertising defaults that the chat app rejects, so every call lands on the first try."
   ]
 }
