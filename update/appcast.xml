@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.397</title>
-      <pubDate>Wed, 16 Sep 2026 14:23:32 -0000</pubDate>
-      <sparkle:version>0.2.397</sparkle:version>
-      <sparkle:shortVersionString>0.2.397</sparkle:shortVersionString>
+      <title>0.2.398</title>
+      <pubDate>Wed, 16 Sep 2026 19:47:54 -0000</pubDate>
+      <sparkle:version>0.2.398</sparkle:version>
+      <sparkle:shortVersionString>0.2.398</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>While Kit is updating, its menu bar icon and status line say so, and Show update progress takes you straight back to the update screen.</li><li>Everything from 0.2.396 is here too: Kit stays in the Claude app, and the Dock and menu no longer open Kit halfway through an update.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.397-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="HV4fTzR2Ozyl7M+ZULcHBuqdS/SmVkw5szkDa4yUMroEzVUCGkBI/ANbYnmEDlR91Pr4VDfBpL5UK1aZ/JtxAw==" length="15876024"/>
+      <description><![CDATA[<ul><li>Switching Claude off in Connected tools now stays off. If something keeps Kit connected, such as an open Claude Code session, the switch says where instead of ticking and turning itself back on.</li><li>Switching a tool off takes out only this Kit&#x27;s instructions, so another Kit&#x27;s guidance and your own notes in the same file stay put.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.398-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="hRn6gRnHSwe0w2ADZTyyq35TtO/QltLWRMQV4OVjjR09ujEezfadOgnlzNcIRH2TS4xnIP8J65FjYVDtySgyDA==" length="15884684"/>
     </item>
   </channel>
 </rss>

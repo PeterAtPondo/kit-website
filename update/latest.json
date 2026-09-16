@@ -1,11 +1,11 @@
 {
-  "version": "0.2.397",
-  "url": "https://kit-project.com/downloads/Kit-0.2.397-macOS.dmg",
+  "version": "0.2.398",
+  "url": "https://kit-project.com/downloads/Kit-0.2.398-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "7b0e8a396f1b267ca4c6d1339cc385389a5aba981e1a2e4394b54e5e4df91fae",
+  "sha256": "dd81dd42d4eef6a19af8aa5d2a5beb7514fddaa53a3eff7b5832801504b019d9",
   "notes": [
-    "While Kit is updating, its menu bar icon and status line say so, and Show update progress takes you straight back to the update screen.",
-    "Everything from 0.2.396 is here too: Kit stays in the Claude app, and the Dock and menu no longer open Kit halfway through an update."
+    "Switching Claude off in Connected tools now stays off. If something keeps Kit connected, such as an open Claude Code session, the switch says where instead of ticking and turning itself back on.",
+    "Switching a tool off takes out only this Kit's instructions, so another Kit's guidance and your own notes in the same file stay put."
   ]
 }
