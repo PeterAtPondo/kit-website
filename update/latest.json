@@ -1,17 +1,10 @@
 {
-  "version": "0.2.402",
-  "url": "https://kit-project.com/downloads/Kit-0.2.402-macOS.dmg",
+  "version": "0.2.403",
+  "url": "https://kit-project.com/downloads/Kit-0.2.403-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "a5362017d2941ec27b6f2e6f88348fa3dd0a143a5d67ed11a78898ae50020883",
+  "sha256": "65c943d2fdfc29fe5248c5c7826e80d73a224fa7af2483a78abb846b99f7802e",
   "notes": [
-    "Every conversation is in one list on the left of the chat: your chats with your kit, Telegram, and the sessions you held in Claude Code, Codex or Cursor, each marked with its tool. You can reach it from the orb too, with Open past chats.",
-    "If your models run on your own server, Local only can now include it once you confirm it is yours, with a clear note that the connection to it is your responsibility.",
-    "The model you pick in the app now moves every one of your kit's jobs with it, and a newer OpenAI model no longer fails in chat.",
-    "Health and Activity are rebuilt: Health shows only what needs you, and Activity names each session by its call sign.",
-    "Memories filters fold away until you want them and now visibly dim the fireflies they leave out, the window drags and resizes smoothly, and pages show their shape while they load.",
-    "Renaming your kit in Who your kit is now reaches the window, the menus and the app around the page, and the stack rename is offered only where it applies.",
-    "A long conversation opens at the most recent messages and loads older ones as you scroll.",
-    "An import that stopped partway is offered the import again rather than a full night's sleep, and Health shows what the last night did however you reach it."
+    "Renaming your kit now reaches the app around the page. The menu, the window title and the name a restart reads take the new name, and an app that was closed or on an older build when you renamed adopts it the next time it starts."
   ]
 }
