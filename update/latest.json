@@ -1,12 +1,14 @@
 {
-  "version": "0.2.400",
-  "url": "https://kit-project.com/downloads/Kit-0.2.400-macOS.dmg",
+  "version": "0.2.401",
+  "url": "https://kit-project.com/downloads/Kit-0.2.401-macOS.dmg",
   "page": "https://kit-project.com/install/",
   "min_macos": "13.0",
-  "sha256": "ee6e1bc4f5710823e29a2ef06c5c6712a1dd615851ce0e6b03f715455f74b9be",
+  "sha256": "75c707481292bef307c547f8a915b02a8870f7cbf6bbb1118c835d1c33739371",
   "notes": [
-    "Your kit sounds like the same person in the app and on Telegram, and the memories an answer came from now sit as footnotes underneath it instead of in the middle of sentences.",
-    "When your kit has no memories about something yet, it says so plainly and invites you to tell it, so it can remember for next time.",
-    "Starting a job shows its card straight away, so anything waiting for your approval is on screen from the first moment."
+    "Every conversation is in one list on the left of the chat: your chats with your kit, Telegram, and the sessions you held in Claude Code, Codex or Cursor, each marked with its tool. You can reach it from the orb too, with Open past chats.",
+    "If your models run on your own server, Local only can now include it once you confirm it is yours, with a clear note that the connection to it is your responsibility.",
+    "The model you pick in the app now moves every one of your kit's jobs with it, and a newer OpenAI model no longer fails in chat.",
+    "Health and Activity are rebuilt: Health shows only what needs you, and Activity names each session by its call sign.",
+    "Memories filters fold away until you want them and now visibly dim the fireflies they leave out, the window drags and resizes smoothly, and pages show their shape while they load."
   ]
 }
