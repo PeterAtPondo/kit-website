@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.401</title>
-      <pubDate>Thu, 17 Sep 2026 15:43:41 -0000</pubDate>
-      <sparkle:version>0.2.401</sparkle:version>
-      <sparkle:shortVersionString>0.2.401</sparkle:shortVersionString>
+      <title>0.2.402</title>
+      <pubDate>Thu, 17 Sep 2026 20:34:23 -0000</pubDate>
+      <sparkle:version>0.2.402</sparkle:version>
+      <sparkle:shortVersionString>0.2.402</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Every conversation is in one list on the left of the chat: your chats with your kit, Telegram, and the sessions you held in Claude Code, Codex or Cursor, each marked with its tool. You can reach it from the orb too, with Open past chats.</li><li>If your models run on your own server, Local only can now include it once you confirm it is yours, with a clear note that the connection to it is your responsibility.</li><li>The model you pick in the app now moves every one of your kit&#x27;s jobs with it, and a newer OpenAI model no longer fails in chat.</li><li>Health and Activity are rebuilt: Health shows only what needs you, and Activity names each session by its call sign.</li><li>Memories filters fold away until you want them and now visibly dim the fireflies they leave out, the window drags and resizes smoothly, and pages show their shape while they load.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.401-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="CacxuMSVwUdhf9MQzMOGTdS2OaCgB2olGC0DFvPGTBh3BfSgNPhTJAkpw2VYPNxGW5yO25O8Fs/qVPYtUPY7Bw==" length="15999029"/>
+      <description><![CDATA[<ul><li>Every conversation is in one list on the left of the chat: your chats with your kit, Telegram, and the sessions you held in Claude Code, Codex or Cursor, each marked with its tool. You can reach it from the orb too, with Open past chats.</li><li>If your models run on your own server, Local only can now include it once you confirm it is yours, with a clear note that the connection to it is your responsibility.</li><li>The model you pick in the app now moves every one of your kit&#x27;s jobs with it, and a newer OpenAI model no longer fails in chat.</li><li>Health and Activity are rebuilt: Health shows only what needs you, and Activity names each session by its call sign.</li><li>Memories filters fold away until you want them and now visibly dim the fireflies they leave out, the window drags and resizes smoothly, and pages show their shape while they load.</li><li>Renaming your kit in Who your kit is now reaches the window, the menus and the app around the page, and the stack rename is offered only where it applies.</li><li>A long conversation opens at the most recent messages and loads older ones as you scroll.</li><li>An import that stopped partway is offered the import again rather than a full night&#x27;s sleep, and Health shows what the last night did however you reach it.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.402-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="0ZdDa2M84kP/7bS584Ir1s/rZKBuxosgh+gS2U+t1Wo151lLdBwh3rmp3o1f4BE4x7QW26+RhTC/oLLqGr9DDw==" length="16025323"/>
     </item>
   </channel>
 </rss>
