@@ -3,14 +3,14 @@
   <channel>
     <title>Kit updates</title>
     <item>
-      <title>0.2.399</title>
-      <pubDate>Wed, 16 Sep 2026 22:05:47 -0000</pubDate>
-      <sparkle:version>0.2.399</sparkle:version>
-      <sparkle:shortVersionString>0.2.399</sparkle:shortVersionString>
+      <title>0.2.400</title>
+      <pubDate>Thu, 17 Sep 2026 07:41:11 -0000</pubDate>
+      <sparkle:version>0.2.400</sparkle:version>
+      <sparkle:shortVersionString>0.2.400</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<ul><li>Health now shows only what needs you, with your Kit&#x27;s last deep dream stage by stage, how long it took and what it cost.</li><li>Activity puts what is going on now in its own block, lists each day by when things started, folds a night into one card, and files late-evening sessions under the right day.</li><li>Catching up on your recent sessions stays in the background instead of opening the dreaming screen, and the home screen&#x27;s links and words sit cleanly.</li></ul>]]></description>
-      <enclosure url="https://kit-project.com/downloads/Kit-0.2.399-macOS.dmg"
-        type="application/octet-stream" sparkle:edSignature="GvO2kfn44zMXZ8+43/TH2WOX36rZe6ViclyL1fdByC2PNqKhIT03ZtpneYPPfodWuV1c6iGf8X6KiRCg/uVKCA==" length="15899637"/>
+      <description><![CDATA[<ul><li>Your kit sounds like the same person in the app and on Telegram, and the memories an answer came from now sit as footnotes underneath it instead of in the middle of sentences.</li><li>When your kit has no memories about something yet, it says so plainly and invites you to tell it, so it can remember for next time.</li><li>Starting a job shows its card straight away, so anything waiting for your approval is on screen from the first moment.</li></ul>]]></description>
+      <enclosure url="https://kit-project.com/downloads/Kit-0.2.400-macOS.dmg"
+        type="application/octet-stream" sparkle:edSignature="YOPNqznsTBYbSMmme2b8rM/TnjO9UyqI9X5pGXCl9/ehCrT3a9Gw+ktEiqog2I5m4B3edqyU3DMlTJYZjYadCw==" length="15910619"/>
     </item>
   </channel>
 </rss>
