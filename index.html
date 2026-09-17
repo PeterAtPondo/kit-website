@@ -1589,7 +1589,8 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
       <form class="contact-form"
             action="https://formspree.io/f/xzdwawzg"
             method="POST"
-            data-ajax-endpoint="https://formspree.io/f/xzdwawzg">
+            data-ajax-endpoint="https://formspree.io/f/xzdwawzg"
+            data-beta-endpoint="https://kit-project.com/api/beta-request">
         <!-- Formspree configuration -->
         <input type="hidden" name="_subject" value="Kit, message from the site">
         <!-- Honeypot for bots -->
@@ -2035,7 +2036,13 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
           const payload = {};
           data.forEach((value, key) => { payload[key] = value; });
 
-          const response = await fetch(endpoint, {
+          // A beta ask goes to the request queue, which starts the
+          // beta-request playbook and still forwards to Formspree. Sent
+          // straight to Formspree it became a mail that triage closed, and
+          // Gareth's request (2026-09-13) never reached a card.
+          const isBeta = payload.context === 'beta' && form.dataset.betaEndpoint;
+          if (isBeta) payload.source = 'home contact form';
+          const response = await fetch(isBeta ? form.dataset.betaEndpoint : endpoint, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -2046,7 +2053,8 @@ code --add-mcp '{"name":"kit-case-file","type":"http","url":"https://real-mcp.ki
 
           if (!response.ok) throw new Error('HTTP ' + response.status);
           const json = await response.json().catch(() => ({}));
-          // Formspree returns {"ok": true, "next": "..."} on success.
+          // Formspree returns {"ok": true, "next": "..."} on success, and
+          // the request queue answers {"ok": true} the same way.
           if (json.ok !== true) throw new Error('submission rejected');
 
           form.hidden = true;
