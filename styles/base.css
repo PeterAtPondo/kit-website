@@ -1370,6 +1370,9 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 @media (max-width: 780px) {
   .section { padding: var(--space-16) var(--space-6); }
   .section--hero { padding-top: var(--space-24); min-height: 75vh; }
+  /* The wrapped mobile nav is taller than the desktop bar, so the hero title
+     needs to start below it rather than under it. */
+  .section--hero:has(.hero--video) { padding-top: var(--space-24); }
   .section--hero .hero { padding: 0 var(--space-6); }
   h1 { font-size: 2.25rem; }
   p.lede { font-size: 1rem; }
@@ -1384,7 +1387,8 @@ p.eyebrow { margin: 0 0 var(--space-3); }
 
 @media (max-width: 640px) {
   .section { padding: var(--space-12) var(--space-6); }
-  .section--hero { padding-top: var(--space-16); min-height: auto; }
+  .section--hero,
+  .section--hero:has(.hero--video) { padding-top: var(--space-24); min-height: auto; }
   .section--hero .hero { padding: 0 var(--space-5); }
   h1 { font-size: 1.875rem; }
   h2 { font-size: 1.5rem; }
