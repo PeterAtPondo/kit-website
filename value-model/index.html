@@ -1,0 +1,1069 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="description" content="An interactive model of what a company Kit is worth, on your own numbers.">
+<meta name="theme-color" content="#020617">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>Kit value model</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+  /* Kit commits to one visual world: the night ground and the Fireflies palette.
+     Single theme by choice, so every colour is painted explicitly and the page
+     holds whatever ground the host paints behind it. */
+  :root {
+    --bg:     #020617;
+    --card:   #0f172a;
+    --elev:   #1a2337;
+    --line:   #26324a;
+    --ink:    #f1f5f9;
+    --ink2:   #cbd5e1;
+    --quiet:  #8296b0;
+    --amber:  #e8a55c;
+    --violet: #a78bfa;
+    --green:  #34d399;
+    /* chart series, validated for CVD and contrast on this surface */
+    --s-time:  #c08040;
+    --s-token: #8257e8;
+    --s-auto:  #17a173;
+    --cost:    #64748b;
+
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: var(--body); margin: 0;
+    padding-block: 26px; padding-left: 16px; padding-right: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+
+  header .kicker { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; color: var(--amber); margin: 0 0 10px; }
+  h1 { font-family: var(--display); font-weight: 600; font-size: clamp(1.7rem, 3.4vw, 2.3rem); margin: 0; letter-spacing: -0.015em; text-wrap: balance; }
+  header p.sub { margin: 12px 0 0; max-width: 68ch; color: var(--ink2); font-size: 0.95rem; line-height: 1.55; }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; margin-top: 16px; }
+  .cluster { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .cluster .lbl { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--quiet); margin-right: 3px; }
+  button.pill {
+    font-family: var(--body); font-size: 0.82rem; color: var(--ink2);
+    background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+    padding: 6px 14px; cursor: pointer; transition: border-color 120ms, color 120ms, background 120ms;
+  }
+  button.pill:hover { border-color: var(--amber); color: var(--ink); }
+  button.pill[aria-pressed="true"] { border-color: var(--amber); color: var(--bg); background: var(--amber); font-weight: 600; }
+  button.pill:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+  .grid { display: grid; grid-template-columns: 372px 1fr; gap: 22px; align-items: start; }
+
+  /* ---- inputs ---- */
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px 20px; }
+  fieldset { border: 0; margin: 0 0 20px; padding: 0; }
+  fieldset:last-of-type { margin-bottom: 0; }
+  legend { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--amber); padding: 0; margin-bottom: 12px; }
+
+  .ctl { margin-bottom: 15px; }
+  .ctl .top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+  .ctl .name { font-size: 0.83rem; color: var(--ink2); line-height: 1.3; }
+  .ctl .hint { display: block; font-size: 0.71rem; color: var(--quiet); }
+  .ctl output { font-family: var(--mono); font-size: 0.82rem; color: var(--amber); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  input[type="range"] {
+    -webkit-appearance: none; appearance: none; width: 100%; height: 18px;
+    background: transparent; cursor: pointer; margin: 0; display: block;
+  }
+  input[type="range"]::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: var(--elev); border: 1px solid var(--line); }
+  input[type="range"]::-moz-range-track { height: 4px; border-radius: 2px; background: var(--elev); border: 1px solid var(--line); }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 15px; height: 15px; border-radius: 50%;
+    background: var(--amber); border: 2px solid var(--card); margin-top: -6.5px;
+    box-shadow: 0 0 0 1px var(--line);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 15px; height: 15px; border-radius: 50%; background: var(--amber);
+    border: 2px solid var(--card); box-shadow: 0 0 0 1px var(--line);
+  }
+  input[type="range"]:focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; border-radius: 4px; }
+
+  select {
+    font-family: var(--body); font-size: 0.82rem; color: var(--ink);
+    background: var(--elev); border: 1px solid var(--line); border-radius: 7px;
+    padding: 7px 9px; width: 100%;
+  }
+  select:focus-visible { outline: 2px solid var(--amber); outline-offset: 1px; }
+  .ctl.sel .top { margin-bottom: 7px; }
+
+  .check { display: flex; gap: 9px; align-items: flex-start; margin: 0 0 12px; }
+  .check input { margin-top: 3px; accent-color: var(--amber); }
+  .check label { font-size: 0.8rem; color: var(--ink2); line-height: 1.4; }
+
+  body[data-mode="simple"] .adv { display: none; }
+
+  /* ---- results ---- */
+  .results { display: flex; flex-direction: column; gap: 18px; }
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .tile { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 15px; }
+  .tile .k { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; color: var(--quiet); display: block; margin-bottom: 7px; }
+  .tile .v { font-family: var(--display); font-size: 1.55rem; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .tile .v.pos { color: var(--green); }
+  .tile .v.neg { color: #f87171; }
+  .tile .n { display: block; margin-top: 6px; font-size: 0.72rem; color: var(--quiet); line-height: 1.35; }
+
+  figure { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px 12px; }
+  figcaption { font-family: var(--display); font-size: 1.05rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .figsub { font-size: 0.78rem; color: var(--quiet); margin: 0 0 12px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin: 10px 0 0; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+  .legend span { font-size: 0.76rem; color: var(--ink2); }
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .ax { font-family: var(--mono); font-size: 9px; fill: #7b8ba3; }
+  .gl { stroke: #1e293b; stroke-width: 1; }
+
+  .tip {
+    position: fixed; pointer-events: none; opacity: 0; transition: opacity 90ms;
+    background: var(--elev); border: 1px solid var(--line); border-radius: 8px;
+    padding: 8px 10px; font-size: 0.76rem; color: var(--ink); z-index: 9;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.45); white-space: nowrap;
+  }
+  .tip b { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  th, td { text-align: right; padding: 7px 8px; border-bottom: 1px solid var(--line); }
+  th:first-child, td:first-child { text-align: left; }
+  th { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em; color: var(--quiet); font-weight: 400; }
+  td { color: var(--ink2); font-variant-numeric: tabular-nums; }
+  td.fig { font-family: var(--mono); }
+  tr.tot td { color: var(--ink); font-weight: 600; }
+  .swatch { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 7px; vertical-align: -1px; }
+  .grade { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 5px; border: 1px solid; }
+  .g-m { color: var(--green); border-color: #1d6a4f; background: rgba(52,211,153,0.08); }
+  .g-d { color: var(--violet); border-color: #4c3f7a; background: rgba(167,139,250,0.08); }
+
+  .note { background: var(--elev); border: 1px solid var(--line); border-left: 2px solid var(--amber); border-radius: 10px; padding: 14px 16px; }
+  .note h3 { font-family: var(--display); font-size: 1rem; margin: 0 0 6px; color: var(--ink); font-weight: 600; }
+  .note p { margin: 0; font-size: 0.84rem; color: var(--ink2); line-height: 1.55; }
+  .note p + p { margin-top: 8px; }
+  .note b { color: var(--ink); }
+
+  footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 16px; }
+  footer .brand { font-family: var(--display); font-size: 1.15rem; color: var(--ink); }
+  footer .url { font-family: var(--mono); font-size: 0.76rem; color: var(--amber); }
+  footer button { font-family: var(--body); font-size: 0.8rem; color: var(--ink2); background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 7px 14px; cursor: pointer; }
+  footer button:hover { border-color: var(--amber); color: var(--ink); }
+
+  @media (max-width: 960px) {
+    .grid { grid-template-columns: 1fr; }
+    .tiles { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  /* The leave-behind. One page, on paper, with every assumption stamped on it
+     so the figures can be checked a week later without this page open. */
+  #sheet { display: none; }
+  @media print {
+    @page { size: A4 portrait; margin: 14mm; }
+    :root {
+      --bg: #ffffff; --card: #ffffff; --elev: #f6f7f9; --line: #d3d9e2;
+      --ink: #0b1220; --ink2: #333f52; --quiet: #5c6b80; --amber: #9a6a24;
+    }
+    body { background: #fff; color: #0b1220; padding: 0; font-size: 10pt; }
+    .wrap { max-width: none; gap: 12px; }
+    .controls, .panel, .note, footer button, .tip { display: none !important; }
+    figure:has(#tornado), figure:has(#bars) { display: none !important; }
+    .grid { display: block; }
+    h1 { font-size: 20pt; }
+    header p.sub, .figsub { display: none; }
+    header .kicker { color: #9a6a24; }
+    .tiles { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .tile { border: 1px solid #d3d9e2; padding: 9px 10px; break-inside: avoid; }
+    .tile .v { font-size: 15pt; }
+    .tile .v.pos { color: #14724f; }
+    .tile .v.neg { color: #a32626; }
+    figure { border: 1px solid #d3d9e2; padding: 10px 12px; break-inside: avoid; }
+    figcaption { font-size: 11pt; }
+    svg text { fill: #333f52 !important; }
+    .gl { stroke: #e4e8ee !important; }
+    table { font-size: 8.5pt; }
+    th, td { padding: 4px 6px; border-bottom: 1px solid #e4e8ee; }
+    .grade { border-color: #c3ccd8 !important; background: none !important; }
+    .g-m { color: #14724f !important; }
+    .g-d { color: #5b43a8 !important; }
+    footer { border-top: 1px solid #d3d9e2; padding-top: 10px; }
+    footer .url { color: #9a6a24; }
+
+    #sheet { display: block; break-inside: avoid; }
+    #sheet h3 { font-family: var(--display); font-size: 11pt; margin: 0 0 6px; }
+    #sheet .cols { column-count: 3; column-gap: 16px; font-size: 8pt; }
+    #sheet .as { break-inside: avoid; display: flex; justify-content: space-between;
+                 gap: 8px; padding: 2px 0; border-bottom: 1px dotted #e4e8ee; }
+    #sheet .as b { font-weight: 600; color: #0b1220; font-family: var(--mono); }
+    #sheet .as span { color: #5c6b80; }
+    #sheet .stamp { margin-top: 8px; font-size: 7.5pt; color: #5c6b80; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <p class="kicker">Kit value model</p>
+  <h1>What a company brain is worth, on your numbers</h1>
+  <p class="sub">
+    Drag anything on the left. Nothing here is a promise: the green lines are things a pilot can
+    measure directly, the violet ones are directional and say so. Simple mode asks the six
+    questions that move the answer; advanced opens every assumption behind them.
+  </p>
+  <div class="controls">
+    <div class="cluster">
+      <span class="lbl">Detail</span>
+      <button class="pill" id="m-simple" type="button" aria-pressed="true">Simple</button>
+      <button class="pill" id="m-adv" type="button" aria-pressed="false">Advanced</button>
+    </div>
+    <div class="cluster">
+      <span class="lbl">Assumptions</span>
+      <button class="pill" id="p-cons" type="button" aria-pressed="false">Cautious</button>
+      <button class="pill" id="p-exp" type="button" aria-pressed="true">Expected</button>
+      <button class="pill" id="p-opt" type="button" aria-pressed="false">Optimistic</button>
+    </div>
+  </div>
+</header>
+
+<div class="grid">
+
+  <!-- ------------------------------------------------ inputs -->
+  <form class="panel" id="f" autocomplete="off">
+    <fieldset>
+      <legend>Your people</legend>
+      <div class="ctl">
+        <div class="top"><span class="name">People using Kit<span class="hint">start with one team</span></span><output for="i-seats" id="v-seats"></output></div>
+        <input type="range" id="i-seats" min="5" max="600" step="5" value="40" data-fmt="n">
+      </div>
+      <div class="ctl">
+        <div class="top"><span class="name">What an hour of their time costs you<span class="hint">pay plus the overheads on top</span></span><output for="i-rate" id="v-rate"></output></div>
+        <input type="range" id="i-rate" min="150" max="2500" step="50" value="600" data-fmt="r">
+      </div>
+      <div class="ctl adv">
+        <div class="top"><span class="name">People in the organisation</span><output for="i-head" id="v-head"></output></div>
+        <input type="range" id="i-head" min="10" max="5000" step="10" value="240" data-fmt="n">
+      </div>
+      <div class="ctl adv">
+        <div class="top"><span class="name">Working days a year</span><output for="i-days" id="v-days"></output></div>
+        <input type="range" id="i-days" min="180" max="260" step="5" value="220" data-fmt="n">
+      </div>
+      <div class="ctl adv">
+        <div class="top"><span class="name">Adoption<span class="hint">share of those seats really using it</span></span><output for="i-adopt" id="v-adopt"></output></div>
+        <input type="range" id="i-adopt" min="0" max="100" step="5" value="70" data-fmt="p">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>How they work today</legend>
+      <div class="ctl">
+        <div class="top"><span class="name">AI conversations per person per day</span><output for="i-sess" id="v-sess"></output></div>
+        <input type="range" id="i-sess" min="0" max="16" step="1" value="4" data-fmt="n">
+      </div>
+      <div class="ctl">
+        <div class="top"><span class="name">Minutes explaining the background, before</span><output for="i-before" id="v-before"></output></div>
+        <input type="range" id="i-before" min="0" max="30" step="1" value="12" data-fmt="m">
+      </div>
+      <div class="ctl adv">
+        <div class="top"><span class="name">Minutes explaining, after</span><output for="i-after" id="v-after"></output></div>
+        <input type="range" id="i-after" min="0" max="15" step="1" value="2" data-fmt="m">
+      </div>
+    </fieldset>
+
+    <fieldset class="adv">
+      <legend>Models and tokens</legend>
+      <div class="ctl sel">
+        <div class="top"><span class="name">How they pay for AI today</span></div>
+        <select id="i-pay">
+          <option value="sub" selected>A subscription, per person</option>
+          <option value="api">Per token, on an API</option>
+          <option value="both">Both: subscriptions for people, tokens for agents</option>
+        </select>
+      </div>
+      <div class="ctl" id="w-subfee">
+        <div class="top"><span class="name">Subscription, per person per month</span><output for="i-subfee" id="v-subfee"></output></div>
+        <input type="range" id="i-subfee" min="0" max="3000" step="50" value="600" data-fmt="r">
+      </div>
+      <div class="ctl" id="w-subseats">
+        <div class="top"><span class="name">People on that subscription</span><output for="i-subseats" id="v-subseats"></output></div>
+        <input type="range" id="i-subseats" min="0" max="600" step="5" value="40" data-fmt="n">
+      </div>
+      <div class="ctl" id="w-cap">
+        <div class="top"><span class="name">People hitting their limit in a month<span class="hint">and stopping work until it resets</span></span><output for="i-cap" id="v-cap"></output></div>
+        <input type="range" id="i-cap" min="0" max="100" step="5" value="25" data-fmt="p">
+      </div>
+      <div class="ctl" id="w-caph">
+        <div class="top"><span class="name">Hours lost each time that happens</span><output for="i-caph" id="v-caph"></output></div>
+        <input type="range" id="i-caph" min="0" max="16" step="0.5" value="3" data-fmt="h1">
+      </div>
+      <div class="check" id="w-cut">
+        <input type="checkbox" id="i-cut">
+        <label for="i-cut">Count the freed capacity as money. Only tick this if they would really drop seats or a tier; otherwise it buys headroom, not a refund.</label>
+      </div>
+      <div class="ctl sel" id="w-apishare">
+        <div class="top"><span class="name">Share of the work billed per token<span class="hint">the rest sits inside the subscription</span></span><output for="i-apishare" id="v-apishare"></output></div>
+        <input type="range" id="i-apishare" min="0" max="100" step="5" value="30" data-fmt="p">
+      </div>
+      <div class="ctl sel">
+        <div class="top"><span class="name">Model they use today</span></div>
+        <select id="i-model">
+          <option value="270" data-out="1350" data-cheap="18" data-cheapout="90">Frontier, top tier (R270 in, R1,350 out, per million)</option>
+          <option value="54" data-out="270" data-cheap="18" data-cheapout="90" selected>Frontier, mid tier (R54 in, R270 out, per million)</option>
+          <option value="18" data-out="90" data-cheap="4" data-cheapout="20">Small hosted model (R18 in, R90 out, per million)</option>
+          <option value="0" data-out="0" data-cheap="0" data-cheapout="0">Local or open weights (nothing per token)</option>
+        </select>
+      </div>
+      <div class="ctl">
+        <div class="top"><span class="name">Turns in a conversation<span class="hint">the background is re-sent on every one</span></span><output for="i-turns" id="v-turns"></output></div>
+        <input type="range" id="i-turns" min="1" max="40" step="1" value="8" data-fmt="n">
+      </div>
+      <div class="ctl">
+        <div class="top"><span class="name">Words written back per turn<span class="hint">thousand tokens</span></span><output for="i-outtok" id="v-outtok"></output></div>
+        <input type="range" id="i-outtok" min="0.1" max="4" step="0.1" value="0.7" data-fmt="k1">
+      </div>
+      <div class="ctl">
+        <div class="top"><span class="name">Thousand tokens of background per turn, before<span class="hint">whole documents pasted in</span></span><output for="i-tokbefore" id="v-tokbefore"></output></div>
+        <input type="range" id="i-tokbefore" min="0" max="200" step="5" value="40" data-fmt="k">
+      </div>
+      <div class="ctl">
+        <div class="top"><span class="name">Thousand tokens of background per turn, after<span class="hint">only what is relevant</span></span><output for="i-tokafter" id="v-tokafter"></output></div>
+        <input type="range" id="i-tokafter" min="0" max="60" step="1" value="8" data-fmt="k">
+      </div>
+      <div class="ctl">
+        <div class="top"><span class="name">Work a cheaper model can do<span class="hint">once it has the background</span></span><output for="i-route" id="v-route"></output></div>
+        <input type="range" id="i-route" min="0" max="100" step="5" value="40" data-fmt="p">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Work it takes over</legend>
+      <div class="ctl">
+        <div class="top"><span class="name">Playbooks running<span class="hint">two included in the licence</span></span><output for="i-pb" id="v-pb"></output></div>
+        <input type="range" id="i-pb" min="0" max="20" step="1" value="4" data-fmt="n">
+      </div>
+      <div class="ctl adv">
+        <div class="top"><span class="name">Hours a week each one replaces</span><output for="i-pbh" id="v-pbh"></output></div>
+        <input type="range" id="i-pbh" min="0" max="40" step="1" value="6" data-fmt="h">
+      </div>
+      <div class="ctl adv">
+        <div class="top"><span class="name">Exceptions still needing a person</span><output for="i-pbex" id="v-pbex"></output></div>
+        <input type="range" id="i-pbex" min="0" max="80" step="5" value="20" data-fmt="p">
+      </div>
+      <div class="ctl adv">
+        <div class="top"><span class="name">Fee per extra playbook, monthly</span><output for="i-pbfee" id="v-pbfee"></output></div>
+        <input type="range" id="i-pbfee" min="0" max="15000" step="500" value="5000" data-fmt="r">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>What it costs</legend>
+      <div class="ctl sel">
+        <div class="top"><span class="name">How it is priced</span></div>
+        <select id="i-pricing">
+          <option value="seat" selected>Per seat</option>
+          <option value="band">One fee for the company</option>
+          <option value="hybrid">Platform fee plus seats</option>
+        </select>
+      </div>
+      <div class="ctl" id="w-seatfee">
+        <div class="top"><span class="name">Per seat, per month</span><output for="i-seatfee" id="v-seatfee"></output></div>
+        <input type="range" id="i-seatfee" min="0" max="5000" step="100" value="1200" data-fmt="r">
+      </div>
+      <div class="ctl sel" id="w-band">
+        <div class="top"><span class="name">Licence band</span></div>
+        <select id="i-band">
+          <option value="25000">Team, R25,000 a month</option>
+          <option value="40000" selected>Company, R40,000 a month</option>
+          <option value="60000">Sovereign, R60,000 a month</option>
+        </select>
+      </div>
+      <div class="ctl" id="w-plat">
+        <div class="top"><span class="name">Platform fee, per month</span><output for="i-plat" id="v-plat"></output></div>
+        <input type="range" id="i-plat" min="0" max="80000" step="2500" value="15000" data-fmt="r">
+      </div>
+      <div class="ctl adv">
+        <div class="top"><span class="name">Servers and storage, monthly<span class="hint">one well-sized box, self-managed database</span></span><output for="i-host" id="v-host"></output></div>
+        <input type="range" id="i-host" min="0" max="80000" step="1000" value="9000" data-fmt="r">
+      </div>
+      <div class="ctl adv">
+        <div class="top"><span class="name">Nightly consolidation, monthly<span class="hint">model spend while it tidies up, grows with the corpus</span></span><output for="i-dream" id="v-dream"></output></div>
+        <input type="range" id="i-dream" min="0" max="20000" step="500" value="3000" data-fmt="r">
+      </div>
+      <div class="ctl adv">
+        <div class="top"><span class="name">Documents to import<span class="hint">thousands</span></span><output for="i-docs" id="v-docs"></output></div>
+        <input type="range" id="i-docs" min="0" max="500" step="10" value="50" data-fmt="kd">
+      </div>
+      <div class="ctl adv">
+        <div class="top"><span class="name">Cost to read each document<span class="hint">model spend, varies a lot by model</span></span><output for="i-docc" id="v-docc"></output></div>
+        <input type="range" id="i-docc" min="0" max="5" step="0.1" value="0.4" data-fmt="r2">
+      </div>
+      <div class="ctl adv">
+        <div class="top"><span class="name">Implementation days</span><output for="i-cons" id="v-cons"></output></div>
+        <input type="range" id="i-cons" min="0" max="120" step="1" value="20" data-fmt="n">
+      </div>
+      <div class="ctl adv">
+        <div class="top"><span class="name">Day rate</span><output for="i-consr" id="v-consr"></output></div>
+        <input type="range" id="i-consr" min="0" max="40000" step="1000" value="14000" data-fmt="r">
+      </div>
+      <div class="ctl adv">
+        <div class="top"><span class="name">Onboarding hours per person</span><output for="i-onb" id="v-onb"></output></div>
+        <input type="range" id="i-onb" min="0" max="16" step="1" value="3" data-fmt="h">
+      </div>
+    </fieldset>
+
+    <fieldset class="adv">
+      <legend>What to count</legend>
+      <div class="check">
+        <input type="checkbox" id="i-inc-time" checked>
+        <label for="i-inc-time">Count time recovered. Directional: a pilot measures it with a diary study, not a stopwatch.</label>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="i-inc-ramp">
+        <label for="i-inc-ramp">Count faster onboarding for new joiners. Softest line here, off by default.</label>
+      </div>
+      <div class="ctl">
+        <div class="top"><span class="name">Staff turnover a year<span class="hint">used only for the onboarding line</span></span><output for="i-churn" id="v-churn"></output></div>
+        <input type="range" id="i-churn" min="0" max="40" step="1" value="12" data-fmt="p">
+      </div>
+    </fieldset>
+  </form>
+
+  <!-- ------------------------------------------------ results -->
+  <div class="results">
+
+    <div class="tiles">
+      <div class="tile"><span class="k">Net, per month</span><span class="v" id="o-net">R0</span><span class="n" id="o-net-n">savings after everything</span></div>
+      <div class="tile"><span class="k">Pays for itself</span><span class="v" id="o-pay">month 0</span><span class="n" id="o-pay-n">including the one-off</span></div>
+      <div class="tile"><span class="k">Three-year net</span><span class="v" id="o-three">R0</span><span class="n">cumulative, month 36</span></div>
+      <div class="tile"><span class="k">Return on spend</span><span class="v" id="o-roi">0%</span><span class="n">over three years</span></div>
+    </div>
+
+    <figure>
+      <figcaption>Cumulative position, month by month</figcaption>
+      <p class="figsub">Starts below zero by the one-off cost, and crosses when the deal has paid for itself.</p>
+      <svg id="chart" viewBox="0 0 720 260" role="img" aria-label="Cumulative net position over 36 months"></svg>
+      <div class="legend">
+        <span><i style="background:var(--s-time)"></i>Cumulative net position</span>
+        <span><i style="background:var(--cost)"></i>Below the dashed line means not yet repaid</span>
+      </div>
+    </figure>
+
+    <figure>
+      <figcaption>Where the monthly saving comes from</figcaption>
+      <p class="figsub">Against the monthly cost, drawn to the same scale.</p>
+      <svg id="bars" viewBox="0 0 720 150" role="img" aria-label="Monthly savings by source against monthly cost"></svg>
+      <div class="legend">
+        <span><i style="background:var(--s-time)"></i>Time recovered</span>
+        <span><i style="background:var(--s-token)"></i>Token cost avoided</span>
+        <span><i style="background:var(--s-auto)"></i>Work removed</span>
+        <span><i style="background:var(--cost)"></i>What you pay</span>
+      </div>
+    </figure>
+
+    <figure>
+      <figcaption>What actually moves the answer</figcaption>
+      <p class="figsub">Each input taken a quarter up and a quarter down on its own, everything else held still. The longest bar is the argument worth having.</p>
+      <svg id="tornado" viewBox="0 0 720 300" role="img" aria-label="Sensitivity of monthly net to each input"></svg>
+      <div class="legend">
+        <span><i style="background:#63421f"></i>A quarter lower</span>
+        <span><i style="background:var(--s-time)"></i>A quarter higher</span>
+        <span><i style="background:var(--cost)"></i>Where you have it now</span>
+      </div>
+    </figure>
+
+    <figure>
+      <figcaption>The numbers behind it</figcaption>
+      <p class="figsub">Every line, monthly, with how firmly a pilot can stand behind it.</p>
+      <table>
+        <thead><tr><th>Line</th><th>Per month</th><th>Per year</th><th>Evidence</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </figure>
+
+    <div class="note">
+      <h3>What would have to be true</h3>
+      <p id="bet-p">Calculating.</p>
+      <p>
+        This is the number worth arguing about. If the room believes their people lose more
+        than that per conversation, the rest of the model is detail.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<figure id="sheet">
+  <h3>Every assumption behind these figures</h3>
+  <div class="cols" id="sheet-cols"></div>
+  <p class="stamp" id="sheet-stamp"></p>
+</figure>
+
+<footer>
+  <span class="brand">Kit</span>
+  <button type="button" id="print">Print a one-page summary</button>
+  <button type="button" id="share">Copy a link to these numbers</button>
+  <span class="url">kit-project.com</span>
+</footer>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var IDS = ["i-head","i-seats","i-rate","i-days","i-sess","i-before","i-after","i-adopt",
+             "i-model","i-tokbefore","i-tokafter","i-route","i-pb","i-pbh","i-pbex","i-pbfee",
+             "i-turns","i-outtok","i-pay","i-subfee","i-subseats","i-cap","i-caph","i-cut","i-apishare","i-pricing","i-seatfee","i-plat","i-band","i-host","i-dream","i-docs","i-docc","i-cons","i-consr","i-onb","i-churn",
+             "i-inc-time","i-inc-ramp"];
+
+  var PRESETS = {
+    cons: { "i-before": 8,  "i-after": 3, "i-adopt": 50, "i-tokbefore": 25, "i-tokafter": 10,
+            "i-route": 20, "i-pbh": 3, "i-pbex": 35, "i-inc-ramp": false },
+    exp:  { "i-before": 12, "i-after": 2, "i-adopt": 70, "i-tokbefore": 40, "i-tokafter": 8,
+            "i-route": 40, "i-pbh": 6, "i-pbex": 20, "i-inc-ramp": false },
+    opt:  { "i-before": 18, "i-after": 1, "i-adopt": 90, "i-tokbefore": 60, "i-tokafter": 6,
+            "i-route": 60, "i-pbh": 10, "i-pbex": 10, "i-inc-ramp": true }
+  };
+
+  function num(id) { var v = parseFloat($(id).value); return isFinite(v) ? v : 0; }
+  function on(id) { return $(id).checked; }
+
+  function money(v) {
+    var a = Math.abs(v), s = v < 0 ? "-" : "";
+    if (a >= 1e6) return s + "R" + (a / 1e6).toFixed(2) + "m";
+    if (a >= 1e3) return s + "R" + Math.round(a / 1e3) + "k";
+    return s + "R" + Math.round(a);
+  }
+  function full(v) {
+    return (v < 0 ? "-" : "") + "R" + Math.round(Math.abs(v)).toLocaleString("en-ZA");
+  }
+
+  // readouts: the slider says what it means, so no unit hunting
+  var FMT = {
+    n:  function (v) { return String(v); },
+    p:  function (v) { return v + "%"; },
+    m:  function (v) { return v + " min"; },
+    h:  function (v) { return v + (v === 1 ? " hr" : " hrs"); },
+    h1: function (v) { return v.toFixed(1) + " hrs"; },
+    k:  function (v) { return v + "k"; },
+    k1: function (v) { return v.toFixed(1) + "k"; },
+    kd: function (v) { return (v * 1000).toLocaleString("en-ZA"); },
+    r:  function (v) { return "R" + Number(v).toLocaleString("en-ZA"); },
+    r2: function (v) { return "R" + Number(v).toFixed(2); }
+  };
+  function paint() {
+    IDS.forEach(function (id) {
+      var e = $(id), out = $("v" + id.slice(1));
+      if (!out || !e || e.type !== "range") return;
+      out.textContent = (FMT[e.getAttribute("data-fmt")] || FMT.n)(parseFloat(e.value));
+    });
+  }
+
+  function model() {
+    var seats = num("i-seats"), rate = num("i-rate"), days = num("i-days");
+    var adopt = num("i-adopt") / 100;
+    var sess = num("i-sess");
+    var monthDays = days / 12;
+    var activeSeats = seats * adopt;
+
+    // 1. time recovered: minutes no longer spent restating the business
+    var minsSaved = Math.max(0, num("i-before") - num("i-after"));
+    var timeM = on("i-inc-time") ? activeSeats * sess * minsSaved / 60 * monthDays * rate : 0;
+
+    // 2. tokens. The driver is that the background is re-sent on every turn, so a
+    //    conversation bills its context many times over, and output is priced higher
+    //    than input. Both were missing from the first version of this model.
+    var o = $("i-model").selectedOptions[0];
+    var pIn = parseFloat(o.value) || 0;
+    var pOut = parseFloat(o.getAttribute("data-out")) || 0;
+    var cIn = parseFloat(o.getAttribute("data-cheap")) || 0;
+    var cOut = parseFloat(o.getAttribute("data-cheapout")) || 0;
+    var turns = num("i-turns");
+    var outTok = num("i-outtok") * 1000 * turns;
+    var sessMonth = activeSeats * sess * monthDays;
+    var route = num("i-route") / 100;
+
+    var inBefore = turns * num("i-tokbefore") * 1000;
+    var inAfter = turns * num("i-tokafter") * 1000;
+    var beforeCost = (inBefore * pIn + outTok * pOut) / 1e6;
+    var afterCost = (inAfter * (pIn * (1 - route) + cIn * route) +
+                     outTok * (pOut * (1 - route) + cOut * route)) / 1e6;
+    var rawToken = Math.max(0, (beforeCost - afterCost) * sessMonth);
+    var pay = $("i-pay").value;
+    var apiShare = pay === "api" ? 1 : pay === "both" ? num("i-apishare") / 100 : 0;
+    var tokenM = rawToken * apiShare;
+
+    // Under a subscription nobody is billed per token, so the reduction buys
+    // headroom instead of a refund. Two honest consequences:
+    //   released   the share of subscription spend the drop in consumption frees,
+    //              banked only if they would truly cut seats or drop a tier
+    //   capM       people who stop losing days to a usage limit they keep hitting
+    var subShare = 1 - apiShare;
+    var consumed = beforeCost > 0 ? afterCost / beforeCost : 1;
+    var cut = Math.max(0, 1 - consumed);
+    var subSpend = num("i-subfee") * num("i-subseats") * subShare;
+    var released = subSpend * cut;
+    var capM = num("i-subseats") * subShare * (num("i-cap") / 100) *
+               num("i-caph") * rate * cut;
+    var releasedBanked = on("i-cut") ? released : 0;
+
+    // 3. work removed: playbook hours displaced, less the exceptions a human still handles
+    var autoM = num("i-pb") * num("i-pbh") * 4.333 * rate * (1 - num("i-pbex") / 100);
+
+    // 4. ramp: new joiners reaching useful work sooner. Softest line, off by default.
+    var joiners = seats * (num("i-churn") / 100) / 12;
+    var rampM = on("i-inc-ramp") ? joiners * 10 * 8 * rate * 0.35 : 0;
+
+    var savings = timeM + tokenM + autoM + rampM + capM + releasedBanked;
+
+    var mode = $("i-pricing").value;
+    var licence = mode === "seat" ? seats * num("i-seatfee")
+                : mode === "band" ? num("i-band")
+                : num("i-plat") + seats * num("i-seatfee");
+    var extraPb = Math.max(0, num("i-pb") - 2) * num("i-pbfee");
+    var host = num("i-host") + num("i-dream");
+    var costM = licence + extraPb + host;
+
+    var importC = num("i-docs") * 1000 * num("i-docc");
+    var consultC = num("i-cons") * num("i-consr");
+    var onboardC = seats * num("i-onb") * rate;
+    var oneOff = importC + consultC + onboardC;
+
+    var net = savings - costM;
+    var payback = net > 0 ? Math.ceil(oneOff / net) : Infinity;
+
+    var series = [], cum = -oneOff;
+    for (var m = 1; m <= 36; m++) { cum += net; series.push(cum); }
+    var three = series[35];
+    var spend3 = oneOff + costM * 36;
+    var roi = spend3 > 0 ? (three / spend3) * 100 : 0;
+
+    // the bet: minutes per conversation that would have to be recovered to break
+    // even inside a year, with every other saving left exactly as it is
+    var perMinute = activeSeats * sess / 60 * monthDays * rate;
+    var needMonthly = (oneOff / 12) + costM - tokenM - autoM - rampM;
+    var betMins = perMinute > 0 ? Math.max(0, needMonthly / perMinute) : Infinity;
+
+    return { timeM: timeM, tokenM: tokenM, autoM: autoM, rampM: rampM, savings: savings,
+             licence: licence, extraPb: extraPb, host: host, costM: costM, oneOff: oneOff,
+             net: net, payback: payback, series: series, three: three, roi: roi,
+             licenceLabel: mode === "seat" ? ("Licence, " + seats + " seats")
+                         : mode === "band" ? "Licence, company band" : "Platform fee and seats",
+             perSeat: seats > 0 ? (timeM + tokenM + autoM + rampM) / seats : 0,
+             betMins: betMins, minsSaved: minsSaved,
+             capM: capM, released: released, releasedBanked: releasedBanked,
+             cut: cut, subSpend: subSpend, pay: pay };
+  }
+
+  // ---------------------------------------------------------------- charts
+  var tip = $("tip");
+  function showTip(e, html) {
+    tip.innerHTML = html; tip.style.opacity = "1";
+    var x = e.clientX + 14, y = e.clientY - 10;
+    if (x + tip.offsetWidth > window.innerWidth - 8) x = e.clientX - tip.offsetWidth - 14;
+    tip.style.left = x + "px"; tip.style.top = y + "px";
+  }
+  function hideTip() { tip.style.opacity = "0"; }
+
+  var NS = "http://www.w3.org/2000/svg";
+  function el(n, a) {
+    var e = document.createElementNS(NS, n);
+    for (var k in a) e.setAttribute(k, a[k]);
+    return e;
+  }
+
+  function drawLine(r) {
+    var svg = $("chart"); svg.textContent = "";
+    var W = 720, H = 260, L = 64, R = 14, T = 14, B = 26;
+    var pw = W - L - R, ph = H - T - B;
+    var lo = Math.min(0, -r.oneOff, r.series[0]), hi = Math.max(0, r.three);
+    if (hi === lo) hi = lo + 1;
+    var pad = (hi - lo) * 0.08; lo -= pad; hi += pad;
+    var X = function (i) { return L + (i / 35) * pw; };
+    var Y = function (v) { return T + ph - ((v - lo) / (hi - lo)) * ph; };
+
+    for (var t = 0; t <= 4; t++) {
+      var v = lo + (hi - lo) * t / 4, y = Y(v);
+      svg.appendChild(el("line", { x1: L, y1: y, x2: W - R, y2: y, "class": "gl" }));
+      var lb = el("text", { x: L - 8, y: y + 3, "class": "ax", "text-anchor": "end" });
+      lb.textContent = money(v); svg.appendChild(lb);
+    }
+    var zy = Y(0);
+    svg.appendChild(el("line", { x1: L, y1: zy, x2: W - R, y2: zy, stroke: "#475569",
+      "stroke-width": 1.5, "stroke-dasharray": "4 4" }));
+
+    [0, 11, 23, 35].forEach(function (i) {
+      var lb = el("text", { x: X(i), y: H - 8, "class": "ax", "text-anchor": "middle" });
+      lb.textContent = "month " + (i + 1); svg.appendChild(lb);
+    });
+
+    var d = "";
+    r.series.forEach(function (v, i) { d += (i ? " L " : "M ") + X(i).toFixed(1) + " " + Y(v).toFixed(1); });
+    var da = "M " + X(0).toFixed(1) + " " + zy.toFixed(1) + " " +
+             r.series.map(function (v, i) { return "L " + X(i).toFixed(1) + " " + Y(v).toFixed(1); }).join(" ") +
+             " L " + X(35).toFixed(1) + " " + zy.toFixed(1) + " Z";
+    svg.appendChild(el("path", { d: da, fill: "#c08040", "fill-opacity": "0.13" }));
+    svg.appendChild(el("path", { d: d, fill: "none", stroke: "#c08040", "stroke-width": 2,
+      "stroke-linejoin": "round", "stroke-linecap": "round" }));
+
+    if (isFinite(r.payback) && r.payback <= 36) {
+      var bx = X(r.payback - 1);
+      svg.appendChild(el("line", { x1: bx, y1: T, x2: bx, y2: T + ph, stroke: "#e8a55c",
+        "stroke-width": 1, "stroke-dasharray": "3 3" }));
+      var bl = el("text", { x: Math.min(bx + 6, W - R - 150), y: T + 11, "class": "ax", fill: "#e8a55c" });
+      bl.textContent = "pays for itself, month " + r.payback; svg.appendChild(bl);
+      svg.appendChild(el("circle", { cx: bx, cy: Y(r.series[r.payback - 1]), r: 4,
+        fill: "#c08040", stroke: "#0f172a", "stroke-width": 2 }));
+    }
+
+    var hov = el("rect", { x: L, y: T, width: pw, height: ph, fill: "transparent" });
+    var cross = el("line", { x1: 0, y1: T, x2: 0, y2: T + ph, stroke: "#64748b", "stroke-width": 1, opacity: 0 });
+    var dot = el("circle", { r: 4.5, fill: "#c08040", stroke: "#0f172a", "stroke-width": 2, opacity: 0, cx: 0, cy: 0 });
+    svg.appendChild(hov); svg.appendChild(cross); svg.appendChild(dot);
+    hov.addEventListener("mousemove", function (e) {
+      var box = svg.getBoundingClientRect();
+      var px = (e.clientX - box.left) / box.width * W;
+      var i = Math.max(0, Math.min(35, Math.round((px - L) / pw * 35)));
+      cross.setAttribute("x1", X(i)); cross.setAttribute("x2", X(i)); cross.setAttribute("opacity", 1);
+      dot.setAttribute("cx", X(i)); dot.setAttribute("cy", Y(r.series[i])); dot.setAttribute("opacity", 1);
+      showTip(e, "Month " + (i + 1) + "<br><b>" + full(r.series[i]) + "</b>");
+    });
+    hov.addEventListener("mouseleave", function () {
+      cross.setAttribute("opacity", 0); dot.setAttribute("opacity", 0); hideTip();
+    });
+  }
+
+  function drawBars(r) {
+    var svg = $("bars"); svg.textContent = "";
+    var W = 720, L = 92, R = 96, T = 16;
+    var pw = W - L - R;
+    var max = Math.max(r.savings, r.costM, 1);
+    var segs = [
+      { k: "Time recovered", v: r.timeM + r.rampM, c: "#c08040" },
+      { k: "Token cost avoided", v: r.tokenM + r.capM + r.releasedBanked, c: "#8257e8" },
+      { k: "Work removed", v: r.autoM, c: "#17a173" }
+    ].filter(function (s) { return s.v > 0; });
+
+    function row(y, label, total, parts) {
+      var lb = el("text", { x: L - 10, y: y + 19, "class": "ax", "text-anchor": "end", "font-size": "10" });
+      lb.textContent = label; svg.appendChild(lb);
+      var x = L;
+      parts.forEach(function (p) {
+        var w = (p.v / max) * pw;
+        if (w <= 0) return;
+        var rc = el("rect", { x: x, y: y, width: Math.max(1, w - 2), height: 28, rx: 4, fill: p.c });
+        rc.addEventListener("mousemove", function (e) {
+          showTip(e, p.k + "<br><b>" + full(p.v) + "</b> a month");
+        });
+        rc.addEventListener("mouseleave", hideTip);
+        svg.appendChild(rc);
+        x += w;
+      });
+      var tl = el("text", { x: Math.min(L + (total / max) * pw + 8, W - 6), y: y + 19,
+        "class": "ax", fill: "#cbd5e1", "font-size": "11" });
+      tl.textContent = money(total); svg.appendChild(tl);
+    }
+    row(T, "Saved", r.savings, segs);
+    row(T + 44, "Paid", r.costM, [{ k: "What you pay", v: r.costM, c: "#64748b" }]);
+
+    var ny = T + 96;
+    var nl = el("text", { x: L - 10, y: ny, "class": "ax", "text-anchor": "end", "font-size": "10" });
+    nl.textContent = "Net"; svg.appendChild(nl);
+    var nv = el("text", { x: L, y: ny + 1, "font-size": "15", "font-weight": "600",
+      fill: r.net >= 0 ? "#34d399" : "#f87171", "font-family": "Fraunces, Georgia, serif" });
+    nv.textContent = full(r.net) + " a month"; svg.appendChild(nv);
+  }
+
+  // Vary one input at a time and watch the monthly net. The model reads straight
+  // from the controls, so each probe sets a value, re-runs, and puts it back.
+  var SENS = [
+    ["i-seats",     "People using Kit"],
+    ["i-rate",      "Cost of an hour"],
+    ["i-sess",      "Conversations a day"],
+    ["i-before",    "Minutes explaining, before"],
+    ["i-after",     "Minutes explaining, after"],
+    ["i-adopt",     "Adoption"],
+    ["i-turns",     "Turns in a conversation"],
+    ["i-tokbefore", "Background per turn, before"],
+    ["i-tokafter",  "Background per turn, after"],
+    ["i-route",     "Work a cheaper model can do"],
+    ["i-outtok",    "Words written back per turn"],
+    ["i-pb",        "Playbooks running"],
+    ["i-pbh",       "Hours a week each replaces"],
+    ["i-pbex",      "Exceptions needing a person"],
+    ["i-host",      "Servers and storage"],
+    ["i-dream",     "Nightly consolidation"],
+    ["i-days",      "Working days a year"]
+  ];
+
+  function sensitivity(base) {
+    var price = { seat: ["i-seatfee", "Price per seat"],
+                  band: [null, null],
+                  hybrid: ["i-plat", "Platform fee"] }[$("i-pricing").value];
+    var list = SENS.concat(price && price[0] ? [price] : []);
+    var out = [];
+    list.forEach(function (row) {
+      var e = $(row[0]);
+      if (!e) return;
+      var held = e.value, v = parseFloat(held);
+      var lo = Math.max(parseFloat(e.min), v * 0.75);
+      var hi = Math.min(parseFloat(e.max), v * 1.25);
+      if (!(hi > lo)) return;
+      e.value = lo; var nLo = model().net;
+      e.value = hi; var nHi = model().net;
+      e.value = held;
+      out.push({ k: row[1], lo: Math.min(nLo, nHi), hi: Math.max(nLo, nHi),
+                 span: Math.abs(nHi - nLo) });
+    });
+    out.sort(function (a, b) { return b.span - a.span; });
+    return out.filter(function (x) { return x.span > 1; }).slice(0, 9);
+  }
+
+  function drawTornado(r) {
+    var svg = $("tornado"); svg.textContent = "";
+    var rows = sensitivity(r);
+    var W = 720, L = 188, R = 84, T = 10, rh = 26;
+    var pw = W - L - R;
+    var H = Math.max(80, T + rows.length * rh + 26);
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    if (!rows.length) return;
+
+    var lo = r.net, hi = r.net;
+    rows.forEach(function (x) { lo = Math.min(lo, x.lo); hi = Math.max(hi, x.hi); });
+    var pad = (hi - lo) * 0.06 || 1; lo -= pad; hi += pad;
+    var X = function (v) { return L + ((v - lo) / (hi - lo)) * pw; };
+    var bx = X(r.net);
+
+    svg.appendChild(el("line", { x1: bx, y1: T, x2: bx, y2: T + rows.length * rh + 4,
+      stroke: "#64748b", "stroke-width": 1.5 }));
+    var bl = el("text", { x: bx, y: T + rows.length * rh + 18, "class": "ax",
+      "text-anchor": "middle", fill: "#94a3b8" });
+    bl.textContent = "now, " + money(r.net); svg.appendChild(bl);
+
+    rows.forEach(function (x, i) {
+      var y = T + i * rh;
+      var lb = el("text", { x: L - 12, y: y + 15, "class": "ax", "text-anchor": "end",
+        "font-size": "10.5", fill: "#cbd5e1" });
+      lb.textContent = x.k; svg.appendChild(lb);
+
+      [[x.lo, Math.min(r.net, x.hi), "#63421f"], [Math.max(r.net, x.lo), x.hi, "#c08040"]]
+        .forEach(function (seg) {
+          var a = X(seg[0]), b = X(seg[1]);
+          if (b - a < 0.5) return;
+          var rc = el("rect", { x: a, y: y + 3, width: b - a, height: 17, rx: 4, fill: seg[2] });
+          rc.addEventListener("mousemove", function (e) {
+            showTip(e, x.k + "<br>a quarter either way<br><b>" + full(x.lo) +
+              "</b> to <b>" + full(x.hi) + "</b>");
+          });
+          rc.addEventListener("mouseleave", hideTip);
+          svg.appendChild(rc);
+        });
+
+      var sp = el("text", { x: W - R + 10, y: y + 15, "class": "ax", "font-size": "10",
+        fill: "#8296b0" });
+      sp.textContent = money(x.span) + " swing"; svg.appendChild(sp);
+    });
+  }
+
+  function table(r) {
+    var rows = [
+      ["Time recovered", r.timeM, "#c08040", "d"],
+      ["Token cost avoided", r.tokenM, "#8257e8", "m"],
+      ["Work removed by playbooks", r.autoM, "#17a173", "m"],
+      ["Faster onboarding", r.rampM, "#c08040", "d"],
+      ["Days not lost to a usage limit", r.capM, "#8257e8", "d"],
+      ["Subscription capacity, cashed in", r.releasedBanked, "#8257e8", "m"],
+      [r.licenceLabel, -r.licence, "#64748b", "m"],
+      ["Extra playbooks", -r.extraPb, "#64748b", "m"],
+      ["Servers, storage and nightly consolidation", -r.host, "#64748b", "m"]
+    ].filter(function (x) { return Math.abs(x[1]) > 0.5; });
+
+    var html = rows.map(function (x) {
+      return "<tr><td><span class='swatch' style='background:" + x[2] + "'></span>" + x[0] +
+        "</td><td class='fig'>" + full(x[1]) + "</td><td class='fig'>" + full(x[1] * 12) +
+        "</td><td><span class='grade " + (x[3] === "m" ? "g-m'>Measured" : "g-d'>Directional") +
+        "</span></td></tr>";
+    }).join("");
+    html += "<tr class='tot'><td>Net, per month</td><td class='fig'>" + full(r.net) +
+            "</td><td class='fig'>" + full(r.net * 12) + "</td><td></td></tr>";
+    html += "<tr><td>One-off: import, implementation, onboarding</td><td class='fig'>" +
+            full(r.oneOff) + "</td><td class='fig'>once</td><td><span class='grade g-m'>Quoted</span></td></tr>";
+    $("tbody").innerHTML = html;
+  }
+
+  function render() {
+    paint();
+    var r = model();
+    $("o-net").textContent = money(r.net);
+    $("o-net").className = "v " + (r.net >= 0 ? "pos" : "neg");
+    $("o-net-n").textContent = full(r.net * 12) + " a year";
+    $("o-pay").textContent = isFinite(r.payback) ? ("month " + r.payback) : "never";
+    $("o-pay-n").textContent = isFinite(r.payback) ? "one-off of " + money(r.oneOff)
+                                                  : "monthly cost exceeds the saving";
+    $("o-three").textContent = money(r.three);
+    $("o-three").className = "v " + (r.three >= 0 ? "pos" : "neg");
+    $("o-roi").textContent = (r.roi >= 0 ? "+" : "") + Math.round(r.roi) + "%";
+    $("o-roi").className = "v " + (r.roi >= 0 ? "pos" : "neg");
+
+    $("bet-p").innerHTML = isFinite(r.betMins)
+      ? "Leave every other line as it is, and Kit pays for itself inside a year if each person " +
+        "saves <b>" + r.betMins.toFixed(1) + " minutes a conversation</b>. You have set " +
+        r.minsSaved.toFixed(0) + "."
+      : "With nobody using it, no amount of time recovered pays for it.";
+
+    var head = $("bet-p").parentNode;
+    var extra = document.getElementById("cap-note");
+    if (!extra) {
+      extra = document.createElement("p");
+      extra.id = "cap-note";
+      head.appendChild(extra);
+    }
+    extra.innerHTML = (r.pay !== "api" && r.released > 0.5 && !r.releasedBanked)
+      ? "Not counted above: consumption falls by about " + Math.round(r.cut * 100) +
+        "%, which is worth at most <b>" + full(r.released) + "</b> a month of the " +
+        "subscription. Treat that as a ceiling, not a saving. Seat prices do not fall " +
+        "with usage, so it only becomes money if somebody cuts seats or drops a tier."
+      : "";
+
+    drawLine(r); drawBars(r); drawTornado(r); table(r); sheet(r);
+    writeHash();
+  }
+
+  // ---------------------------------------------------------------- state
+  function writeHash() {
+    try {
+      var o = { mode: document.body.getAttribute("data-mode") };
+      IDS.forEach(function (id) {
+        var e = $(id);
+        o[id.slice(2)] = e.type === "checkbox" ? (e.checked ? 1 : 0) : e.value;
+      });
+      history.replaceState(null, "", "#" + btoa(JSON.stringify(o)));
+    } catch (e) { /* sharing is a convenience, never a requirement */ }
+  }
+  function readHash() {
+    try {
+      if (!location.hash || location.hash.length < 4) return;
+      var o = JSON.parse(atob(location.hash.slice(1)));
+      IDS.forEach(function (id) {
+        var k = id.slice(2);
+        if (!(k in o)) return;
+        var e = $(id);
+        if (e.type === "checkbox") e.checked = !!Number(o[k]); else e.value = o[k];
+      });
+      if (o.mode) setMode(o.mode);
+    } catch (e) { /* a broken link just shows the defaults */ }
+  }
+
+  function payUI() {
+    var m = $("i-pay").value, sub = m !== "api";
+    ["w-subfee", "w-subseats", "w-cap", "w-caph", "w-cut"].forEach(function (id) {
+      $(id).style.display = sub ? "" : "none";
+    });
+    $("w-apishare").style.display = m === "both" ? "" : "none";
+  }
+
+  function pricingUI() {
+    var m = $("i-pricing").value;
+    $("w-seatfee").style.display = (m === "seat" || m === "hybrid") ? "" : "none";
+    $("w-band").style.display = m === "band" ? "" : "none";
+    $("w-plat").style.display = m === "hybrid" ? "" : "none";
+  }
+
+  function setMode(m) {
+    document.body.setAttribute("data-mode", m);
+    $("m-simple").setAttribute("aria-pressed", String(m === "simple"));
+    $("m-adv").setAttribute("aria-pressed", String(m === "advanced"));
+  }
+  $("m-simple").addEventListener("click", function () { setMode("simple"); writeHash(); });
+  $("m-adv").addEventListener("click", function () { setMode("advanced"); writeHash(); });
+
+  function applyPreset(name, btn) {
+    var p = PRESETS[name];
+    for (var k in p) {
+      var e = $(k);
+      if (e.type === "checkbox") e.checked = p[k]; else e.value = p[k];
+    }
+    ["p-cons", "p-exp", "p-opt"].forEach(function (b) {
+      $(b).setAttribute("aria-pressed", String($(b) === btn));
+    });
+    render();
+  }
+  $("p-cons").addEventListener("click", function () { applyPreset("cons", this); });
+  $("p-exp").addEventListener("click", function () { applyPreset("exp", this); });
+  $("p-opt").addEventListener("click", function () { applyPreset("opt", this); });
+
+  $("i-pricing").addEventListener("change", function () { pricingUI(); render(); });
+  $("i-pay").addEventListener("change", function () { payUI(); render(); });
+
+  $("f").addEventListener("input", function () {
+    ["p-cons", "p-exp", "p-opt"].forEach(function (b) { $(b).setAttribute("aria-pressed", "false"); });
+    render();
+  });
+
+  // the leave-behind reads back every control, including the ones advanced mode hides
+  function sheet(r) {
+    var out = [];
+    [].forEach.call($("f").querySelectorAll(".ctl, .check"), function (row) {
+      var input = row.querySelector("input, select");
+      if (!input || input.offsetParent === null && row.closest("[style*='none']")) return;
+      var nameEl = row.querySelector(".name") || row.querySelector("label");
+      if (!nameEl) return;
+      var name = (nameEl.childNodes[0].textContent || "").trim();
+      if (input.type === "checkbox") name = name.split(".")[0].trim();  // the rule, not the caveat
+      var val;
+      if (input.type === "checkbox") val = input.checked ? "yes" : "no";
+      else if (input.tagName === "SELECT") val = input.selectedOptions[0].textContent.split(" (")[0];
+      else {
+        var o = $("v" + input.id.slice(1));
+        val = o ? o.textContent : input.value;
+      }
+      if (row.style.display === "none") return;
+      out.push("<div class='as'><span>" + name + "</span><b>" + val + "</b></div>");
+    });
+    $("sheet-cols").innerHTML = out.join("");
+    $("sheet-stamp").textContent =
+      "Prepared " + new Date().toLocaleDateString("en-ZA", { day: "numeric", month: "long", year: "numeric" }) +
+      ". Illustrative, not a quotation. Lines marked directional are estimates a pilot would " +
+      "measure rather than figures anyone has yet proved.";
+  }
+
+  $("print").addEventListener("click", function () { window.print(); });
+
+  $("share").addEventListener("click", function () {
+    var self = this;
+    writeHash();
+    var done = function () {
+      self.textContent = "Link copied";
+      setTimeout(function () { self.textContent = "Copy a link to these numbers"; }, 1800);
+    };
+    if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(done, done);
+    else done();
+  });
+
+  window.addEventListener("resize", function () {
+    var r = model(); drawLine(r); drawBars(r); drawTornado(r);
+  });
+
+  setMode("simple");
+  if (!location.hash || location.hash.length < 4) applyPreset("exp", $("p-exp"));
+  readHash();
+  pricingUI();
+  payUI();
+  render();
+})();
+</script>
+</body>
+</html>

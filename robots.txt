@@ -39,6 +39,10 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
+# Unlinked pages shared directly with named people, kept out of search.
+User-agent: *
+Disallow: /value-model/
+
 Sitemap: https://kit-project.com/sitemap.xml
 
 # A live, keyless kit for agents to read: map at
